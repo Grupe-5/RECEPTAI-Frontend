@@ -21,7 +21,7 @@ export class RecipesService {
       description: 'Classic spaghetti bolognese recipe with a rich tomato sauce.',
       cooking_time: '30',
       servings: '4',
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Medium'
     },
     {
@@ -34,7 +34,7 @@ export class RecipesService {
       description: 'Quick and easy chicken stir-fry with fresh vegetables.',
       cooking_time: '20',
       servings: '3',
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Easy'
     },
     {
@@ -47,7 +47,7 @@ export class RecipesService {
       description: 'Hearty and flavorful vegetarian chili packed with beans and vegetables.',
       cooking_time: '45',
       servings: '6',
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Medium'
     },
     {
@@ -60,7 +60,7 @@ export class RecipesService {
       description: 'Delicious grilled salmon served with a tangy lemon dill sauce.',
       cooking_time: '20',
       servings: '4',
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Medium'
     },
     {
@@ -73,7 +73,7 @@ export class RecipesService {
       description: 'Creamy and indulgent mushroom risotto cooked to perfection.',
       cooking_time: '40',
       servings: '4',
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Hard'
     },
     {
@@ -86,7 +86,7 @@ export class RecipesService {
       description: 'Refreshing Greek salad with crisp vegetables and tangy feta cheese.',
       cooking_time: '15',
       servings: '2',
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Easy'
     },
     {
@@ -99,7 +99,7 @@ export class RecipesService {
       description: 'Classic beef tacos with seasoned ground beef and all your favorite toppings.',
       cooking_time: "25",
       servings: "4",
-      date_posted: new Date(),
+      date_posted: this.simulate_RandomDate(),
       cooking_difficulty: 'Easy'
     },
     
@@ -124,5 +124,28 @@ export class RecipesService {
     
     return item1;
   }
+
+  simulate_RandomDate(): Date {
+    const now = new Date();
+    const randomInterval = Math.floor(Math.random() * 6); // Random number between 0 and 5
+
+    switch (randomInterval) {
+        case 0:
+            return new Date(now.getTime() - 60000); // 1 minute ago
+        case 1:
+            return new Date(now.getTime() - (5 * 60000)); // 5 minutes ago
+        case 2:
+            return new Date(now.getTime() - (60 * 60000)); // 1 hour ago
+        case 3:
+            return new Date(now.getTime() - (3 * 60 * 60000)); // 3 hours ago
+        case 4:
+            return new Date(now.getTime() - (24 * 60 * 60000)); // 1 day ago
+        case 5:
+            return new Date(now.getTime() - (3 * 24 * 60 * 60000)); // 3 days ago
+        default:
+            return now;
+    }
+  }
+  
 
 }

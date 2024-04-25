@@ -1,4 +1,8 @@
-<p>Recipe List:</p>
-<div class="recipe-card-container">
-    <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-card>
+<div class="recipes-list-wrap">
+    <h2 class="heading-secondary">Find something delicious!</h2>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-3 m-2" *ngFor="let recipe of recipes">
+            <app-recipe-card [recipe]="recipe"></app-recipe-card>
+        </div>
+    </div>
 </div>

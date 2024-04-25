@@ -1,1 +1,36 @@
-<p>{{recipe?.title}}<p>
+<div class="recipe-page row">
+    <div class="col-3 recipe-page__first">
+        <p>{{recipe?.title}}<p>
+
+        <div class="recipe-page__first-upvotes-box">
+            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+            <!-- TODO: upvotes count -->
+            <p class="vote_count">12k</p>
+            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+        </div>
+
+        <div class="recipe-page__first-info-box">
+            <p class="recipe-card__info-1__subredit">
+                <!-- TODO: Subredit name  -->
+                r/<span class="highlight">Steaks</span>
+            </p>
+            <p class="recipe-card__info-1__date">
+                {{ getHoursOrMinutesFromToday(recipe?.date_posted) }}
+            </p>
+        </div>
+
+        <div class="recipe-page__first-name-box">
+            <p class="recipe-page__first-name">
+                <!-- TODO User name -->
+                By <span class="highlight">Nice Testing Name</span>
+            </p>
+        </div>
+
+    </div>
+    
+    <div class="col-3">
+    </div>
+
+    <div class="col-3">
+    </div>
+</div>

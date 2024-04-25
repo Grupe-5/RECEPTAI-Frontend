@@ -1,0 +1,32 @@
+.recipe-page {
+    &__first{
+        &-upvotes-box{
+            border-radius: 0 0 .5rem;
+            padding: 0 5px;
+            z-index: 100;
+            
+            text-align: center;
+    
+            img{
+                height: 2rem;
+            }
+            .vote_count{
+                margin: 0;
+            }
+            .down-arrow{
+                transform: rotate(180deg);
+            }
+        }
+        &-info-box{ 
+        }
+
+        &-name-box{
+            
+        }
+        
+    }
+}
+
+.highlight{
+    color: var(--color-primary);
+}

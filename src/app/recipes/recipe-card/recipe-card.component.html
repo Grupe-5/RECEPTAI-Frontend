@@ -1,6 +1,54 @@
-<div>
-    <h4>
-        Recipe: {{recipe?.title}}
-    </h4>
-    <a [routerLink]="['recipe', recipe?.recipe_id]" >More details</a>
+<div class="recipe-card" [routerLink]="['recipe', recipe?.recipe_id]">
+    <div class="recipe-card__upvotes-box">
+            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+            <!-- TODO: upvotes count -->
+            <p class="vote_count">12k</p>
+            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+    </div>
+    
+    <div class="recipe-card__img-box">
+        <!-- TODO replace with actuall image -->
+        <img src="../../../assets/imgs/recipe-img-dummy.jpg" alt="Recipe img" class="recipe-card__img">
+    </div>
+    
+    <div class="row recipe-card__info-1">
+        <p class="col-6 recipe-card__info-1__subredit">
+            <!-- TODO: Subredit name  -->
+            r/<span class="highlight">Steaks</span>
+        </p>
+        <p class="col-6 recipe-card__info-1__date">
+            {{ getHoursOrMinutesFromToday(recipe?.date_posted) }}
+        </p>
+    </div>
+
+    <div class="recipe-card__title-box">
+        <p class="recipe-card__title">
+            {{recipe?.title}}
+        </p>
+    </div>
+
+    <div class="recipe-card__name-box">
+        <p class="recipe-card__name">
+            <!-- TODO User name -->
+            By <span class="highlight">Nice Testing Name</span>
+        </p>
+    </div>
+
+    <div class="recipe-card__info-2 row justify-content-md-center ">
+        
+        <div class="recipe-card__info-2__comments-box col-4">
+            <!-- TODO: comments count -->
+            <img src="../../../assets/imgs/comment.svg">
+            <span>200</span>
+        </div>
+        
+        <div class="recipe-card__info-2__upvotes-box row col-4">
+        </div>
+
+        <div class="recipe-card__info-2__share-box col-4">
+            <img src="../../../assets/imgs/share.svg">
+        </div>
+
+    </div>
+    <!-- <a [routerLink]="['recipe', recipe?.recipe_id]" >More details</a> -->
 </div>

@@ -1,30 +1,94 @@
-.recipe-page {
-    &__first{
-        &-upvotes-box{
-            border-radius: 0 0 .5rem;
-            padding: 0 5px;
-            z-index: 100;
-            
-            text-align: center;
-    
-            img{
-                height: 2rem;
-            }
-            .vote_count{
-                margin: 0;
-            }
-            .down-arrow{
-                transform: rotate(180deg);
-            }
-        }
-        &-info-box{ 
-        }
 
-        &-name-box{
-            
-        }
-        
+.recipe-page {
+    // background-color: white;
+    &__arrow-back{
+        height: 2rem;
+        margin-right: 1rem;
     }
+    &__subreddit{
+        font-size: 2rem;
+        
+        a {
+            text-decoration: none;
+        }
+    }
+    &__upvotes-box{
+        border-radius: 0 0 .5rem;
+        padding: 0 5px;
+        z-index: 100;
+        
+        
+        text-align: center;
+
+        img{
+            height: 2rem;
+        }
+        .vote_count{
+            margin: 0;
+        }
+        .down-arrow{
+            transform: rotate(180deg);
+        }
+    }
+    &__title-box{
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+    &__info-box{
+        font-size: 1.6rem;
+        text-align: left;
+    }
+    &__info-1__date{
+        margin-left: 1rem;
+    }
+    &__name-box{
+        font-size: 1.6rem;
+    }
+    &__img-box{
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        padding: 0;
+        width: 100%;
+        padding: 0 0;
+        overflow: hidden;
+    }
+    &__img{
+        padding: 1rem;
+        display: block;
+        width: 100%;
+    }
+    &__info{
+        background-color: white;
+        border-radius: .5rem;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    }
+    &__ingredients{
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        border-radius: .5rem;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        
+        p{
+            font-weight: bold;
+        }
+        &-list{
+            display: block;
+        }
+    }
+    &__instructions{
+        background-color: white;
+        border-radius: .5rem;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        p{
+            font-weight: bold;
+            text-align: center;
+        }
+        ol > li::marker {
+            font-weight: bold;
+        }
+          
+    }
+
 }
 
 .highlight{

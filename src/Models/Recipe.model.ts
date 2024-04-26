@@ -10,6 +10,7 @@ export class Recipe {
     servings: string;
     date_posted: Date;
     cooking_difficulty: string;  // TODO: will be an ENUM
+    instructions: string;
       
     constructor(
       recipe_id: string,
@@ -22,7 +23,8 @@ export class Recipe {
       cooking_time: string,
       servings: string,
       date_posted: Date,
-      cooking_difficulty: string
+      cooking_difficulty: string,
+      instructions: string,
     ) {
       this.recipe_id = recipe_id;
       this.user_id = user_id;
@@ -35,6 +37,7 @@ export class Recipe {
       this.servings = servings;
       this.date_posted = date_posted;
       this.cooking_difficulty = cooking_difficulty; 
+      this.instructions = instructions;
     }
   }
   

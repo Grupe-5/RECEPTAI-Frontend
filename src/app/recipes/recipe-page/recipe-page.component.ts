@@ -11,6 +11,7 @@ import { RecipesService } from '../../../Services/recipes-service.service';
 })
 export class RecipePageComponent {
   recipe: Recipe | undefined;
+  instructionsTrimmed: string[] | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipesService){}
 
@@ -21,12 +22,17 @@ export class RecipePageComponent {
       if(this.recipe === undefined){
         this.router.navigate(['/']); 
       }
+      else{
+        this.instructionsTrimmed = this.recipe.instructions.split('\n');
+        this.instructionsTrimmed = this.instructionsTrimmed.filter(ing => !(/^\s*$/.test(ing)))
+      }
     });
   }
 
   getHoursOrMinutesFromToday(date: Date | undefined): string {
-    if (date == undefined)
+    if (date == undefined){
       return "Some time ago"
+    }
 
     const currentDate = new Date();
     const diffMilliseconds = currentDate.getTime() - date.getTime();
@@ -35,11 +41,11 @@ export class RecipePageComponent {
     const diffDays = Math.floor(diffHours / 24);
 
     if (diffDays > 0) {
-        return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+      return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
     } else if (diffHours > 0) {
-        return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+      return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
     } else {
-        return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+      return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
     }
   }
 }

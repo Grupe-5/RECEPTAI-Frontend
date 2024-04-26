@@ -1,36 +1,87 @@
-<div class="recipe-page row">
-    <div class="col-3 recipe-page__first">
-        <p>{{recipe?.title}}<p>
-
-        <div class="recipe-page__first-upvotes-box">
-            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-            <!-- TODO: upvotes count -->
-            <p class="vote_count">12k</p>
-            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+<div class="recipe-page ps-5 pe-5 pb-5">
+    <div class="row p-4">
+        <div class="recipe-page__navigation-row">
+            <a routerLink="../../">
+                <img src="../../../assets/imgs/arrow-back.svg" class="recipe-page__arrow-back">
+            </a>
+            <!-- TODO: Subredit name  -->
+            <!-- TODO: Subredit/Link  -->
+            <span class="recipe-page__subreddit">
+                /r/<a class="highlight">Steaks</a>
+            </span>
         </div>
-
-        <div class="recipe-page__first-info-box">
-            <p class="recipe-card__info-1__subredit">
-                <!-- TODO: Subredit name  -->
-                r/<span class="highlight">Steaks</span>
-            </p>
-            <p class="recipe-card__info-1__date">
-                {{ getHoursOrMinutesFromToday(recipe?.date_posted) }}
-            </p>
-        </div>
-
-        <div class="recipe-page__first-name-box">
-            <p class="recipe-page__first-name">
-                <!-- TODO User name -->
-                By <span class="highlight">Nice Testing Name</span>
-            </p>
-        </div>
-
     </div>
     
-    <div class="col-3">
-    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="row justify-content-between">
+                <div class="col-6 row">
+                    <div class="col-2 recipe-page__upvotes-box">
+                        <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+                        <!-- TODO: upvotes count -->
+                        <p class="vote_count">12k</p>
+                        <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+                    </div>
+                    <div class="col-10">
+                        <div class="recipe-page__title-box">
+                            <p class="recipe-page__title">{{recipe?.title}}<p>
+                        </div>
+                
+                        <div class="row recipe-page__info-box">
+                            <p class="recipe-card__info-1__subredit">
+                                By <span class="highlight">Nice Testing Name</span>
+                                 
+                                <span class="recipe-page__info-1__date">
+                                    {{ getHoursOrMinutesFromToday(recipe?.date_posted) }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="col-3">
+                <div class="col-6">
+                    <div class="recipe-page__info p-4 mb-4">
+                        <p class="recipe-page__info-difficulty">
+                            <b>Cooking Difficulty:</b> {{recipe?.cooking_difficulty}}
+                        </p>
+                        <p class="recipe-page__info-time">
+                            <b>Total time:</b> {{recipe?.cooking_time}}
+                        </p>
+                        <p class="recipe-page__info-servings">
+                            <b>Servings:</b> {{recipe?.servings}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row pt-2">
+                <div class="col-6 ps-4">
+                    <div class="recipe-page__img-box">
+                        <!-- TODO replace with actuall image -->
+                        <img src="../../../assets/imgs/recipe-img-dummy.jpg" alt="Recipe img" class="recipe-page__img">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="recipe-page__ingredients">
+                        <div>
+                            <p>Ingredients</p>
+                            <ul class="recipe-page__ingredients-list">
+                                <li *ngFor="let ingredient of this.recipe?.ingredients?.split('\n')">{{ingredient}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="recipe-page__instructions ps-5 pe-2 pt-4 pb-4">
+                    <p>Instructions</p>
+                    <ol class="recipe-page__instructions-list ">
+                        <li *ngFor="let instructions of instructionsTrimmed">{{instructions}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

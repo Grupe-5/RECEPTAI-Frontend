@@ -1,0 +1,150 @@
+.recipe-create{
+    padding: 2rem;
+    background-color: white;
+    height: calc(100vh - 8%);
+    margin: auto;
+    max-width: 100rem;
+    font-size: 1.6rem;
+    &__title{
+        font-size: 2.5rem;
+        // color: var(--color-primary);
+    }
+    &__subfooddit{
+        padding: 1rem 1.5rem;
+        // border: solid 1px rgb(0, 0, 0, .2);
+        background-color: var(--color-grey-light-2);
+        
+        // box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        border-radius: .8rem;
+        
+        a {
+            text-decoration: none;
+        }
+        &-arrow{
+            margin-bottom: .4rem;
+            vertical-align: middle;
+            height: 15px;
+            transform: rotate(180deg);
+            padding-right: 1.5rem;
+            
+        }
+        
+        &-list{
+            font-size: 1.5rem;
+            border: none;
+            border: solid 1px rgb(0, 0, 0, .2);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+            min-width: 20rem;
+            border-radius: .8rem;
+            
+            .dropdown-item {
+                padding: 1rem;
+                &:hover{
+                    background-color: var(--color-grey-light-2);
+                    cursor: pointer;
+                    
+                }
+            }
+        }
+        &:hover{
+            background-color: var(--color-grey-light-3);
+            transform: translateY(-1px);
+        }
+    }
+    &__dropdown{
+        max-width: 20rem;
+        
+    }
+}
+label{
+    font-size: 2rem;
+    padding-bottom: 10px;
+}
+
+.input-text, select{
+    padding: 1rem;
+}
+textarea{
+    padding: 1.3rem;
+}
+input, textarea, select, button{
+    font-size: 1.6rem;
+
+    &:focus{
+        border-color: transparentize(#F04A17, .9);
+        box-shadow: 0 1px 1px transparentize(#F04A17, .8)  inset, 0 0 8px transparentize(#F04A17, .7);
+        outline: 0 none;
+    }
+}
+
+.btn-wrap{
+    display: flex;
+    justify-content: center;
+}
+
+textarea{
+    min-height: 20rem;
+}
+
+select{
+    border: solid 1px #dee2e6;
+    width: 100%;
+    
+}
+
+.form-select{
+    color: #595C5F;
+    
+    option{
+        color: black;
+    }
+}
+
+
+.highlight{
+    color: var(--color-primary);
+}
+
+/* CSS */
+.button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    position: relative;
+    padding: 0.8rem 0 1rem 0;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    border-radius: 1rem;
+    width: 10rem;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #F04A17;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #F04A17;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}

@@ -1,0 +1,96 @@
+<div class="recipe-create">
+
+    <div class="row p-4">
+        <h2 class="recipe-create__title">
+            Post new recipe
+        </h2>
+    </div>
+    
+    <div class="row p-4 pt-0 pb-0 mt-4">
+        <div class="recipe-create__dropdown">
+            <div class="nav-item dropdown">
+                <a class="nav-link" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
+                    
+                    <span class="recipe-create__subfooddit">
+                        /r/<a>Steaks</a>
+                        <img class="recipe-create__subfooddit-arrow" src="../../../assets/imgs/up-arrow.svg">
+                    </span>
+                </a>
+                <!-- TODO: Get possible foodits list -->
+                <div class="recipe-create__subfooddit-list dropdown-menu"  ngbDropdownMenu aria-labelledby="navbarScrollingDropdown">
+                    <a class="dropdown-item" >r/Cool</a>
+                    <a class="dropdown-item" >r/Nice</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                    <a class="dropdown-item" >r/Good</a>
+                </div>
+            </div>     
+        </div>        
+    </div>
+    <!-- TODO add error checking + submition of recipe -->
+    <div class="row p-4 pb-0 mt-5 pt-0">
+        <label>Basic information</label>
+    </div>
+    <div class="row p-4 pt-0 pb-0">
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" class="form-control input-text" id="formGroupExampleInput" placeholder="Title">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" class="form-control input-text" id="formGroupExampleInput" placeholder="Time to prepare">
+            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="form-group">
+                <input type="text" class="form-control input-text" id="formGroupExampleInput" placeholder="Amount of serving">
+            </div>
+        </div>
+        <div class="col-6 mt-4">
+            <div class="form-group">
+                <select class="form-select custom-select-lg mb-3">
+                    <option selected>Difficulty</option>
+                    <option value="1"><span class="highlight">Easy</span></option>
+                    <option value="1">Hard</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Expert</option>
+                </select>      
+            </div>        
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-6 p-5 pt-0">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Ingridients</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-6 p-5 pt-0">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Cooking Instructions</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>            
+        </div>
+    </div>
+    <div class="row p-4">
+        <div>
+            <label for="formFileLg" class="form-label">Upload Recipe Picture</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file">
+        </div>          
+    </div>
+
+    <div class="row p-4 mt-4">
+        <div class="btn-wrap col-12">
+            <button type="submit" class="button-5 ">Post</button>
+        </div>
+    </div>
+</div>  

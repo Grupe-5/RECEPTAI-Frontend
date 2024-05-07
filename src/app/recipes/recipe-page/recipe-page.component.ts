@@ -11,14 +11,15 @@ import { RecipesService } from '../../../Services/recipes.service';
 })
 export class RecipePageComponent {
   recipe: Recipe | undefined;
+  recipeId: number = 0;
   instructionsTrimmed: string[] | undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipesService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const recipeId = Number(params.get('id'));
-      this.recipe = this.recipeService.getRecipeById(recipeId.toString())
+      this.recipeId = Number(params.get('id'));
+      this.recipe = this.recipeService.getRecipeById(this.recipeId.toString())
       if(this.recipe === undefined){
         this.router.navigate(['/']); 
       }

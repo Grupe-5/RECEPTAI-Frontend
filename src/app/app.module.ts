@@ -8,6 +8,8 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { RecipePageComponent } from './recipes/recipe-page/recipe-page.component';
 import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentComponent } from './comments/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.com
     RecipesComponent,
     RecipeCardComponent,
     RecipePageComponent,
-    RecipeCreateComponent
+    RecipeCreateComponent,
+    CommentsComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

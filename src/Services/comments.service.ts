@@ -10,7 +10,7 @@ import { Recipe } from '../Models/Recipe.model';
 export class CommentsService {
   // TODO: replace with acctual API calls
   dummyComments: Comment[] = [
-    new Comment(1, "User1", "Great recipe!", new Date("2024-05-07"), 10, 1),
+    new Comment(1, "User1", `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.    `, new Date("2024-05-07"), 10, 1),
     new Comment(2, "User2", "I loved it!", new Date("2024-05-06"), 15, 2),
     new Comment(3, "User3", "Fantastic!", new Date("2024-05-05"), 5, 3),
     new Comment(4, "User4", "Delicious!", new Date("2024-05-04"), 20, 4),
@@ -20,7 +20,7 @@ export class CommentsService {
     new Comment(8, "User8", "Amazing!", new Date("2024-04-30"), 25, 8),
     new Comment(9, "User9", "Incredible!", new Date("2024-04-29"), 30, 9),
     new Comment(10, "User10", "Awesome recipe!", new Date("2024-04-28"), 7, 10),
-    new Comment(11, "User11", "This recipe is superb!", new Date("2024-04-27"), 14, 1),
+    new Comment(11, "User11", `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the`, new Date("2024-04-27"), 14, 1),
     new Comment(12, "User12", "I can't wait to try it!", new Date("2024-04-26"), 9, 2),
     new Comment(13, "User13", "So tasty!", new Date("2024-04-25"), 22, 3),
     new Comment(14, "User14", "Really good!", new Date("2024-04-24"), 17, 4),
@@ -30,7 +30,7 @@ export class CommentsService {
     new Comment(18, "User18", "Excellent!", new Date("2024-04-20"), 19, 8),
     new Comment(19, "User19", "So delicious!", new Date("2024-04-19"), 13, 9),
     new Comment(20, "User20", "Fantastic recipe!", new Date("2024-04-18"), 23, 10),
-    new Comment(21, "User21", "Absolutely delicious!", new Date("2024-04-17"), 26, 1),
+    new Comment(21, "User21", `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been theLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the`, new Date("2024-04-17"), 26, 1),
     new Comment(22, "User22", "I'm impressed!", new Date("2024-04-16"), 31, 2),
     new Comment(23, "User23", "Wonderful recipe!", new Date("2024-04-15"), 8, 3),
     new Comment(24, "User24", "So yummy!", new Date("2024-04-14"), 16, 4),

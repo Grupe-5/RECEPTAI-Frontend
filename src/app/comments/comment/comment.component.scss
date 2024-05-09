@@ -1,0 +1,60 @@
+.comment{
+    border-bottom: 1px solid #D9D9D9 ;
+    &__upvotes-box{
+        border-radius: 0 0 .5rem;
+        background-color: rgba(255,255,255, .8);
+        padding: 0 5px;
+        z-index: 100;
+        
+        position: absolute;
+        text-align: center;
+
+        img{
+            height: 2rem;
+            color: red;
+        }
+        .vote_count{
+            margin: 0;
+        }
+        .down-arrow{
+            transform: rotate(180deg);
+        }
+    }
+    &__info{
+        > div{
+            padding: 0;
+        }
+        &-username{
+            font-weight: bold;
+            padding-right: 1.5rem;
+        }
+    }
+    &__reply{
+        padding: 0;
+        &-link{
+            display: inline-block;
+            text-decoration: none;
+            height: 3rem;
+            color: black;
+
+            span{
+                text-decoration: underline;
+                vertical-align: middle;
+                padding-left: 5px;
+            }
+
+            &:hover{
+                color: #F04A17;
+                cursor: pointer;
+                filter: invert(31%) sepia(71%) saturate(2505%) hue-rotate(355deg) brightness(99%) contrast(91%);
+            }
+        }
+    }
+
+    &__reply-box{
+
+        img{
+            height: 3rem;
+        }
+    }
+}

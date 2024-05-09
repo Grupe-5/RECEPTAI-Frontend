@@ -1,1 +1,36 @@
-<p>{{comment?.text}}</p>
+<div class="row comment p-3 pt-4">
+    <div class="col-1 comment__upvotes">
+        <div class="comment__upvotes-box">
+            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+            <!-- TODO: upvotes count -->
+            <p class="vote_count">12k</p>
+            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+        </div>
+    </div>
+    <div class="col-11">
+        <div class="row comment__info">
+            <div>
+                <span class="comment__info-username">
+                    {{comment?.user_name}}
+                </span>
+                <span class="comment__info-date">
+                    {{getHoursOrMinutesFromToday(comment?.date)}}
+                </span>
+
+            </div>
+        </div>
+        <div class="row comment__text mt-2">
+            {{comment?.text}}
+        </div>
+
+        <div class="row comment__reply-box pb-3">
+            <div class="comment__reply mt-3">
+                <a class="comment__reply-link">
+                    <img src="../../../assets/imgs/comment.svg">
+                    <span>Reply</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

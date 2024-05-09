@@ -1,0 +1,135 @@
+.comments-wrap{
+    &__heading{
+        padding: 0 4rem 1.5rem;
+        border-bottom: solid 2px #F04A17;
+    }
+    &__comments-section{
+        background-color: white;
+        padding: 3rem 1.6rem;
+    }
+
+    &__topinfo{
+        padding-bottom: .6rem;
+        &-com-count{
+            padding-left: 2rem;
+            font-size: 2rem;
+            font-weight: bold;
+            position: relative;
+
+            p {
+                display: inline;
+                position: absolute;
+                padding-bottom: .375rem;
+                bottom: 0;
+                margin: 0;
+            }
+        }
+        &-filterby{
+            text-align: right;
+            font-weight: bold;
+            padding: .375rem 2.25rem .375rem .75rem;
+        }
+        &-filter{
+            text-align: right;
+            max-width: 11rem;
+            
+            
+            .form-select{
+                padding-left: 0;
+                margin: 0 !important;
+                font-size: 2rem;
+                border: none;
+                background-color: transparent;
+                
+                &:hover{
+                    cursor: pointer;
+                }
+                &:focus{
+                    box-shadow: 0 0px 0px transparentize(#F04A17, .8)  inset, 0 0 0px transparentize(#F04A17, .7);
+                    border-color: transparent;
+                    outline: 0 none;
+                }
+
+                option{
+                    padding: .375rem 2.25rem .375rem .75rem !important; 
+                    &:hover{
+                        cursor: pointer !important;
+                    }
+                }
+            }
+        }
+
+    }
+    &__comments-section-write{
+        input{
+            width: 100%;
+            padding: 0 0 1.5rem 1.5rem;
+            border: none;
+            border-bottom: solid 2px transparentize(#030303, .47);
+            transition: all 250ms;
+            
+            &:focus{
+                outline: none !important;
+                border-bottom: solid 2px transparentize(#F04A17, .47);
+            }
+        }
+    }
+}
+
+.highlight{
+    color: var(--color-primary);
+}
+.not-highlight{
+    color: black !important;
+}
+
+/* CSS */
+// TODO: Clean stolen css
+.btn-wrap{
+    display: flex;
+    justify-content: end;
+    padding-right: 2rem;
+}
+.button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: transparent;
+    border: 1px solid transparentize(#030303, .47);
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: transparentize(#030303, .4);
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    position: relative;
+    padding: 0.5rem 0 1rem 0;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    border-radius: 3rem;
+    width: 11rem;
+}
+
+.button-5:hover,
+.button-5:focus {
+  color: #F04A17;
+  border: 1px solid transparentize(#F04A17, .47);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+    transform: translateY(-1px);
+}
+
+.button-5:active {
+    border: 1px solid transparentize(#F04A17, .47);
+    color: #F04A17;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+}

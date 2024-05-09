@@ -11,6 +11,7 @@ export class RecipeCardComponent {
 
   constructor() {}
 
+  // TODO: move this function to separate service (used in multiple palces)
   getHoursOrMinutesFromToday(date: Date | undefined): string {
     if (date == undefined)
       return "Some time ago"

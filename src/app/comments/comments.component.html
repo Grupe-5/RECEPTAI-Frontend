@@ -1,6 +1,48 @@
 <div class="comments-wrap">
-    <h2 class="heading-secondary">Comments</h2>
-    <div class="row" *ngFor="let comment of comments">
-        <app-comment [comment]="comment"></app-comment>
+    <div class="row">
+        <h2 class="heading-secondary">
+            <span class="comments-wrap__heading">
+                Comments
+            </span>
+        </h2>
+    </div>
+    
+    <div class="row comments-wrap__topinfo">
+        <div class="col-6 comments-wrap__topinfo-com-count">
+            <p>{{getCommentsCountText()}}</p>
+        </div>
+
+        <div class="col-6">
+            <div class="row justify-content-md-end">
+                <div class="col-6 pe-0 comments-wrap__topinfo-filterby">Filter by:</div>
+                <div class="form-group comments-wrap__topinfo-filter ">
+                    <select (change)="selectChange($event)" class="form-select custom-select-lg mb-3 highlight">
+                        <!-- TODO: make this in ngFor and proper selectChange -->
+                        <option class="not-highlight" selected value="Best">Best</option>
+                        <option class="not-highlight" value="Newest">Newest</option>
+                    </select>      
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+    <div class="comments-wrap__comments-section p-5">
+        <div class="row mt-3">
+            <div class="col-12 comments-wrap__comments-section-write">
+                <input type="text" placeholder="Share your opinion!">
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-md-end">
+            <div class="btn-wrap">
+                <!-- TODO: add click listener -->
+                <button type="submit" class="button-5">Post</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div *ngFor="let comment of comments">
+                <app-comment [comment]="comment"></app-comment>
+            </div>
+        </div>
     </div>
 </div>

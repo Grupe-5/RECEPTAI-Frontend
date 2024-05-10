@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navigation',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
     styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent{
+    constructor(private router: Router) {}
 
+
+    shouldShowCreateLink(): boolean {
+        return this.router.url !== '/create';
+    }
+    
 }

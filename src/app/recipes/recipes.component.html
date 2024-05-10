@@ -1,5 +1,10 @@
 <div class="recipes-list-wrap">
-    <h2 class="heading-secondary">Find something delicious!</h2>
+    <!-- TODO: add side panels which would contain sub-foodits and home (if user is logged in) -->
+    <h2 class="heading-secondary mt-6">
+        <span class="recipes-list-wrap__heading">
+            Find something delicious!
+        </span>
+    </h2>
     <div class="row justify-content-md-center">
         <div class="col-sm-3 m-2" *ngFor="let recipe of recipes">
             <app-recipe-card [recipe]="recipe"></app-recipe-card>

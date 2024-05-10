@@ -11,9 +11,9 @@
 
         img{
             height: 2rem;
-            color: red;
         }
         .vote_count{
+            font-weight: bold;
             margin: 0;
         }
         .down-arrow{
@@ -25,6 +25,7 @@
             padding: 0;
         }
         &-username{
+            color:  var(--color-secondary-dark);
             font-weight: bold;
             padding-right: 1.5rem;
         }
@@ -44,9 +45,9 @@
             }
 
             &:hover{
-                color: #F04A17;
                 cursor: pointer;
-                filter: invert(31%) sepia(71%) saturate(2505%) hue-rotate(355deg) brightness(99%) contrast(91%);
+                filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
+
             }
         }
     }

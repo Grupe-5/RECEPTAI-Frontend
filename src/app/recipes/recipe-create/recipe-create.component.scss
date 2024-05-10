@@ -71,8 +71,8 @@ input, textarea, select, button{
     font-size: 1.6rem;
 
     &:focus{
-        border-color: transparentize(#F04A17, .9);
-        box-shadow: 0 1px 1px transparentize(#F04A17, .8)  inset, 0 0 8px transparentize(#F04A17, .7);
+        border-color: transparentize(#FDBD1F, .9);
+        box-shadow: 0 1px 1px transparentize(#FDBD1F, .8)  inset, 0 0 8px transparentize(#FDBD1F, .7);
         outline: 0 none;
     }
 }
@@ -109,7 +109,7 @@ select{
 .button-5 {
     align-items: center;
     background-clip: padding-box;
-    background-color: #fa6400;
+    background-color: #FDBD1F;
     border: 1px solid transparent;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
@@ -135,7 +135,7 @@ select{
 
 .button-5:hover,
 .button-5:focus {
-  background-color: #F04A17;
+  background-color: #FDBD1F;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -144,7 +144,7 @@ select{
 }
 
 .button-5:active {
-  background-color: #F04A17;
+  background-color: #FDBD1F;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }

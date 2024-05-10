@@ -6,4 +6,8 @@
     .col-sm-4{
         column-gap: 2rem;
     }
+    &__heading{
+        padding: 0 1.5rem 1.5rem;
+        border-bottom: solid 2px #FDBD1F;
+    }
 }

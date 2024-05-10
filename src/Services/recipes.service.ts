@@ -78,7 +78,7 @@ export class RecipesService {
     {
       recipe_id: '4',
       user_id: '2',
-      title: 'Grilled Salmon with Lemon Dill Sauce',
+      title: 'Grilled Salmon',
       img_id: 'grilled_salmon_image.jpg',
       subreddit_id: 'seafood',
       ingredients: 'Salmon fillets\nLemon\nFresh dill',

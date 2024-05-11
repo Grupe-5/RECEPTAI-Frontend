@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'I am recipe system root!!!';
+  constructor(private router: Router) {}
+
+  isLoggedIn: Boolean = true;
+  isInRecipeRoute:Boolean = false;
+  
+  isRouteRecipePage(): boolean {
+    return this.router.url.startsWith('/recipe/');
+  }
+
 }

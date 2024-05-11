@@ -1,5 +1,5 @@
 .top-navbar{
-  padding: 0 .6rem 0;
+  padding: 0 2rem 0 .6rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -11,7 +11,6 @@
   &__logo{
     img{
       height: 4rem;
-
     }
   }
   &__search{

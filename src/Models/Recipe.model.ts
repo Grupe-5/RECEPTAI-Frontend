@@ -9,7 +9,7 @@ export class Recipe {
     cooking_time: string; 
     servings: string;
     date_posted: Date;
-    cooking_difficulty: string;  // TODO: will be an ENUM
+    cooking_difficulty: string;
     instructions: string;
       
     constructor(

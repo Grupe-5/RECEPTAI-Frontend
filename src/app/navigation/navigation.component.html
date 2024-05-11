@@ -1,5 +1,4 @@
 <nav class="top-navbar pt-3 pb-3">
-    <div class="container">
         <div class="row">
             <div class="col-4">
                 <a class="top-navbar__logo navbar-brand" href="#">
@@ -23,13 +22,6 @@
             </div>
             <div class="col-4" *ngIf="true">
                 <div class="btn-wrap">
-                    <!-- TODO: add click listener -->
-                    <a type="submit" class="button-5-2" href="/create" *ngIf="shouldShowCreateLink()">
-                        <img  src="../../assets/icons/pencil-square.svg" alt="Post-Recipe">
-                        <span>
-                            New Recipe
-                        </span> 
-                    </a>
                     <a class="top-navbar__avatar">
                         <!-- Add user profile -->
                         <img src="../../assets/imgs/user-avatar.png" alt="user-avatar">
@@ -38,6 +30,5 @@
                 
             </div>
         </div>
-    </div>
 </nav>
   

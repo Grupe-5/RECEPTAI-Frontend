@@ -9,6 +9,7 @@ import { Comment } from '../../../Models/Comment.model';
 export class CommentComponent {
   @Input() comment?: Comment;
 
+  // TODO: convert this to PIPE
   getHoursOrMinutesFromToday(date: Date | undefined): string {
     if (date == undefined)
       return "Some time ago"

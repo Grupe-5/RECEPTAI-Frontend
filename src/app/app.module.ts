@@ -10,6 +10,7 @@ import { RecipePageComponent } from './recipes/recipe-page/recipe-page.component
 import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
 import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comments/comment/comment.component';
+import { NavigationSidebarComponent } from './navigation/navigation-sidebar/navigation-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CommentComponent } from './comments/comment/comment.component';
     RecipePageComponent,
     RecipeCreateComponent,
     CommentsComponent,
-    CommentComponent
+    CommentComponent,
+    NavigationSidebarComponent
   ],
   imports: [
     BrowserModule,

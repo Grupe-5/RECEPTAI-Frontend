@@ -1,6 +1,13 @@
 <!-- TODO: Fix coloring and usage of color variables -->
 <app-navigation></app-navigation>
 <div class="container">
-    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-2">
+            <app-navigation-sidebar></app-navigation-sidebar>
+        </div> 
+        <div class="col-10">
+            <router-outlet></router-outlet>
+        </div> 
+    </div>
 </div>
 <!-- TODO: Add Footer -->

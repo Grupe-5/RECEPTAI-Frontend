@@ -1,13 +1,13 @@
 <div class="sticky">
     <div class="sticky__community">
         <div class="sticky__links">
-            <a type="submit" class="button-5-2" href="/">
+            <a type="submit" [ngClass]="{'active-link': isActiveHome()}" class="button-5-2" href="/">
                 <img src="../../assets/icons/house.svg" alt="Post-Recipe">
                 <span>
                     Home Page
                 </span> 
             </a>
-            <a type="submit" class="button-5-2" href="/create">
+            <a type="submit" [ngClass]="{'active-link': isActiveCreate()}"class="button-5-2" href="/create">
                 <img class="img-write" src="../../assets/icons/pencil-square.svg" alt="Post-Recipe">
                 <span>
                     New Recipe

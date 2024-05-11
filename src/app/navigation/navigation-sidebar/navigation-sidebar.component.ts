@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-sidebar',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './navigation-sidebar.component.scss'
 })
 export class NavigationSidebarComponent {
+  constructor(private router: Router) {}
+
+  isActiveHome(): boolean {
+    return this.router.url == '/';
+  }
+
+  isActiveCreate(): boolean {
+    return this.router.url == '/create';
+  }
 
 }

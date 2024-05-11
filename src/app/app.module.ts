@@ -32,4 +32,4 @@ import { NavigationSidebarComponent } from './navigation/navigation-sidebar/navi
   providers: [],
   bootstrap: [AppComponent, RecipePageComponent]
 })
-export class AppModule { }
+export class AppModule {}

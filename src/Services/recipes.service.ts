@@ -8,8 +8,6 @@ import { Recipe } from '../Models/Recipe.model';
 })
 export class RecipesService {
 
-  // TODO: Replace with API endpoint
-  // private apiUrl = 'https://api.example.com/recipes';  
   Recipes_Dummy_List: Recipe[] = [
     {
       recipe_id: '1',
@@ -185,17 +183,7 @@ export class RecipesService {
     },
     
   ];
-  
-  // TODO: Uncomment when API will be available
-  // constructor(private http: HttpClient) { }
-  // getRecipes(): Observable<Recipe[]> {
-  //   return this.http.get<Recipe[]>(this.apiUrl);
-  // }
 
-  // getRecipeById(id: number): Observable<Recipe> {
-  //   const url = `${this.apiUrl}/${id}`;
-  //   return this.http.get<Recipe>(url);
-  // }
   getRecipes(): Recipe[]{
     return this.Recipes_Dummy_List;
   }

@@ -8,7 +8,6 @@ import { Recipe } from '../Models/Recipe.model';
   providedIn: 'root'
 })
 export class CommentsService {
-  // TODO: replace with acctual API calls
   dummyComments: Comment[] = [
     new Comment(1, "User1", `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.    `, new Date("2024-05-07"), 10, 1),
     new Comment(2, "User2", "I loved it!", new Date("2024-05-06"), 15, 2),

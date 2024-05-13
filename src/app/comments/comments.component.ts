@@ -10,7 +10,7 @@ import { CommentsService } from '../../Services/comments.service';
 export class CommentsComponent {
   @Input() recipeId: number = 0;
   
-  filterValue?: String ; 
+  sortValue?: String ; 
   
   comments: Comment[] = [];
 

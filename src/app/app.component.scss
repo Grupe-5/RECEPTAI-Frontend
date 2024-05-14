@@ -3,6 +3,8 @@
 }
 
 .with-side-bar{
-    margin-left: 0 !important;
-    padding-left: 0 !important;
+    &__sidebar{
+        background-color: white;
+        box-shadow: 0  0 .3rem 0 rgba(0, 0, 0, .2);
+    }
 }

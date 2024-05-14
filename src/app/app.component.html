@@ -3,9 +3,9 @@
     <router-outlet></router-outlet> 
 </div>
 
-<div class="container with-side-bar" *ngIf="isLoggedIn && !isRouteRecipePage()">
+<div class="with-side-bar" *ngIf="isLoggedIn && !isRouteRecipePage()">
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 with-side-bar__sidebar">
             <app-navigation-sidebar></app-navigation-sidebar>
         </div> 
         <div class="col-10">

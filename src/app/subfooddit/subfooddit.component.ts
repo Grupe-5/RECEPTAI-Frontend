@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subfooddit',
@@ -9,10 +9,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SubfoodditComponent {
   foodditName: string = "";
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.foodditName = this.parseSubFooditName("/f/cas/");
+    this.foodditName = this.parseSubFooditName(this.router.url);
     if(this.foodditName == ""){
       // TODO: return error/reroute
     }
@@ -29,9 +29,10 @@ export class SubfoodditComponent {
     } else {
         return "";
     }
-}
+  }
 
-
-  
-
+  getUsersCountText(): String{
+    let length: number = 5;
+    return String(length) + ' ' + (length > 1 ? "Members" : "Member") 
+  }
 }

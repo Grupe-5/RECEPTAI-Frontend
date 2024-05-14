@@ -24,7 +24,7 @@ export class CommentsComponent {
 
   getCommentsCountText(): String{
     let length: number = this.comments.length
-    return String(length) + (length > 1 ? " Comments" : " Comment")
+    return String(length) + ' ' + (length > 1 ? "Comments" : "Comment")
   }
 
   selectChange(event: any) {

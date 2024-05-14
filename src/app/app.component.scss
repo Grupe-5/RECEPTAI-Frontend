@@ -1,10 +1,55 @@
+// TODO: Remove horizontal scroll in all pages
 .container{
     font-size: 2rem;
 }
 
-.with-side-bar{
-    &__sidebar{
-        background-color: white;
-        box-shadow: 0  0 .3rem 0 rgba(0, 0, 0, .2);
-    }
+// * CSS */
+// TODO: Clean stolen css
+.btn-wrap{
+    display: flex;
+    justify-content: end;
+    padding-right: 2rem;
+}
+.button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: transparent;
+    border: 1px solid transparentize(#030303, .47);
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: transparentize(#030303, .4);
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    min-height: 3rem;
+    position: relative;
+    padding: 0.5rem 0 1rem 0;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    border-radius: 3rem;
+    width: 11rem;
+}
+
+.button-5:hover,
+.button-5:focus {
+  color: #FDBD1F;
+  border: 1px solid transparentize(#FDBD1F, .47);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+    transform: translateY(-1px);
+}
+
+.button-5:active {
+    border: 1px solid transparentize(#FDBD1F, .47);
+    color: #FDBD1F;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
 }

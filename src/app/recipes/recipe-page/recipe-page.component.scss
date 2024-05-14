@@ -6,6 +6,9 @@
     &__arrow-back{
         height: 2rem;
         margin-right: 1rem;
+        &:hover{
+            cursor: pointer;
+        }
     }
     &__subreddit{
         font-size: 2rem;

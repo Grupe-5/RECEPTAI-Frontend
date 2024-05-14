@@ -11,6 +11,7 @@ import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.com
 import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comments/comment/comment.component';
 import { NavigationSidebarComponent } from './navigation/navigation-sidebar/navigation-sidebar.component';
+import { SubfoodditComponent } from './subfooddit/subfooddit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavigationSidebarComponent } from './navigation/navigation-sidebar/navi
     RecipeCreateComponent,
     CommentsComponent,
     CommentComponent,
-    NavigationSidebarComponent
+    NavigationSidebarComponent,
+    SubfoodditComponent
   ],
   imports: [
     BrowserModule,

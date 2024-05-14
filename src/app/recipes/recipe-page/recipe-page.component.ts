@@ -2,6 +2,7 @@ import { Component , OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class RecipePageComponent {
   recipeId: number = 0;
   instructionsTrimmed: string[] | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipesService){}
+  constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipesService, private _location: Location){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -28,6 +29,10 @@ export class RecipePageComponent {
         this.instructionsTrimmed = this.instructionsTrimmed.filter(ing => !(/^\s*$/.test(ing)))
       }
     });
+  }
+
+  getBack(){
+    this._location.back();
   }
 
   getHoursOrMinutesFromToday(date: Date | undefined): string {

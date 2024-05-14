@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 
@@ -9,6 +9,8 @@ import { RecipesService } from '../../Services/recipes.service';
 })
 export class RecipesComponent {
   recipes: Recipe[] = [];
+  @Input() ShowTitle: Boolean = true;
+  @Input() FoodditName: String = "";
 
   constructor(private recipeService: RecipesService) { }
 

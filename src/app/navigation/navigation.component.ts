@@ -10,8 +10,12 @@ export class NavigationComponent{
     constructor(private router: Router) {}
 
 
-    shouldShowCreateLink(): boolean {
-        return this.router.url !== '/create';
+    shouldShowRegBtn(): boolean {
+        return this.router.url !== '/register';
+    }
+
+    shouldShowSignIn(): boolean {
+        return this.router.url !== '/sign-in';
     }
     
 }

@@ -13,13 +13,13 @@
                 </div>
             </div>
             <!-- TODO: Change depending on login status  -->
-            <div class="col-4" *ngIf="false">
+            <div class="col-4" *ngIf="true">
                 <div class="btn-wrap pr-7">
-                    <button type="submit" class="button-5-1">Register</button>
-                    <button type="submit" class="button-5">Sign in</button>
+                    <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>
+                    <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
                 </div>
             </div>
-            <div class="col-4" *ngIf="true">
+            <div class="col-4" *ngIf="false">
                 <div class="btn-wrap">
                     <a class="top-navbar__avatar">
                         <img src="../../assets/imgs/user-avatar.png" alt="user-avatar">

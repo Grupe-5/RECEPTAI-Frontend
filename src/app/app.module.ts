@@ -12,6 +12,8 @@ import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comments/comment/comment.component';
 import { NavigationSidebarComponent } from './navigation/navigation-sidebar/navigation-sidebar.component';
 import { SubfoodditComponent } from './subfooddit/subfooddit.component';
+import { SignUpPageComponent } from './authPages/sign-up-page/sign-up-page.component';
+import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SubfoodditComponent } from './subfooddit/subfooddit.component';
     CommentsComponent,
     CommentComponent,
     NavigationSidebarComponent,
-    SubfoodditComponent
+    SubfoodditComponent,
+    SignUpPageComponent,
+    SignInPageComponent
   ],
   imports: [
     BrowserModule,

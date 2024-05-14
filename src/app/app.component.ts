@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(private router: Router) {}
 
-  isLoggedIn: Boolean = true;
-  isInRecipeRoute:Boolean = false;
+  isLoggedIn: Boolean = false;
+  isInRecipeRoute: Boolean = false;
   
   isRouteRecipePage(): boolean {
     return this.router.url.startsWith('/recipe/');

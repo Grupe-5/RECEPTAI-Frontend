@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SubfoodditComponent {
   foodditName: string = "";
+  isLoggedIn: boolean = true;
 
   constructor(private router: Router) {}
 

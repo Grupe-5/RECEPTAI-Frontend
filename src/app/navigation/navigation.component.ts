@@ -7,14 +7,20 @@ import { Router } from '@angular/router';
     styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent{
+    isLoggedIn: Boolean = true;
+    
     constructor(private router: Router) {}
 
+    shouldShowSearch(): Boolean{
+        return this.shouldShowRegBtn() && this.shouldShowSignIn();
+    }
 
-    shouldShowRegBtn(): boolean {
+
+    shouldShowRegBtn(): Boolean {
         return this.router.url !== '/register';
     }
 
-    shouldShowSignIn(): boolean {
+    shouldShowSignIn(): Boolean {
         return this.router.url !== '/sign-in';
     }
     

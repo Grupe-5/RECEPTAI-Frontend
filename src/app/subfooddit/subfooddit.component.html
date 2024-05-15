@@ -1,5 +1,5 @@
 
-<div class="subfooddit-wrap">
+<div *ngIf="isLoggedIn" class="subfooddit-wrap">
     <div class="subfooddit-wrap__header">
         <h2 class="subfooddit-wrap__header-title">
             <span class="subfooddit-wrap__header-title-span">
@@ -7,6 +7,7 @@
             </span>
         </h2>
     </div>
+
     <div class="subfooddit-wrap__info">
         <!-- TODO: add more info/rules of subfooddit -->
         
@@ -22,4 +23,26 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="!isLoggedIn" class="subfooddit-wrap not-logged-in">
+    <div class="subfooddit-wrap__header">
+        <h2 class="subfooddit-wrap__header-title">
+            <span class="subfooddit-wrap__header-title-span">
+                f/{{foodditName}}
+            </span>
+        </h2>
+    </div>
+
+    <div class="subfooddit-wrap__info">
+        <!-- TODO: add more info/rules of subfooddit -->
+        
+        <!-- TODO: return real count -->
+        <div class="subfooddit-wrap__info-count">
+            <div>
+                <p>{{getUsersCountText()}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <app-recipes [ShowTitle]="false" [FoodditName]="foodditName"></app-recipes>

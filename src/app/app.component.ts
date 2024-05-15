@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(private router: Router) {}
 
-  isLoggedIn: Boolean = false;
+  isLoggedIn: Boolean = true;
   isInRecipeRoute: Boolean = false;
   
   isRouteRecipePage(): boolean {

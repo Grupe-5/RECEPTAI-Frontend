@@ -14,6 +14,7 @@ import { NavigationSidebarComponent } from './navigation/navigation-sidebar/navi
 import { SubfoodditComponent } from './subfooddit/subfooddit.component';
 import { SignUpPageComponent } from './authPages/sign-up-page/sign-up-page.component';
 import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent, RecipePageComponent]

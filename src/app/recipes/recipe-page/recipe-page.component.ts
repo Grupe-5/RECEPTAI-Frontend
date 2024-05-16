@@ -20,7 +20,16 @@ export class RecipePageComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.recipeId = Number(params.get('id'));
-      this.recipe = this.recipeService.getRecipeById(this.recipeId.toString())
+      //this.recipe = this.recipeService.getRecipeById(this.recipeId.toString())
+      this.recipeService.getRecipeById(this.recipeId.toString()).subscribe(
+        (data: Recipe) => {
+          // Handle successful response
+          this.recipe = data;
+        },
+        (error) => {
+          // Handle error
+          console.error('Error fetching recipe:', error);
+        })
       if(this.recipe === undefined){
         this.router.navigate(['/']); 
       }

@@ -15,7 +15,15 @@ export class RecipesComponent {
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
-    this.recipes = this.recipeService.getRecipes(); 
+    this.recipeService.getRecipes().subscribe(
+      (recipes: Recipe[]) => {
+        this.recipes = recipes;
+        console.log(this.recipes)
+      },
+      (error) => {
+        console.error('Error fetching recipes: ', error);
+      }
+    );
   }
 
 }

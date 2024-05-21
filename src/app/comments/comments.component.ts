@@ -18,7 +18,16 @@ export class CommentsComponent {
   }
 
   ngOnInit(): void {
-    this.comments = this.commentsService.getCommentsByRecipeId(this.recipeId); 
+    this.commentsService.getCommentsByRecipeId(this.recipeId)
+  .subscribe(
+    (comments: Comment[]) => {
+      this.comments = comments; // Assign the actual comments array
+      console.log(this.comments);
+    },
+    (error) => {
+      console.error('Error fetching comments: ', error);
+    }
+  );
     this.comments.sort((a, b)=> (a.upvotes_amount > b.upvotes_amount ? -1 : 1));
   }
 

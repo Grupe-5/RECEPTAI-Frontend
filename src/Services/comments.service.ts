@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Comment } from './../Models/Comment.model'
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Recipe } from '../Models/Recipe.model';
 
 @Injectable({
@@ -41,10 +41,36 @@ export class CommentsService {
     new Comment(30, "User30", "Lovely recipe!", new Date("2024-04-08"), 10, 10)
   ];
   
+  constructor(private http: HttpClient) { }
+  authorizationHeader = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJnaXZlbl9uYW1lIjoic2lkaGd1aWVyaGdlcnVpaCIsIm5hbWVpZCI6IjMiLCJuYmYiOjE3MTYzMTMxMjIsImV4cCI6MTcxNjkxNzkyMiwiaWF0IjoxNzE2MzEzMTIyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAifQ.aPDn_sNUQecMDJvsmlgp-gnj8rmQGC_XSIENchI52P1xduGRy-v_KxKlI6eTiKoKaztHV5h08u0jpW5AzcSaXg'
 
-  getCommentsByRecipeId(recipeId: number): Comment[] {
-    const commentsByRecipeId = this.dummyComments.filter(comment => comment.recipe_id === recipeId);
-    return commentsByRecipeId;
+  getCommentsByRecipeId(recipeId: number): Observable<Comment[]> {
+    var reqHeader = new HttpHeaders({
+      'accept': '*/*'
+    })
+    return this.http.get<Comment[]>('http://localhost:5169/api/comment/by_recipe/' + recipeId, { headers: reqHeader })
+    
+  }
+
+  postNewComment(comment : Comment){
+    var reqHeader = new HttpHeaders({
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.authorizationHeader}`,
+      'Content-Type': 'application/json'
+    })
+    const formData = new FormData();
+    formData.append('recipeId', comment.recipe_id.toString());
+    formData.append('commentText', comment.text);
+    ///Post body wants a date here, but seems to be a mistake, remove this later
+    formData.append('commentDate', comment.date.toString())
+
+    // Send the POST request
+  //this.http.post('http://localhost:5169/api/comment', formData, { headers: reqHeader });
+  return this.http.post<any>('http://localhost:5169/api/comment', formData, { headers: reqHeader })
+    .pipe(
+      map(() => true), // Emit true on successful post
+      catchError(error => of(false)) // Emit false on error
+    );
   }
 
 }

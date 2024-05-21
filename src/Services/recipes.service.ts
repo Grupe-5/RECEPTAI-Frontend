@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Recipe } from '../Models/Recipe.model';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Recipe } from '../Models/Recipe.model';
 })
 export class RecipesService {
 
-  authorizationHeader = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXI3ODZAZXhhbXBsZS5jb20iLCJnaXZlbl9uYW1lIjoieHh4eHgiLCJuYW1laWQiOiIxIiwibmJmIjoxNzE1NjUwMjI0LCJleHAiOjE3MTYyNTUwMjQsImlhdCI6MTcxNTY1MDIyNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwIn0.YQJxU_K2rqIPG4w3NzwIu-QElgUwW1JIYr7Lta6DNLIJmIn8SVx3uOXXs72OosL12t04ddFIsOnjjPPATa6Kug'
+  authorizationHeader = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJnaXZlbl9uYW1lIjoic2lkaGd1aWVyaGdlcnVpaCIsIm5hbWVpZCI6IjMiLCJuYmYiOjE3MTYzMTMxMjIsImV4cCI6MTcxNjkxNzkyMiwiaWF0IjoxNzE2MzEzMTIyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAifQ.aPDn_sNUQecMDJvsmlgp-gnj8rmQGC_XSIENchI52P1xduGRy-v_KxKlI6eTiKoKaztHV5h08u0jpW5AzcSaXg'
   constructor(private http: HttpClient) { }
 
   getRecipes(): Observable<Recipe[]>{
@@ -57,7 +57,11 @@ export class RecipesService {
   formData.append('Instructions', recipe.instructions);
 
   // Send the POST request
-  this.http.post('http://localhost:5169/api/recipe', formData, { headers: reqHeader });
+  this.http.post('http://localhost:5169/api/recipe', formData, { headers: reqHeader })
+  .pipe(
+    map(() => true), // Emit true on successful post
+    catchError(error => of(false)) // Emit false on error
+  );
 
   }
 

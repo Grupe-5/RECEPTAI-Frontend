@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
+import { Observable } from 'rxjs';
+import { IUser } from '../../Models/User.model'
 
 @Component({
     selector: 'app-navigation',
@@ -7,9 +10,16 @@ import { Router } from '@angular/router';
     styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent{
-    isLoggedIn: Boolean = true;
-    
-    constructor(private router: Router) {}
+    status$: Observable<IUser | null>;
+    isInRecipeRoute: Boolean = false;
+    authData: IUser | null = null; 
+
+    constructor(private router: Router, private authService: AuthService) {}
+
+    ngOnInit(): void {
+        this.status$ = this.authService.stateItem$;
+        this.status$.subscribe(resp => {this.authData = resp})
+      }
 
     shouldShowSearch(): Boolean{
         return this.shouldShowRegBtn() && this.shouldShowSignIn();
@@ -22,6 +32,13 @@ export class NavigationComponent{
 
     shouldShowSignIn(): Boolean {
         return this.router.url !== '/sign-in';
+    }
+
+    isLoggedIn(): Boolean{
+        return this.authData !== null;
+    }
+    logOut(){
+        this.authService.LogOut();
     }
     
 }

@@ -13,15 +13,15 @@
                 </div>
             </div>
             <!-- TODO: Change depending on login status  -->
-            <div class="col-4" *ngIf="!isLoggedIn">
+            <div class="col-4" *ngIf="!isLoggedIn()">
                 <div class="btn-wrap pr-7">
                     <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>
                     <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
                 </div>
             </div>
-            <div class="col-4" *ngIf="isLoggedIn">
+            <div class="col-4" *ngIf="isLoggedIn()">
                 <div class="btn-wrap">
-                    <a class="top-navbar__avatar">
+                    <a (click)="logOut()" class="top-navbar__avatar">
                         <img src="../../assets/imgs/user-avatar.png" alt="user-avatar">
                     </a>
                 </div>

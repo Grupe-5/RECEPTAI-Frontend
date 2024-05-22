@@ -41,20 +41,20 @@ export class RecipesService {
       'Authorization': `Bearer ${this.authorizationHeader}`,
       'Content-Type': 'multipart/form-data'
     })
-  const formData = new FormData();
-  formData.append('Title', recipe.title);
-  formData.append('SubfoodditId', recipe.subreddit_id.toString());
-  if (recipe.img_id) {
-    formData.append('Photo', recipe.img_id);
-  }
-  else{
-    formData.append('Photo', '')
-  }
-  formData.append('Ingredients', recipe.ingredients);
-  formData.append('CookingTime', recipe.cooking_time);
-  formData.append('Servings', recipe.servings.toString());
-  formData.append('CookingDifficulty', recipe.cooking_difficulty.toString());
-  formData.append('Instructions', recipe.instructions);
+    const formData = new FormData();
+    formData.append('Title', recipe.title);
+    formData.append('SubfoodditId', recipe.subreddit_id.toString());
+    if (recipe.img_id) {
+      formData.append('Photo', recipe.img_id);
+    }
+    else{
+      formData.append('Photo', '')
+    }
+    formData.append('Ingredients', recipe.ingredients);
+    formData.append('CookingTime', recipe.cooking_time);
+    formData.append('Servings', recipe.servings.toString());
+    formData.append('CookingDifficulty', recipe.cooking_difficulty.toString());
+    formData.append('Instructions', recipe.instructions);
 
   // Send the POST request
   this.http.post('http://localhost:5169/api/recipe', formData, { headers: reqHeader })
@@ -64,7 +64,4 @@ export class RecipesService {
   );
 
   }
-
-  
-
 }

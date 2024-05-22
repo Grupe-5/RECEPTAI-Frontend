@@ -12,14 +12,8 @@ import { IUser } from '../../Models/User.model'
 export class NavigationComponent{
     status$: Observable<IUser | null>;
     isInRecipeRoute: Boolean = false;
-    authData: IUser | null = null; 
 
     constructor(private router: Router, private authService: AuthService) {}
-
-    ngOnInit(): void {
-        this.status$ = this.authService.stateItem$;
-        this.status$.subscribe(resp => {this.authData = resp})
-      }
 
     shouldShowSearch(): Boolean{
         return this.shouldShowRegBtn() && this.shouldShowSignIn();
@@ -35,7 +29,7 @@ export class NavigationComponent{
     }
 
     isLoggedIn(): Boolean{
-        return this.authData !== null;
+        return this.authService.isAuthenticated();
     }
     logOut(){
         this.authService.LogOut();

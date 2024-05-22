@@ -7,7 +7,9 @@ import { AuthService } from '../Services/auth.service'
   providedIn: 'root'
 })
 export class RecipesService {
-
+  private server = 'http://localhost:5169/api/recipe/';
+  private subfUrl = 'by_subfooddit/'
+  
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getRecipes(): Observable<Recipe[]>{
@@ -15,14 +17,14 @@ export class RecipesService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
-    return this.http.get<Recipe[]>('http://localhost:5169/api/recipe', { headers: reqHeader })
+    return this.http.get<Recipe[]>(this.server, { headers: reqHeader })
   }
 
   getRecipeById(id: string): Observable<Recipe> {
     var reqHeader  = new HttpHeaders({
       'accept': '*/*',
     })
-    return this.http.get<Recipe>(`http://localhost:5169/api/recipe/${id}`, { headers: reqHeader });
+    return this.http.get<Recipe>(`${this.server}${id}`, { headers: reqHeader });
   }
 
   getRecipesBySubfoodditId(id: string): Observable<Recipe[]>{
@@ -30,7 +32,7 @@ export class RecipesService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
-    return this.http.get<Recipe[]>('http://localhost:5169/api/recipe/by_subfooddit/' + id, {headers : reqHeader});
+    return this.http.get<Recipe[]>(`${this.server}${this.subfUrl}${id}`, {headers : reqHeader});
   }
 
   postNewRecipe(recipe : Recipe): void{
@@ -54,7 +56,7 @@ export class RecipesService {
     formData.append('Instructions', recipe.instructions);
 
   // Send the POST request
-    this.http.post('http://localhost:5169/api/recipe', formData, { headers: reqHeader })
+    this.http.post(this.server, formData, { headers: reqHeader })
     .pipe(
       map((msg) => {
         return true

@@ -19,24 +19,25 @@ export class RecipePageComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
+
       this.recipeId = Number(params.get('id'));
-      //this.recipe = this.recipeService.getRecipeById(this.recipeId.toString())
       this.recipeService.getRecipeById(this.recipeId.toString()).subscribe(
         (data: Recipe) => {
           // Handle successful response
           this.recipe = data;
+          if(this.recipe === undefined){
+            this.router.navigate(['/']); 
+          }
+          else{
+            this.instructionsTrimmed = this.recipe.instructions.split('\n');
+            this.instructionsTrimmed = this.instructionsTrimmed.filter(ing => !(/^\s*$/.test(ing)))
+          }
         },
         (error) => {
           // Handle error
           console.error('Error fetching recipe:', error);
         })
-      if(this.recipe === undefined){
-        this.router.navigate(['/']); 
-      }
-      else{
-        this.instructionsTrimmed = this.recipe.instructions.split('\n');
-        this.instructionsTrimmed = this.instructionsTrimmed.filter(ing => !(/^\s*$/.test(ing)))
-      }
+      
     });
   }
 
@@ -50,7 +51,7 @@ export class RecipePageComponent {
     }
 
     const currentDate = new Date();
-    const diffMilliseconds = currentDate.getTime() - date.getTime();
+    const diffMilliseconds = currentDate.getTime() - new Date(date).getTime();
     const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
     const diffHours = Math.floor(diffMinutes / 60);
     const diffDays = Math.floor(diffHours / 24);

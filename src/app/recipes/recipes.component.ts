@@ -18,7 +18,6 @@ export class RecipesComponent {
     this.recipeService.getRecipes().subscribe(
       (recipes: Recipe[]) => {
         this.recipes = recipes;
-        console.log(this.recipes)
       },
       (error) => {
         console.error('Error fetching recipes: ', error);

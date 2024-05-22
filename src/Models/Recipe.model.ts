@@ -1,16 +1,18 @@
 export class Recipe {
-    public recipe_id: string;
-    public user_id: string;
+    public recipeId: string;
+    public userId: string;
     public title: string;
-    public img_id: string; 
-    public subfoodit_id: number; 
+    public imgId: string; 
+    public subfoodditId: number; 
+    public subfoodditName: string; 
     public ingredients: string; 
     public description: string;
-    public cooking_time: string; 
+    public cookingTime: string; 
     public servings: string;
-    public date_posted: Date;
-    public cooking_difficulty: number;
+    public datePosted: Date;
+    public cookingDifficulty: number;
     public instructions: string;
+    public aggregatedVotes: number;
 
     constructor(){}  
 }

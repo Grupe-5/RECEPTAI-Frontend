@@ -68,6 +68,7 @@
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
     }
     &__ingredients{
+        padding-top: 2rem;
         display: flex;
         justify-content: center;
         background-color: white;
@@ -75,6 +76,7 @@
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
         
         p{
+            text-align: center;
             font-weight: bold;
         }
         &-list{

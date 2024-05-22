@@ -15,7 +15,7 @@ export class RecipeCreateComponent {
 
   formSubmited(){
     // TODO: add error checking 
-    this.newRecipe.subfoodit_id = 1;
+    this.newRecipe.subfoodditId = 1;
     this.recipesService.postNewRecipe(this.newRecipe)
   }
 }

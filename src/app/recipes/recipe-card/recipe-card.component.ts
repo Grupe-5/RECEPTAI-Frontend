@@ -9,6 +9,7 @@ import { Recipe } from '../../../Models/Recipe.model';
 export class RecipeCardComponent {
   @Input() recipe?: Recipe;
 
+
   constructor() {}
 
   getHoursOrMinutesFromToday(date: Date | undefined): string {
@@ -16,7 +17,7 @@ export class RecipeCardComponent {
       return "Some time ago"
 
     const currentDate = new Date();
-    const diffMilliseconds = currentDate.getTime() - date.getTime();
+    const diffMilliseconds = currentDate.getTime() - new Date(date).getTime();
     const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
     const diffHours = Math.floor(diffMinutes / 60);
     const diffDays = Math.floor(diffHours / 24);

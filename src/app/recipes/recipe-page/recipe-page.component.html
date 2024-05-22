@@ -5,7 +5,7 @@
                 <img src="../../../assets/imgs/arrow-back.svg" class="recipe-page__arrow-back">
             </a>
             <span class="recipe-page__subreddit">
-                /f/<a class="highlight-darker">Steaks</a>
+                /f/<a class="highlight-darker" href="/f/{{recipe?.subfoodditName}}">{{recipe?.subfoodditName}}</a>
             </span>
         </div>
     </div>
@@ -29,7 +29,7 @@
                                 By <span class="highlight-darker">Nice Testing Name</span>
                                  
                                 <span class="recipe-page__info-1__date">
-                                    {{ getHoursOrMinutesFromToday(recipe?.date_posted) }}
+                                    {{ getHoursOrMinutesFromToday(recipe?.datePosted) }}
                                 </span>
                             </p>
                         </div>
@@ -39,10 +39,10 @@
                 <div class="col-6">
                     <div class="recipe-page__info p-4 mb-4">
                         <p class="recipe-page__info-difficulty">
-                            <b>Cooking Difficulty:</b> {{recipe?.cooking_difficulty}}
+                            <b>Cooking Difficulty:</b> {{recipe?.cookingDifficulty}}
                         </p>
                         <p class="recipe-page__info-time">
-                            <b>Total time:</b> {{recipe?.cooking_time}}
+                            <b>Total time:</b> {{recipe?.cookingTime}}
                         </p>
                         <p class="recipe-page__info-servings">
                             <b>Servings:</b> {{recipe?.servings}}

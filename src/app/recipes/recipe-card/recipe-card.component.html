@@ -1,4 +1,4 @@
-<div class="recipe-card" [routerLink]="['/recipe', recipe?.recipe_id]">
+<div class="recipe-card" [routerLink]="['/recipe', recipe?.recipeId]">
     <div class="recipe-card__upvotes-box">
             <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
             <p class="vote_count">12k</p>
@@ -11,10 +11,10 @@
     
     <div class="row recipe-card__info-1">
         <p class="col-6 recipe-card__info-1__subredit">
-            r/<span class="highlight-darker">Steaks</span>
+            r/<span class="highlight-darker">{{recipe?.subfoodditName}}</span>
         </p>
         <p class="col-6 recipe-card__info-1__date">
-            {{ getHoursOrMinutesFromToday(recipe?.date_posted) }}
+            {{ getHoursOrMinutesFromToday(recipe?.datePosted) }}
         </p>
     </div>
 

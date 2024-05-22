@@ -55,4 +55,8 @@ export class AuthService {
     isAuthenticated(): boolean {
         return !!this.currentUserValue;
     }
+
+    public getToken(): string {
+        return this.currentUserValue?.token;
+    }
 }

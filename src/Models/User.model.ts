@@ -4,3 +4,11 @@ export interface IUser {
     email: string;
     token: string;
 }
+
+export interface IUser_Info {
+    id: number;
+    userName: string;
+    joinDate: Date;
+    imageId?: number;
+    karmaScore: number;
+}

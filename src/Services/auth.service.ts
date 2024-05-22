@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, BehaviorSubject, Observable } from 'rxjs';
-import { IUser } from "../Models/User.model"
+import { IUser, IUser_Info } from "../Models/User.model"
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-    private server = 'http://localhost:5169';
-    private loginUrl = '/api/user/login';
+    private server = 'http://localhost:5169/api/user/';
+    private loginUrl = 'login';
+    private userInfoUrl = 'info/me';
     private localStorageUser = "loggedInUser";
 
 
@@ -42,6 +43,22 @@ export class AuthService {
             })
         );
     }
+    getUserInfo(): Observable<any> {
+        var reqHeader  = new HttpHeaders({
+            'accept': '*/*',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.getToken()}`,
+
+        })
+        
+        return this.http.get(this.server+this.userInfoUrl, { headers: reqHeader }).pipe(
+            map((response) => {
+                const retUser = <IUser_Info> response;
+                return retUser;
+            })
+        );
+    }
+
 
     LogOut(){
         localStorage.clear();

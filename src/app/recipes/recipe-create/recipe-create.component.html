@@ -41,28 +41,24 @@
     <div class="row p-4 pt-0 pb-0">
         <div class="col-6">
             <div class="form-group">
-                <input type="text" class="form-control input-text" id="formGroupExampleInput" placeholder="Title">
+                <input type="text" [(ngModel)]="newRecipe.title" class="form-control input-text" id="formGroupExampleInput" placeholder="Title">
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <input type="text" class="form-control input-text" id="formGroupExampleInput" placeholder="Time to prepare">
+                <input type="text" [(ngModel)]="newRecipe.cooking_time" class="form-control input-text" id="formGroupExampleInput" placeholder="Time to prepare">
             </div>
         </div>
         <div class="col-6 mt-4">
             <div class="form-group">
-                <input type="text" class="form-control input-text" id="formGroupExampleInput" placeholder="Amount of serving">
+                <!-- TODO: This should be an integer -->
+                <input type="text" [(ngModel)]="newRecipe.servings"  class="form-control input-text" id="formGroupExampleInput" placeholder="Amount of serving">
             </div>
         </div>
         <div class="col-6 mt-4">
             <div class="form-group">
-                <select class="form-select custom-select-lg mb-3">
-                    <option selected hidden >Difficulty</option>
-                    <option value="1"><span class="highlight">Easy</span></option>
-                    <option value="1">Hard</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Expert</option>
-                </select>      
+                <label class="form-label" for="typeNumber">Cooking difficulty</label>
+                <input type="number" [(ngModel)]="newRecipe.cooking_difficulty" min="1" max="10" id="typeNumber" class="form-control input-text" />
             </div>        
         </div>
     </div>
@@ -70,13 +66,13 @@
         <div class="col-6 p-5 pt-0">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Ingredients</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea [(ngModel)]="newRecipe.ingredients" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
         </div>
         <div class="col-6 p-5 pt-0">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Cooking Instructions</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea [(ngModel)]="newRecipe.instructions"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>            
         </div>
     </div>
@@ -89,7 +85,7 @@
 
     <div class="row p-4 mt-4">
         <div class="btn-wrap col-12">
-            <button type="submit" class="button-5 ">Post</button>
+            <button type="submit" (click)="formSubmited()" class="button-5 ">Post</button>
         </div>
     </div>
 </div>  

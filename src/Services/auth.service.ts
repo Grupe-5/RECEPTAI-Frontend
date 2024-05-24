@@ -7,6 +7,7 @@ import { IUser, IUser_Info } from "../Models/User.model"
 })
 export class AuthService {
     private server = 'http://localhost:5169/api/user/';
+    private signupUrl = 'register';
     private loginUrl = 'login';
     private userInfoUrl = 'info/me';
     private localStorageUser = "loggedInUser";
@@ -43,6 +44,30 @@ export class AuthService {
             })
         );
     }
+
+    Signup(username: string, email: string, password: string): Observable<any> {
+        var reqHeader  = new HttpHeaders({
+            'accept': '*/*',
+            'Content-Type': 'application/json'
+          })
+        let body = {
+            "username": username,
+            "email": email, 
+            "password": password,
+        }
+        
+        return this.http.post(this.server+this.signupUrl, body, { headers: reqHeader }).pipe(
+            map((response) => {
+                const retUser = <IUser> response;
+                
+                localStorage.setItem(this.localStorageUser, JSON.stringify(retUser));
+
+                this.stateItem.next(retUser);
+                return retUser;
+            })
+        );
+    }
+
     getUserInfo(): Observable<any> {
         var reqHeader  = new HttpHeaders({
             'accept': '*/*',

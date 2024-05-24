@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
   styleUrl: './recipe-page.component.scss'
 })
 export class RecipePageComponent {
+  private server = 'http://localhost:5169/api/image/';
   recipe: Recipe | undefined;
   recipeId: number = 0;
   instructionsTrimmed: string[] | undefined;
@@ -43,6 +44,14 @@ export class RecipePageComponent {
 
   getBack(){
     this._location.back();
+  }
+
+  normalImgOrPlaceholder(imgId: string | undefined): string {
+    if (imgId != undefined) {
+      return this.server + imgId;
+    } else {
+      return "../../../assets/imgs/recipe-img-dummy.jpg";
+    }
   }
 
   getHoursOrMinutesFromToday(date: Date | undefined): string {

@@ -17,7 +17,7 @@ export class RecipesService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
-    return this.http.get<Recipe[]>(this.server, { headers: reqHeader })
+    return this.http.get<Recipe[]>(this.server + "?limit=50", { headers: reqHeader })
   }
 
   getRecipeById(id: string): Observable<Recipe> {

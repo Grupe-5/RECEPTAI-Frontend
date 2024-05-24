@@ -8,9 +8,17 @@ import { Recipe } from '../../../Models/Recipe.model';
 })
 export class RecipeCardComponent {
   @Input() recipe?: Recipe;
-
+  private server = 'http://localhost:5169/api/image/';
 
   constructor() {}
+
+  normalImgOrPlaceholder(imgId: string | undefined): string {
+    if (imgId != undefined) {
+      return this.server + imgId;
+    } else {
+      return "../../../assets/imgs/recipe-img-dummy.jpg";
+    }
+  }
 
   getHoursOrMinutesFromToday(date: Date | undefined): string {
     if (date == undefined)

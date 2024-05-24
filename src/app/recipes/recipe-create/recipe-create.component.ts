@@ -10,12 +10,23 @@ import { RecipesService } from '../../../Services/recipes.service'
 })
 export class RecipeCreateComponent {  
   newRecipe: Recipe = new Recipe();
+  imageFile: File | undefined = undefined;
 
   constructor(private subfoodditService: SubfoodditService, private recipesService: RecipesService){}
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.imageFile = file;
+    } else {
+      this.imageFile = undefined;
+    }
+  }
+
 
   formSubmited(){
     // TODO: add error checking 
     this.newRecipe.subfoodditId = 1;
-    this.recipesService.postNewRecipe(this.newRecipe)
+    this.recipesService.postNewRecipe(this.newRecipe, this.imageFile);
   }
 }

@@ -35,7 +35,7 @@ export class RecipesService {
     return this.http.get<Recipe[]>(`${this.server}${this.subfUrl}${id}`, {headers : reqHeader});
   }
 
-  postNewRecipe(recipe : Recipe): void{
+  postNewRecipe(recipe : Recipe, imageData : File | undefined): void{
     var reqHeader  = new HttpHeaders({
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`,
@@ -43,11 +43,8 @@ export class RecipesService {
     const formData = new FormData();
     formData.append('Title', recipe.title);
     formData.append('SubfoodditId', recipe.subfoodditId.toString());
-    if (recipe.imgId) {
-      formData.append('Photo', recipe.imgId);
-    }
-    else{
-      formData.append('Photo', '')
+    if (imageData != null) {
+      formData.append('Photo', imageData);
     }
     formData.append('Ingredients', recipe.ingredients);
     formData.append('CookingTime', recipe.cookingTime);

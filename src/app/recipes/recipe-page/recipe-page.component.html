@@ -15,9 +15,13 @@
             <div class="row justify-content-between">
                 <div class="col-6 row">
                     <div class="col-2 recipe-page__upvotes-box">
-                        <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-                        <p class="vote_count">12k</p>
-                        <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+                        <button (click)="doUpvote()">
+                            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+                        </button>
+                        <p class="vote_count">{{getVoteCount()}}</p>
+                        <button (click)="doDownvote()">
+                            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+                        </button>
                     </div>
                     <div class="col-10">
                         <div class="recipe-page__title-box">

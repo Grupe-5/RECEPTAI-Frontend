@@ -3,18 +3,22 @@ import { Comment } from './../Models/Comment.model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AuthService } from '../Services/auth.service'
+import { Vote, VoteType } from '../Models/Vote.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
   server = 'http://localhost:5169/api/comment'
+  private server_vote = 'http://localhost:5169/api/comment_vote/'
   
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getCommentsByRecipeId(recipeId: number): Observable<Comment[]> {
+
     var reqHeader = new HttpHeaders({
-      'accept': '*/*'
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.authService.getToken()}`
     })
     return this.http.get<Comment[]>('http://localhost:5169/api/comment/by_recipe/' + recipeId, { headers: reqHeader })
   }
@@ -38,4 +42,52 @@ export class CommentsService {
       );
     }
 
+    getCommentVote(id: string): Observable<Vote> {
+      var reqHeader  = new HttpHeaders({
+        'accept': '*/*',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+      return this.http.get<Vote>(`${this.server_vote}me/${id}`, {headers : reqHeader});
+    }
+
+    removeCommentVote(id: string): Observable<boolean> {
+      var reqHeader  = new HttpHeaders({
+        'accept': '*/*',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+      return this.http.delete(`${this.server_vote}${id}`, {headers : reqHeader})
+        .pipe(
+          map((msg) => {
+            return true
+          }),
+          catchError(error => {
+            console.error('Error: ', error);
+            return of(false);
+          })
+
+        );
+    }
+
+    postCommentVote(id: string, vote: VoteType): Observable<Vote> {
+      var reqHeader  = new HttpHeaders({
+        'accept': '*/*',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+      var postData = {
+        "commentId": id,
+        "voteType": vote
+      };
+      return this.http.post<Vote>(`${this.server_vote}`, postData, {headers : reqHeader})
+    }
+
+    updateCommentVote(id: string, vote: VoteType): Observable<Vote> {
+      var reqHeader  = new HttpHeaders({
+        'accept': '*/*',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+      var putData = {
+        "voteType": vote
+      };
+      return this.http.put<Vote>(`${this.server_vote}${id}`, putData, {headers : reqHeader});
+    }
 }

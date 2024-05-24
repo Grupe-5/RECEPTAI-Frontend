@@ -13,24 +13,13 @@
                 <a class="nav-link" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
                     <!-- TODO: Add default value depending from which route it came  -->
                     <span class="recipe-create__subfooddit">
-                        /f/<a>Steaks</a>
+                        /f/<a>{{this.selectedSubFoodit}}</a>
                         <img class="recipe-create__subfooddit-arrow" src="../../../assets/imgs/up-arrow.svg">
                     </span>
                 </a>
+                  
                 <div class="recipe-create__subfooddit-list dropdown-menu"  ngbDropdownMenu aria-labelledby="navbarScrollingDropdown">
-                    <a class="dropdown-item" >f/Cool</a>
-                    <a class="dropdown-item" >f/Nice</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
-                    <a class="dropdown-item" >f/Good</a>
+                    <a class="dropdown-item" *ngFor="let subF of usersSubFooddits" (click)="updateSubFoodit(subF.title)">f/{{subF.title}}</a>
                 </div>
             </div>     
         </div>        

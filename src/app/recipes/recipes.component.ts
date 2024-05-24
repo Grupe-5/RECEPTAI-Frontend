@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
+import { Subfooddit } from '../../Models/Subfooddit.model';
 
 @Component({
   selector: 'app-recipes',
@@ -10,7 +11,7 @@ import { RecipesService } from '../../Services/recipes.service';
 export class RecipesComponent {
   recipes: Recipe[] = [];
   @Input() ShowTitle: Boolean = true;
-  @Input() FoodditName: String = "";
+  @Input() SubFooddit: Subfooddit | undefined = undefined;
 
   constructor(private recipeService: RecipesService) { }
 

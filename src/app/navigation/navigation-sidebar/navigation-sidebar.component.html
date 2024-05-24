@@ -18,12 +18,7 @@
             <p class="sticky__fooddits-title">
               My fooddits:
             </p> 
-            <a class="dropdown-item" href="/f/Steaks">f/Steaks</a>
-            <a class="dropdown-item" href="f/Good">f/Good</a>
-            <a class="dropdown-item" href="f/Good">f/Good</a>
-            <a class="dropdown-item" href="f/Good">f/Good</a>
-            <a class="dropdown-item" href="f/Good">f/Good</a>
-            <a class="dropdown-item" href="f/Good">f/Good</a>
+            <a class="dropdown-item" *ngFor="let subF of usersSubFooddits" [href]="'f/'+subF.title">f/{{subF.title}}</a>
         </div>
     </div>
 </div>

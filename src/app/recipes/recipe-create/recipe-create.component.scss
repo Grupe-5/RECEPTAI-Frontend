@@ -7,6 +7,12 @@
     max-width: 100rem;
     font-size: 1.6rem;
 
+    &__emptySubFooddits{
+        text-align: center;
+        color: #FF5733;
+        font-weight: bold;
+    }
+
     &__heading{
         padding: 0 4rem 1.5rem;
         border-bottom: solid 2px #FDBD1F;

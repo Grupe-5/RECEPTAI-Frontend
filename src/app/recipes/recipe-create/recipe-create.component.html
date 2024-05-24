@@ -9,8 +9,8 @@
     
     <div class="row p-4 pt-0 pb-0 mt-4">
         <div class="recipe-create__dropdown">
-            <div class="nav-item dropdown">
-                <a class="nav-link" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
+            <div *ngIf="showDropDown()" class="nav-item dropdown">
+                <a  class="nav-link" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
                     <!-- TODO: Add default value depending from which route it came  -->
                     <span class="recipe-create__subfooddit">
                         /f/<a>{{this.selectedSubFoodit}}</a>
@@ -21,60 +21,65 @@
                 <div class="recipe-create__subfooddit-list dropdown-menu"  ngbDropdownMenu aria-labelledby="navbarScrollingDropdown">
                     <a class="dropdown-item" *ngFor="let subF of usersSubFooddits" (click)="updateSubFoodit(subF.title)">f/{{subF.title}}</a>
                 </div>
-            </div>     
+            </div>
         </div>        
     </div>
-    <div class="row p-4 pb-0 mt-5 pt-0">
-        <label>Basic information</label>
-    </div>
-    <div class="row p-4 pt-0 pb-0">
-        <div class="col-6">
-            <div class="form-group">
-                <input type="text" [(ngModel)]="newRecipe.title" class="form-control input-text" id="formGroupExampleInput" placeholder="Title">
+    <div *ngIf="!showDropDown()" class="row p-4 pb-5 mt-5 pt-0 recipe-create__emptySubFooddits">
+        <label>Join a SubFooddit, to be able to create recipes!</label>
+    </div>     
+    <span *ngIf="showDropDown()">
+        <div class="row p-4 pb-0 mt-5 pt-0">
+            <label>Basic information</label>
+        </div>
+        <div class="row p-4 pt-0 pb-0">
+            <div class="col-6">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="newRecipe.title" class="form-control input-text" id="formGroupExampleInput" placeholder="Title">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="newRecipe.cookingTime" class="form-control input-text" id="formGroupExampleInput" placeholder="Time to prepare">
+                </div>
+            </div>
+            <div class="col-6 mt-4">
+                <div class="form-group">
+                    <!-- TODO: This should be an integer -->
+                    <input type="text" [(ngModel)]="newRecipe.servings"  class="form-control input-text" id="formGroupExampleInput" placeholder="Amount of serving">
+                </div>
+            </div>
+            <div class="col-6 mt-4">
+                <div class="form-group">
+                    <label class="form-label" for="typeNumber">Cooking difficulty</label>
+                    <input type="number" [(ngModel)]="newRecipe.cookingDifficulty" min="1" max="10" id="typeNumber" class="form-control input-text" />
+                </div>        
             </div>
         </div>
-        <div class="col-6">
-            <div class="form-group">
-                <input type="text" [(ngModel)]="newRecipe.cookingTime" class="form-control input-text" id="formGroupExampleInput" placeholder="Time to prepare">
+        <div class="row mt-5">
+            <div class="col-6 p-5 pt-0">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Ingredients</label>
+                    <textarea [(ngModel)]="newRecipe.ingredients" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-6 p-5 pt-0">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Cooking Instructions</label>
+                    <textarea [(ngModel)]="newRecipe.instructions"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>            
             </div>
         </div>
-        <div class="col-6 mt-4">
-            <div class="form-group">
-                <!-- TODO: This should be an integer -->
-                <input type="text" [(ngModel)]="newRecipe.servings"  class="form-control input-text" id="formGroupExampleInput" placeholder="Amount of serving">
-            </div>
+        <div class="row p-4">
+            <div>
+                <label for="formFileLg" class="form-label">Upload Recipe Picture</label>
+                <input class="form-control form-control-lg" id="formFileLg" type="file" (change)="onFileChange($event)">
+            </div>          
         </div>
-        <div class="col-6 mt-4">
-            <div class="form-group">
-                <label class="form-label" for="typeNumber">Cooking difficulty</label>
-                <input type="number" [(ngModel)]="newRecipe.cookingDifficulty" min="1" max="10" id="typeNumber" class="form-control input-text" />
-            </div>        
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-6 p-5 pt-0">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Ingredients</label>
-                <textarea [(ngModel)]="newRecipe.ingredients" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </div>
-        <div class="col-6 p-5 pt-0">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Cooking Instructions</label>
-                <textarea [(ngModel)]="newRecipe.instructions"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>            
-        </div>
-    </div>
-    <div class="row p-4">
-        <div>
-            <label for="formFileLg" class="form-label">Upload Recipe Picture</label>
-            <input class="form-control form-control-lg" id="formFileLg" type="file" (change)="onFileChange($event)">
-        </div>          
-    </div>
 
-    <div class="row p-4 mt-4">
-        <div class="btn-wrap col-12">
-            <button type="submit" (click)="formSubmited()" class="button-5 ">Post</button>
+        <div class="row p-4 mt-4">
+            <div class="btn-wrap col-12">
+                <button type="submit" (click)="formSubmited()" class="button-5 ">Post</button>
+            </div>
         </div>
-    </div>
+    </span>
 </div>  

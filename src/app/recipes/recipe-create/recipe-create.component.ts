@@ -18,10 +18,13 @@ export class RecipeCreateComponent {
   constructor(private subfoodditService: SubfoodditService, private recipesService: RecipesService){}
 
   ngOnInit(){
-    this.subfoodditService.getSubfoodditsByUserId().subscribe((resp: Subfooddit[])=>{
+    this.subfoodditService.getSubfoodditsByUserId().subscribe(
+      (resp: Subfooddit[])=>{
         this.usersSubFooddits = resp;
-        
-        this.selectedSubFoodit = resp[0]?.title;
+        this.selectedSubFoodit = resp[0].title;
+      },
+      (err) =>{
+        console.log(err)
       }
     )
   }
@@ -34,11 +37,11 @@ export class RecipeCreateComponent {
       this.imageFile = undefined;
     }
   }
-
+  showDropDown(): boolean{
+    return this.usersSubFooddits.length > 0;
+  }
 
   formSubmited(){
-    // TODO: add error checking 
-    // TODO: add error checking 
     let subFId = (this.usersSubFooddits.find((sf: Subfooddit) => sf.title == this.selectedSubFoodit))?.subfoodditId;
     this.newRecipe.subfoodditId = subFId ? subFId : 1;
     this.recipesService.postNewRecipe(this.newRecipe, this.imageFile);

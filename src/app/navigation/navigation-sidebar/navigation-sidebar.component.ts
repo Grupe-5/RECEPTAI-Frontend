@@ -29,5 +29,9 @@ export class NavigationSidebarComponent {
   isActiveCreate(): boolean {
     return this.router.url == '/create';
   }
+  
+  checkIfEmpty(): boolean{
+    return this.usersSubFooddits.length == 0;
+  }
 
 }

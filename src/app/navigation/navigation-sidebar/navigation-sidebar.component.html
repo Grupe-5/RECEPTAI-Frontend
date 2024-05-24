@@ -19,6 +19,8 @@
               My fooddits:
             </p> 
             <a class="dropdown-item" *ngFor="let subF of usersSubFooddits" [href]="'f/'+subF.title">f/{{subF.title}}</a>
+            <p *ngIf="checkIfEmpty()" class="dropdown-item" href="find">You haven't joined any :(</p>
         </div>
+   
     </div>
 </div>

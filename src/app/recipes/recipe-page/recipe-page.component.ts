@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
+import { VoteType } from '../../../Models/Vote.model';
 
 
 @Component({
@@ -46,6 +47,19 @@ export class RecipePageComponent {
     this._location.back();
   }
 
+  getVoteCount(): string {
+    const cnt = this.recipe?.aggregatedVotes;
+    if (cnt) {
+      if (cnt >= 1000) {
+        return (cnt / 1000.0).toFixed(1);
+      } else {
+        return cnt.toString();
+      }
+    } else {
+      return "0";
+    }
+  }
+
   normalImgOrPlaceholder(imgId: string | undefined): string {
     if (imgId != undefined) {
       return this.server + imgId;
@@ -72,5 +86,46 @@ export class RecipePageComponent {
     } else {
       return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
     }
+  }
+
+  voteTypeToNumber(vote: VoteType): number {
+    if (vote == VoteType.Upvote) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
+
+  createOrUpdateVote(vote: VoteType): void {
+    if (this.recipe === undefined) {
+      return;
+    }
+
+    if (this.recipe.vote == undefined) {
+      this.recipeService.postRecipeVote(this.recipe.recipeId.toString(), vote).subscribe(o => {
+        this.recipe!.vote = o.voteType;
+        this.recipe!.aggregatedVotes += this.voteTypeToNumber(o.voteType);
+      });
+    } else if (this.recipe.vote == vote) {
+      this.recipeService.removeRecipeVote(this.recipe.recipeId.toString()).subscribe(o => {
+        if (o == true && this.recipe!.vote != undefined) {
+          this.recipe!.aggregatedVotes -= this.voteTypeToNumber(this.recipe!.vote);
+          this.recipe!.vote = undefined;
+        }
+      });
+    } else {
+      this.recipeService.updateRecipeVote(this.recipe.recipeId.toString(), vote).subscribe(o => {
+        this.recipe!.vote = o.voteType;
+        this.recipe!.aggregatedVotes += this.voteTypeToNumber(this.recipe!.vote) * 2;
+      });
+    }
+  }
+
+  doUpvote(): void {
+    this.createOrUpdateVote(VoteType.Upvote);
+  }
+
+  doDownvote(): void {
+    this.createOrUpdateVote(VoteType.Downvote);
   }
 }

@@ -1,8 +1,12 @@
 <div class="recipe-card" [routerLink]="['/recipe', recipe?.recipeId]">
     <div class="recipe-card__upvotes-box">
-            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-            <p class="vote_count">12k</p>
-            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+            <button (click)="doUpvote();$event.stopPropagation()">
+                <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+            </button>
+            <p class="vote_count">{{getVoteCount()}}</p>
+            <button (click)="doDownvote();$event.stopPropagation()">
+                <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+            </button>
     </div>
     
     <div class="recipe-card__img-box">

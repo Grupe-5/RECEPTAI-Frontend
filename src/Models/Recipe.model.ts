@@ -1,5 +1,8 @@
+import { VoteType } from "./Vote.model";
+
 export class Recipe {
     public recipeId: string;
+    public userName: string;
     public userId: string;
     public title: string;
     public imgId: string; 
@@ -13,6 +16,7 @@ export class Recipe {
     public cookingDifficulty: number;
     public instructions: string;
     public aggregatedVotes: number;
+    public vote: VoteType | undefined;
 
     constructor(){}  
 }

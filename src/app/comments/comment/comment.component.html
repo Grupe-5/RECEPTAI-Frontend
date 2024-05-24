@@ -1,9 +1,13 @@
 <div class="row comment p-3 pt-4">
     <div class="col-1 comment__upvotes">
         <div class="comment__upvotes-box">
-            <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+            <button (click)="doUpvote()">
+                <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
+            </button>
             <p class="vote_count">{{getVoteCount()}}</p>
-            <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+            <button (click)="doDownvote()">
+                <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
+            </button>
         </div>
     </div>
     <div class="col-11">

@@ -7,10 +7,20 @@ import { Comment } from '../../../Models/Comment.model';
   styleUrl: './comment.component.scss'
 })
 export class CommentComponent {
-  @Input() comment?: Comment;
+  @Input() comment: Comment;
 
   // TODO: convert this to PIPE and change other places
-  getHoursOrMinutesFromToday(date: Date | undefined): string {
+  getVoteCount(): string {
+    const cnt = this.comment?.aggregatedVotes;
+    if (cnt >= 1000) {
+      return (cnt / 1000.0).toFixed(1);
+    } else {
+      return cnt.toString();
+    }
+  }
+
+  getHoursOrMinutesFromToday(): string {
+    var date = new Date(this.comment?.commentDate);
     if (date == undefined)
       return "Some time ago"
 

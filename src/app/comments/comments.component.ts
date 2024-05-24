@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Comment } from '../../Models/Comment.model';
 import { CommentsService } from '../../Services/comments.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-comments',
@@ -9,26 +10,35 @@ import { CommentsService } from '../../Services/comments.service';
 })
 export class CommentsComponent {
   @Input() recipeId: number = 0;
+
+  commentForm: FormGroup;
   
   sortValue?: String ; 
   
   comments: Comment[] = [];
 
-  constructor(private commentsService: CommentsService){
+  constructor(private commentsService: CommentsService, private fb: FormBuilder){
+    this.commentForm = this.fb.group({
+      commentText: ['', Validators.required],
+    });
   }
 
   ngOnInit(): void {
+    this.fetchComments();
+  }
+
+  fetchComments(): void {
     this.commentsService.getCommentsByRecipeId(this.recipeId)
-  .subscribe(
-    (comments: Comment[]) => {
-      this.comments = comments; // Assign the actual comments array
-      console.log(this.comments);
-    },
-    (error) => {
-      console.error('Error fetching comments: ', error);
-    }
-  );
-    this.comments.sort((a, b)=> (a.upvotes_amount > b.upvotes_amount ? -1 : 1));
+      .subscribe(
+        (comments: Comment[]) => {
+          this.comments = comments; // Assign the actual comments array
+          console.log(this.comments);
+        },
+        (error) => {
+          console.error('Error fetching comments: ', error);
+        }
+      );
+    this.comments.sort((a, b) => (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
   }
 
   getCommentsCountText(): String{
@@ -39,12 +49,12 @@ export class CommentsComponent {
   selectChange(event: any) {
     switch(event.target.value){
       case "Best": {
-        this.comments.sort((a, b)=> (a.upvotes_amount > b.upvotes_amount ? -1 : 1));
+        this.comments.sort((a, b)=> (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
         
         break;
       } 
       case "Newest": {
-        this.comments.sort((a, b)=> (a.date > b.date ? -1 : 1));
+        this.comments.sort((a, b)=> (a.commentDate > b.commentDate ? -1 : 1));
         
         break;
       } 
@@ -53,5 +63,12 @@ export class CommentsComponent {
     // this.model.myListOptions = this.listOptions[$event];
   }
 
-
+  onComment() {
+    if (this.commentForm.valid) {
+      const { commentText } = this.commentForm.value;
+      this.commentsService.postNewComment(commentText, this.recipeId).subscribe(() => {
+        this.fetchComments();
+      });
+    }
+  }
 }

@@ -11,10 +11,12 @@ import { Subfooddit } from '../../../Models/Subfooddit.model'
 })
 export class RecipeCreateComponent {  
   newRecipe: Recipe = new Recipe();
+  imageFile: File | undefined = undefined;
   selectedSubFoodit: String = "";
   usersSubFooddits: Subfooddit[] = [];
 
   constructor(private subfoodditService: SubfoodditService, private recipesService: RecipesService){}
+
   ngOnInit(){
     this.subfoodditService.getSubfoodditsByUserId().subscribe((resp: Subfooddit[])=>{
         this.usersSubFooddits = resp;
@@ -23,13 +25,23 @@ export class RecipeCreateComponent {
       }
     )
   }
-  
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.imageFile = file;
+    } else {
+      this.imageFile = undefined;
+    }
+  }
+
+
   formSubmited(){
     // TODO: add error checking 
+    // TODO: add error checking 
     let subFId = (this.usersSubFooddits.find((sf: Subfooddit) => sf.title == this.selectedSubFoodit))?.subfoodditId;
-    this.newRecipe.subfoodditId = subFId ? subFId : 1; // TODO throw error 
-
-    this.recipesService.postNewRecipe(this.newRecipe)
+    this.newRecipe.subfoodditId = subFId ? subFId : 1;
+    this.recipesService.postNewRecipe(this.newRecipe, this.imageFile);
   }
   updateSubFoodit(subFoodTitle: String){
     this.selectedSubFoodit = subFoodTitle;

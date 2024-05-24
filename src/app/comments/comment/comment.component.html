@@ -2,7 +2,7 @@
     <div class="col-1 comment__upvotes">
         <div class="comment__upvotes-box">
             <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-            <p class="vote_count">12k</p>
+            <p class="vote_count">{{getVoteCount()}}</p>
             <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
         </div>
     </div>
@@ -10,16 +10,16 @@
         <div class="row comment__info">
             <div>
                 <span class="comment__info-username">
-                    {{comment?.user_name}}
+                    {{this.comment?.userName}}
                 </span>
                 <span class="comment__info-date">
-                    {{getHoursOrMinutesFromToday(comment?.date)}}
+                    {{getHoursOrMinutesFromToday()}}
                 </span>
 
             </div>
         </div>
         <div class="row comment__text mt-2">
-            {{comment?.text}}
+            {{this.comment?.commentText}}
         </div>
 
         <div class="row comment__reply-box pb-3">

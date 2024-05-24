@@ -27,17 +27,19 @@
     </div>
     
     <div class="comments-wrap__comments-section p-5">
-        <div class="row mt-3">
-            <div class="col-12 comments-wrap__comments-section-write">
-                <input type="text" placeholder="Share your opinion!">
+        <form [formGroup]="commentForm" (ngSubmit)="onComment()">
+            <div class="row mt-3">
+                <div class="col-12 comments-wrap__comments-section-write">
+                    <input id="commentText" formControlName="commentText" type="text" placeholder="Share your opinion!">
+                </div>
             </div>
-        </div>
 
-        <div class="row mt-5 justify-content-md-end">
-            <div class="btn-wrap">
-                <button type="submit" class="button-5">Post</button>
+            <div class="row mt-5 justify-content-md-end">
+                <div class="btn-wrap">
+                    <button type="submit" [disabled]="commentForm.invalid" class="button-5">Post</button>
+                </div>
             </div>
-        </div>
+        </form>
         <div class="row mt-3">
             <div *ngFor="let comment of comments">
                 <app-comment [comment]="comment"></app-comment>

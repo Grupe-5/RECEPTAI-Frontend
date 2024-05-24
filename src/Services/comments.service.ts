@@ -19,20 +19,19 @@ export class CommentsService {
     return this.http.get<Comment[]>('http://localhost:5169/api/comment/by_recipe/' + recipeId, { headers: reqHeader })
   }
 
-  postNewComment(comment : Comment){
+  postNewComment(commentText: string, recipeId: number) {
     var reqHeader = new HttpHeaders({
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`,
       'Content-Type': 'application/json'
     })
-    const formData = new FormData();
-    formData.append('recipeId', comment.recipe_id.toString());
-    formData.append('commentText', comment.text);
-    ///Post body wants a date here, but seems to be a mistake, remove this later
-    formData.append('commentDate', comment.date.toString())
+    let commentData = {
+      "recipeId": recipeId,
+      "commentText": commentText
+    };
 
     // Send the POST request
-    return this.http.post<any>(this.server, formData, { headers: reqHeader })
+    return this.http.post<any>(this.server, commentData, { headers: reqHeader })
       .pipe(
         map(() => true), // Emit true on successful post
         catchError(error => of(false)) // Emit false on error

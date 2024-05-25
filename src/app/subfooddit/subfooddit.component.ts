@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subfooddit } from '../../Models/Subfooddit.model'
 import { SubfoodditService } from '../../Services/subfooddit.service'
 import { AuthService } from '../../Services/auth.service'
@@ -18,17 +18,16 @@ export class SubfoodditComponent {
   joinedUserCount: number = 0;
   subFoodditName: string;
   
-  constructor(private router: Router, private subfoodditService: SubfoodditService, private authService: AuthService, private recipeService: RecipesService) {
-    router.events.subscribe((val ) => {
-      if(this.subFoodditName != "" && this.subFoodditName !== this.parseSubFooditName(this.router.url)){
-        this.initNewSubF();
-      }
-    });
+  constructor(private router: Router, private route: ActivatedRoute,  private subfoodditService: SubfoodditService, private authService: AuthService, private recipeService: RecipesService) {
 
   }
 
   ngOnInit(): void {
-    this.initNewSubF();
+    this.route.params.subscribe((params: any) =>{
+      if(params){
+        this.initNewSubF()
+      }
+    });
   }
 
   initNewSubF(){

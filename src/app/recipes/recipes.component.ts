@@ -3,7 +3,7 @@ import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service'
 import { Subfooddit } from '../../Models/Subfooddit.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -15,17 +15,15 @@ export class RecipesComponent {
   @Input() ShowTitle: Boolean = true;
   @Input() SubFoodditName: string;
 
-  constructor(private recipeService: RecipesService, private subfoodditService: SubfoodditService, private router: Router) {
-    router.events.subscribe((val) => {
-      this.initNewSubF();
-    });
-  }
-
+  constructor(private recipeService: RecipesService, private route: ActivatedRoute, private subfoodditService: SubfoodditService, private router: Router) {}
 
   ngOnInit(): void {
-    console.log(this.SubFoodditName)
     if(this.SubFoodditName){
-      this.initNewSubF();
+      this.route.params.subscribe((params: any) =>{
+        if(params){
+          this.initNewSubF()
+        }
+      });
     }
     else{
       this.recipeService.getRecipes().subscribe(

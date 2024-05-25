@@ -1,0 +1,39 @@
+.top-navbar{
+    &__search{
+        width: 40rem;
+        &-input-wrap{
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding: 0 1rem 0 0;
+            
+            border-radius: 3rem;
+            border: none;
+            font-size: 1.7rem;
+            border: 1px solid transparentize(#FDBD1F, .5);
+                
+            &.opened{
+                border-bottom: none;
+                border-radius: 3rem 3rem 0 0;
+              
+            }
+
+            &:focus{
+            border-color: transparentize(#FDBD1F, .5);
+            box-shadow: 0 1px 1px transparentize(#FDBD1F, .8)  inset, 0 0 8px transparentize(#FDBD1F, .7);
+            outline: 0 none;
+            }
+
+            input{
+                flex: 0 0 80%; /* flex-grow, flex-shrink, flex-basis */
+                padding-left: 1rem;    
+                border: none;
+                &:focus{
+                    box-shadow: 0;
+                    outline: 0 none;
+                }
+            }
+          
+        }
+    }
+}

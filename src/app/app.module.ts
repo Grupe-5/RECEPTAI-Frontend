@@ -15,6 +15,10 @@ import { SubfoodditComponent } from './subfooddit/subfooddit.component';
 import { SignUpPageComponent } from './authPages/sign-up-page/sign-up-page.component';
 import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SearchBarComponent } from './navigation/search-bar/search-bar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { SearchOverlayComponent } from './navigation/search-bar/search-overlay/search-overlay.component'
 
 @NgModule({
   declarations: [
@@ -29,16 +33,20 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationSidebarComponent,
     SubfoodditComponent,
     SignUpPageComponent,
-    SignInPageComponent
+    SignInPageComponent,
   ],
   imports: [
+    SearchBarComponent,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatIconModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent, RecipePageComponent]
 })
 export class AppModule {}

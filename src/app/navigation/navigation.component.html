@@ -5,12 +5,9 @@
                     <img  src="../../assets/imgs/foodit.png" alt="Foodit">
                 </a>
             </div>
-            <div  class="col-4 top-navbar__search">
-                <div *ngIf="shouldShowSearch()" class="top-navbar__search-input-wrap">
-                    <img  src="../../assets/icons/search.svg" alt="Foodit">
-                    <input type="text" placeholder="Search...">
+            <div  class="col-4 top-navbar__search justify-content-center">
 
-                </div>
+                <app-search-bar></app-search-bar>
             </div>
             <!-- TODO: Change depending on login status  -->
             <div class="col-4" *ngIf="!isLoggedIn()">

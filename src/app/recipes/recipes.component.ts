@@ -3,6 +3,7 @@ import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service'
 import { Subfooddit } from '../../Models/Subfooddit.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -14,26 +15,19 @@ export class RecipesComponent {
   @Input() ShowTitle: Boolean = true;
   @Input() SubFoodditName: string;
 
-  constructor(private recipeService: RecipesService, private subfoodditService: SubfoodditService,) { }
+  constructor(private recipeService: RecipesService, private subfoodditService: SubfoodditService, private router: Router) {
+    router.events.subscribe((val) => {
+      this.initNewSubF();
+    });
+  }
 
 
   ngOnInit(): void {
-    if(this.SubFoodditName)
-    {
-      this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
-        let subFooditId = resp.find((sf: Subfooddit) => sf.title.toLowerCase() === this.SubFoodditName.toLowerCase())?.subfoodditId;
-        this.recipeService.getRecipesBySubfoodditId(subFooditId ? subFooditId : 0).subscribe(
-          (recipes: Recipe[]) => {
-            this.recipes = recipes;
-          },
-          (error) => {
-            console.error('Error fetching recipes: ', error);
-          }
-        );
-        
-      });
+    console.log(this.SubFoodditName)
+    if(this.SubFoodditName){
+      this.initNewSubF();
     }
-    else {
+    else{
       this.recipeService.getRecipes().subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
@@ -43,5 +37,20 @@ export class RecipesComponent {
         }
       );
     }
+  }
+
+  initNewSubF(){
+    this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
+      let subFooditId = resp.find((sf: Subfooddit) => sf.title.toLowerCase() === this.SubFoodditName.toLowerCase())?.subfoodditId;
+      this.recipeService.getRecipesBySubfoodditId(subFooditId ? subFooditId : 0).subscribe(
+        (recipes: Recipe[]) => {
+          this.recipes = recipes;
+        },
+        (error) => {
+          console.error('Error fetching recipes: ', error);
+        }
+      );
+      
+    });
   }
 }

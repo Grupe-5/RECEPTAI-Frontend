@@ -87,7 +87,7 @@ export class RecipesService {
     return this.http.put<Vote>(`${this.server_vote}${id}`, putData, { headers: reqHeader });
   }
 
-  postNewRecipe(recipe : Recipe, imageData : File | undefined): void{
+  postNewRecipe(recipe : Recipe, imageData : File | undefined): Observable<Recipe>{
     var reqHeader  = new HttpHeaders({
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`,
@@ -105,17 +105,16 @@ export class RecipesService {
     formData.append('Instructions', recipe.instructions);
 
   // Send the POST request
-    this.http.post(this.server, formData, { headers: reqHeader })
+  return this.http.post<Recipe>(this.server, formData, { headers: reqHeader })
     .pipe(
-      map((msg) => {
-        return true
+      map((recipe: Recipe) => {
+        return recipe;
       }), 
       catchError(error => {
         console.error('Error: ', error);
-        return of(false);
+        return []
       })
 
-    ).subscribe();
-
+    )
   }
 }

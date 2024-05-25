@@ -12,8 +12,13 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   isInRecipeRoute: Boolean = false;
   constructor(private router: Router, private authService: AuthService) {}
+  
   isRouteRecipePage(): boolean {
     return this.router.url.startsWith('/recipe/');
+  }
+
+  isRouteSubfoodditPage(): boolean {
+    return this.router.url.startsWith('/f/');
   }
 
   isLoggedIn(): Boolean{

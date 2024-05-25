@@ -3,6 +3,7 @@ import { Recipe } from '../../../Models/Recipe.model';
 import { SubfoodditService } from '../../../Services/subfooddit.service'
 import { RecipesService } from '../../../Services/recipes.service'
 import { Subfooddit } from '../../../Models/Subfooddit.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-create',
@@ -15,7 +16,7 @@ export class RecipeCreateComponent {
   selectedSubFoodit: String = "";
   usersSubFooddits: Subfooddit[] = [];
 
-  constructor(private subfoodditService: SubfoodditService, private recipesService: RecipesService){}
+  constructor(private router: Router, private subfoodditService: SubfoodditService, private recipesService: RecipesService){}
 
   ngOnInit(){
     this.subfoodditService.getSubfoodditsByUserId().subscribe(
@@ -44,8 +45,11 @@ export class RecipeCreateComponent {
   formSubmited(){
     let subFId = (this.usersSubFooddits.find((sf: Subfooddit) => sf.title == this.selectedSubFoodit))?.subfoodditId;
     this.newRecipe.subfoodditId = subFId ? subFId : 1;
-    this.recipesService.postNewRecipe(this.newRecipe, this.imageFile);
+    this.recipesService.postNewRecipe(this.newRecipe, this.imageFile).subscribe((newRecipe: Recipe) =>{
+      this.router.navigate([`/recipe/${newRecipe.recipeId}`]);
+    })
   }
+
   updateSubFoodit(subFoodTitle: String){
     this.selectedSubFoodit = subFoodTitle;
   }

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Subfooddit } from '../../Models/Subfooddit.model'
 import { SubfoodditService } from '../../Services/subfooddit.service'
 import { AuthService } from '../../Services/auth.service'
+import { RecipesService } from '../../Services/recipes.service'
+import { Recipe } from '../../Models/Recipe.model'
 
 @Component({
   selector: 'app-subfooddit',
@@ -10,14 +12,26 @@ import { AuthService } from '../../Services/auth.service'
   styleUrl: './subfooddit.component.scss'
 })
 export class SubfoodditComponent {
+  recipes: Recipe[] = [];
   subFooddit: Subfooddit;
   currUserHasJoined: boolean = false;
   joinedUserCount: number = 0;
   subFoodditName: string;
   
-  constructor(private router: Router, private subfoodditService: SubfoodditService, private authService: AuthService) {}
+  constructor(private router: Router, private subfoodditService: SubfoodditService, private authService: AuthService, private recipeService: RecipesService) {
+    router.events.subscribe((val ) => {
+      if(this.subFoodditName != "" && this.subFoodditName !== this.parseSubFooditName(this.router.url)){
+        this.initNewSubF();
+      }
+    });
+
+  }
 
   ngOnInit(): void {
+    this.initNewSubF();
+  }
+
+  initNewSubF(){
     this.subFoodditName = this.parseSubFooditName(this.router.url);
     this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
       let subFoodditInfo = resp.find((sf: Subfooddit) => sf.title.toLowerCase() === this.subFoodditName.toLowerCase());
@@ -39,8 +53,11 @@ export class SubfoodditComponent {
         })
       }
     })
-
   }
+
+
+
+
   parseSubFooditName(url: string): string {
     const regex = '\/f\/([^\/]+)\/?$'
     const match = url.match(regex);

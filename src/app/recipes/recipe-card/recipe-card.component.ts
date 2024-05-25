@@ -10,6 +10,7 @@ import { RecipesService } from '../../../Services/recipes.service';
 })
 export class RecipeCardComponent {
   @Input() recipe?: Recipe;
+  public voteType = VoteType;
   private server = 'http://localhost:5169/api/image/';
 
   constructor(private recipeService: RecipesService) {}

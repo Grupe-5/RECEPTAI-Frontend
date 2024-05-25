@@ -10,6 +10,7 @@ import { CommentsService } from '../../../Services/comments.service';
 })
 export class CommentComponent {
   @Input() comment: Comment;
+  public voteType = VoteType;
 
   constructor(private commentsService: CommentsService) {}
 

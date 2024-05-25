@@ -13,6 +13,7 @@ import { VoteType } from '../../../Models/Vote.model';
 })
 export class RecipePageComponent {
   private server = 'http://localhost:5169/api/image/';
+  public voteType = VoteType;
   recipe: Recipe | undefined;
   recipeId: number = 0;
   instructionsTrimmed: string[] | undefined;

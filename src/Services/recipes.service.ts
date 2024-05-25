@@ -30,12 +30,12 @@ export class RecipesService {
     return this.http.get<Recipe>(`${this.server}${id}`, { headers: reqHeader });
   }
 
-  getRecipesBySubfoodditId(id: string): Observable<Recipe[]>{
+  getRecipesBySubfoodditId(id: number): Observable<Recipe[]>{
     var reqHeader  = new HttpHeaders({
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
-    return this.http.get<Recipe[]>(`${this.server}${this.subfUrl}${id}`, {headers : reqHeader});
+    return this.http.get<Recipe[]>(`${this.server}${this.subfUrl}${id}?limit=50`, {headers : reqHeader});
   }
 
   getRecipeVote(id: string): Observable<Vote> {

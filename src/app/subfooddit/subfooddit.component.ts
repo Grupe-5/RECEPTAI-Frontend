@@ -10,16 +10,17 @@ import { AuthService } from '../../Services/auth.service'
   styleUrl: './subfooddit.component.scss'
 })
 export class SubfoodditComponent {
-  subFooddit: Subfooddit = new Subfooddit();
+  subFooddit: Subfooddit;
   currUserHasJoined: boolean = false;
   joinedUserCount: number = 0;
+  subFoodditName: string;
   
   constructor(private router: Router, private subfoodditService: SubfoodditService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    let subFoodditName = this.parseSubFooditName(this.router.url);
-    this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) =>{
-      let subFoodditInfo = resp.find((sf: Subfooddit) => sf.title.toLowerCase() === subFoodditName.toLowerCase());
+    this.subFoodditName = this.parseSubFooditName(this.router.url);
+    this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
+      let subFoodditInfo = resp.find((sf: Subfooddit) => sf.title.toLowerCase() === this.subFoodditName.toLowerCase());
       
       if(subFoodditInfo === undefined){
         this.router.navigate(['/']);
@@ -34,14 +35,12 @@ export class SubfoodditComponent {
           err => err,
         )
         this.subfoodditService.getUserBySubfooddits(this.subFooddit.subfoodditId).subscribe((resp)=>{
-          console.log(resp)
           this.joinedUserCount = resp.length;
         })
       }
     })
 
   }
-
   parseSubFooditName(url: string): string {
     const regex = '\/f\/([^\/]+)\/?$'
     const match = url.match(regex);

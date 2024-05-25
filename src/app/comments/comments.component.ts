@@ -32,7 +32,7 @@ export class CommentsComponent {
       .subscribe(
         (comments: Comment[]) => {
           this.comments = comments; // Assign the actual comments array
-          console.log(this.comments);
+          console.log("Comments:" + this.comments);
         },
         (error) => {
           console.error('Error fetching comments: ', error);

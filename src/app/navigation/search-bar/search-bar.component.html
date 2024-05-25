@@ -7,7 +7,7 @@
         <input 
             #searchInput type="text"
             [value]="searchTerm()" 
-            placeholder="SubFooddits..." 
+            placeholder="Search for subFooddits..." 
             (click)="overlayOpen.set(true)"
             (input)="onSearchChange(searchInput.value)"
             (keydown.ENTER)="search(searchInput.value)"/>

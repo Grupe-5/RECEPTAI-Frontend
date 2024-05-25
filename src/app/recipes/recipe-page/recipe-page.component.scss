@@ -25,6 +25,17 @@
         
         
         text-align: center;
+        a{
+            transition: filter .25s ;
+
+            &:hover{
+                cursor: pointer;
+                filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+            }
+        }
+        .active-vote {
+            filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+        }
 
         img{
             height: 2rem;

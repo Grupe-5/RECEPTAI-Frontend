@@ -1,20 +1,20 @@
 <div class="row comment p-3 pt-4">
     <div class="col-1 comment__upvotes">
         <div class="comment__upvotes-box">
-            <button (click)="doUpvote()">
+            <a (click)="doUpvote()" [ngClass]="{'active-vote': this.comment.vote == this.voteType.Upvote}">
                 <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-            </button>
+            </a>
             <p class="vote_count">{{getVoteCount()}}</p>
-            <button (click)="doDownvote()">
+            <a (click)="doDownvote()" [ngClass]="{'active-vote': this.comment.vote == this.voteType.Downvote}">
                 <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
-            </button>
+            </a>
         </div>
     </div>
     <div class="col-11">
         <div class="row comment__info">
             <div>
                 <span class="comment__info-username">
-                    {{this.comment?.userName}}
+                    {{this.comment.userName}}
                 </span>
                 <span class="comment__info-date">
                     {{getHoursOrMinutesFromToday()}}
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row comment__text mt-2">
-            {{this.comment?.commentText}}
+            {{this.comment.commentText}}
         </div>
 
         <div class="row comment__reply-box pb-3">

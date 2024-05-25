@@ -70,14 +70,25 @@
 
     &__upvotes-box{
         border-radius: 0 0 .5rem;
-        background-color: rgba(255,255,255, .8);
+        background-color: rgba(255,255,255, .9);
         padding: 0 6px;
         font-weight: bold;
         z-index: 100;
         
         position: absolute;
         text-align: center;
+        a{
+            transition: filter .25s ;
 
+            &:hover{
+                cursor: pointer;
+                filter: invert(50%) sepia(79%) saturate(1622%) hue-rotate(18deg) brightness(98%) contrast(105%);
+            }
+        }
+        .active-vote {
+            filter: invert(50%) sepia(79%) saturate(1622%) hue-rotate(18deg) brightness(98%) contrast(105%);
+
+        }
         img{
             height: 2rem;
         }

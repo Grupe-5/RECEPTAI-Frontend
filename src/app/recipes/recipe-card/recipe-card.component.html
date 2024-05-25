@@ -1,12 +1,12 @@
 <div class="recipe-card" [routerLink]="['/recipe', recipe?.recipeId]">
     <div class="recipe-card__upvotes-box">
-            <button (click)="doUpvote();$event.stopPropagation()">
+            <a (click)="doUpvote();$event.stopPropagation()" [ngClass]="{'active-vote': this.recipe?.vote == this.voteType.Upvote}">
                 <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-            </button>
+            </a>
             <p class="vote_count">{{getVoteCount()}}</p>
-            <button (click)="doDownvote();$event.stopPropagation()">
+            <a (click)="doDownvote();$event.stopPropagation()" [ngClass]="{'active-vote': this.recipe?.vote == this.voteType.Downvote}">
                 <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
-            </button>
+            </a>
     </div>
     
     <div class="recipe-card__img-box">

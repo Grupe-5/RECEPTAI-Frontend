@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
+import { SubfoodditService } from '../../Services/subfooddit.service'
 import { Subfooddit } from '../../Models/Subfooddit.model';
 
 @Component({
@@ -11,19 +12,36 @@ import { Subfooddit } from '../../Models/Subfooddit.model';
 export class RecipesComponent {
   recipes: Recipe[] = [];
   @Input() ShowTitle: Boolean = true;
-  @Input() SubFooddit: Subfooddit | undefined = undefined;
+  @Input() SubFoodditName: string;
 
-  constructor(private recipeService: RecipesService) { }
+  constructor(private recipeService: RecipesService, private subfoodditService: SubfoodditService,) { }
+
 
   ngOnInit(): void {
-    this.recipeService.getRecipes().subscribe(
-      (recipes: Recipe[]) => {
-        this.recipes = recipes;
-      },
-      (error) => {
-        console.error('Error fetching recipes: ', error);
-      }
-    );
+    if(this.SubFoodditName)
+    {
+      this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
+        let subFooditId = resp.find((sf: Subfooddit) => sf.title.toLowerCase() === this.SubFoodditName.toLowerCase())?.subfoodditId;
+        this.recipeService.getRecipesBySubfoodditId(subFooditId ? subFooditId : 0).subscribe(
+          (recipes: Recipe[]) => {
+            this.recipes = recipes;
+          },
+          (error) => {
+            console.error('Error fetching recipes: ', error);
+          }
+        );
+        
+      });
+    }
+    else {
+      this.recipeService.getRecipes().subscribe(
+        (recipes: Recipe[]) => {
+          this.recipes = recipes;
+        },
+        (error) => {
+          console.error('Error fetching recipes: ', error);
+        }
+      );
+    }
   }
-
 }

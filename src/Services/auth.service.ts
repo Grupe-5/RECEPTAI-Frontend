@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, BehaviorSubject, Observable } from 'rxjs';
 import { IUser, IUser_Info } from "../Models/User.model"
+import { environment } from '../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-    private server = 'http://localhost:5169/api/user/';
-    private signupUrl = 'register';
-    private loginUrl = 'login';
-    private userInfoUrl = 'info/me';
+    private server = environment.apiUrl+'/api/user/';
+    private route_signup = 'register';
+    private route_login = 'login';
+    private route_userInfo = 'info/me';
     private localStorageUser = "loggedInUser";
 
 
@@ -33,7 +35,7 @@ export class AuthService {
             "password": password
         }
         
-        return this.http.post(this.server+this.loginUrl, body, { headers: reqHeader }).pipe(
+        return this.http.post(this.server+this.route_login, body, { headers: reqHeader }).pipe(
             map((response) => {
                 const retUser = <IUser> response;
                 
@@ -56,7 +58,7 @@ export class AuthService {
             "password": password,
         }
         
-        return this.http.post(this.server+this.signupUrl, body, { headers: reqHeader }).pipe(
+        return this.http.post(this.server+this.route_signup, body, { headers: reqHeader }).pipe(
             map((response) => {
                 const retUser = <IUser> response;
                 
@@ -76,7 +78,7 @@ export class AuthService {
 
         })
         
-        return this.http.get(this.server+this.userInfoUrl, { headers: reqHeader }).pipe(
+        return this.http.get(this.server+this.route_userInfo, { headers: reqHeader }).pipe(
             map((response) => {
                 const retUser = <IUser_Info> response;
                 return retUser;

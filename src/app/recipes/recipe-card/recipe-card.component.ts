@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { RecipesService } from '../../../Services/recipes.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-recipe-card',
@@ -11,7 +12,7 @@ import { RecipesService } from '../../../Services/recipes.service';
 export class RecipeCardComponent {
   @Input() recipe?: Recipe;
   public voteType = VoteType;
-  private server = 'http://localhost:5169/api/image/';
+  private server = environment.apiUrl + '/api/image/';
 
   constructor(private recipeService: RecipesService) {}
 

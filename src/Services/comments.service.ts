@@ -4,13 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AuthService } from '../Services/auth.service'
 import { Vote, VoteType } from '../Models/Vote.model';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
-  server = 'http://localhost:5169/api/comment'
-  private server_vote = 'http://localhost:5169/api/comment_vote/'
+  private server = environment+'api/comment/'
+  private server_vote = environment+'/api/comment_vote/'
+  private route_byRecipe = 'by_recipe/' 
   
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -20,7 +22,7 @@ export class CommentsService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
-    return this.http.get<Comment[]>('http://localhost:5169/api/comment/by_recipe/' + recipeId, { headers: reqHeader })
+    return this.http.get<Comment[]>(`${this.server}${this.route_byRecipe}${recipeId}` , { headers: reqHeader })
   }
 
   postNewComment(commentText: string, recipeId: number) {

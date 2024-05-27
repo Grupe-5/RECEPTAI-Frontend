@@ -4,6 +4,7 @@ import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
 import { VoteType } from '../../../Models/Vote.model';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { VoteType } from '../../../Models/Vote.model';
   styleUrl: './recipe-page.component.scss'
 })
 export class RecipePageComponent {
-  private server = 'http://localhost:5169/api/image/';
+  private server = environment.apiUrl + '/api/image/';
   public voteType = VoteType;
   recipe: Recipe | undefined;
   recipeId: number = 0;

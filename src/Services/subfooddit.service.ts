@@ -6,13 +6,14 @@ import { IUser } from '../Models/User.model';
 import { AuthService } from './auth.service'
 import { IUser_Info } from "../Models/User.model"
 import { switchMap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubfoodditService {
-    private server = 'http://localhost:5169/api/subfooddit/';
+    private server = environment.apiUrl + '/api/subfooddit/';
     private byUserUrl = 'by_user/';
     private bySubFoodditIdUrl = 'by_subfooddit/';
     private addUserUrl = 'add_user?subfoodditId=';

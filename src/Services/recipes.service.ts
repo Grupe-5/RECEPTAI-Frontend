@@ -4,13 +4,15 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Recipe } from '../Models/Recipe.model';
 import { AuthService } from '../Services/auth.service'
 import { Vote, VoteType } from '../Models/Vote.model';
+import { environment } from '../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  private server = 'http://localhost:5169/api/recipe/';
-  private server_vote = 'http://localhost:5169/api/recipe_vote/'
-  private subfUrl = 'by_subfooddit/'
+  private server = environment.apiUrl + '/api/recipe/';
+  private server_vote = environment.apiUrl + '/api/recipe_vote/';
+  private route_subf = 'by_subfooddit/'
   
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -35,7 +37,7 @@ export class RecipesService {
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
-    return this.http.get<Recipe[]>(`${this.server}${this.subfUrl}${id}?limit=50`, {headers : reqHeader});
+    return this.http.get<Recipe[]>(`${this.server}${this.route_subf}${id}?limit=50`, {headers : reqHeader});
   }
 
   getRecipeVote(id: string): Observable<Vote> {

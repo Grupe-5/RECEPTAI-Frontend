@@ -34,12 +34,56 @@
         > div{
             padding: 0;
         }
+        &-wrap{
+            display: flex;
+            justify-content: start;
+        }
         &-username{
             font-weight: bold;
             padding-right: 1.5rem;
             a{
                 text-decoration: none;
                 color: var(--color-secondary-dark);
+            }
+        }
+        &-edit{
+            padding-left: 2rem;
+            justify-self: end;
+            transform: translateZ(-10px);
+            
+            &:hover{
+                cursor: pointer;
+                filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
+
+            }
+        }
+    }
+    &__input{
+        div{
+            padding: 0;
+        }
+        input{
+            padding: .6rem 1rem;
+            background-color: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.623);
+            border-right: 0;
+            width: 90%;
+            &:focus{
+                
+                outline: none;
+            }
+            
+        }
+        button{
+            width: 10%;
+            padding: .6rem 1rem;
+            background-color: transparent;
+            border: #FDBD1F 1px solid;
+            transition: 0.3s ease-out;
+
+            &:hover{
+                color: white;
+                background-color: #FDBD1F;
             }
         }
     }
@@ -49,7 +93,11 @@
             display: inline-block;
             text-decoration: none;
             height: 3rem;
-            color: black;
+            color: #A9A9A9;
+
+            img{
+                filter: brightness(0) saturate(100%) invert(76%) sepia(9%) saturate(5%) hue-rotate(15deg) brightness(87%) contrast(92%);
+            }
 
             span{
                 text-decoration: underline;
@@ -58,8 +106,7 @@
             }
 
             &:hover{
-                cursor: pointer;
-                filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
+                cursor: not-allowed;
             }
         }
     }
@@ -70,4 +117,7 @@
             height: 3rem;
         }
     }
+}
+.active{
+    filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
 }

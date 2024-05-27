@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Comment } from '../../../Models/Comment.model';
 import { Vote, VoteType } from '../../../Models/Vote.model';
 import { CommentsService } from '../../../Services/comments.service';
+import { AuthService } from '../../../Services/auth.service';
+import { IUser_Info } from '../../../Models/User.model';
 
 @Component({
   selector: 'app-comment',
@@ -11,8 +13,26 @@ import { CommentsService } from '../../../Services/comments.service';
 export class CommentComponent {
   @Input() comment: Comment;
   public voteType = VoteType;
+  public userId: number = 0;
+  public isInEditingMode: boolean = false;
+  public editComText: string;
 
-  constructor(private commentsService: CommentsService) {}
+  constructor(private commentsService: CommentsService, private authService: AuthService) {}
+
+  ngOnInit(){
+    if(this.authService.isAuthenticated()){
+      this.authService.getUserInfo().subscribe((resp: IUser_Info) =>{
+        this.userId = resp.id;
+      })
+    }
+  }
+
+  reloadComment(){
+    this.commentsService.getCommentsById(this.comment.userId).subscribe((newComment: Comment) =>{
+      console.log(newComment.commentText)
+      this.comment = newComment;
+    })
+  }
 
   // TODO: convert this to PIPE and change other places
   getVoteCount(): string {
@@ -79,5 +99,19 @@ export class CommentComponent {
 
   doDownvote(): void {
     this.createOrUpdateVote(VoteType.Downvote);
+  }
+
+  enterEditMode(): void {
+    this.editComText = this.comment.commentText;
+    this.isInEditingMode = !this.isInEditingMode;
+  }
+
+  updateComment(){
+    this.commentsService.updateComment(this.editComText, this.comment.commentId).subscribe((resp: any)=>{
+      console.log(resp)
+      this.isInEditingMode = !this.isInEditingMode;
+      this.reloadComment();
+    })
+
   }
 }

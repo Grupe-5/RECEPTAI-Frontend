@@ -25,6 +25,15 @@ export class CommentsService {
     return this.http.get<Comment[]>(`${this.server}${this.route_byRecipe}${recipeId}` , { headers: reqHeader })
   }
 
+  getCommentsById(commentId: number): Observable<Comment> {
+
+    var reqHeader = new HttpHeaders({
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })
+    return this.http.get<Comment>(`${this.server}${commentId}` , { headers: reqHeader })
+  }
+
   postNewComment(commentText: string, recipeId: number) {
     var reqHeader = new HttpHeaders({
       'accept': '*/*',
@@ -38,6 +47,23 @@ export class CommentsService {
 
     // Send the POST request
     return this.http.post<any>(this.server, commentData, { headers: reqHeader })
+      .pipe(
+        map(() => true), // Emit true on successful post
+        catchError(error => of(false)) // Emit false on error
+      );
+    }
+  updateComment(commentText: string, commentId: number) {
+    var reqHeader = new HttpHeaders({
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.authService.getToken()}`,
+      'Content-Type': 'application/json'
+    })
+    let commentData = {
+      "commentText": commentText
+    };
+
+    // Send the POST request
+    return this.http.put<any>(this.server+commentId, commentData, { headers: reqHeader })
       .pipe(
         map(() => true), // Emit true on successful post
         catchError(error => of(false)) // Emit false on error

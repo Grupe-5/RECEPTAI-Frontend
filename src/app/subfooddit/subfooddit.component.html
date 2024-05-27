@@ -10,8 +10,6 @@
 
     <div class="subfooddit-wrap__info">
         <!-- TODO: add more info/rules of subfooddit -->
-        
-        <!-- TODO: change status if user has already joined -->
         <div class="subfooddit-wrap__info-join btn-wrap">
             <button type="submit" (click)="joinSubFooddit()"class="button-5">
                 <span *ngIf="showJoin()">
@@ -23,7 +21,6 @@
             
             </button>
         </div>
-        <!-- TODO: return real count -->
         <div class="subfooddit-wrap__info-count">
             <div>
                 <p>{{getUsersCountText()}}</p>
@@ -42,9 +39,6 @@
     </div>
 
     <div class="subfooddit-wrap__info">
-        <!-- TODO: add more info/rules of subfooddit -->
-        
-        <!-- TODO: return real count -->
         <div class="subfooddit-wrap__info-count">
             <div>
                 <p>{{getUsersCountText()}}</p>

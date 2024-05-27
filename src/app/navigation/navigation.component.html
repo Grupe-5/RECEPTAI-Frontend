@@ -9,7 +9,6 @@
 
                 <app-search-bar></app-search-bar>
             </div>
-            <!-- TODO: Change depending on login status  -->
             <div class="col-4" *ngIf="!isLoggedIn()">
                 <div class="btn-wrap pr-7">
                     <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>

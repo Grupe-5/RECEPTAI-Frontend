@@ -10,8 +10,8 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class CommentsService {
-  private server = environment+'api/comment/'
-  private server_vote = environment+'/api/comment_vote/'
+  private server = environment.apiUrl + '/api/comment/'
+  private server_vote = environment.apiUrl + '/api/comment_vote/'
   private route_byRecipe = 'by_recipe/' 
   
   constructor(private http: HttpClient, private authService: AuthService) { }

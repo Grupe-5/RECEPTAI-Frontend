@@ -30,7 +30,7 @@
                 
                         <div class="row recipe-page__info-box">
                             <p class="recipe-card__info-1__subredit">
-                                By <span class="highlight-darker">{{recipe?.userName}}</span>
+                                By <a [href]="'/user/'+recipe?.userId"class="highlight-darker">{{recipe?.userName}}</a>
                                  
                                 <span class="recipe-page__info-1__date">
                                     {{ getHoursOrMinutesFromToday(recipe?.datePosted) }}

@@ -35,9 +35,12 @@
             padding: 0;
         }
         &-username{
-            color:  var(--color-secondary-dark);
             font-weight: bold;
             padding-right: 1.5rem;
+            a{
+                text-decoration: none;
+                color: var(--color-secondary-dark);
+            }
         }
     }
     &__reply{

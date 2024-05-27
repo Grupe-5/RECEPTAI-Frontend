@@ -13,6 +13,7 @@ export class RecipesService {
   private server = environment.apiUrl + '/api/recipe/';
   private server_vote = environment.apiUrl + '/api/recipe_vote/';
   private route_subf = 'by_subfooddit/'
+  private route_userRecipe = "by_user/"
   
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -30,6 +31,15 @@ export class RecipesService {
       'Authorization': `Bearer ${this.authService.getToken()}`
     })
     return this.http.get<Recipe>(`${this.server}${id}`, { headers: reqHeader });
+  }
+
+  getRecipeByUserId(userId: number): Observable<Recipe[]> {
+    var reqHeader  = new HttpHeaders({
+      'accept': '*/*',
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    })
+
+    return this.http.get<Recipe[]>(`${this.server}${this.route_userRecipe}${userId}`, { headers: reqHeader });
   }
 
   getRecipesBySubfoodditId(id: number): Observable<Recipe[]>{

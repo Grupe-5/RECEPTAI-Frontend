@@ -7,7 +7,7 @@ export interface IUser {
 
 export interface IUser_Info {
     id: number;
-    userName: string;
+    username: string;
     joinDate: Date;
     imageId?: number;
     karmaScore: number;

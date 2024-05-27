@@ -14,7 +14,7 @@
         <div class="row comment__info">
             <div>
                 <span class="comment__info-username">
-                    {{this.comment.userName}}
+                    <a [href]="'user/'+this.comment.userId">{{this.comment.userName}}</a>
                 </span>
                 <span class="comment__info-date">
                     {{getHoursOrMinutesFromToday()}}

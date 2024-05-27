@@ -19,7 +19,7 @@ export class SubfoodditService {
     private addUserUrl = 'add_user?subfoodditId=';
     private deleteUserUrl = 'remove_user?subfoodditId=';
 
-    constructor(private http: HttpClient,private authService: AuthService) { }
+    constructor(private http: HttpClient, private authService: AuthService) { }
     
     getSubfooddits(): Observable<Subfooddit[]>{
         var reqHeader = new HttpHeaders({

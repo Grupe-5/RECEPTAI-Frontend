@@ -6,7 +6,6 @@
                 </a>
             </div>
             <div  class="col-4 top-navbar__search justify-content-center">
-
                 <app-search-bar></app-search-bar>
             </div>
             <div class="col-4" *ngIf="!isLoggedIn()">
@@ -15,13 +14,17 @@
                     <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
                 </div>
             </div>
-            <div class="col-4" *ngIf="isLoggedIn()">
+            <div class="col-4" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
                 <div class="btn-wrap">
-                    <a (click)="logOut()" class="top-navbar__avatar">
+                    <a *ngIf="shouldShowUserIcon()" (click)="goToUserPage()" class="top-navbar__avatar">
                         <img src="../../assets/imgs/user-avatar.png" alt="user-avatar">
+                    </a>
+                    <a (click)="logOut()" class="top-navbar__sign-out-link">
+                        Sign-out
                     </a>
                 </div>
             </div>
         </div>
-</nav>
-  
+    </nav>
+    
+    

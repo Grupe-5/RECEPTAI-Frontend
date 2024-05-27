@@ -7,6 +7,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router'
 import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.component';
 import { SignUpPageComponent } from './authPages/sign-up-page/sign-up-page.component';
 import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 import { AuthGuard } from '../AuthGuards/auth.guard';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'create', component: RecipeCreateComponent, canActivate: [AuthGuard] },
   { path: 'register', component:  SignUpPageComponent},
   { path: 'sign-in', component:  SignInPageComponent},
+  { path: 'user/:id', component:  UserPageComponent},
   // TODO: Handle invalid routes
   { path: '', component: RecipesComponent } 
 ];

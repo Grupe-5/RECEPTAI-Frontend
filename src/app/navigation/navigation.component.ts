@@ -4,6 +4,7 @@ import { AuthService } from '../../Services/auth.service';
 import { Observable } from 'rxjs';
 import { IUser } from '../../Models/User.model'
 import { SerachBarService } from '../../Services/search-bar.service'
+import {OverlayModule} from '@angular/cdk/overlay';
 
 @Component({
     selector: 'app-navigation',
@@ -23,9 +24,12 @@ export class NavigationComponent{
         return this.shouldShowRegBtn() && this.shouldShowSignIn();
     }
 
-
     shouldShowRegBtn(): Boolean {
         return this.router.url !== '/register';
+    }
+    
+    shouldShowUserIcon(): Boolean{
+        return !this.router.url.includes('/user/');
     }
 
     shouldShowSignIn(): Boolean {
@@ -37,6 +41,11 @@ export class NavigationComponent{
     }
     logOut(){
         this.authService.LogOut();
+        this.router.navigate(['/']);
+    }
+
+    goToUserPage(){
+        this.router.navigate(['user', 'me']);
     }
     
 }

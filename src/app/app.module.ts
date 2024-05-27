@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SearchBarComponent } from './navigation/search-bar/search-bar.component';
 import { MatIconModule } from '@angular/material/icon';
-import { SearchOverlayComponent } from './navigation/search-bar/search-overlay/search-overlay.component'
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -42,11 +42,12 @@ import { SearchOverlayComponent } from './navigation/search-bar/search-overlay/s
     FormsModule,
     HttpClientModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     provideAnimationsAsync()
   ],
-  bootstrap: [AppComponent, RecipePageComponent]
+  bootstrap: [AppComponent, RecipePageComponent],
 })
 export class AppModule {}

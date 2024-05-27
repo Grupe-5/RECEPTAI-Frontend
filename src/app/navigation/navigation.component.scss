@@ -49,7 +49,6 @@
     }
   }
   &__avatar{
-    margin-left: 2.5rem;
     img{
       vertical-align: middle;
       width: 4rem;
@@ -61,8 +60,24 @@
       }
     }
   }
+  &__sign-out-link{
+    color: #CB9200;
+    align-self: flex-end;
+    margin-left: 2rem;
+    padding-bottom: .8rem;
+    transition: color 0.3s;
+    font-size: 1.75rem;
+    &:hover{
+      color: #FDBD1F;
+      cursor: pointer;
+    }
+  }
 }
-
+.cool{
+  background-color: red;
+  font-size: 3rem;
+  padding-top: 10rem;
+}
 
 /* CSS */
 // TODO: Clean stolen css

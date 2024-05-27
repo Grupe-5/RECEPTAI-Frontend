@@ -2,6 +2,7 @@ import { VoteType } from "./Vote.model";
 
 export class Comment {
   commentId: number;
+  userId: number;
   userName: string;
   commentText: string;
   commentDate: string;

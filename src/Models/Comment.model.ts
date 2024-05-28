@@ -8,6 +8,7 @@ export class Comment {
   commentDate: string;
   aggregatedVotes: number;
   recipeId: number;
+  version: string;
   // If current user voted for this comment, then non-null
   vote: VoteType | undefined;
 }

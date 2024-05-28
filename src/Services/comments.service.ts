@@ -52,22 +52,20 @@ export class CommentsService {
         catchError(error => of(false)) // Emit false on error
       );
     }
-  updateComment(commentText: string, commentId: number) {
+
+  updateComment(commentText: string, commentId: number, version: string): Observable<Comment> {
     var reqHeader = new HttpHeaders({
       'accept': '*/*',
       'Authorization': `Bearer ${this.authService.getToken()}`,
       'Content-Type': 'application/json'
     })
     let commentData = {
-      "commentText": commentText
+      "commentText": commentText,
+      "version": version
     };
 
-    // Send the POST request
-    return this.http.put<any>(this.server+commentId, commentData, { headers: reqHeader })
-      .pipe(
-        map(() => true), // Emit true on successful post
-        catchError(error => of(false)) // Emit false on error
-      );
+    return this.http.put<Comment>(this.server+commentId, commentData, { headers: reqHeader });
+      
     }
 
     getCommentVote(id: string): Observable<Vote> {

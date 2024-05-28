@@ -16,6 +16,7 @@ export class CommentComponent {
   public userId: number = 0;
   public isInEditingMode: boolean = false;
   public editComText: string;
+  show: boolean;
 
   constructor(private commentsService: CommentsService, private authService: AuthService) {}
 
@@ -104,14 +105,18 @@ export class CommentComponent {
   enterEditMode(): void {
     this.editComText = this.comment.commentText;
     this.isInEditingMode = !this.isInEditingMode;
+    this.show = !this.show;    
   }
 
   updateComment(){
-    this.commentsService.updateComment(this.editComText, this.comment.commentId).subscribe((resp: any)=>{
-      console.log(resp)
+    if(this.editComText !== this.comment.commentText){
+      this.commentsService.updateComment(this.editComText, this.comment.commentId, this.comment.version).subscribe((updComment: Comment)=>{
+        this.isInEditingMode = !this.isInEditingMode;
+        this.comment = updComment;
+      })
+    }else{
       this.isInEditingMode = !this.isInEditingMode;
-      this.reloadComment();
-    })
-
+      this.show = !this.show;
+    }
   }
 }

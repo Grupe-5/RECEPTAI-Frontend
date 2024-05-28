@@ -33,7 +33,7 @@
 
         <div *ngIf="isInEditingMode" class="row comment__input mt-2">
             <div class="col-12">
-                <input id="commentText" type="text" [(ngModel)]="this.editComText">
+                <input [cdkTrapFocusAutoCapture]="show" [cdkTrapFocus]="show" id="commentText" type="text" [(ngModel)]="this.editComText">
                 <button (click)="updateComment()">Save</button>
             </div>
         </div>

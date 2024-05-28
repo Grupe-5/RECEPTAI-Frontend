@@ -19,6 +19,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SearchBarComponent } from './navigation/search-bar/search-bar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { A11yModule } from '@angular/cdk/a11y'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    A11yModule
   ],
   providers: [
     provideAnimationsAsync()

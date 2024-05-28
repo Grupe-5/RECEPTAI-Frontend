@@ -64,26 +64,29 @@
         }
         input{
             padding: .6rem 1rem;
+            margin: 1rem 0;
             background-color: transparent;
-            border: 1px solid rgba(0, 0, 0, 0.623);
-            border-right: 0;
+            border: none;
+            border-bottom: solid 2px transparentize(#030303, .47);
             width: 90%;
             &:focus{
-                
-                outline: none;
+                outline: none !important;
+                border-bottom: solid 2px transparentize(#FDBD1F, .47);
             }
             
         }
         button{
             width: 10%;
             padding: .6rem 1rem;
-            background-color: transparent;
-            border: #FDBD1F 1px solid;
+            border-radius: 5rem;
             transition: 0.3s ease-out;
-
+            border: #FDBD1F 2px solid;
+            background-color: #FDBD1F;
+            color: white;
+            
             &:hover{
-                color: white;
-                background-color: #FDBD1F;
+                color: #FDBD1F;
+                background-color: transparent;
             }
         }
     }

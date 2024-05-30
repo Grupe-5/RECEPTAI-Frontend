@@ -7,8 +7,11 @@
         </h2>
     </div>
     
-    <div class="row p-4 pt-0 pb-0 mt-4">
-        <div class="recipe-create__dropdown">
+    <div class="row p-4 pt-0 mt-4">
+        <div class="pb-3">
+            <label>Subfooddit to post to</label>
+        </div>
+        <div class="recipe-create__dropdown pb-2">
             <div *ngIf="showDropDown()" class="nav-item dropdown">
                 <a  class="nav-link" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" ngbDropdownToggle>
                     <span class="recipe-create__subfooddit">
@@ -38,7 +41,7 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <input type="text" [(ngModel)]="newRecipe.cookingTime" class="form-control input-text" id="formGroupExampleInput" placeholder="Time to prepare">
+                    <input type="text" [(ngModel)]="newRecipe.cookingTime" class="form-control input-text" id="formGroupExampleInput" placeholder="Cooking time">
                 </div>
             </div>
             <div class="col-6 mt-4">

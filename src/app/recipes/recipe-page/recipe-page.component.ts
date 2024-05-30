@@ -5,6 +5,8 @@ import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
 import { VoteType } from '../../../Models/Vote.model';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../Services/auth.service';
 
 
 @Component({
@@ -19,7 +21,14 @@ export class RecipePageComponent {
   recipeId: number = 0;
   instructionsTrimmed: string[] | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipesService, private _location: Location){}
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private recipeService: RecipesService, 
+    private _location: Location,
+    private authService: AuthService, 
+    private toastr: ToastrService
+  ){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -124,10 +133,20 @@ export class RecipePageComponent {
   }
 
   doUpvote(): void {
-    this.createOrUpdateVote(VoteType.Upvote);
+    if(this.authService.isAuthenticated()){
+        this.createOrUpdateVote(VoteType.Upvote);
+    }
+    else{
+      this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    }
   }
 
   doDownvote(): void {
-    this.createOrUpdateVote(VoteType.Downvote);
+    if(this.authService.isAuthenticated()){
+      this.createOrUpdateVote(VoteType.Downvote);
+    }
+    else{
+      this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    }
   }
 }

@@ -4,6 +4,7 @@ import { Vote, VoteType } from '../../../Models/Vote.model';
 import { CommentsService } from '../../../Services/comments.service';
 import { AuthService } from '../../../Services/auth.service';
 import { IUser_Info } from '../../../Models/User.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-comment',
@@ -18,7 +19,11 @@ export class CommentComponent {
   public editComText: string;
   show: boolean;
 
-  constructor(private commentsService: CommentsService, private authService: AuthService) {}
+  constructor(
+    private commentsService: CommentsService, 
+    private authService: AuthService, 
+    private toastr: ToastrService
+  ){}
 
   ngOnInit(){
     if(this.authService.isAuthenticated()){
@@ -27,14 +32,7 @@ export class CommentComponent {
       })
     }
   }
-
-  reloadComment(){
-    this.commentsService.getCommentsById(this.comment.userId).subscribe((newComment: Comment) =>{
-      console.log(newComment.commentText)
-      this.comment = newComment;
-    })
-  }
-
+  
   // TODO: convert this to PIPE and change other places
   getVoteCount(): string {
     const cnt = this.comment?.aggregatedVotes;
@@ -95,11 +93,21 @@ export class CommentComponent {
   }
 
   doUpvote(): void {
-    this.createOrUpdateVote(VoteType.Upvote);
+    if(this.authService.isAuthenticated()){
+        this.createOrUpdateVote(VoteType.Upvote);
+    }
+    else{
+      this.toastr.error("You have to sign-in to vote!", "Comment Vote Error");
+    }
   }
 
   doDownvote(): void {
-    this.createOrUpdateVote(VoteType.Downvote);
+    if(this.authService.isAuthenticated()){
+      this.createOrUpdateVote(VoteType.Downvote);
+    }
+    else{
+      this.toastr.error("You have to sign-in to vote!", "Comment Vote Error");
+    }
   }
 
   enterEditMode(): void {
@@ -110,10 +118,21 @@ export class CommentComponent {
 
   updateComment(){
     if(this.editComText !== this.comment.commentText){
-      this.commentsService.updateComment(this.editComText, this.comment.commentId, this.comment.version).subscribe((updComment: Comment)=>{
-        this.isInEditingMode = !this.isInEditingMode;
-        this.comment = updComment;
-      })
+      if(!this.editComText){
+        this.toastr.error("Updated comment can not be empty!", "Comment Error");
+      }else{
+        this.commentsService.updateComment(this.editComText, this.comment.commentId, this.comment.version).subscribe(
+          (updComment: Comment)=>{
+            this.isInEditingMode = !this.isInEditingMode;
+            this.comment = updComment;
+          },
+          error =>{
+            this.toastr.error("Unable to update comment, please try again!", "Comment Error");
+            this.isInEditingMode = !this.isInEditingMode;
+            this.show = !this.show;
+          }
+        )
+      }
     }else{
       this.isInEditingMode = !this.isInEditingMode;
       this.show = !this.show;

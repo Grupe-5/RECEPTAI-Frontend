@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -11,33 +12,60 @@ import { Router } from '@angular/router';
 export class SignUpPageComponent {
   signupForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) {
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService) {
     this.signupForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      username: [''],
+      email: [''],
+      password: [''],
+      confirmPassword: [''],
     });
   }
 
   onSignup() {
     if (this.signupForm.valid) {
       const { username, email, password, confirmPassword } = this.signupForm.value;
-      // FIXME: Display info when confirm password doesn't match
-      if (password != confirmPassword) {
-        console.log('Password don\'t match');
-        return;
+  
+      let errorMessage: string | null = null;
+  
+      switch (true) {
+        case !username:
+          errorMessage = "Please provide username!";
+          break;
+        case !email:
+          errorMessage = "Please provide email!";
+          break;
+        case !password:
+          errorMessage = "Please provide password!";
+          break;
+        case !confirmPassword:
+          errorMessage = "Please repeat password!";
+          break;
+        case password !== confirmPassword:
+          errorMessage = "Passwords don't match!";
+          this.signupForm.patchValue({ password: '', confirmPassword: '' });
+          break;
       }
-      this.authService.Signup(username, email, password).subscribe(
-        response => {
-          console.log('Signup successful', response);
-          this.router.navigate(['/']);
-        },
-        error => {
-          console.error('Signup failed', error);
-        
-        }
-      );
+  
+      if (errorMessage) {
+        this.toastr.error(errorMessage, "Register Error");
+      } else {
+        this.authService.Signup(username, email, password).subscribe(
+          response => {
+            this.router.navigate(['/']);
+          },
+          (errorMsg) => {
+            let errorArr = errorMsg.error.errors;
+            if(errorArr !== undefined){
+              this.toastr.error(errorArr[Object.keys(errorArr)[0]][0], "Register Error");
+            }else{
+              let errorArr = errorMsg.error;
+              this.toastr.error(errorArr[0].description, "Register Error");
+            }
+            this.signupForm.patchValue({ password: '', confirmPassword: '' });
+          }
+        );
+      }
     }
   }
+  
 }

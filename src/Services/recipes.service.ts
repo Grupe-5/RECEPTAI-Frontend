@@ -67,12 +67,7 @@ export class RecipesService {
       .pipe(
         map((msg) => {
           return true
-        }),
-        catchError(error => {
-          console.error('Error: ', error);
-          return of(false);
         })
-
       );
   }
 
@@ -121,12 +116,7 @@ export class RecipesService {
     .pipe(
       map((recipe: Recipe) => {
         return recipe;
-      }), 
-      catchError(error => {
-        console.error('Error: ', error);
-        return []
       })
-
     )
   }
 }

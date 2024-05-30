@@ -5,6 +5,7 @@ import { SubfoodditService } from '../../Services/subfooddit.service'
 import { AuthService } from '../../Services/auth.service'
 import { RecipesService } from '../../Services/recipes.service'
 import { Recipe } from '../../Models/Recipe.model'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-subfooddit',
@@ -18,7 +19,12 @@ export class SubfoodditComponent {
   joinedUserCount: number = 0;
   subFoodditName: string;
   
-  constructor(private router: Router, private route: ActivatedRoute,  private subfoodditService: SubfoodditService, private authService: AuthService, private recipeService: RecipesService) {
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute,  
+    private subfoodditService: SubfoodditService, 
+    private authService: AuthService, 
+    private toastr: ToastrService,) {
 
   }
 
@@ -77,7 +83,7 @@ export class SubfoodditComponent {
 
   joinSubFooddit(){
     if(!this.isLoggedIn()){
-      this.router.navigate(['/sign-in']);
+      this.toastr.error("You have to sign-in to Join subfooddits!", "Subfooddit Error");
     }else{
 
       if(this.currUserHasJoined){

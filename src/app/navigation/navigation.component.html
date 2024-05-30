@@ -1,30 +1,30 @@
 <nav class="top-navbar pt-3 pb-3">
-        <div class="row">
-            <div class="col-4">
-                <a class="top-navbar__logo navbar-brand" href="#">
-                    <img  src="../../assets/imgs/foodit.png" alt="Foodit">
-                </a>
-            </div>
-            <div  class="col-4 top-navbar__search justify-content-center">
-                <app-search-bar></app-search-bar>
-            </div>
-            <div class="col-4" *ngIf="!isLoggedIn()">
-                <div class="btn-wrap pr-7">
-                    <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>
-                    <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
-                </div>
-            </div>
-            <div class="col-4" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
-                <div class="btn-wrap">
-                    <a *ngIf="shouldShowUserIcon()" (click)="goToUserPage()" class="top-navbar__avatar">
-                        <img src="../../assets/imgs/user-avatar.png" alt="user-avatar">
-                    </a>
-                    <a (click)="logOut()" class="top-navbar__sign-out-link">
-                        Sign-out
-                    </a>
-                </div>
+    <div class="row">
+        <div class="col-4">
+            <a class="top-navbar__logo navbar-brand" href="#">
+                <img src="../../assets/imgs/foodit.png" alt="Foodit">
+            </a>
+        </div>
+        <div class="col-4 top-navbar__search justify-content-center">
+            <app-search-bar></app-search-bar>
+        </div>
+        <div class="col-4" *ngIf="!isLoggedIn()">
+            <div class="btn-wrap pr-7">
+                <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>
+                <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
+                <button (click)="sendMail()" type="button" class="button-5-2">Contact</button>
             </div>
         </div>
-    </nav>
-    
-    
+        <div class="col-4" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
+            <div class="btn-wrap">
+                <button (click)="sendMail()" type="button" class="button-5-2">Contact</button>
+                <a *ngIf="shouldShowUserIcon()" (click)="goToUserPage()" class="top-navbar__avatar">
+                    <img src="../../assets/imgs/user-avatar.png" alt="user-avatar">
+                </a>
+                <a (click)="logOut()" class="top-navbar__sign-out-link">
+                    Sign-out
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

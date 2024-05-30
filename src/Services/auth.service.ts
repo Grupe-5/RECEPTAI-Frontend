@@ -36,14 +36,16 @@ export class AuthService {
         }
         
         return this.http.post(this.server+this.route_login, body, { headers: reqHeader }).pipe(
-            map((response) => {
-                const retUser = <IUser> response;
-                
-                localStorage.setItem(this.localStorageUser, JSON.stringify(retUser));
+            map(
+                (response) => {
+                    const retUser = <IUser> response;
+                    
+                    localStorage.setItem(this.localStorageUser, JSON.stringify(retUser));
 
-                this.stateItem.next(retUser);
-                return retUser;
-            })
+                    this.stateItem.next(retUser);
+                    return retUser;
+                },
+            )
         );
     }
 

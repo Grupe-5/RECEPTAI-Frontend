@@ -19,7 +19,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SearchBarComponent } from './navigation/search-bar/search-bar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { A11yModule } from '@angular/cdk/a11y'
+import { A11yModule } from '@angular/cdk/a11y';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,12 @@ import { A11yModule } from '@angular/cdk/a11y'
     MatIconModule,
     ReactiveFormsModule,
     MatDialogModule,
-    A11yModule
+    A11yModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      positionClass: 'toast-bottom-right',
+
+    })
   ],
   providers: [
     provideAnimationsAsync()

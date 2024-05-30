@@ -3,6 +3,8 @@ import { Recipe } from '../../../Models/Recipe.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -14,7 +16,7 @@ export class RecipeCardComponent {
   public voteType = VoteType;
   private server = environment.apiUrl + '/api/image/';
 
-  constructor(private recipeService: RecipesService) {}
+  constructor(private recipeService: RecipesService, private authService: AuthService, private toastr: ToastrService) {}
 
   normalImgOrPlaceholder(imgId: string | undefined): string {
     if (imgId != undefined) {
@@ -90,10 +92,20 @@ export class RecipeCardComponent {
   }
 
   doUpvote(): void {
-    this.createOrUpdateVote(VoteType.Upvote);
+    if(this.authService.isAuthenticated()){
+        this.createOrUpdateVote(VoteType.Upvote);
+    }
+    else{
+      this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    }
   }
 
   doDownvote(): void {
-    this.createOrUpdateVote(VoteType.Downvote);
+    if(this.authService.isAuthenticated()){
+      this.createOrUpdateVote(VoteType.Downvote);
+    }
+    else{
+      this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    }
   }
 }

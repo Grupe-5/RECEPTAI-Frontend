@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Comment } from '../../Models/Comment.model';
 import { CommentsService } from '../../Services/comments.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../Services/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-comments',
@@ -17,9 +19,14 @@ export class CommentsComponent {
   
   comments: Comment[] = [];
 
-  constructor(private commentsService: CommentsService, private fb: FormBuilder){
+  constructor(
+    private commentsService: CommentsService, 
+    private fb: FormBuilder, 
+    private toastr: ToastrService,
+    private authService: AuthService
+  ){
     this.commentForm = this.fb.group({
-      commentText: ['', Validators.required],
+      commentText: [''],
     });
   }
 
@@ -32,7 +39,6 @@ export class CommentsComponent {
       .subscribe(
         (comments: Comment[]) => {
           this.comments = comments; // Assign the actual comments array
-          console.log("Comments:" + this.comments);
         },
         (error) => {
           console.error('Error fetching comments: ', error);
@@ -64,11 +70,24 @@ export class CommentsComponent {
   }
 
   onComment() {
-    if (this.commentForm.valid) {
-      const { commentText } = this.commentForm.value;
-      this.commentsService.postNewComment(commentText, this.recipeId).subscribe(() => {
-        this.fetchComments();
-      });
+    if(!this.authService.isAuthenticated()){
+      this.toastr.error("You have to sign-in to write comments!", "Comment Error");
+      return;
+    }
+
+    const { commentText }  = this.commentForm.value;
+    if(!commentText){
+      this.toastr.error("Please fill the comment text", "Comment Error");
+    }
+    else{
+      this.commentsService.postNewComment(commentText, this.recipeId).subscribe(
+        (resp) => {
+          this.fetchComments();
+          this.toastr.success("Comment created successfully", "Comment action");
+        },
+        error =>{
+          this.toastr.error("Unable to post new comment, try again.", "Comment Error");
+        });
     }
   }
 }

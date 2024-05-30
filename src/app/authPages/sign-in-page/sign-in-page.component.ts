@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -11,10 +12,15 @@ import { Router } from '@angular/router';
 export class SignInPageComponent {
   loginForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private router: Router, 
+    private fb: FormBuilder, 
+    private authService: AuthService, 
+    private toastr: ToastrService
+  ){
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [''],
+      password: ['']
     });
   }
 
@@ -22,17 +28,20 @@ export class SignInPageComponent {
     this.router.navigate(['/register']);
   }
 
-  onLogin() {
-    if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
+  onSignIn() {
+    const { username, password } = this.loginForm.value;
+    if(!username){
+      this.toastr.error("Please provide username!", "Sign-in Error");
+    }else if(!password){
+      this.toastr.error("Please provide password!", "Sign-in Error");
+    }else {
       this.authService.Login(username, password).subscribe(
         response => {
-          console.log('Login successful', response);
           this.router.navigate(['/']);
         },
-        error => {
-          console.error('Login failed', error);
-         
+        error =>{
+          this.toastr.error("Invalid username and/or password!", "Sign-in Error");
+          this.loginForm.patchValue({ password: '' });
         }
       );
     }

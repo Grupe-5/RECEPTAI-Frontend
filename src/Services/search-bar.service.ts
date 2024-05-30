@@ -27,12 +27,18 @@ export class SerachBarService {
       })
     }
 
-    search(searchTerm: string): string{
+    search(searchTerm: string): string | undefined{
       this.searchSubFooddits(searchTerm)
+      if(this.currentSearcher().length > 0){
+        this.overlayOpen.set(false);
+        this.searchTerm.set(this.currentSearcher()[0])
+        this.addToRecentSearches(this.currentSearcher()[0])
+        return this.currentSearcher()[0]
+      }
+      this.showHistory.set(true);
+      this.searchTerm.set("");
       this.overlayOpen.set(false);
-      this.searchTerm.set(this.currentSearcher()[0])
-      this.addToRecentSearches(this.currentSearcher()[0])
-      return this.currentSearcher()[0]
+      return undefined;
     }
 
     searchSubFooddits(searchTerm: string){
@@ -48,7 +54,7 @@ export class SerachBarService {
     }
     
     addToRecentSearches(searchTerm: string){
-      this.recentSearcher.set([searchTerm, ...this.recentSearcher().filter(s => s.toLocaleLowerCase() !== searchTerm.toLocaleLowerCase())])
+      this.recentSearcher.set([searchTerm, ...this.recentSearcher().filter(s => s?.toLocaleLowerCase() !== searchTerm?.toLocaleLowerCase())])
     }
 
     deleteFromRecentSearch(searchTerm: string){

@@ -30,6 +30,9 @@ export class SearchBarComponent {
       this.router.navigate(['/f/', retValue]);
       this.searchInput.nativeElement.value = retValue;
     }
+    else{
+      this.searchInput.nativeElement.value = "";
+    }
   }
 
   onSearchChange(searchTerm: string){

@@ -38,43 +38,41 @@ export class UserPageComponent {
   ngOnInit(): void {
     
     this.route.paramMap.subscribe(params => {
-      let userId: string | null;
+      let userId: string | number | null;
       let currUser: IUser_Info | null = null;
       userId = params.get('id');
+      if(userId == null){
+        this.router.navigate(['/']);
+      }
 
-      if(this.authService.isAuthenticated())
-        this.authService.getUserInfo().subscribe((user: IUser_Info)=>{
-          currUser = user;
-          if(userId == 'me' || userId == String(currUser.id)){
-            if(currUser !== null){
-              this.userInfo = currUser;
-              this.getUsersRecipes(currUser.id)
-              this.isUsersPage = true;
-            }
-            else{
-              this.router.navigate(['/']);
-            }
-          }  
-          else if(Number(userId)){
-            
-            this.usersService.getUserInfo(Number(userId)).subscribe((user: IUser_Info) =>{
-              this.userInfo = user;
-              this.getUsersRecipes(user.id)
-            },
-            (err) =>{
-              // TODO invalid user error
-              this.router.navigate(['/']);
-            })
-          }
-          else{
+      if(userId == "Me"){
+        if(this.authService.isAuthenticated() == true){
+          this.authService.getUserInfo().subscribe((user: IUser_Info)=>{
+            this.userInfo = user;
+            this.getUsersRecipes(user.id);
+          })
+        }
+        else{
+          this.router.navigate(['/']);
+        }
+      } else{
+        if(Number(userId)){
+          this.usersService.getUserInfo(Number(userId)).subscribe(
+          (user: IUser_Info) =>{
+            this.userInfo = user;
+            this.getUsersRecipes(user.id)
+          },
+          error =>{
             this.router.navigate(['/']);
-          }
-      })
-
-      
-    
+          })
+        }
+        else{
+          this.router.navigate(['/']);
+        }
+      }
     });
   }
+
   getUsersRecipes(userId: number){
     this.recipesService.getRecipeByUserId(userId).subscribe((recipes: Recipe[]) =>{
       this.userRecipes = recipes;
@@ -91,10 +89,11 @@ export class UserPageComponent {
 
     return dateFormated.toLocaleDateString();
   }
+  
   // TODO: change profile pic
   changeProfilePicture(){
-
   }
+
   deleteUserAccount(){
     this.openDialog();
   }
@@ -117,5 +116,4 @@ export class UserPageComponent {
     });
   }
   
-
 }

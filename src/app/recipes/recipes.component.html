@@ -5,7 +5,8 @@
         </span>
     </h2>
 
-    <div class="row justify-content-md-center">
+    <div *ngIf="recipes.length > 0" class="row justify-content-md-center">
+        
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         
@@ -29,6 +30,25 @@
 
         <div class="col-md-3 m-2" *ngFor="let recipe of recipes">
             <app-recipe-card [recipe]="recipe"></app-recipe-card>
+        </div>
+    </div>
+    <div *ngIf="recipes.length == 0" class="row justify-content-md-center recipes-list-wrap__empty">
+        <div class="col-12">
+            <img src="../../assets/imgs/sadweb.png" class="recipes-list-wrap__empty-img">
+            <p class="recipes-list-wrap__empty-title">
+                <b> 
+                    Empty!
+                </b>
+            </p>
+            <p class="recipes-list-wrap__empty-create-text">
+                Be the first to create a new Recipe here
+            </p>
+            <div class="btn-wrap">
+                <button (click)="navigateToCreate()" type="submit" class="button-5">
+                    Create
+                </button>
+            </div>
+
         </div>
     </div>
 </div>

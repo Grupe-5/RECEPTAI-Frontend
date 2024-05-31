@@ -1,13 +1,65 @@
 .recipes-list-wrap{
     margin-top: 4rem;
-    h1{
-        text-align: center;
-    }
+    
     .col-sm-4{
         column-gap: 2rem;
     }
+
+    .heading-secondary{
+        margin-top: 5rem;
+    }
+
     &__heading{
         padding: 0 1.5rem 1.5rem;
         border-bottom: solid 2px #FDBD1F;
     }
+
+    &__topSort{
+        
+        &-sortby{
+            display: flex;
+            align-items: center; 
+            justify-content: right;
+            p{
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+            } 
+        }
+
+        &-sort{
+            margin-left: 1rem;
+            width: 10rem !important;
+            .form-select{
+                padding-left: 0;
+                margin: 0 !important;
+                font-size: 2rem;
+                border: none;
+                background-color: transparent;
+                
+                &:hover{
+                    cursor: pointer;
+                }
+                &:focus{
+                    box-shadow: 0 0px 0px transparentize(#FDBD1F, .8)  inset, 0 0 0px transparentize(#FDBD1F, .7);
+                    border-color: transparent;
+                    outline: 0 none;
+                }
+    
+                option{
+                    padding: .375rem 2.25rem .375rem .75rem !important; 
+                    &:hover{
+                        cursor: pointer !important;
+                    }
+                }
+            }
+        }
+    }
+    .highlight{
+        color: var(--color-primary);
+    }
+    .not-highlight{
+        color: black !important;
+    }
 }
+

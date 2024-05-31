@@ -68,6 +68,11 @@ export class UserPageComponent {
           (user: IUser_Info) =>{
             this.userInfo = user;
             this.getUsersRecipes(user.id)
+            if(this.authService.isAuthenticated() == true){
+              this.authService.getUserInfo().subscribe((user: IUser_Info)=>{
+                this.isUsersPage = this.userInfo.id == user.id;
+              })
+            }
           },
           error =>{
             this.router.navigate(['/']);

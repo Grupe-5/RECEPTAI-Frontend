@@ -9,6 +9,6 @@ export interface IUser_Info {
     id: number;
     username: string;
     joinDate: Date;
-    imageId?: number;
+    imageId: number;
     karmaScore: number;
 }

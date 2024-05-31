@@ -9,14 +9,18 @@
             <div *ngIf="!isUsersPage" class="col-2 user-page__user-info-avatar2">
                 <div class="user-page__user-info-avatar2">
                     <figure class="user-page__user-info-avatar2-shape">
-                        <img src="../../assets/imgs/user-avatar.png" alt="Person on a tour" class="user-page__user-info-avatar2-img">
+                        <img [src]="normalImgOrPlaceholder(userInfo.imageId)" alt="Person on a tour" class="user-page__user-info-avatar2-img">
                     </figure>
                 </div>                
             </div>
+
+            <!-- This is hidden -->
+            <input type="file" class="invsible" (change)="changeProfilePicture($event)" #fileUpload>
+
             <div *ngIf="isUsersPage" class="col-2 user-page__user-info-avatar">
                 <div class="user-page__user-info-avatar">
-                    <figure class="user-page__user-info-avatar-shape" (click)="changeProfilePicture()">
-                        <img src="../../assets/imgs/user-avatar.png" alt="Person on a tour" class="user-page__user-info-avatar-img">
+                    <figure class="user-page__user-info-avatar-shape" (click)="fileUpload.click()">
+                        <img [src]="normalImgOrPlaceholder(userInfo.imageId)" alt="Person on a tour" class="user-page__user-info-avatar-img">
                         <figcaption class="user-page__user-info-avatar-caption">Upload New</figcaption>
                     </figure>
                 </div>

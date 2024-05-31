@@ -19,6 +19,7 @@
                 shape-outside: circle(50% at 50% 50%);
                 -webkit-clip-path: circle(50% at 50% 50%);
                 clip-path: circle(50% at 50% 50%);
+                transform: translateZ(0);
                 position: relative;
             }
             &-img{
@@ -149,6 +150,9 @@
     border-image-outset: 0 0 8px 0; 
     border-image-repeat: stretch; 
 
+}
+.invsible{
+    display: none;
 }
 
 /* CSS */

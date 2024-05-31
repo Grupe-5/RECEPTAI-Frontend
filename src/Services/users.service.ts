@@ -12,7 +12,8 @@ export class UsersService {
     private server = environment.apiUrl+'/api/user/';
     private route_userInfo = 'info/';
     private route_deleteUserAcc = 'delete_account'
-
+    private route_userImg = 'img'
+ 
 
     constructor(private http: HttpClient, private authService: AuthService) {}    
 
@@ -29,6 +30,7 @@ export class UsersService {
             })
         );
     }
+
     deleteUserAccount(){
         var reqHeader = new HttpHeaders({
             'accept': '*/*',
@@ -36,6 +38,24 @@ export class UsersService {
         })
         
         return this.http.delete(`${this.server}${this.route_deleteUserAcc}`, { headers: reqHeader });
+    }
+
+    updateUserImg(imageFile: File | undefined){
+        var reqHeader  = new HttpHeaders({
+            'accept': '*/*',
+            'Authorization': `Bearer ${this.authService.getToken()}`,
+        })
+        const formData = new FormData();
+        if (imageFile != null) {
+            formData.append('file', imageFile);
+        }
+    
+        return this.http.post(this.server+this.route_userImg, formData, { headers: reqHeader })
+            .pipe(
+                map((resp) => {
+                return resp;
+                })
+            )    
     }
 
 

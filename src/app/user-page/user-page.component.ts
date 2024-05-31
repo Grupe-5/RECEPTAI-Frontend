@@ -13,6 +13,8 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UserAccDeleteComponentModal } from './user-acc-delete/user-acc-delete.component'
+import { ToastrService } from 'ngx-toastr';
+import {environment} from './../../environments/environment'
 
 @Component({
   selector: 'app-user-page',
@@ -25,6 +27,9 @@ export class UserPageComponent {
   userInfo: IUser_Info;
   isUsersPage: Boolean = false;
   userRecipes: Recipe[] = [];
+  userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
+  private server = environment.apiUrl + '/api/image/';
+  
   
   constructor(
     private route: ActivatedRoute, 
@@ -33,13 +38,14 @@ export class UserPageComponent {
     private authService: AuthService,
     private recipesService: RecipesService,
     public dialog: MatDialog,
+    private toastr: ToastrService
   ){}
   
   ngOnInit(): void {
     
     this.route.paramMap.subscribe(params => {
       let userId: string | number | null;
-      let currUser: IUser_Info | null = null;
+      
       userId = params.get('id');
       if(userId == null){
         this.router.navigate(['/']);
@@ -91,8 +97,28 @@ export class UserPageComponent {
     return dateFormated.toLocaleDateString();
   }
   
-  // TODO: change profile pic
-  changeProfilePicture(){
+  changeProfilePicture(event: any){
+    const file = event.target.files[0];
+    if (file) {
+      this.usersService.updateUserImg(file).subscribe(
+        (resp)=>{
+          this.toastr.success("Image changed successfully");
+          window.location.reload();
+        },
+        error=>{
+          console.log(error);
+        })
+    } else {
+      this.toastr.error("Invalid file, try again.", "User profile Error");
+    }
+  }
+
+  normalImgOrPlaceholder(imgId: number): string {
+    if (imgId != undefined) {
+      return this.server + imgId;
+    } else {
+      return this.userAvatarPlaceHolder;
+    }
   }
 
   deleteUserAccount(){

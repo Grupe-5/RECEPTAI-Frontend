@@ -68,4 +68,8 @@ export class RecipesComponent {
       } 
     }
   }
+
+  navigateToCreate(){
+    this.router.navigate(['/create']);
+  }
 }

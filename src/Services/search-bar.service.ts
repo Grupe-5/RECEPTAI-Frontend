@@ -12,6 +12,7 @@ export class SerachBarService {
     overlayOpen = signal(false);
     showHistory = signal(true)
     recentSearcher = signal<string[]>(JSON.parse(window.localStorage.getItem('recentSearches') ?? '[]'));
+    randomSearcher = signal<string[]>([])
     currentSearcher = signal<string[]>([])
     allSubFooddits: string[];
     searchTerm = signal('');
@@ -24,6 +25,7 @@ export class SerachBarService {
         this.sfTitles = subFooddits.map(subfooddit => subfooddit.title);
         this.allSubFooddits = this.sfTitles;
         this.currentSearcher.set(this.sfTitles)
+        this.randomSearcher.set(this.sfTitles.slice(0, 5))
       })
     }
 

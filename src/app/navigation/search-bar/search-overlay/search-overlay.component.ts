@@ -19,6 +19,7 @@ export class SearchOverlayComponent {
   searchBarServie = inject(SerachBarService)
   recentSearcher = this.searchBarServie.recentSearcher;
   currentSearcher = this.searchBarServie.currentSearcher;
+  randomSearcher = this.searchBarServie.randomSearcher;
   showHistory = this.searchBarServie.showHistory;
   searchTerm = this.searchBarServie.searchTerm
 

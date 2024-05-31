@@ -6,14 +6,14 @@
             </span>
         </h2>
         <div class="row">
-            <div *ngIf="!isUsersPage"  class="col-2 user-page__user-info-avatar2">
+            <div *ngIf="!isUsersPage" class="col-2 user-page__user-info-avatar2">
                 <div class="user-page__user-info-avatar2">
                     <figure class="user-page__user-info-avatar2-shape">
                         <img src="../../assets/imgs/user-avatar.png" alt="Person on a tour" class="user-page__user-info-avatar2-img">
                     </figure>
                 </div>                
             </div>
-            <div *ngIf="isUsersPage"  class="col-2 user-page__user-info-avatar">
+            <div *ngIf="isUsersPage" class="col-2 user-page__user-info-avatar">
                 <div class="user-page__user-info-avatar">
                     <figure class="user-page__user-info-avatar-shape" (click)="changeProfilePicture()">
                         <img src="../../assets/imgs/user-avatar.png" alt="Person on a tour" class="user-page__user-info-avatar-img">
@@ -50,10 +50,13 @@
         </h2>
 
         <div class="container">
-            <div class="user-page__user-activities-cards-wrap row flex-nowrap overflow-auto">
-                <div  *ngFor="let recipe of userRecipes" class="col-4">
+            <div *ngIf="userRecipes.length > 0" class="user-page__user-activities-cards-wrap row flex-nowrap overflow-auto">
+                <div *ngFor="let recipe of userRecipes" class="col-4">
                     <app-recipes-card-small [recipe]="recipe" ></app-recipes-card-small>
                 </div>
+            </div>
+            <div *ngIf="userRecipes.length == 0" class="user-page__user-activities-emptyRecipes">
+                <span *ngIf="!isUsersPage">User has</span><span *ngIf="isUsersPage">You have</span> not posted anything yet...
             </div>
 
         </div>

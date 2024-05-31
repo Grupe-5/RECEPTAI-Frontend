@@ -5,6 +5,8 @@ import { RecipesService } from '../../../Services/recipes.service';
 import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Services/auth.service';
+import { Router } from '@angular/router';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-card',
@@ -16,7 +18,13 @@ export class RecipeCardComponent {
   public voteType = VoteType;
   private server = environment.apiUrl + '/api/image/';
 
-  constructor(private recipeService: RecipesService, private authService: AuthService, private toastr: ToastrService) {}
+  constructor(
+    private recipeService: RecipesService, 
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router,
+    private platformLocation: PlatformLocation
+  ) {}
 
   normalImgOrPlaceholder(imgId: string | undefined): string {
     if (imgId != undefined) {
@@ -106,6 +114,27 @@ export class RecipeCardComponent {
     }
     else{
       this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    }
+  }
+
+  copyLinkToClipBoard(recipeId: string | undefined){
+    if(recipeId){
+      const valToCopy = `${location.origin}/recipe/${recipeId}`
+
+      const selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = valToCopy;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
+
+    
+      this.toastr.info("Link copied to the clipboard")
     }
   }
 }

@@ -45,9 +45,10 @@ export class UserPageComponent {
         this.router.navigate(['/']);
       }
 
-      if(userId == "Me"){
+      if(userId == "me"){
         if(this.authService.isAuthenticated() == true){
           this.authService.getUserInfo().subscribe((user: IUser_Info)=>{
+            this.isUsersPage = true;
             this.userInfo = user;
             this.getUsersRecipes(user.id);
           })

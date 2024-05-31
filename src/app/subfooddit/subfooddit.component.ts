@@ -83,7 +83,7 @@ export class SubfoodditComponent {
 
   joinSubFooddit(){
     if(!this.isLoggedIn()){
-      this.toastr.error("You have to sign-in to Join subfooddits!", "Subfooddit Error");
+      this.toastr.error("You have to sign-in to join subfooddits!", "Subfooddit Error");
     }else{
 
       if(this.currUserHasJoined){

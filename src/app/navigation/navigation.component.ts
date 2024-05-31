@@ -15,10 +15,10 @@ import { environment } from './../../environments/environment'
 export class NavigationComponent{
     status$: Observable<IUser | null>;
     isInRecipeRoute: Boolean = false;
-    isLoggedIn: boolean;
     userImgId: number | undefined = undefined;
     userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
     private server = environment.apiUrl + '/api/image/';
+    profileImgUrl: string = ''; 
 
     constructor(
         private router: Router, 
@@ -28,19 +28,19 @@ export class NavigationComponent{
 
     ngOnInit(){
         this.serachBarService.initSubFoodditNames();
-        this.isLoggedIn = this.authService.isAuthenticated();
-        if(this.isLoggedIn){
+        if(this.isLoggedIn()){
             this.authService.getUserInfo().subscribe(
                 (userInfo: IUser_Info) =>{
                     this.userImgId = userInfo.imageId;
+                    this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
                 }
             )
         }
     }
 
-    normalImgOrPlaceholder(): string {
-        if (this.userImgId != undefined) {
-          return this.server + this.userImgId;
+    normalImgOrPlaceholder(imgId: number): string {
+        if (imgId != undefined) {
+          return this.server + imgId;
         } else {
           return this.userAvatarPlaceHolder;
         }
@@ -62,9 +62,14 @@ export class NavigationComponent{
         return this.router.url !== '/sign-in';
     }
 
+    isLoggedIn(): boolean{
+        return this.authService.isAuthenticated();
+    }
+
     logOut(){
         this.authService.LogOut();
         this.router.navigate(['/']);
+        this.ngOnInit();
     }
 
     goToUserPage(){

@@ -8,16 +8,17 @@
             <div  class="col-4 top-navbar__search justify-content-center">
                 <app-search-bar></app-search-bar>
             </div>
-            <div class="col-4" *ngIf="!isLoggedIn">
+            <div class="col-4" *ngIf="!isLoggedIn()">
                 <div class="btn-wrap pr-7">
                     <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>
                     <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
                 </div>
             </div>
-            <div class="col-4" *ngIf="isLoggedIn" cdkOverlayOrigin #overlayPosition2>
+
+            <div class="col-4" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
                 <div class="btn-wrap">
                     <a *ngIf="shouldShowUserIcon()" (click)="goToUserPage()" class="top-navbar__avatar">
-                        <img [src]="normalImgOrPlaceholder()" alt="user-avatar">
+                        <img [src]="profileImgUrl" alt="user-avatar">
                     </a>
                     <a (click)="logOut()" class="top-navbar__sign-out-link">
                         Sign-out

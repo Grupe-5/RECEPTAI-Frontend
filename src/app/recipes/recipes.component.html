@@ -4,7 +4,29 @@
             Find something delicious!
         </span>
     </h2>
+
     <div class="row justify-content-md-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        
+        <div class="col-md-3 recipes-list-wrap-sort">
+            <div class="row">
+                <div class="col-12 pl-0 recipes-list-wrap__topSort-sortby">
+                    <p>
+                        Sort by:
+                    </p>
+                    <div class="form-group recipes-list-wrap__topSort-sort ">
+                        <select (change)="selectChange($event)" class="form-select custom-select-lg mb-3 highlight">
+                            <!-- TODO: make this in ngFor and proper selectChange -->
+                            <option class="not-highlight" selected value="Best">Best</option>
+                            <option class="not-highlight" value="Newest">Newest</option>
+                        </select>      
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+
         <div class="col-md-3 m-2" *ngFor="let recipe of recipes">
             <app-recipe-card [recipe]="recipe"></app-recipe-card>
         </div>

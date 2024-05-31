@@ -29,6 +29,7 @@ export class RecipesComponent {
       this.recipeService.getRecipes().subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
+          this.recipes.sort((a, b)=> (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
         },
         (error) => {
           console.error('Error fetching recipes: ', error);
@@ -43,6 +44,7 @@ export class RecipesComponent {
       this.recipeService.getRecipesBySubfoodditId(subFooditId ? subFooditId : 0).subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
+          this.recipes.sort((a, b)=> (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
         },
         (error) => {
           console.error('Error fetching recipes: ', error);
@@ -50,5 +52,20 @@ export class RecipesComponent {
       );
       
     });
+  }
+
+  selectChange(event: any) {
+    switch(event.target.value){
+      case "Best": {
+        this.recipes.sort((a, b)=> (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
+        
+        break;
+      } 
+      case "Newest": {
+        this.recipes.sort((a, b)=> (a.datePosted > b.datePosted ? -1 : 1));
+        
+        break;
+      } 
+    }
   }
 }

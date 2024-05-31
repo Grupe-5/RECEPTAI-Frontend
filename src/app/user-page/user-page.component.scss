@@ -49,7 +49,7 @@
                 transform: translate(-50%, -50%);
             }
             &:hover &-img {
-                transform:  scale(1);
+                transform: scale(1);
                 filter: blur(3px) brightness(80%);
             }
 
@@ -129,6 +129,9 @@
         }
         &-cards{
             max-width: 20rem;
+        }
+        &-emptyRecipes{
+            color: #757575;
         }
     }
     &__manage-account{

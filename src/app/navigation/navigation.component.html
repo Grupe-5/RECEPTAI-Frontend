@@ -10,6 +10,9 @@
             </div>
             <div class="col-4" *ngIf="!isLoggedIn()">
                 <div class="btn-wrap pr-7">
+                    <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=support@fooddit.com" [ngStyle]="{ 'padding': '10px' }">
+                        Contact for subfooddit
+                    </a>
                     <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button-5-1">Register</button>
                     <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button-5">Sign in</button>
                 </div>
@@ -17,6 +20,9 @@
 
             <div class="col-4" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
                 <div class="btn-wrap">
+                    <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=support@fooddit.com" [ngStyle]="{ 'padding': '10px' }">
+                        Contact for subfooddit
+                    </a>
                     <a *ngIf="shouldShowUserIcon()" (click)="goToUserPage()" class="top-navbar__avatar">
                         <img [src]="profileImgUrl" alt="user-avatar">
                     </a>

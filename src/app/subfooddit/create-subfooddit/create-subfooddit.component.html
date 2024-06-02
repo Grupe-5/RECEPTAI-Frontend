@@ -1,0 +1,31 @@
+<div class="recipe-create">
+    <div class="row">
+        <h2 class="heading-secondary">
+            <span class="recipe-create__heading">
+                New Subfooddit
+            </span>
+        </h2>
+    </div>
+    
+    <div class="row p-4 pb-0 mt-5 pt-0">
+        <label>New community information</label>
+    </div>
+    <div class="row p-4 pt-0 pb-0">
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="newSubfooddit.title" class="form-control input-text" id="formGroupExampleInput" placeholder="Title">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="newSubfooddit.description" class="form-control input-text" id="formGroupExampleInput" placeholder="Description">
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-4 mt-5">
+        <div class="btn-wrap col-12">
+            <button type="submit" (click)="formSubmited()" class="button-5 ">Create</button>
+        </div>
+    </div>
+</div>  

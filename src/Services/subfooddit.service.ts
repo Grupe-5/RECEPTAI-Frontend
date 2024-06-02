@@ -53,6 +53,21 @@ export class SubfoodditService {
         );
     }
 
+    
+    postNewSubFoodit(newSubfooddit: Subfooddit): Observable<Subfooddit>{
+        var reqHeader = new HttpHeaders({
+            'accept': '*/*',
+            'Authorization': `Bearer ${this.authService.getToken()}`
+        })
+
+        let newSubfoodditData = {
+            "title": newSubfooddit.title,
+            "description": newSubfooddit.description
+        };
+
+        return this.http.post<Subfooddit>(`${this.server}`, newSubfoodditData, { headers: reqHeader });
+    }
+
     // TODO handle errors 
     leaveSubFoodit(subFoodditId: number){
         var reqHeader = new HttpHeaders({

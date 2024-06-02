@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { A11yModule } from '@angular/cdk/a11y';
 import { ToastrModule } from 'ngx-toastr';
+import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create-subfooddit.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
     SubfoodditComponent,
     SignUpPageComponent,
     SignInPageComponent,
+    CreateSubfoodditComponent,
   ],
   imports: [
     SearchBarComponent,

@@ -8,11 +8,13 @@ import { RecipeCreateComponent } from './recipes/recipe-create/recipe-create.com
 import { SignUpPageComponent } from './authPages/sign-up-page/sign-up-page.component';
 import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create-subfooddit.component'
 import { AuthGuard } from '../AuthGuards/auth.guard';
 
 const routes: Routes = [
   { path: 'recipe/:id', component: RecipePageComponent },
   { path: 'f/:subfoodit', component: SubfoodditComponent },
+  { path: 'subf/create', component: CreateSubfoodditComponent, canActivate: [AuthGuard] },
   { path: 'create', component: RecipeCreateComponent, canActivate: [AuthGuard] },
   { path: 'register', component:  SignUpPageComponent},
   { path: 'sign-in', component:  SignInPageComponent},

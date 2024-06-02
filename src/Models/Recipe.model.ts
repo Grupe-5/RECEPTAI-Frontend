@@ -17,6 +17,7 @@ export class Recipe {
     public instructions: string;
     public aggregatedVotes: number;
     public vote: VoteType | undefined;
+    public commentCount: number | undefined;
 
     constructor(){}  
 }

@@ -15,9 +15,9 @@ export class NavigationSidebarComponent {
   ngOnInit(){
     this.subfoodditService.getSubfoodditsByUserId().subscribe(
       (resp: Subfooddit[])=>{
+        console.log(resp)
         this.usersSubFooddits = resp;
       },
-      // TODO: Handle error
       err => err,
     )
   }
@@ -28,6 +28,10 @@ export class NavigationSidebarComponent {
 
   isActiveCreate(): boolean {
     return this.router.url == '/create';
+  }
+
+  isActiveCreateSubf(): boolean {
+    return this.router.url == 'subf/create';
   }
   
   checkIfEmpty(): boolean{

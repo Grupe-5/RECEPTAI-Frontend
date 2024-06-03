@@ -30,6 +30,9 @@ export class CreateSubfoodditComponent {
       case !this.newSubfooddit.description:
         errorMessage = "Please provide description!";
         break;
+      case /\s/.test(this.newSubfooddit.title):
+        errorMessage = "Title must not contain whitespace!";
+        break;
     }
   
     if (errorMessage) {

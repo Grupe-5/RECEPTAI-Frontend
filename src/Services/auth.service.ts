@@ -105,4 +105,8 @@ export class AuthService {
     public getToken(): string {
         return this.currentUserValue?.token;
     }
+
+    public getCurrEnvUrl(): string{
+        return environment.apiUrl;
+    }
 }

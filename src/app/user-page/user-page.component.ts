@@ -14,7 +14,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UserAccDeleteComponentModal } from './user-acc-delete/user-acc-delete.component'
 import { ToastrService } from 'ngx-toastr';
-import {environment} from './../../environments/environment'
 
 @Component({
   selector: 'app-user-page',
@@ -28,7 +27,8 @@ export class UserPageComponent {
   isUsersPage: Boolean = false;
   userRecipes: Recipe[] = [];
   userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
-  private server = environment.apiUrl + '/api/image/';
+  private server: string;
+  isPageLoaded = false;
   
   
   constructor(
@@ -42,7 +42,7 @@ export class UserPageComponent {
   ){}
   
   ngOnInit(): void {
-    
+    this.server = this.authService.getCurrEnvUrl() + '/api/image/';
     this.route.paramMap.subscribe(params => {
       let userId: string | number | null;
       
@@ -88,6 +88,7 @@ export class UserPageComponent {
   getUsersRecipes(userId: number){
     this.recipesService.getRecipeByUserId(userId).subscribe((recipes: Recipe[]) =>{
       this.userRecipes = recipes;
+      this.isPageLoaded = true;
     },
     (err)=>{
       console.log("Error while fetching user recipes");

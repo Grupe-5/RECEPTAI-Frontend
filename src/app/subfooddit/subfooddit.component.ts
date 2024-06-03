@@ -18,6 +18,7 @@ export class SubfoodditComponent {
   currUserHasJoined: boolean = false;
   joinedUserCount: number = 0;
   subFoodditName: string;
+  isPageLoaded: boolean = false;
   
   constructor(
     private router: Router, 
@@ -47,7 +48,7 @@ export class SubfoodditComponent {
         this.subFooddit = subFoodditInfo;
         this.subfoodditService.getSubfoodditsByUserId().subscribe(
           (foodits: Subfooddit[]) =>{
-            
+            this.isPageLoaded = true;
             this.currUserHasJoined = foodits.some((sf) => sf.subfoodditId == this.subFooddit.subfoodditId); 
           },
           // Handle error
@@ -55,13 +56,11 @@ export class SubfoodditComponent {
         )
         this.subfoodditService.getUserBySubfooddits(this.subFooddit.subfoodditId).subscribe((resp)=>{
           this.joinedUserCount = resp.length;
+          this.isPageLoaded = true;
         })
       }
     })
   }
-
-
-
 
   parseSubFooditName(url: string): string {
     const regex = '\/f\/([^\/]+)\/?$'
@@ -107,6 +106,4 @@ export class SubfoodditComponent {
     }
     return !this.currUserHasJoined;
   }
-
-
 }

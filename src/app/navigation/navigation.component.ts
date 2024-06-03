@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart} from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { Observable } from 'rxjs';
 import { IUser } from '../../Models/User.model'
 import { IUser_Info } from '../../Models/User.model'
 import { SerachBarService } from '../../Services/search-bar.service'
 import { environment } from './../../environments/environment'
+import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
     selector: 'app-navigation',
@@ -27,15 +28,25 @@ export class NavigationComponent{
     ) {}
 
     ngOnInit(){
+        this.authService.getUserInfo().subscribe(
+            (userInfo: IUser_Info) =>{
+                this.userImgId = userInfo.imageId;
+                this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
+            }
+        )
+
+        this.router.events
+        .pipe(filter((evt: any) => evt instanceof NavigationStart), pairwise())
+        .subscribe((events: NavigationStart[]) => {
+          if(events[0].url == '/sign-in'){
+              this.router.navigate(["/"]).then(()=>{
+                  window.location.reload();
+              })
+          }
+        });
+        
+        
         this.serachBarService.initSubFoodditNames();
-        if(this.isLoggedIn()){
-            this.authService.getUserInfo().subscribe(
-                (userInfo: IUser_Info) =>{
-                    this.userImgId = userInfo.imageId;
-                    this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
-                }
-            )
-        }
     }
 
     normalImgOrPlaceholder(imgId: number): string {

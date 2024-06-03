@@ -14,10 +14,13 @@ export class RecipesComponent {
   recipes: Recipe[] = [];
   @Input() ShowTitle: Boolean = true;
   @Input() SubFoodditName: string;
+  isPageLoaded: boolean = false;
 
   constructor(private recipeService: RecipesService, private route: ActivatedRoute, private subfoodditService: SubfoodditService, private router: Router) {}
 
   ngOnInit(): void {
+    this.isPageLoaded = false;
+    
     if(this.SubFoodditName){
       this.route.params.subscribe((params: any) =>{
         if(params){
@@ -30,6 +33,7 @@ export class RecipesComponent {
         (recipes: Recipe[]) => {
           this.recipes = recipes;
           this.recipes.sort((a, b)=> (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
+          this.isPageLoaded = true;
         },
         (error) => {
           console.error('Error fetching recipes: ', error);
@@ -44,6 +48,7 @@ export class RecipesComponent {
       this.recipeService.getRecipesBySubfoodditId(subFooditId ? subFooditId : 0).subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
+          this.isPageLoaded = true;
           this.recipes.sort((a, b)=> (a.aggregatedVotes > b.aggregatedVotes ? -1 : 1));
         },
         (error) => {

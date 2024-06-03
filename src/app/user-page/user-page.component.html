@@ -17,7 +17,7 @@
             <!-- This is hidden -->
             <input type="file" class="invsible" (change)="changeProfilePicture($event)" #fileUpload>
 
-            <div *ngIf="isUsersPage" class="col-2 user-page__user-info-avatar">
+            <div *ngIf="isUsersPage && isPageLoaded" class="col-2 user-page__user-info-avatar">
                 <div class="user-page__user-info-avatar">
                     <figure class="user-page__user-info-avatar-shape" (click)="fileUpload.click()">
                         <img [src]="normalImgOrPlaceholder(userInfo.imageId)" alt="Person on a tour" class="user-page__user-info-avatar-img">

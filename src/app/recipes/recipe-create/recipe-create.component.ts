@@ -16,7 +16,7 @@ export class RecipeCreateComponent {
   imageFile: File | undefined = undefined;
   selectedSubFoodit: String = "";
   usersSubFooddits: Subfooddit[] = [];
-
+  isPageLoaded: boolean = false;
   constructor(
     private router: Router, 
     private subfoodditService: SubfoodditService, 
@@ -29,6 +29,7 @@ export class RecipeCreateComponent {
       (resp: Subfooddit[])=>{
         this.usersSubFooddits = resp;
         this.selectedSubFoodit = resp[0].title;
+        this.isPageLoaded = true;
       },
       (err) =>{
         console.log(err)

@@ -8,7 +8,7 @@
         </h2>
     </div>
 
-    <div class="subfooddit-wrap__info">
+    <div *ngIf="isPageLoaded" class="subfooddit-wrap__info">
         <!-- TODO: add more info/rules of subfooddit -->
         <div class="subfooddit-wrap__info-join btn-wrap">
             <button type="submit" (click)="joinSubFooddit()"class="button-5">

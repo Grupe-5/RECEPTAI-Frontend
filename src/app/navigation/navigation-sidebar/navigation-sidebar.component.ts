@@ -9,6 +9,7 @@ import { Subfooddit } from '../../../Models/Subfooddit.model'
 })
 export class NavigationSidebarComponent {
   usersSubFooddits: Subfooddit[] = [];
+  isPageLoaded: boolean = false;
 
   constructor(private router: Router, private subfoodditService: SubfoodditService) {}
 
@@ -17,6 +18,7 @@ export class NavigationSidebarComponent {
       (resp: Subfooddit[])=>{
         console.log(resp)
         this.usersSubFooddits = resp;
+        this.isPageLoaded = true;
       },
       err => err,
     )

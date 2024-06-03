@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink} from '@angular/router'
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-recipes-card-small',
   standalone: true,
@@ -12,10 +14,11 @@ import { RouterLink} from '@angular/router'
 export class RecipesCardSmallComponent {
   @Input() recipe?: Recipe;
 
-  private server = 'http://localhost:5169/api/image/';
-
+  private server = '';
 
   normalImgOrPlaceholder(imgId: string | undefined): string {
+    this.server = environment.apiUrl + '/api/image/';
+
     if (imgId != undefined) {
       return this.server + imgId;
     } else {

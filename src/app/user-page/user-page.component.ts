@@ -43,7 +43,7 @@ export class UserPageComponent {
   
   ngOnInit(): void {
     this.isPageLoaded = false;
-    this.server = this.authService.getCurrEnvUrl() + '/api/image/';
+    this.server = "https://fooddit.domaskal.com" + '/api/image/';
     this.route.paramMap.subscribe(params => {
       let userId: string | number | null;
       

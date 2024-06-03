@@ -30,6 +30,7 @@ export class SubfoodditComponent {
   }
 
   ngOnInit(): void {
+    this.isPageLoaded = false;
     this.route.params.subscribe((params: any) =>{
       if(params){
         this.initNewSubF()
@@ -51,8 +52,10 @@ export class SubfoodditComponent {
             this.isPageLoaded = true;
             this.currUserHasJoined = foodits.some((sf) => sf.subfoodditId == this.subFooddit.subfoodditId); 
           },
-          // Handle error
-          err => err,
+          err => {
+            console.log(err)
+            this.isPageLoaded = true;
+          },
         )
         this.subfoodditService.getUserBySubfooddits(this.subFooddit.subfoodditId).subscribe((resp)=>{
           this.joinedUserCount = resp.length;

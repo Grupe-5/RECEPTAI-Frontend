@@ -38,7 +38,7 @@ export class NavigationComponent{
         this.router.events
         .pipe(filter((evt: any) => evt instanceof NavigationStart), pairwise())
         .subscribe((events: NavigationStart[]) => {
-          if(events[0].url == '/sign-in'){
+          if((events[0].url == '/sign-in' || events[0].url == '/register') && events[1].url == '/'){
               this.router.navigate(["/"]).then(()=>{
                   window.location.reload();
               })

@@ -42,6 +42,7 @@ export class UserPageComponent {
   ){}
   
   ngOnInit(): void {
+    this.isPageLoaded = false;
     this.server = this.authService.getCurrEnvUrl() + '/api/image/';
     this.route.paramMap.subscribe(params => {
       let userId: string | number | null;
@@ -91,7 +92,8 @@ export class UserPageComponent {
       this.isPageLoaded = true;
     },
     (err)=>{
-      console.log("Error while fetching user recipes");
+      console.log(err);
+      this.isPageLoaded = true;
     })
 
   }

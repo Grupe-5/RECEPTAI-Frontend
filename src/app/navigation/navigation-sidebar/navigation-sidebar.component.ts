@@ -14,13 +14,18 @@ export class NavigationSidebarComponent {
   constructor(private router: Router, private subfoodditService: SubfoodditService) {}
 
   ngOnInit(){
+    this.isPageLoaded = false;
+
     this.subfoodditService.getSubfoodditsByUserId().subscribe(
       (resp: Subfooddit[])=>{
         console.log(resp)
         this.usersSubFooddits = resp;
         this.isPageLoaded = true;
       },
-      err => err,
+      err => {
+        this.isPageLoaded = true;
+        console.log(err)
+      },
     )
   }
 

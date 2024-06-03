@@ -25,6 +25,7 @@ export class RecipeCreateComponent {
   ){}
 
   ngOnInit(){
+    this.isPageLoaded = false;
     this.subfoodditService.getSubfoodditsByUserId().subscribe(
       (resp: Subfooddit[])=>{
         this.usersSubFooddits = resp;
@@ -33,6 +34,7 @@ export class RecipeCreateComponent {
       },
       (err) =>{
         console.log(err)
+        this.isPageLoaded = true;
       }
     )
   }

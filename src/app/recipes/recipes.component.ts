@@ -37,6 +37,7 @@ export class RecipesComponent {
         },
         (error) => {
           console.error('Error fetching recipes: ', error);
+          this.isPageLoaded = true;
         }
       );
     }
@@ -53,6 +54,7 @@ export class RecipesComponent {
         },
         (error) => {
           console.error('Error fetching recipes: ', error);
+          this.isPageLoaded = true;
         }
       );
       

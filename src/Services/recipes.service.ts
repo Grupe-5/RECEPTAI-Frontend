@@ -4,7 +4,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Recipe } from '../Models/Recipe.model';
 import { AuthService } from '../Services/auth.service'
 import { Vote, VoteType } from '../Models/Vote.model';
-import { environment } from '../environments/environment';
+import { environment } from '../Environments/environment';
 
 @Injectable({
   providedIn: 'root'

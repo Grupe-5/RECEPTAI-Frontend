@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { IUser } from '../../Models/User.model'
 import { IUser_Info } from '../../Models/User.model'
 import { SerachBarService } from '../../Services/search-bar.service'
-import { environment } from './../../environments/environment'
+import { environment } from '../../Environments/environment'
 import { filter, pairwise } from 'rxjs/operators';
 
 @Component({

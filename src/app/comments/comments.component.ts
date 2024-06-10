@@ -83,9 +83,11 @@ export class CommentsComponent {
       this.commentsService.postNewComment(commentText, this.recipeId).subscribe(
         (resp) => {
           this.fetchComments();
+          this.commentForm.reset();
           this.toastr.success("Comment created successfully", "Comment action");
         },
         error =>{
+          this.commentForm.reset();
           this.toastr.error("Unable to post new comment, try again.", "Comment Error");
         });
     }

@@ -28,11 +28,11 @@
             </div>
         </div>
 
-
         <div class="col-md-3 m-2" *ngFor="let recipe of recipes">
             <app-recipe-card [recipe]="recipe"></app-recipe-card>
         </div>
     </div>
+    
     <div *ngIf="recipes.length == 0" class="row justify-content-md-center recipes-list-wrap__empty">
         <div class="col-12">
             <img src="../../assets/imgs/sadweb.png" class="recipes-list-wrap__empty-img">
@@ -45,7 +45,7 @@
                 Be the first to create a new Recipe here:
             </p>
             <div class="btn-wrap">
-                <button (click)="navigateToCreate()" type="submit" class="button-5-1">
+                <button (click)="navigateToCreate()" type="submit" class="button button--yellow">
                     Create
                 </button>
             </div>

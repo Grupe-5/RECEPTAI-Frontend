@@ -11,19 +11,18 @@
     <div *ngIf="isPageLoaded" class="subfooddit-wrap__info">
         <!-- TODO: add more info/rules of subfooddit -->
         <div class="subfooddit-wrap__info-join btn-wrap">
-            <button type="submit" (click)="joinSubFooddit()"class="button-5">
-                <span *ngIf="showJoin()">
+            <button type="submit" (click)="joinSubFooddit()" class="button button--grey">
+                <span class="text-join" *ngIf="showJoin()">
                     <span class="big_plus">+</span> Join
                 </span>
-                <span *ngIf="!showJoin()">
+                <span class="text-leave" *ngIf="!showJoin()">
                     Leave
                 </span>
-            
             </button>
         </div>
         <div class="subfooddit-wrap__info-count">
             <div>
-                <p>{{getUsersCountText()}}</p>
+                <p>{{ getUsersCountText() }}</p>
             </div>
         </div>
     </div>
@@ -33,7 +32,7 @@
     <div class="subfooddit-wrap__header">
         <h2 class="subfooddit-wrap__header-title">
             <span class="subfooddit-wrap__header-title-span">
-                f/{{subFooddit.title}}
+                f/{{ subFooddit.title }}
             </span>
         </h2>
     </div>
@@ -41,7 +40,7 @@
     <div class="subfooddit-wrap__info">
         <div class="subfooddit-wrap__info-count">
             <div>
-                <p>{{getUsersCountText()}}</p>
+                <p>{{ getUsersCountText() }}</p>
             </div>
         </div>
     </div>

@@ -1,10 +1,11 @@
 <div class="row justify-content-md-center">
     <div class="sign-up-card col-md-5">
-        <h2 class="heading-secondary mt-6">
-            <span class="sign-up-card__heading">
+        <h2 class="heading-secondary">
+            <span>
                 New Account
             </span>
         </h2>
+
         <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="sign-up-card__input-fields">
             <div class="form-group">
                 <input id="username" formControlName="username" type="text" class="form-control input-text" placeholder="Username">
@@ -20,11 +21,13 @@
             </div>
             <div class="sign-up-card__input-fields-p">
                 <p>
-                    By creating an account, you agree to the <span class="underline">Terms of Service</span> and <span class="underline">Privacy Policy</span>
+                    By creating an account, you agree to the 
+                    <span class="underline">Terms of Service</span> and 
+                    <span class="underline">Privacy Policy</span>.
                 </p>
             </div>
             <div class="btn-wrap sign-up-card__input-fields-btn">
-                <button type="submit" [disabled]="signupForm.invalid" class="button-5">Create a new account</button>
+                <button type="submit" [disabled]="signupForm.invalid" class="button button--yellow button--auth">Create a new account</button>
             </div>
             <div class="sign-up-card__input-fields-link">
                 <p>
@@ -43,6 +46,4 @@
             </button>
         </form>
     </div>
-    
-    
 </div>

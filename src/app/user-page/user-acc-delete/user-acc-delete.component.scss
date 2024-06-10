@@ -1,11 +1,11 @@
 mat-dialog-content{
     font-weight: bold;
-    color: black !important;
+    color: var(--color-black) !important;
 }
 
 .permanent-red, .btn-delete{
     font-weight: bold;
-    color: #E23636 !important;
+    color: var(--color-error-red) !important;
 }
 
 mat-dialog-actions{

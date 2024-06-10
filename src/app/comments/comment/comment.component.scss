@@ -1,23 +1,24 @@
 .comment{
-    border-bottom: 1px solid #D9D9D9 ;
+    border-bottom: 1px solid var(--color-grey-light-3);
+    font-size: 1.6rem;
+
     &__upvotes-box{
         border-radius: 0 0 .5rem;
-        background-color: rgba(255,255,255, .8);
         padding: 0 5px;
         z-index: 100;
         
         position: absolute;
         text-align: center;
         a{
-            transition: filter .25s ;
+            transition: filter .2s;
 
             &:hover{
                 cursor: pointer;
-                filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+                filter: var(--color-primary-for-filter);
             }
         }
         .active-vote {
-            filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+            filter: var(--color-primary-for-filter);
         }
         img{
             height: 2rem;
@@ -50,11 +51,11 @@
             padding-left: 2rem;
             justify-self: end;
             transform: translateZ(-10px);
+            transition: all .2s;
             
             &:hover{
                 cursor: pointer;
-                filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
-
+                filter: var(--color-primary-for-filter);
             }
         }
     }
@@ -67,11 +68,11 @@
             margin: 1rem 0;
             background-color: transparent;
             border: none;
-            border-bottom: solid 2px transparentize(#030303, .47);
+            border-bottom: solid 2px var(--color-grey);
             width: 90%;
             &:focus{
-                outline: none !important;
-                border-bottom: solid 2px transparentize(#FDBD1F, .47);
+                box-shadow: none !important;
+                border-bottom: solid 2px var(--color-primary) !important;
             }
             
         }
@@ -80,12 +81,12 @@
             padding: .6rem 1rem;
             border-radius: 5rem;
             transition: 0.3s ease-out;
-            border: #FDBD1F 2px solid;
-            background-color: #FDBD1F;
-            color: white;
+            border: var(--color-primary) 2px solid;
+            background-color: var(--color-primary);
+            color: var(--color-white);
             
             &:hover{
-                color: #FDBD1F;
+                color: var(--color-primary);
                 background-color: transparent;
             }
         }
@@ -96,10 +97,10 @@
             display: inline-block;
             text-decoration: none;
             height: 3rem;
-            color: #A9A9A9;
+            color: var(--color-grey-light-4);
 
             img{
-                filter: brightness(0) saturate(100%) invert(76%) sepia(9%) saturate(5%) hue-rotate(15deg) brightness(87%) contrast(92%);
+                filter: var(--color-grey-light-4-for-filter);
             }
 
             span{
@@ -121,6 +122,7 @@
         }
     }
 }
+
 .active{
-    filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
+    filter: var(--color-primary-for-filter);
 }

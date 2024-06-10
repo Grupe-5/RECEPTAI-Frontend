@@ -46,6 +46,7 @@
             
         </div>
     </div>
+    
     <div class="row user-page__user-activities">
         <h2 class="user-page__user-activities-header">
             <span class="half-a-border-on-top">
@@ -65,18 +66,16 @@
 
         </div>
     </div>
+
     <div *ngIf="isUsersPage" class="row user-page__manage-account">
         <h2 class="user-page__manage-account-header">
             <span class="half-a-border-on-top">
                 Manage account
             </span>
         </h2>
-        <div>
-            <div class="row mt-2 justify-content-md-end">
-                <div class="btn-wrap">
-                    <button  (click)="deleteUserAccount()" type="submit" class="button-5">Delete</button>
-                </div>
-            </div>
+
+        <div class="btn-wrap">
+            <button (click)="deleteUserAccount()" type="submit" class="button button--red">Delete</button>
         </div>
     </div>
 </div>

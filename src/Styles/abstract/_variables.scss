@@ -1,15 +1,22 @@
 // Colors
+
 :root{
     --color-primary: #FDBD1F;
-    --color-primary-light: #FDBD1F; 
-    --color-primary-dark: #A80000; 
-    --color-grey: #777;
+    --color-primary-for-filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+    --color-primary-dark: #CB9200;
+    --color-primary-dark-for-filter: invert(50%) sepia(79%) saturate(1622%) hue-rotate(18deg) brightness(98%) contrast(105%);
+    
     --color-white: #fff;
-    --color-black: #000;
+    --color-grey: #818181;
+    --color-grey-for-filter: brightness(0) saturate(100%) invert(59%) sepia(1%) saturate(4381%) hue-rotate(24deg) brightness(76%) contrast(79%);
     --color-grey-light-1: #f7f7f7; 
     --color-grey-light-2: #eee; 
     --color-grey-light-3: #d8d7d7; 
-    --color-secondary-light: #fdbd1f;
-    --color-secondary-dark: #CB9200;
+    --color-grey-light-4: #b1b1b1; 
+    --color-grey-light-4-for-filter: brightness(0) saturate(100%) invert(74%) sepia(11%) saturate(2%) hue-rotate(318deg) brightness(98%) contrast(79%); 
+    
+    --color-error-red: #E23636;
+    
+    --color-black: #000;
 }
 

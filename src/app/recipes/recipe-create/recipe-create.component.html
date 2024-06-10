@@ -44,7 +44,7 @@
                     <input type="text" [(ngModel)]="newRecipe.cookingTime" class="form-control input-text" id="formGroupExampleInput" placeholder="Cooking time">
                 </div>
             </div>
-            <div class="col-6 mt-4">
+            <div class="col-6 mt-5">
                 <div class="form-group">
                     <div class="form-group">
                         <label class="form-label" for="typeNumber">Amount of Servings</label>
@@ -52,21 +52,21 @@
                     </div>  
                 </div>
             </div>
-            <div class="col-6 mt-4">
+            <div class="col-6 p-4 pt-0 mt-5">
                 <div class="form-group">
                     <label class="form-label" for="typeNumber">Cooking difficulty</label>
                     <input type="number" [(ngModel)]="newRecipe.cookingDifficulty" min="1" max="10" id="typeNumber" class="form-control input-text" />
                 </div>        
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-6 p-5 pt-0">
+        <div class="row p-4 pt-5">
+            <div class="col-6">
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Ingredients</label>
                     <textarea [(ngModel)]="newRecipe.ingredients" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
             </div>
-            <div class="col-6 p-5 pt-0">
+            <div class="col-6">
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Cooking Instructions</label>
                     <textarea [(ngModel)]="newRecipe.instructions"  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -82,7 +82,7 @@
 
         <div class="row p-4 mt-4">
             <div class="btn-wrap col-12">
-                <button type="submit" (click)="formSubmited()" class="button-5 ">Post</button>
+                <button type="submit" (click)="formSubmited()" class="button button--yellow">Post</button>
             </div>
         </div>
     </span>

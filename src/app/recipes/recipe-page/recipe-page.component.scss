@@ -2,39 +2,41 @@
 .recipe-page {
     margin-top: 6rem; // Used for topBar  
 
-    
     &__arrow-back{
+        transform: translateY(-2px);
         height: 2rem;
         margin-right: 1rem;
+        
         &:hover{
             cursor: pointer;
         }
     }
+
     &__subreddit{
-        font-size: 2rem;
         
+        font-size: 2rem;
         a {
             text-decoration: none;
         }
     }
+
     &__upvotes-box{
         font-weight: bold;
         border-radius: 0 0 .5rem;
         padding: 0 5px;
         z-index: 100;
-        
-        
         text-align: center;
+
         a{
             transition: filter .25s ;
 
             &:hover{
                 cursor: pointer;
-                filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+                filter: var(--color-primary-for-filter);
             }
         }
         .active-vote {
-            filter: invert(80%) sepia(53%) saturate(1880%) hue-rotate(337deg) brightness(104%) contrast(110%);
+            filter: var(--color-primary-for-filter);
         }
 
         img{
@@ -47,6 +49,7 @@
             transform: rotate(180deg);
         }
     }
+
     &__title-box{
         font-weight: bold;
         font-size: 2.5rem;
@@ -74,7 +77,7 @@
         width: 100%;
     }
     &__info{
-        background-color: white;
+        background-color: var(--color-white);
         border-radius: .5rem;
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
     }
@@ -82,7 +85,7 @@
         padding-top: 2rem;
         display: flex;
         justify-content: center;
-        background-color: white;
+        background-color: var(--color-white);
         border-radius: .5rem;
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
         
@@ -95,7 +98,7 @@
         }
     }
     &__instructions{
-        background-color: white;
+        background-color: var(--color-white);
         border-radius: .5rem;
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
         p{
@@ -117,5 +120,5 @@
 .highlight-darker{
     text-decoration: none;
     font-weight: bold;
-    color: #CB9200;
+    color: var(--color-primary-dark);
 }

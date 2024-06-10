@@ -2,7 +2,7 @@
 <div class="top-navbar__search">
     <div class="top-navbar__search-input-wrap" cdkOverlayOrigin #overlayPosition [ngClass]="{'opened mat-elevation-z2': overlayOpen() }">
         <button mat-icon-button (click)="search(searchInput.value)">
-            <mat-icon>search</mat-icon>
+            <mat-icon class="top-navbar__search-icon">search</mat-icon>
         </button>
         <input 
             #searchInput type="text"

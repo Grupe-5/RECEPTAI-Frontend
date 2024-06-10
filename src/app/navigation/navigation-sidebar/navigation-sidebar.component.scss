@@ -3,15 +3,13 @@
   position: fixed;
   top: 0;
   z-index: 999;
-  color: black;
-  background-color: white;
+  color: var(--color-black);
+  background-color: var(--color-white);
   font-size: 1.6rem;
   letter-spacing: .1rem;
   box-shadow: 0  0 .3rem 0 rgba(0, 0, 0, .2);
   
-
   &__community{
-      // min-width: 10rem;
       padding: 8rem 2rem 2rem 2rem;
   }
   
@@ -46,49 +44,38 @@
       padding: .7rem 0 .7rem 1rem ;
       &:hover{
         transition: all 250ms;
-        background-color: #fdbe1fbc;
+        background-color: var(--color-primary);
       }
     }
   }
 }
 
-.button-5-2 {
-  color: black;
+.nav-link {
+  color: var(--color-black);
+  background-color: var(--color-white);
   display: flex;
-  border: none;
   align-items: center;
-  background-color: white;
-  cursor: pointer;
-  font-size: 1.7rem;
   justify-content: center;
-  line-height: 1.25;
-  min-height: 2rem;
   position: relative;
   text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  border-radius: 3rem;
   width: 14rem;
 
-  img{
-    transition: all 250ms;
-    padding-right: .8rem;
+  &:hover{
+    color: var(--color-primary);
+    img{
+      filter: var(--color-primary-for-filter);
+    }
   }
-}
-  
-.button-5-2:hover{
-  color: #FDBD1F;
+
   img{
-    filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
+    transition: all 100ms;
+    padding-right: .8rem;
   }
 }
 
 .active-link{
-  color: #FDBD1F;
+  color: var(--color-primary);
   img{
-    filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
+    filter: var(--color-primary-for-filter);
   }
 }

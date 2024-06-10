@@ -29,7 +29,7 @@
         padding: 1rem 1.5rem 0;
         &__subfooddit{
             text-decoration: none;
-            color: black;
+            color: var(--color-black);
         }
         &__date{
             text-align: right;
@@ -82,8 +82,7 @@
             }
             &:hover{
                 cursor: pointer;
-                filter: invert(68%) sepia(77%) saturate(498%) hue-rotate(351deg) brightness(102%) contrast(98%);
-
+                filter: var(--color-primary-for-filter)
             }
         }
     }
@@ -102,12 +101,11 @@
 
             &:hover{
                 cursor: pointer;
-                filter: invert(50%) sepia(79%) saturate(1622%) hue-rotate(18deg) brightness(98%) contrast(105%);
+                filter: var(--color-primary-dark-for-filter);
             }
         }
         .active-vote {
-            filter: invert(50%) sepia(79%) saturate(1622%) hue-rotate(18deg) brightness(98%) contrast(105%);
-
+            filter: var(--color-primary-dark-for-filter);
         }
         img{
             height: 2rem;
@@ -122,10 +120,10 @@
 }
 
 .highlight{
-    color: #FDBD1F;
+    color: var(--color-primary);
 }
 .highlight-darker{
     text-decoration: none;
     font-weight: bold;
-    color: #CB9200;
+    color: var(--color-primary-dark);
 }

@@ -5,18 +5,18 @@
                 <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
             </a>
             <p class="vote_count">{{getVoteCount()}}</p>
-            <a (click)="doDownvote();$event.stopPropagation()" [ngClass]="{'active-vote': this.recipe?.vote == this.voteType.Downvote}">
+            <a (click)="doDownvote(); $event.stopPropagation()" [ngClass]="{'active-vote': this.recipe?.vote == this.voteType.Downvote}">
                 <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
             </a>
     </div>
     
     <div class="recipe-card__img-box" [routerLink]="['/recipe', recipe?.recipeId]">
-        <img src="{{ normalImgOrPlaceholder(recipe?.imgId) }}" alt="Recipe img" class="recipe-card__img">
+        <img [src]=" normalImgOrPlaceholder(recipe?.imgId) " alt="Recipe img" class="recipe-card__img">
     </div>
     
     <div class="row recipe-card__info-1">
         <a class="col-6 recipe-card__info-1__subfooddit" [routerLink]="['/f/', recipe?.subfoodditName]">
-            f/<span class="highlight-darker">{{recipe?.subfoodditName}}</span>
+            f/<span class="highlight-darker">{{ recipe?.subfoodditName }}</span>
         </a>
         <p class="col-6 recipe-card__info-1__date">
             {{ getHoursOrMinutesFromToday(recipe?.datePosted) }}
@@ -31,7 +31,7 @@
 
     <div class="recipe-card__name-box">
         <p class="recipe-card__name">
-            By <a [href]="'/user/'+recipe?.userId" class="highlight-darker">{{recipe?.userName}}</a>
+            By <a [href]="'/user/' + recipe?.userId" class="highlight-darker">{{recipe?.userName}}</a>
         </p>
     </div>
 
@@ -39,7 +39,7 @@
         
         <div class="recipe-card__info-2__comments-box col-4">
             <img src="../../../assets/imgs/comment.svg">
-            <span>{{recipe?.commentCount ?? 0}}</span>
+            <span>{{ recipe?.commentCount ?? 0 }}</span>
         </div>
         
         <div class="recipe-card__info-2__upvotes-box row col-4">

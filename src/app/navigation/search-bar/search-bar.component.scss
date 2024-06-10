@@ -1,4 +1,5 @@
 .top-navbar{
+    transition: all .3s;
     &__search{
         width: 40rem;
         &-input-wrap{
@@ -6,22 +7,19 @@
             align-items: center;
             justify-content: left;
             padding: 0 1rem 0 0;
-            
             border-radius: 3rem;
             border: none;
             font-size: 1.7rem;
-            border: 1px solid transparentize(#FDBD1F, .5);
+            border: 1px solid var(--color-primary);
                 
             &.opened{
                 border-bottom: none;
                 border-radius: 3rem 3rem 0 0;
-              
             }
 
             &:focus{
-            border-color: transparentize(#FDBD1F, .5);
-            box-shadow: 0 1px 1px transparentize(#FDBD1F, .8)  inset, 0 0 8px transparentize(#FDBD1F, .7);
-            outline: 0 none;
+                box-shadow: 0 1px 1px var(--color-primary)  inset, 0 0 8px var(--color-primary);
+                outline: 0 none;
             }
 
             input{
@@ -29,11 +27,13 @@
                 padding-left: 1rem;    
                 border: none;
                 &:focus{
-                    box-shadow: 0;
-                    outline: 0 none;
+                    box-shadow: none !important;
+                    outline: 0 none !important;
                 }
             }
-          
+        }
+        &-icon{
+            padding-top: 1px;
         }
     }
 }

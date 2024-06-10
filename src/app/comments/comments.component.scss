@@ -1,10 +1,10 @@
 .comments-wrap{
     &__heading{
         padding: 0 4rem 1.5rem;
-        border-bottom: solid 2px #FDBD1F;
+        border-bottom: solid 2px var(--color-primary);
     }
     &__comments-section{
-        background-color: white;
+        background-color: var(--color-white);
         padding: 3rem 1.6rem;
     }
 
@@ -33,7 +33,6 @@
             text-align: right;
             max-width: 11rem;
             
-            
             .form-select{
                 padding-left: 0;
                 margin: 0 !important;
@@ -45,7 +44,7 @@
                     cursor: pointer;
                 }
                 &:focus{
-                    box-shadow: 0 0px 0px transparentize(#FDBD1F, .8)  inset, 0 0 0px transparentize(#FDBD1F, .7);
+                    box-shadow: none;
                     border-color: transparent;
                     outline: 0 none;
                 }
@@ -60,17 +59,19 @@
         }
 
     }
+
     &__comments-section-write{
         input{
             width: 100%;
             padding: 0 0 1.5rem 1.5rem;
             border: none;
-            border-bottom: solid 2px transparentize(#030303, .47);
+            border-bottom: solid 2px var(--color-grey);
             transition: all 250ms;
             
             &:focus{
                 outline: none !important;
-                border-bottom: solid 2px transparentize(#FDBD1F, .47);
+                box-shadow: none !important;
+                border-bottom: solid 2px var(--color-primary) !important;
             }
         }
     }
@@ -80,56 +81,14 @@
     color: var(--color-primary);
 }
 .not-highlight{
-    color: black !important;
+    color: var(--color-black) !important;
 }
 
-/* CSS */
-// TODO: Clean stolen css
 .btn-wrap{
     display: flex;
     justify-content: end;
     padding-right: 2rem;
-}
-.button-5 {
-    align-items: center;
-    background-clip: padding-box;
-    background-color: transparent;
-    border: 1px solid transparentize(#030303, .47);
-    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-    box-sizing: border-box;
-    color: transparentize(#030303, .4);
-    cursor: pointer;
-    font-size: 2rem;
-    font-weight: 600;
-    justify-content: center;
-    line-height: 1.25;
-    min-height: 3rem;
-    position: relative;
-    padding: 0.5rem 0 1rem 0;
-    text-decoration: none;
-    transition: all 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    border-radius: 3rem;
-    width: 11rem;
-}
-
-.button-5:hover,
-.button-5:focus {
-  color: #FDBD1F;
-  border: 1px solid transparentize(#FDBD1F, .47);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-}
-
-.button-5:hover {
-    transform: translateY(-1px);
-}
-
-.button-5:active {
-    border: 1px solid transparentize(#FDBD1F, .47);
-    color: #FDBD1F;
-    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-    transform: translateY(0);
+    .button{
+        width: 8rem;
+    }
 }

@@ -38,7 +38,7 @@ export class NavigationSidebarComponent {
   }
 
   isActiveCreateSubf(): boolean {
-    return this.router.url == 'subf/create';
+    return this.router.url == '/subf/create';
   }
   
   checkIfEmpty(): boolean{

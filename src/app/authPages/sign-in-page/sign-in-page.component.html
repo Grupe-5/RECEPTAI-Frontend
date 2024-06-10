@@ -13,16 +13,16 @@
                 <input type="password" id="password" formControlName="password"  class="form-control input-text" placeholder="Password">
             </div>
             <div class="btn-wrap sign-up-card__input-fields-btn">
-                <button type="submit" [disabled]="loginForm.invalid" class="button-5">Sign In</button>
+                <button type="submit" [disabled]="loginForm.invalid" class="button button--yellow button--auth">Sign In</button>
             </div>
             <div class="sign-up-card__input-fields-link">
                 <p>
-                    <a href="/sign-in">Forgot password?</a>
+                    <a class="sign-up-card__input-fields-link-pass" href="/sign-in">Forgot password?</a>
                 </p>
             </div>
             
             <div class="sign-up-card__input-fields-divider">
-                <button  (click)="goToRegister()" type="submit" class="button-5-1">Create an account</button>
+                <button  (click)="goToRegister()" type="submit" class="button button--transp button--auth">Create an account</button>
             </div>
             <div class="sign-up-card__input-fields-or">
                 <p>
@@ -31,7 +31,7 @@
             </div>
             <button type="button" class="login-with-google-btn" disabled>
                 Log in with Google
-              </button>
+            </button>
               
         </form>
     </div>

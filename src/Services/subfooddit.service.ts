@@ -6,7 +6,7 @@ import { IUser } from '../Models/User.model';
 import { AuthService } from './auth.service'
 import { IUser_Info } from "../Models/User.model"
 import { switchMap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../Environments/environment';
 
 
 @Injectable({

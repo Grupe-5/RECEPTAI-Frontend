@@ -1,5 +1,5 @@
 .top-navbar{
-  padding: 0 2rem 0 .6rem;
+  padding: 0 0 0 .6rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -8,8 +8,19 @@
   font-size: 1.6rem;
   box-shadow: 0 0 .3rem rgba(0, 0, 0, .2);
 
+  &-within{
+    max-width: 150rem;
+    margin: auto;
+  }
+
   &__logo{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    
     img{
+      display: inline-block;
+      vertical-align: middle;
       height: 4rem;
     }
   }
@@ -22,13 +33,18 @@
     img{
       vertical-align: middle;
       width: 4rem;
-      width: 4rem;
       border: var(--color-primary) 2px solid;
       border-radius: 50%;
       &:hover{
         cursor: pointer;
       }
     }
+  }
+
+  &__searchbar-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   
   &__sign-out-link{
@@ -44,6 +60,55 @@
       cursor: pointer;
     }
   }
+
+  &__menu-burger-wrap{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 1rem;
+  }
+
+  &__menu-burger{
+    position: relative;
+      
+    &,
+    &:before,
+    &::after{
+      background-color: var(--color-black);
+      width: 2rem;
+      height: 2px;
+    }
+
+    &:before,
+    &::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+    }
+
+    &::before{
+      top: -.8rem;
+    }
+
+    &::after{
+        top: .8rem;
+    }
+  }
+
+  .burger-open{
+    background-color: transparent;
+
+    &::before{
+      top: 0;
+      transform: rotate(135deg);
+    }
+    &::after{
+      top: 0;
+      transform: rotate(-135deg);
+    }
+  }
+  
 }
 
 .btn-wrap{

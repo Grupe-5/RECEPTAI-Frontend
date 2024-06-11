@@ -1,4 +1,8 @@
-// TODO: Remove horizontal scroll in all pages
 .container{
-    font-size: 2rem;
+    font-size: 1.6rem;
+}
+
+.cust-container{
+    max-width: 100vw;
+    overflow: hidden;
 }

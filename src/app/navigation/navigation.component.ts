@@ -20,6 +20,7 @@ export class NavigationComponent{
     userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
     private server = environment.apiUrl + '/api/image/';
     profileImgUrl: string = ''; 
+    isMobileMenuOpen: boolean = false;
 
     constructor(
         private router: Router, 
@@ -45,7 +46,6 @@ export class NavigationComponent{
           }
         });
         
-        
         this.serachBarService.initSubFoodditNames();
     }
 
@@ -55,10 +55,6 @@ export class NavigationComponent{
         } else {
           return this.userAvatarPlaceHolder;
         }
-      }
-
-    shouldShowSearch(): Boolean{
-        return this.shouldShowRegBtn() && this.shouldShowSignIn();
     }
 
     shouldShowRegBtn(): Boolean {
@@ -86,5 +82,12 @@ export class NavigationComponent{
     goToUserPage(){
         this.router.navigate(['user', 'me']);
     }
-    
+
+    toggleMobileMenu(){
+        this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    }
+
+    onMenuOpenChange(isOpen: boolean) {
+        this.isMobileMenuOpen = isOpen;
+    }
 }

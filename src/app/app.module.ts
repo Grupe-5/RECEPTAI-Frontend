@@ -22,6 +22,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { A11yModule } from '@angular/cdk/a11y';
 import { ToastrModule } from 'ngx-toastr';
 import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create-subfooddit.component';
+import { MobileMenuOverlayComponent } from './navigation/mobile-menu-overlay/mobile-menu-overlay.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create
     SignUpPageComponent,
     SignInPageComponent,
     CreateSubfoodditComponent,
+    MobileMenuOverlayComponent,
   ],
   imports: [
     SearchBarComponent,
@@ -49,6 +53,8 @@ import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create
     ReactiveFormsModule,
     MatDialogModule,
     A11yModule,
+    MatMenuModule,
+    MatButtonModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
       positionClass: 'toast-bottom-right',

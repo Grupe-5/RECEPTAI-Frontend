@@ -15,7 +15,9 @@
     <ng-template cdkConnectedOverlay 
         [cdkConnectedOverlayOrigin]="overlayPosition" 
         [cdkConnectedOverlayOpen]="overlayOpen()"
-        (overlayOutsideClick)="outsideClick()">
-        <app-search-overlay></app-search-overlay>
+        (overlayOutsideClick)="outsideClick()"
+        class="top-navbar__overlay-wrap">
+
+        <app-search-overlay class="top-navbar__overlay-wrap"></app-search-overlay>
     </ng-template>
 </div>

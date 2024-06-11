@@ -22,7 +22,7 @@
     padding-bottom: 1.5rem;
     padding-left: .5rem;
     padding-right: 0rem;
-    box-shadow: 0 0.1rem 0 0 rgba(0, 0, 0, .2);
+    border-bottom: 1px solid var(--color-grey-light-3);
     
     a{
       justify-content: left;
@@ -32,6 +32,7 @@
   }
 
   &__fooddits{
+    overflow: hidden;
     margin-top: 2rem;
     max-height: 30rem;
     

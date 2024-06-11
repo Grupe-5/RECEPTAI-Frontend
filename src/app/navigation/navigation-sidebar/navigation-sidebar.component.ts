@@ -9,7 +9,7 @@ import { Subfooddit } from '../../../Models/Subfooddit.model'
 })
 export class NavigationSidebarComponent {
   usersSubFooddits: Subfooddit[] = [];
-  isPageLoaded: boolean = false;
+  isPageLoaded: boolean = true;
 
   constructor(private router: Router, private subfoodditService: SubfoodditService) {}
 
@@ -29,6 +29,7 @@ export class NavigationSidebarComponent {
     )
   }
 
+  // TODO: combine actionRoute function 
   isActiveHome(): boolean {
     return this.router.url == '/';
   }

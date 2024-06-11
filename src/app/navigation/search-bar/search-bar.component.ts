@@ -1,9 +1,9 @@
 import { Component, inject, ViewChild, ElementRef} from '@angular/core';
 import { MatIconButton } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
-import { OverlayModule } from '@angular/cdk/overlay'
+import { OverlayModule, CdkConnectedOverlay } from '@angular/cdk/overlay'
 import {SerachBarService} from '../../../Services/search-bar.service'
-import {SearchOverlayComponent} from './search-overlay/search-overlay.component'
+import { SearchOverlayComponent } from './search-overlay/search-overlay.component'
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,9 @@ export class SearchBarComponent {
   overlayOpen = this.searchBarService.overlayOpen;
   showHistory = this.searchBarService.showHistory;
   searchTerm = this.searchBarService.searchTerm;
+
+  @ViewChild('optionsContainer')
+  optionsContainer: CdkConnectedOverlay;
 
   search(searchTerm: string){
     if(!searchTerm)

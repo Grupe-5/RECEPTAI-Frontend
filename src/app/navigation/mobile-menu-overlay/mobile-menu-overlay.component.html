@@ -1,0 +1,60 @@
+<div class="menu-overlay" *ngIf="isMenuOpen">
+
+    <ul class="menu-overlay__list" >
+        <!-- TODO: add reworked search bar for mobile -->
+        <li *ngIf="isLoggedIn">
+            <a class="menu-overlay__avatar" (click)="goToUserPage()">
+                <img [src]="profileImgUrl" alt="user-avatar">
+            </a>
+        </li>
+
+        <li class="menu-overlay__item">
+            <a 
+                href="/" 
+                [ngClass]="{'active-link': isActiveRoute('/')}" 
+                class="menu-overlay__link">
+                    Home
+            </a>
+        </li>
+
+        <ng-container *ngIf="!isLoggedIn">
+            <li class="menu-overlay__item">
+                <a 
+                    href="/sign-in" 
+                    [ngClass]="{'active-link': isActiveRoute('/sign-in')}" 
+                    class="menu-overlay__link">
+                        Sign-in
+                </a>
+            </li>
+            <li class="menu-overlay__item">
+                <a 
+                    href="/register" 
+                    [ngClass]="{'active-link': isActiveRoute('/register')}" 
+                    class="menu-overlay__link">
+                        Register
+                </a>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="isLoggedIn">
+            <li class="menu-overlay__item">
+                <a 
+                    href="/create" 
+                    [ngClass]="{'active-link': isActiveRoute('/create')}" 
+                    class="menu-overlay__link">
+                        New Recipe
+                </a>
+            </li>
+            <li class="menu-overlay__item">
+                <a 
+                    href="/subf/create" 
+                    [ngClass]="{'active-link': isActiveRoute('/subf/create')}" 
+                    class="menu-overlay__link">
+                        New Subfooddit
+                </a>
+            </li>
+        </ng-container>
+        <!-- TODO: add reworked "my subfooddits" list on mobile -->
+    </ul>
+    
+</div>

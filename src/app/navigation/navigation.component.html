@@ -1,33 +1,69 @@
-<nav class="top-navbar pt-3 pb-3">
-    <div class="row">
-        <div class="col-4">
-            <a class="top-navbar__logo navbar-brand" href="#">
-                <img  src="../../assets/imgs/foodit.png" alt="Foodit">
-            </a>
-        </div>
+<nav class="top-navbar pt-3 pb-3 ps-4 pe-4">
+    <div class="top-navbar-within">
 
-        <div class="col-4 top-navbar__search justify-content-center">
-            <app-search-bar></app-search-bar>
-        </div>
-        
-        <div class="col-4" *ngIf="!isLoggedIn()">
-            <div class="btn-wrap pr-7">
-                <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button button--yellow">Register</button>
-                <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button button--transp">Sign in</button>
+        <div class="row justify-content-between" *ngIf="!isLoggedIn()">
+            <div class="col-3">
+                <a class="top-navbar__logo" href="#">
+                    <img src="../../assets/imgs/foodit.png" alt="Foodit">
+                </a>
+            </div>
+    
+            <div class="col-lg-5 d-none d-lg-block top-navbar__search justify-content-center">
+                <app-search-bar class="top-navbar__searchbar-wrap"></app-search-bar>
+            </div>
+    
+            <div class="col-3 d-lg-none top-navbar__menu-burger-wrap">
+                <div 
+                    (click)="toggleMobileMenu()" 
+                    class="top-navbar__menu-burger"
+                    [ngClass]="{'burger-open': this.isMobileMenuOpen}">
+                </div>
+            </div>
+            
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="btn-wrap pr-7">
+                    <button *ngIf="shouldShowRegBtn()" [routerLink]="'register'" type="submit" class="button button--yellow">Register</button>
+                    <button *ngIf="shouldShowSignIn()" [routerLink]="'sign-in'" type="submit" class="button button--transp">Sign in</button>
+                </div>
             </div>
         </div>
-
-        <div class="col-4" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
-            <div class="btn-wrap">
-                <a *ngIf="shouldShowUserIcon()" (click)="goToUserPage()" class="top-navbar__avatar">
-                    <img [src]="profileImgUrl" alt="user-avatar">
+    
+        <div class="row justify-content-between" *ngIf="isLoggedIn()">
+            <div class="col-3">
+                <a class="top-navbar__logo" href="#">
+                    <img src="../../assets/imgs/foodit.png" alt="Foodit">
                 </a>
-                <a (click)="logOut()" class="top-navbar__sign-out-link">
-                    Sign-out
-                </a>
+            </div>
+    
+            <div class="col-6 justify-self-end" *ngIf="isLoggedIn()" cdkOverlayOrigin #overlayPosition2>
+                <div class="btn-wrap">
+                    <a class="top-navbar__avatar d-none d-lg-block" *ngIf="shouldShowUserIcon()" [matMenuTriggerFor]="menu">
+                        <img [src]="profileImgUrl" alt="user-avatar">
+                    </a>
+                    <a class="top-navbar__sign-out-link" (click)="logOut()" *ngIf="!shouldShowUserIcon()">
+                        Sign-out
+                    </a>
+                    <div class="d-lg-none ms-5 top-navbar__menu-burger-wrap">
+                        <div 
+                            (click)="toggleMobileMenu()" 
+                            class="top-navbar__menu-burger"
+                            [ngClass]="{'burger-open': this.isMobileMenuOpen}">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </nav>
-    
-    
+
+<mat-menu #menu="matMenu">
+  <button (click)="goToUserPage()" mat-menu-item>Profile</button>
+  <button (click)="logOut()" mat-menu-item>Sign-out</button>
+</mat-menu>
+
+<app-mobile-menu-overlay 
+    [isMenuOpen]="isMobileMenuOpen" 
+    (isMenuOpenChange)="onMenuOpenChange($event)"  
+    [isLoggedIn]="isLoggedIn()" 
+    [profileImgUrl]="profileImgUrl">
+</app-mobile-menu-overlay>

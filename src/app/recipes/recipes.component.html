@@ -4,14 +4,14 @@
         <span class="recipes-list-wrap__heading">
             Find something delicious!
         </span>
+        <div class="recipes-list-wrap__heading-mb-border d-md-none"></div>
     </h2>
 
-    <div *ngIf="recipes.length > 0" class="row justify-content-md-center">
-        
+    <div *ngIf="recipes.length > 0" class="row justify-content-center">
+
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
-        
-        <div class="col-md-3 recipes-list-wrap-sort">
+        <div class="col-8 col-md-3 recipes-list-wrap-sort">
             <div class="row">
                 <div class="col-12 pl-0 recipes-list-wrap__topSort-sortby">
                     <p>
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 m-2" *ngFor="let recipe of recipes">
+        <div class="col-12 col-sm-5 col-md-3 m-2" *ngFor="let recipe of recipes">
             <app-recipe-card [recipe]="recipe"></app-recipe-card>
         </div>
     </div>

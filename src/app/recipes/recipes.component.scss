@@ -1,3 +1,5 @@
+@import "../../Styles/abstract/mixins";
+
 .recipes-list-wrap{
     margin-top: 4rem;
     
@@ -12,6 +14,17 @@
     &__heading{
         padding: 0 1.5rem 1.5rem;
         border-bottom: solid 2px var(--color-primary);
+        position: relative;
+        
+        @include respond(xs){
+            border-bottom: none;
+            
+            &-mb-border{
+                border-top: solid 2px var(--color-primary);
+                margin: 2rem auto 0;   
+                width: 80%;
+            }
+        }
     }
 
     &__topSort{
@@ -19,7 +32,12 @@
         &-sortby{
             display: flex;
             align-items: center; 
-            justify-content: right;
+            justify-content: center;
+            padding-bottom: 1.5rem;
+            @include respond(md){
+                justify-content: right;
+                padding-bottom: 0;
+            }
             p{
                 font-size: 2rem;
                 font-weight: bold;

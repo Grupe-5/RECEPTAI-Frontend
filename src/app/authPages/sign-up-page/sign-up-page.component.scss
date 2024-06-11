@@ -1,66 +1,73 @@
+@import "../../../Styles/abstract/mixins";
+
 .sign-up-card{
-  padding-bottom: 3rem;
-  font-size: 1.6rem;
-  background-color: var(--color-white);
-  margin: 9rem 0 4rem;
+    padding-bottom: 3rem;
+    font-size: 1.6rem;
+    background-color: var(--color-white);
+    margin: 9rem 0 4rem;
 
-  .heading-secondary{
-    padding-top: 2.5rem;
-  }
+    .heading-secondary{
+        padding-top: 2.5rem;
+    }
 
-  &__input-fields{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 5rem;
+    &__input-fields{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 2rem;
 
-      > div{
-          width: 100%;   
-      }
-      div:first-child{
+        @include respond(md){
+            padding: 0 5rem;
+        }
+
+
+        > div{
+            width: 100%;   
+        }
+        div:first-child{
         padding-top: 1rem;
-      }
+        }
 
-      .form-group{
-          padding-top: 2.5rem;
-      }
+        .form-group{
+            padding-top: 2.5rem;
+        }
 
-      &-p{
-          padding: 1.5rem .5rem 1rem;
-          font-size: 1.4rem;
-          color: var(--color-grey);
-          p{
-              margin: 0;
-          }
-      }
+        &-p{
+            padding: 1.5rem .5rem 1rem;
+            font-size: 1.4rem;
+            color: var(--color-grey);
+            p{
+                margin: 0;
+            }
+        }
 
-      &-btn{
-          padding-top: 2rem;
-      }
+        &-btn{
+            padding-top: 2rem;
+        }
 
-      &-link{
-          padding-top: 1rem;
-          text-align: center;
-          color: var(--color-primary);
-          a{
-              color: var(--color-primary);
-              font-weight: bold;
-          }
-      }
+        &-link{
+            padding-top: 1rem;
+            text-align: center;
+            color: var(--color-primary);
+            a{
+                color: var(--color-primary);
+                font-weight: bold;
+            }
+        }
 
-      &-divider{
-          border-bottom: 1px solid var(--color-grey-light-4);
-          padding-top: 2.5rem;
-      }
-      
-      &-or{
-          padding: 2rem 0;
-          text-align: center;
-          color: var(--color-grey);
-          p{
-              margin: 0;
-          }
-      }
+        &-divider{
+            border-bottom: 1px solid var(--color-grey-light-4);
+            padding-top: 2.5rem;
+        }
+
+        &-or{
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--color-grey);
+            p{
+                margin: 0;
+            }
+        }
   }
 
 }

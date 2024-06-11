@@ -1,9 +1,11 @@
+@import "../../../Styles/abstract/mixins";
+
 .sign-up-card{
   font-size: 1.6rem;
   background-color: var(--color-white);
   padding-bottom: 3rem;
   margin: 9rem 0 4rem;
-    
+
   .heading-secondary{
       padding: 3rem 0 2rem;
   }
@@ -12,26 +14,30 @@
       border-bottom: solid 2px var(--color-primary);
   }
 
-  &__input-fields{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 5rem;
+    &__input-fields{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 2rem;
 
-      > div{
-          width: 100%;
-          
-      }
-      .form-group{
-          padding-top: 2.5rem;
-      }
+        @include respond(md){
+            padding: 0 5rem;
+        }
 
-      &-p{
-          padding: 2rem .5rem 1rem;
-          color: var(--color-grey);
-          p{
-              margin: 0;
-          }
+        > div{
+            width: 100%;
+            
+        }
+        .form-group{
+            padding-top: 2.5rem;
+        }
+
+        &-p{
+            padding: 2rem .5rem 1rem;
+            color: var(--color-grey);
+            p{
+                margin: 0;
+            }
       }
 
       &-btn{

@@ -1,3 +1,5 @@
+@import "../../../Styles/abstract/mixins";
+
 .recipe-card{
     font-size: 1.7rem;
     padding-bottom: 1rem;
@@ -6,7 +8,16 @@
     border: solid 1px rgb(0, 0, 0, .2);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
     margin-bottom: 2rem;
-    max-width: 36rem;
+    min-width: 15rem;
+
+    @include respond(xs){
+        margin: 0 auto 2rem;
+        max-width: 40rem;
+    }
+
+    @include respond(md){
+        max-width: initial;
+    }
 
     &__img-box{
         position: relative;

@@ -5,3 +5,30 @@
         clear: both;
     }
 }
+
+// Bootstrap mixin
+@mixin respond($breakpoint) {
+    @if $breakpoint == xs {
+        @media (max-width: 35.9375em) { @content }; // <576px
+    }
+
+    @if $breakpoint == sm {
+        @media (min-width: 36em) { @content }; // ≥576px
+    }
+
+    @if $breakpoint == md {
+        @media (min-width: 48em) { @content }; // ≥768px
+    }
+
+    @if $breakpoint == lg {
+        @media (min-width: 62em) { @content }; // ≥992px
+    }
+
+    @if $breakpoint == xl {
+        @media (min-width: 75em) { @content }; // ≥1200px
+    }
+
+    @if $breakpoint == xxl {
+        @media (min-width: 87.5em) { @content }; // ≥1400px
+    }
+}

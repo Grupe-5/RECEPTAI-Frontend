@@ -1,3 +1,5 @@
+@import "../../../Styles/abstract/mixins";
+
 .recipe-create{
     margin: auto;
     margin-top: 7rem; // Used for topBar  
@@ -70,8 +72,13 @@
     justify-content: center;
     
     .button{
-        width: 20rem;
+        width: 100%;
+        font-size: 2rem;
         border-radius: 1rem;
+        @include respond(sm){
+            font-size: initial;
+            width: 20rem;
+        }
     }
 }
 

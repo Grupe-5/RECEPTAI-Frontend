@@ -48,7 +48,7 @@ export class RecipeCreateComponent {
       this.imageFile = undefined;
     }
   }
-  showDropDown(): boolean{
+  userHasJoinedSubf(): boolean{
     return this.usersSubFooddits.length > 0;
   }
 

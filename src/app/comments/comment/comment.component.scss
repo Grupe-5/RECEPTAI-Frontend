@@ -1,3 +1,5 @@
+@import "../../../Styles/abstract/mixins";
+
 .comment{
     border-bottom: 1px solid var(--color-grey-light-3);
     font-size: 1.6rem;
@@ -37,7 +39,11 @@
         }
         &-wrap{
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
+            @include respond(sm){
+                justify-content: start;
+            }
+
         }
         &-username{
             font-weight: bold;
@@ -48,16 +54,31 @@
             }
         }
         &-edit{
-            padding-left: 2rem;
-            justify-self: end;
             transform: translateZ(-10px);
             transition: all .2s;
+            padding-right: 2rem;
+            height: 2rem;
             
+            @include respond(sm){
+                padding-right: 0;
+                padding-left: 2rem;
+            }
+
+
             &:hover{
                 cursor: pointer;
                 filter: var(--color-primary-for-filter);
             }
+
+            img{
+                height: 2.5rem;
+            }
         }
+    }
+    &__text{
+        hyphens: auto;
+        word-break: break-all;
+
     }
     &__input{
         div{
@@ -69,7 +90,12 @@
             background-color: transparent;
             border: none;
             border-bottom: solid 2px var(--color-grey);
-            width: 90%;
+            width: 75%;
+
+            @include respond(sm){
+                width: 90%;
+            }
+
             &:focus{
                 box-shadow: none !important;
                 border-bottom: solid 2px var(--color-primary) !important;
@@ -77,13 +103,17 @@
             
         }
         button{
-            width: 10%;
             padding: .6rem 1rem;
             border-radius: 5rem;
             transition: 0.3s ease-out;
             border: var(--color-primary) 2px solid;
             background-color: var(--color-primary);
             color: var(--color-white);
+            width: 25%;
+
+            @include respond(sm){
+                width: 10%;
+            }
             
             &:hover{
                 color: var(--color-primary);

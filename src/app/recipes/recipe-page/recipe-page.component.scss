@@ -1,3 +1,4 @@
+@import "../../../Styles/abstract/mixins";
 
 .recipe-page {
     margin-top: 6rem; // Used for topBar  
@@ -50,6 +51,10 @@
         }
     }
 
+    &__navigation-row{
+        background-color: red;
+    }
+
     &__title-box{
         font-weight: bold;
         font-size: 2.5rem;
@@ -70,6 +75,15 @@
         width: 100%;
         padding: 0 0;
         overflow: hidden;
+
+        &-wrap{
+            max-width: 50rem;
+            margin: auto;
+
+            @include respond(sm){
+                margin: initial;
+            }
+        }
     }
     &__img{
         padding: 1rem;
@@ -80,6 +94,15 @@
         background-color: var(--color-white);
         border-radius: .5rem;
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+
+        &-wrap{
+            max-width: 50rem;
+            margin: auto;
+            
+            @include respond(sm){
+                margin: initial;
+            }
+        }
     }
     &__ingredients{
         padding-top: 2rem;
@@ -96,18 +119,38 @@
         &-list{
             display: block;
         }
+        &-wrap{
+            max-width: 50rem;
+            margin: auto;
+
+            @include respond(sm){
+                margin: initial;
+            }
+        }
     }
     &__instructions{
         background-color: var(--color-white);
         border-radius: .5rem;
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+
         p{
             font-weight: bold;
             text-align: center;
         }
-        ol > li::marker {
-            font-weight: bold;
-        }
+        ol {
+            padding-right: 2rem;
+            hyphens: auto;
+            @include respond(md){
+                padding-right: 0;
+            }
+
+            > li{
+                margin-top: 1rem;
+                &::marker {
+                    font-weight: bold;
+                }
+            }
+        } 
           
     }
 

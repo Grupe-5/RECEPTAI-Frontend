@@ -1,3 +1,5 @@
+@import "../../../Styles/abstract/mixins";
+
 .recipe-create{
     margin: auto;
     margin-top: 7rem; // Used for topBar  
@@ -6,10 +8,27 @@
     max-width: 100rem;
     font-size: 1.6rem;
 
+    .heading-secondary{
+        padding-bottom: 2rem;
+    }
 
     &__heading{
         padding: 0 4rem 1.5rem;
         border-bottom: solid 2px var(--color-primary);
+        text-align: center;
+        display: inline-block;
+        margin: auto;
+
+        @include respond(xs){
+            padding: 0 1rem 1.5rem;
+            border-bottom: none;
+            
+            &-mb-border{
+                border-top: solid 2px var(--color-primary);
+                margin: 2rem auto 0;   
+                width: 99%;
+            }
+        }
     }
 
     &__subfooddit{
@@ -63,8 +82,13 @@
     justify-content: center;
 
     .button{
-        width: 15rem;
+        width: 100%;
+        font-size: 2rem;
         border-radius: 1rem;
+        @include respond(sm){
+            font-size: initial;
+            width: 20rem;
+        }
     }
 }
 

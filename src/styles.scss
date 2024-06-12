@@ -36,9 +36,7 @@ $recipe-system-frontend-theme: mat.define-light-theme((
 @include mat.all-component-themes($recipe-system-frontend-theme);
 
 @import "./Styles/abstract/variables";
-@import "./Styles/abstract/functions";
 @import "./Styles/abstract/mixins";
-@import "./Styles/base/animations";
 @import "./Styles/base/base";
 @import "./Styles/base/typography";
 @import "./Styles/components/buttons";

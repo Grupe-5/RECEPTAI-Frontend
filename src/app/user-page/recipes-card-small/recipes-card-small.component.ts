@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { CommonModule } from '@angular/common';
-import { RouterLink} from '@angular/router'
+import { RouterLink } from '@angular/router';
 import { environment } from '../../../Environments/environment';
 
 @Component({
@@ -9,7 +9,7 @@ import { environment } from '../../../Environments/environment';
   standalone: true,
   templateUrl: './recipes-card-small.component.html',
   styleUrl: './recipes-card-small.component.scss',
-  imports: [CommonModule, RouterLink]
+  imports: [CommonModule, RouterLink],
 })
 export class RecipesCardSmallComponent {
   @Input() recipe?: Recipe;
@@ -22,12 +22,11 @@ export class RecipesCardSmallComponent {
     if (imgId != undefined) {
       return this.server + imgId;
     } else {
-      return "../../../assets/imgs/recipe-img-dummy.jpg";
+      return '../../../assets/imgs/recipe-img-dummy.jpg';
     }
   }
   getHoursOrMinutesFromToday(date: Date | undefined): string {
-    if (date == undefined)
-      return "Some time ago"
+    if (date == undefined) return 'Some time ago';
 
     const currentDate = new Date();
     const diffMilliseconds = currentDate.getTime() - new Date(date).getTime();
@@ -36,11 +35,11 @@ export class RecipesCardSmallComponent {
     const diffDays = Math.floor(diffHours / 24);
 
     if (diffDays > 0) {
-        return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+      return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
     } else if (diffHours > 0) {
-        return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+      return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
     } else {
-        return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+      return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
     }
   }
 }

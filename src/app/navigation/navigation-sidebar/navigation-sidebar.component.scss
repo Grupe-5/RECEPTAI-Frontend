@@ -6,45 +6,44 @@
   color: var(--color-black);
   background-color: var(--color-white);
   font-size: 1.6rem;
-  letter-spacing: .1rem;
-  box-shadow: 0  0 .3rem 0 rgba(0, 0, 0, .2);
+  letter-spacing: 0.1rem;
+  box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.2);
   max-width: 25rem;
-  
-  &__community{
-      padding: 8rem 2rem 2rem 2rem;
+
+  &__community {
+    padding: 8rem 2rem 2rem 2rem;
   }
-  
-  &__links{
+
+  &__links {
     height: 100%;
     display: flex;
     justify-content: start;
     align-items: start;
     flex-direction: column;
     padding-bottom: 1.5rem;
-    padding-left: .5rem;
+    padding-left: 0.5rem;
     padding-right: 0rem;
     border-bottom: 1px solid var(--color-grey-light-3);
-    
-    a{
-      justify-content: left;
-      padding: .8rem 0;
-    }
 
+    a {
+      justify-content: left;
+      padding: 0.8rem 0;
+    }
   }
 
-  &__fooddits{
+  &__fooddits {
     overflow: hidden;
     margin-top: 2rem;
     max-height: 30rem;
-    
-    &-title{
+
+    &-title {
       font-size: 1.7rem;
-      letter-spacing: .2rem;
+      letter-spacing: 0.2rem;
       font-weight: 500;
     }
     a {
-      padding: .7rem 0 .7rem 1rem ;
-      &:hover{
+      padding: 0.7rem 0 0.7rem 1rem;
+      &:hover {
         transition: all 250ms;
         background-color: var(--color-primary);
       }
@@ -62,22 +61,22 @@
   text-decoration: none;
   width: 14rem;
 
-  &:hover{
+  &:hover {
     color: var(--color-primary);
-    img{
+    img {
       filter: var(--color-primary-for-filter);
     }
   }
 
-  img{
+  img {
     transition: all 100ms;
-    padding-right: .8rem;
+    padding-right: 0.8rem;
   }
 }
 
-.active-link{
+.active-link {
   color: var(--color-primary);
-  img{
+  img {
     filter: var(--color-primary-for-filter);
   }
 }

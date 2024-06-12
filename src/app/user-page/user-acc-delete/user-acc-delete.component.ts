@@ -6,11 +6,11 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {UserPageComponent} from '../user-page.component'
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { UserPageComponent } from '../user-page.component';
 
 @Component({
   selector: 'app-user-acc-delete',
@@ -29,9 +29,7 @@ import {UserPageComponent} from '../user-page.component'
   ],
 })
 export class UserAccDeleteComponentModal {
-  constructor(
-    public dialogRef: MatDialogRef<UserPageComponent>,
-  ) {}
+  constructor(public dialogRef: MatDialogRef<UserPageComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();

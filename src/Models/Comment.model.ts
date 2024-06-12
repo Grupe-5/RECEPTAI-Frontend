@@ -1,4 +1,4 @@
-import { VoteType } from "./Vote.model";
+import { VoteType } from './Vote.model';
 
 export class Comment {
   commentId: number;

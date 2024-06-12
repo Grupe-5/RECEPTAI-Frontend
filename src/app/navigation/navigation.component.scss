@@ -1,117 +1,116 @@
-.top-navbar{
-  padding: 0 0 0 .6rem;
+.top-navbar {
+  padding: 0 0 0 0.6rem;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   background-color: var(--color-white);
   font-size: 1.6rem;
-  box-shadow: 0 0 .3rem rgba(0, 0, 0, .2);
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.2);
 
-  &-within{
+  &-within {
     max-width: 150rem;
     margin: auto;
   }
 
-  &__logo{
+  &__logo {
     display: flex;
     height: 100%;
     align-items: center;
-    
-    img{
+
+    img {
       display: inline-block;
       vertical-align: middle;
       height: 4rem;
     }
   }
 
-  &__search{
+  &__search {
     display: flex;
   }
 
-  &__avatar{
-    img{
+  &__avatar {
+    img {
       vertical-align: middle;
       width: 4rem;
       border: var(--color-primary) 2px solid;
       border-radius: 50%;
-      &:hover{
+      &:hover {
         cursor: pointer;
       }
     }
   }
 
-  &__searchbar-wrap{
+  &__searchbar-wrap {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  
-  &__sign-out-link{
+
+  &__sign-out-link {
     color: var(--color-primary-dark);
     align-self: flex-end;
     margin-left: 2rem;
-    padding-bottom: .8rem;
+    padding-bottom: 0.8rem;
     transition: color 0.3s;
     font-size: 1.75rem;
-    
-    &:hover{
+
+    &:hover {
       color: var(--color-primary);
       cursor: pointer;
     }
   }
 
-  &__menu-burger-wrap{
+  &__menu-burger-wrap {
     display: flex;
     justify-content: end;
     align-items: center;
     padding-right: 1rem;
   }
 
-  &__menu-burger{
+  &__menu-burger {
     position: relative;
-      
+
     &,
     &:before,
-    &::after{
+    &::after {
       background-color: var(--color-black);
       width: 2rem;
       height: 2px;
     }
 
     &:before,
-    &::after{
-      content: "";
+    &::after {
+      content: '';
       position: absolute;
       left: 0;
-      transition: all .2s;
+      transition: all 0.2s;
     }
 
-    &::before{
-      top: -.8rem;
+    &::before {
+      top: -0.8rem;
     }
 
-    &::after{
-        top: .8rem;
+    &::after {
+      top: 0.8rem;
     }
   }
 
-  .burger-open{
+  .burger-open {
     background-color: transparent;
 
-    &::before{
+    &::before {
       top: 0;
       transform: rotate(135deg);
     }
-    &::after{
+    &::after {
       top: 0;
       transform: rotate(-135deg);
     }
   }
-  
 }
 
-.btn-wrap{
+.btn-wrap {
   height: 100%;
   display: flex;
   justify-content: end;

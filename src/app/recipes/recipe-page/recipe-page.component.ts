@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
@@ -8,13 +8,12 @@ import { environment } from '../../../Environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Services/auth.service';
 
-
 @Component({
   selector: 'app-recipe-page',
   templateUrl: './recipe-page.component.html',
-  styleUrl: './recipe-page.component.scss'
+  styleUrl: './recipe-page.component.scss',
 })
-export class RecipePageComponent {
+export class RecipePageComponent implements OnInit {
   private server = environment.apiUrl + '/api/image/';
   public voteType = VoteType;
   recipe: Recipe | undefined;
@@ -22,39 +21,39 @@ export class RecipePageComponent {
   instructionsTrimmed: string[] | undefined;
 
   constructor(
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private recipeService: RecipesService, 
+    private route: ActivatedRoute,
+    private router: Router,
+    private recipeService: RecipesService,
     private _location: Location,
-    private authService: AuthService, 
+    private authService: AuthService,
     private toastr: ToastrService
-  ){}
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-
       this.recipeId = Number(params.get('id'));
       this.recipeService.getRecipeById(this.recipeId.toString()).subscribe(
         (data: Recipe) => {
           // Handle successful response
           this.recipe = data;
-          if(this.recipe === undefined){
-            this.router.navigate(['/']); 
-          }
-          else{
+          if (this.recipe === undefined) {
+            this.router.navigate(['/']);
+          } else {
             this.instructionsTrimmed = this.recipe.instructions.split('\n');
-            this.instructionsTrimmed = this.instructionsTrimmed.filter(ing => !(/^\s*$/.test(ing)))
+            this.instructionsTrimmed = this.instructionsTrimmed.filter(
+              ing => !/^\s*$/.test(ing)
+            );
           }
         },
-        (error) => {
+        error => {
           // Handle error
           console.error('Error fetching recipe:', error);
-        })
-      
+        }
+      );
     });
   }
 
-  getBack(){
+  getBack() {
     this._location.back();
   }
 
@@ -67,7 +66,7 @@ export class RecipePageComponent {
         return cnt.toString();
       }
     } else {
-      return "0";
+      return '0';
     }
   }
 
@@ -75,13 +74,13 @@ export class RecipePageComponent {
     if (imgId != undefined) {
       return this.server + imgId;
     } else {
-      return "../../../assets/imgs/recipe-img-dummy.jpg";
+      return '../../../assets/imgs/recipe-img-dummy.jpg';
     }
   }
 
   getHoursOrMinutesFromToday(date: Date | undefined): string {
-    if (date == undefined){
-      return "Some time ago"
+    if (date == undefined) {
+      return 'Some time ago';
     }
 
     const currentDate = new Date();
@@ -113,40 +112,47 @@ export class RecipePageComponent {
     }
 
     if (this.recipe.vote == undefined) {
-      this.recipeService.postRecipeVote(this.recipe.recipeId.toString(), vote).subscribe(o => {
-        this.recipe!.vote = o.voteType;
-        this.recipe!.aggregatedVotes += this.voteTypeToNumber(o.voteType);
-      });
+      this.recipeService
+        .postRecipeVote(this.recipe.recipeId.toString(), vote)
+        .subscribe(o => {
+          this.recipe!.vote = o.voteType;
+          this.recipe!.aggregatedVotes += this.voteTypeToNumber(o.voteType);
+        });
     } else if (this.recipe.vote == vote) {
-      this.recipeService.removeRecipeVote(this.recipe.recipeId.toString()).subscribe(o => {
-        if (o == true && this.recipe!.vote != undefined) {
-          this.recipe!.aggregatedVotes -= this.voteTypeToNumber(this.recipe!.vote);
-          this.recipe!.vote = undefined;
-        }
-      });
+      this.recipeService
+        .removeRecipeVote(this.recipe.recipeId.toString())
+        .subscribe(o => {
+          if (o == true && this.recipe!.vote != undefined) {
+            this.recipe!.aggregatedVotes -= this.voteTypeToNumber(
+              this.recipe!.vote
+            );
+            this.recipe!.vote = undefined;
+          }
+        });
     } else {
-      this.recipeService.updateRecipeVote(this.recipe.recipeId.toString(), vote).subscribe(o => {
-        this.recipe!.vote = o.voteType;
-        this.recipe!.aggregatedVotes += this.voteTypeToNumber(this.recipe!.vote) * 2;
-      });
+      this.recipeService
+        .updateRecipeVote(this.recipe.recipeId.toString(), vote)
+        .subscribe(o => {
+          this.recipe!.vote = o.voteType;
+          this.recipe!.aggregatedVotes +=
+            this.voteTypeToNumber(this.recipe!.vote) * 2;
+        });
     }
   }
 
   doUpvote(): void {
-    if(this.authService.isAuthenticated()){
-        this.createOrUpdateVote(VoteType.Upvote);
-    }
-    else{
-      this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    if (this.authService.isAuthenticated()) {
+      this.createOrUpdateVote(VoteType.Upvote);
+    } else {
+      this.toastr.error('You have to sign-in to vote!', 'Recipe Vote Error');
     }
   }
 
   doDownvote(): void {
-    if(this.authService.isAuthenticated()){
+    if (this.authService.isAuthenticated()) {
       this.createOrUpdateVote(VoteType.Downvote);
-    }
-    else{
-      this.toastr.error("You have to sign-in to vote!", "Recipe Vote Error");
+    } else {
+      this.toastr.error('You have to sign-in to vote!', 'Recipe Vote Error');
     }
   }
 }

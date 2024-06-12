@@ -1,167 +1,164 @@
-@import "../../../Styles/abstract/mixins";
+@import '../../../Styles/abstract/mixins';
 
 .recipe-page {
-    margin-top: 6rem; // Used for topBar  
+  margin-top: 6rem; // Used for topBar
 
-    &__arrow-back{
-        transform: translateY(-2px);
-        height: 2rem;
-        margin-right: 1rem;
-        
-        &:hover{
-            cursor: pointer;
-        }
+  &__arrow-back {
+    transform: translateY(-2px);
+    height: 2rem;
+    margin-right: 1rem;
+
+    &:hover {
+      cursor: pointer;
     }
+  }
 
-    &__subreddit{
-        
-        font-size: 2rem;
-        a {
-            text-decoration: none;
-        }
+  &__subreddit {
+    font-size: 2rem;
+    a {
+      text-decoration: none;
     }
+  }
 
-    &__upvotes-box{
-        font-weight: bold;
-        border-radius: 0 0 .5rem;
-        padding: 0 5px;
-        z-index: 100;
-        text-align: center;
-
-        a{
-            transition: filter .25s ;
-
-            &:hover{
-                cursor: pointer;
-                filter: var(--color-primary-for-filter);
-            }
-        }
-        .active-vote {
-            filter: var(--color-primary-for-filter);
-        }
-
-        img{
-            height: 2rem;
-        }
-        .vote_count{
-            margin: 0;
-        }
-        .down-arrow{
-            transform: rotate(180deg);
-        }
-    }
-
-    &__navigation-row{
-        background-color: red;
-    }
-
-    &__title-box{
-        font-weight: bold;
-        font-size: 2.5rem;
-    }
-    &__info-box{
-        font-size: 1.6rem;
-        text-align: left;
-    }
-    &__info-1__date{
-        margin-left: 1rem;
-    }
-    &__name-box{
-        font-size: 1.6rem;
-    }
-    &__img-box{
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-        padding: 0;
-        width: 100%;
-        padding: 0 0;
-        overflow: hidden;
-
-        &-wrap{
-            max-width: 50rem;
-            margin: auto;
-
-            @include respond(sm){
-                margin: initial;
-            }
-        }
-    }
-    &__img{
-        padding: 1rem;
-        display: block;
-        width: 100%;
-    }
-    &__info{
-        background-color: var(--color-white);
-        border-radius: .5rem;
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-
-        &-wrap{
-            max-width: 50rem;
-            margin: auto;
-            
-            @include respond(sm){
-                margin: initial;
-            }
-        }
-    }
-    &__ingredients{
-        padding-top: 2rem;
-        display: flex;
-        justify-content: center;
-        background-color: var(--color-white);
-        border-radius: .5rem;
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-        
-        p{
-            text-align: center;
-            font-weight: bold;
-        }
-        &-list{
-            display: block;
-        }
-        &-wrap{
-            max-width: 50rem;
-            margin: auto;
-
-            @include respond(sm){
-                margin: initial;
-            }
-        }
-    }
-    &__instructions{
-        background-color: var(--color-white);
-        border-radius: .5rem;
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-
-        p{
-            font-weight: bold;
-            text-align: center;
-        }
-        ol {
-            padding-right: 2rem;
-            hyphens: auto;
-            @include respond(md){
-                padding-right: 0;
-            }
-
-            > li{
-                margin-top: 1rem;
-                &::marker {
-                    font-weight: bold;
-                }
-            }
-        } 
-          
-    }
-
-}
-
-.highlight{
-    color: var(--color-primary);
-}
-
-.highlight-darker{
-    text-decoration: none;
+  &__upvotes-box {
     font-weight: bold;
-    color: var(--color-primary-dark);
+    border-radius: 0 0 0.5rem;
+    padding: 0 5px;
+    z-index: 100;
+    text-align: center;
+
+    a {
+      transition: filter 0.25s;
+
+      &:hover {
+        cursor: pointer;
+        filter: var(--color-primary-for-filter);
+      }
+    }
+    .active-vote {
+      filter: var(--color-primary-for-filter);
+    }
+
+    img {
+      height: 2rem;
+    }
+    .vote_count {
+      margin: 0;
+    }
+    .down-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__navigation-row {
+    background-color: red;
+  }
+
+  &__title-box {
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+  &__info-box {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+  &__info-1__date {
+    margin-left: 1rem;
+  }
+  &__name-box {
+    font-size: 1.6rem;
+  }
+  &__img-box {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    padding: 0;
+    width: 100%;
+    padding: 0 0;
+    overflow: hidden;
+
+    &-wrap {
+      max-width: 50rem;
+      margin: auto;
+
+      @include respond(sm) {
+        margin: initial;
+      }
+    }
+  }
+  &__img {
+    padding: 1rem;
+    display: block;
+    width: 100%;
+  }
+  &__info {
+    background-color: var(--color-white);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
+    &-wrap {
+      max-width: 50rem;
+      margin: auto;
+
+      @include respond(sm) {
+        margin: initial;
+      }
+    }
+  }
+  &__ingredients {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-white);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
+    p {
+      text-align: center;
+      font-weight: bold;
+    }
+    &-list {
+      display: block;
+    }
+    &-wrap {
+      max-width: 50rem;
+      margin: auto;
+
+      @include respond(sm) {
+        margin: initial;
+      }
+    }
+  }
+  &__instructions {
+    background-color: var(--color-white);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
+    p {
+      font-weight: bold;
+      text-align: center;
+    }
+    ol {
+      padding-right: 2rem;
+      hyphens: auto;
+      @include respond(md) {
+        padding-right: 0;
+      }
+
+      > li {
+        margin-top: 1rem;
+        &::marker {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.highlight {
+  color: var(--color-primary);
+}
+
+.highlight-darker {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-primary-dark);
 }

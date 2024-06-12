@@ -1,90 +1,108 @@
 import { Injectable } from '@angular/core';
-import { Subfooddit } from './../Models/Subfooddit.model'
+import { Subfooddit } from './../Models/Subfooddit.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { IUser } from '../Models/User.model';
-import { AuthService } from './auth.service'
-import { IUser_Info } from "../Models/User.model"
+import { AuthService } from './auth.service';
+import { IUser_Info } from '../Models/User.model';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../Environments/environment';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubfoodditService {
-    private server = environment.apiUrl + '/api/subfooddit/';
-    private byUserUrl = 'by_user/';
-    private bySubFoodditIdUrl = 'by_subfooddit/';
-    private addUserUrl = 'add_user?subfoodditId=';
-    private deleteUserUrl = 'remove_user?subfoodditId=';
+  private server = environment.apiUrl + '/api/subfooddit/';
+  private byUserUrl = 'by_user/';
+  private bySubFoodditIdUrl = 'by_subfooddit/';
+  private addUserUrl = 'add_user?subfoodditId=';
+  private deleteUserUrl = 'remove_user?subfoodditId=';
 
-    constructor(private http: HttpClient, private authService: AuthService) { }
-    
-    getSubfooddits(): Observable<Subfooddit[]>{
-        var reqHeader = new HttpHeaders({
-            'accept': '*/*',
-            'Authorization': `Bearer ${this.authService.getToken()}`
-        })
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
-        return this.http.get<Subfooddit[]>(`${this.server}`, { headers: reqHeader });
-    }
+  getSubfooddits(): Observable<Subfooddit[]> {
+    const reqHeader = new HttpHeaders({
+      accept: '*/*',
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
 
-    getUserBySubfooddits(subFoodditId: number): Observable<Subfooddit[]>{
-        var reqHeader = new HttpHeaders({
-            'accept': '*/*',
-            'Authorization': `Bearer ${this.authService.getToken()}`
-        })
+    return this.http.get<Subfooddit[]>(`${this.server}`, {
+      headers: reqHeader,
+    });
+  }
 
-        return this.http.get<Subfooddit[]>(`${this.server}${this.bySubFoodditIdUrl}${subFoodditId}`, { headers: reqHeader });
-    }
- 
-    getSubfoodditsByUserId(): Observable<Subfooddit[]>{
-        var reqHeader = new HttpHeaders({
-            'accept': '*/*',
-            'Authorization': `Bearer ${this.authService.getToken()}`
-        })
+  getUserBySubfooddits(subFoodditId: number): Observable<Subfooddit[]> {
+    const reqHeader = new HttpHeaders({
+      accept: '*/*',
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
 
-        return this.authService.getUserInfo().pipe(
-            switchMap((userInfo: IUser_Info) => {
-                const id = userInfo.id.toString();
-                return this.http.get<Subfooddit[]>(`${this.server}${this.byUserUrl}${id}`, { headers: reqHeader });
-            })
+    return this.http.get<Subfooddit[]>(
+      `${this.server}${this.bySubFoodditIdUrl}${subFoodditId}`,
+      { headers: reqHeader }
+    );
+  }
+
+  getSubfoodditsByUserId(): Observable<Subfooddit[]> {
+    const reqHeader = new HttpHeaders({
+      accept: '*/*',
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
+
+    return this.authService.getUserInfo().pipe(
+      switchMap((userInfo: IUser_Info) => {
+        const id = userInfo.id.toString();
+        return this.http.get<Subfooddit[]>(
+          `${this.server}${this.byUserUrl}${id}`,
+          { headers: reqHeader }
         );
-    }
+      })
+    );
+  }
 
-    
-    postNewSubFoodit(newSubfooddit: Subfooddit): Observable<Subfooddit>{
-        var reqHeader = new HttpHeaders({
-            'accept': '*/*',
-            'Authorization': `Bearer ${this.authService.getToken()}`
-        })
+  postNewSubFoodit(newSubfooddit: Subfooddit): Observable<Subfooddit> {
+    const reqHeader = new HttpHeaders({
+      accept: '*/*',
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
 
-        let newSubfoodditData = {
-            "title": newSubfooddit.title,
-            "description": newSubfooddit.description
-        };
+    const newSubfoodditData = {
+      title: newSubfooddit.title,
+      description: newSubfooddit.description,
+    };
 
-        return this.http.post<Subfooddit>(`${this.server}`, newSubfoodditData, { headers: reqHeader });
-    }
+    return this.http.post<Subfooddit>(`${this.server}`, newSubfoodditData, {
+      headers: reqHeader,
+    });
+  }
 
-    // TODO handle errors 
-    leaveSubFoodit(subFoodditId: number){
-        var reqHeader = new HttpHeaders({
-            'accept': '*/*',
-            'Authorization': `Bearer ${this.authService.getToken()}`
-        })
-        
-        return this.http.delete(`${this.server}${this.deleteUserUrl}${subFoodditId}`, { headers: reqHeader });
-    }
-    
-    // TODO handle errors 
-    joinSubfoodit(subFoodditId: number){
-        var reqHeader = new HttpHeaders({
-            'accept': '*/*',
-            'Authorization': `Bearer ${this.authService.getToken()}`
-        })
+  // TODO handle errors
+  leaveSubFoodit(subFoodditId: number) {
+    const reqHeader = new HttpHeaders({
+      accept: '*/*',
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
 
-        return this.http.post(`${this.server}${this.addUserUrl}${subFoodditId}`, '', { headers: reqHeader });
-    }
+    return this.http.delete(
+      `${this.server}${this.deleteUserUrl}${subFoodditId}`,
+      { headers: reqHeader }
+    );
+  }
+
+  // TODO handle errors
+  joinSubfoodit(subFoodditId: number) {
+    const reqHeader = new HttpHeaders({
+      accept: '*/*',
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
+
+    return this.http.post(
+      `${this.server}${this.addUserUrl}${subFoodditId}`,
+      '',
+      { headers: reqHeader }
+    );
+  }
 }

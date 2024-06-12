@@ -1,50 +1,71 @@
 <div class="row comment p-sm-3 pt-4">
-    <div class="col-2 col-sm-1 comment__upvotes">
-        <div class="comment__upvotes-box">
-            <a (click)="doUpvote()" [ngClass]="{'active-vote': this.comment.vote == this.voteType.Upvote}">
-                <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
-            </a>
-            <p class="vote_count">{{getVoteCount()}}</p>
-            <a (click)="doDownvote()" [ngClass]="{'active-vote': this.comment.vote == this.voteType.Downvote}">
-                <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg">        
-            </a>
-        </div>
+  <div class="col-2 col-sm-1 comment__upvotes">
+    <div class="comment__upvotes-box">
+      <a
+        (click)="doUpvote()"
+        [ngClass]="{
+          'active-vote': this.comment.vote == this.voteType.Upvote,
+        }">
+        <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
+      </a>
+      <p class="vote_count">{{ getVoteCount() }}</p>
+      <a
+        (click)="doDownvote()"
+        [ngClass]="{
+          'active-vote': this.comment.vote == this.voteType.Downvote,
+        }">
+        <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" />
+      </a>
     </div>
-    <div class="col-10 col-sm-11">
-        <div class="row comment__info">
-            <div class="comment__info-wrap">
-                <div>
-                    <span class="comment__info-username">
-                        <a [href]="'user/'+this.comment.userId">{{ this.comment.userName }}</a>
-                    </span>
-                    <span class="comment__info-date">
-                        {{getHoursOrMinutesFromToday()}}
-                    </span>
-                </div>
-                <span (click)="enterEditMode()" [ngClass]="{'active': this.isInEditingMode}"  *ngIf="this.userId == this.comment.userId" class="comment__info-edit">
-                    <img class="comment__info-edit-pencil" src="../../../assets/icons/pencil.svg">
-                </span>
-            </div>
+  </div>
+  <div class="col-10 col-sm-11">
+    <div class="row comment__info">
+      <div class="comment__info-wrap">
+        <div>
+          <span class="comment__info-username">
+            <a [href]="'user/' + this.comment.userId">{{
+              this.comment.userName
+            }}</a>
+          </span>
+          <span class="comment__info-date">
+            {{ getHoursOrMinutesFromToday() }}
+          </span>
         </div>
-
-        <div *ngIf="!isInEditingMode"  class="row comment__text mt-2">
-            {{this.comment.commentText}}
-        </div>
-
-        <div *ngIf="isInEditingMode" class="row comment__input mt-2">
-            <div class="col-12">
-                <input [cdkTrapFocusAutoCapture]="show" [cdkTrapFocus]="show" id="commentText" type="text" [(ngModel)]="this.editComText">
-                <button (click)="updateComment()">Save</button>
-            </div>
-        </div>
-
-        <div class="row comment__reply-box pb-3">
-            <div class="comment__reply mt-3">
-                <a class="comment__reply-link">
-                    <img src="../../../assets/imgs/comment.svg">
-                    <span>Reply</span>
-                </a>
-            </div>
-        </div>
+        <span
+          (click)="enterEditMode()"
+          [ngClass]="{ active: this.isInEditingMode }"
+          *ngIf="this.userId == this.comment.userId"
+          class="comment__info-edit">
+          <img
+            class="comment__info-edit-pencil"
+            src="../../../assets/icons/pencil.svg" />
+        </span>
+      </div>
     </div>
+
+    <div *ngIf="!isInEditingMode" class="row comment__text mt-2">
+      {{ this.comment.commentText }}
+    </div>
+
+    <div *ngIf="isInEditingMode" class="row comment__input mt-2">
+      <div class="col-12">
+        <input
+          [cdkTrapFocusAutoCapture]="show"
+          [cdkTrapFocus]="show"
+          id="commentText"
+          type="text"
+          [(ngModel)]="this.editComText" />
+        <button (click)="updateComment()">Save</button>
+      </div>
+    </div>
+
+    <div class="row comment__reply-box pb-3">
+      <div class="comment__reply mt-3">
+        <a class="comment__reply-link">
+          <img src="../../../assets/imgs/comment.svg" />
+          <span>Reply</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

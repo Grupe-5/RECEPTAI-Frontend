@@ -1,35 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SubfoodditService } from '../../../Services/subfooddit.service'
-import { Subfooddit } from '../../../Models/Subfooddit.model'
+import { SubfoodditService } from '../../../Services/subfooddit.service';
+import { Subfooddit } from '../../../Models/Subfooddit.model';
 @Component({
   selector: 'app-navigation-sidebar',
   templateUrl: './navigation-sidebar.component.html',
-  styleUrl: './navigation-sidebar.component.scss'
+  styleUrl: './navigation-sidebar.component.scss',
 })
-export class NavigationSidebarComponent {
+export class NavigationSidebarComponent implements OnInit {
   usersSubFooddits: Subfooddit[] = [];
   isPageLoaded: boolean = true;
 
-  constructor(private router: Router, private subfoodditService: SubfoodditService) {}
+  constructor(
+    private router: Router,
+    private subfoodditService: SubfoodditService
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.isPageLoaded = false;
 
     this.subfoodditService.getSubfoodditsByUserId().subscribe(
-      (resp: Subfooddit[])=>{
-        console.log(resp)
+      (resp: Subfooddit[]) => {
+        console.log(resp);
         this.usersSubFooddits = resp;
         this.isPageLoaded = true;
       },
       err => {
         this.isPageLoaded = true;
-        console.log(err)
-      },
-    )
+        console.log(err);
+      }
+    );
   }
 
-  // TODO: combine actionRoute function 
+  // TODO: combine actionRoute function
   isActiveHome(): boolean {
     return this.router.url == '/';
   }
@@ -41,9 +44,8 @@ export class NavigationSidebarComponent {
   isActiveCreateSubf(): boolean {
     return this.router.url == '/subf/create';
   }
-  
-  checkIfEmpty(): boolean{
+
+  checkIfEmpty(): boolean {
     return this.usersSubFooddits.length == 0;
   }
-
 }

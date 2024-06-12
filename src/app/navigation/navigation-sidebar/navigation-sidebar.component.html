@@ -1,32 +1,46 @@
 <div class="sticky col-2">
-    <div class="sticky__community">
-        <div class="sticky__links">
-            <a type="submit" [ngClass]="{'active-link': isActiveHome()}" class="button nav-link" href="/">
-                <img src="../../assets/icons/house.svg" alt="Post-Recipe">
-                <span>
-                    Home Page
-                </span> 
-            </a>
-            <a type="submit" [ngClass]="{'active-link': isActiveCreate()}" class="button nav-link" href="/create">
-                <img class="img-write" src="../../assets/icons/pencil-square.svg" alt="Post-Recipe">
-                <span>
-                    New Recipe
-                </span> 
-            </a>
-            <a type="submit" [ngClass]="{'active-link': isActiveCreateSubf()}" class="button nav-link" href="/subf/create">
-                <img class="img-write" src="../../assets/icons/journal-plus.svg" alt="Post-Recipe">
-                <span>
-                    New Subfooddit
-                </span> 
-            </a>
-        </div>
-        <div *ngIf="isPageLoaded"  class="p-1 sticky__fooddits"> 
-            <p class="sticky__fooddits-title">
-              My fooddits:
-            </p> 
-            <a class="dropdown-item" *ngFor="let subF of usersSubFooddits" [href]="'f/'+subF.title">f/{{subF.title}}</a>
-            <p *ngIf="checkIfEmpty()" href="find">You haven't joined any.</p>
-        </div>
-   
+  <div class="sticky__community">
+    <div class="sticky__links">
+      <a
+        type="submit"
+        [ngClass]="{ 'active-link': isActiveHome() }"
+        class="button nav-link"
+        href="/">
+        <img src="../../assets/icons/house.svg" alt="Post-Recipe" />
+        <span> Home Page </span>
+      </a>
+      <a
+        type="submit"
+        [ngClass]="{ 'active-link': isActiveCreate() }"
+        class="button nav-link"
+        href="/create">
+        <img
+          class="img-write"
+          src="../../assets/icons/pencil-square.svg"
+          alt="Post-Recipe" />
+        <span> New Recipe </span>
+      </a>
+      <a
+        type="submit"
+        [ngClass]="{ 'active-link': isActiveCreateSubf() }"
+        class="button nav-link"
+        href="/subf/create">
+        <img
+          class="img-write"
+          src="../../assets/icons/journal-plus.svg"
+          alt="Post-Recipe" />
+        <span> New Subfooddit </span>
+      </a>
     </div>
+    <div *ngIf="isPageLoaded" class="p-1 sticky__fooddits">
+      <p class="sticky__fooddits-title">My fooddits:</p>
+      <a
+        class="dropdown-item"
+        *ngFor="let subF of usersSubFooddits"
+        [href]="'f/' + subF.title"
+        >f/{{ subF.title }}</a
+      >
+      <p *ngIf="checkIfEmpty()" href="find">You haven't joined any.</p>
+    </div>
+  </div>
 </div>

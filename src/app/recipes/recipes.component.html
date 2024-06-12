@@ -1,55 +1,55 @@
 <div *ngIf="isPageLoaded" class="recipes-list-wrap">
-    
-    <h2 *ngIf="ShowTitle" class="heading-secondary mt-6">
-        <span class="recipes-list-wrap__heading">
-            Find something delicious!
-        </span>
-        <div class="recipes-list-wrap__heading-mb-border d-md-none"></div>
-    </h2>
+  <h2 *ngIf="ShowTitle" class="heading-secondary mt-6">
+    <span class="recipes-list-wrap__heading"> Find something delicious! </span>
+    <div class="recipes-list-wrap__heading-mb-border d-md-none"></div>
+  </h2>
 
-    <div *ngIf="recipes.length > 0" class="row justify-content-center">
-
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-8 col-md-3 recipes-list-wrap-sort">
-            <div class="row">
-                <div class="col-12 pl-0 recipes-list-wrap__topSort-sortby">
-                    <p>
-                        Sort by:
-                    </p>
-                    <div class="form-group recipes-list-wrap__topSort-sort ">
-                        <select (change)="selectChange($event)" class="form-select custom-select-lg mb-3 highlight">
-                            <!-- TODO: make this in ngFor and proper selectChange -->
-                            <option class="not-highlight" selected value="Best">Best</option>
-                            <option class="not-highlight" value="Newest">Newest</option>
-                        </select>      
-                    </div>  
-                </div>
-            </div>
+  <div *ngIf="recipes.length > 0" class="row justify-content-center">
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-8 col-md-3 recipes-list-wrap-sort">
+      <div class="row">
+        <div class="col-12 pl-0 recipes-list-wrap__topSort-sortby">
+          <p>Sort by:</p>
+          <div class="form-group recipes-list-wrap__topSort-sort">
+            <select
+              (change)="selectChange($event)"
+              class="form-select custom-select-lg mb-3 highlight">
+              <!-- TODO: make this in ngFor and proper selectChange -->
+              <option class="not-highlight" selected value="Best">Best</option>
+              <option class="not-highlight" value="Newest">Newest</option>
+            </select>
+          </div>
         </div>
-
-        <div class="col-12 col-sm-5 col-md-3 m-2" *ngFor="let recipe of recipes">
-            <app-recipe-card [recipe]="recipe"></app-recipe-card>
-        </div>
+      </div>
     </div>
-    
-    <div *ngIf="recipes.length == 0" class="row justify-content-md-center recipes-list-wrap__empty">
-        <div class="col-12">
-            <img src="../../assets/imgs/sadweb.png" class="recipes-list-wrap__empty-img">
-            <p class="recipes-list-wrap__empty-title">
-                <b> 
-                    Empty!
-                </b>
-            </p>
-            <p class="recipes-list-wrap__empty-create-text">
-                Be the first to create a new Recipe here:
-            </p>
-            <div class="btn-wrap">
-                <button (click)="navigateToCreate()" type="submit" class="button button--yellow">
-                    Create
-                </button>
-            </div>
 
-        </div>
+    <div class="col-12 col-sm-5 col-md-3 m-2" *ngFor="let recipe of recipes">
+      <app-recipe-card [recipe]="recipe"></app-recipe-card>
     </div>
+  </div>
+
+  <div
+    *ngIf="recipes.length == 0"
+    class="row justify-content-md-center recipes-list-wrap__empty">
+    <div class="col-12">
+      <img
+        src="../../assets/imgs/sadweb.png"
+        class="recipes-list-wrap__empty-img" />
+      <p class="recipes-list-wrap__empty-title">
+        <b> Empty! </b>
+      </p>
+      <p class="recipes-list-wrap__empty-create-text">
+        Be the first to create a new Recipe here:
+      </p>
+      <div class="btn-wrap">
+        <button
+          (click)="navigateToCreate()"
+          type="submit"
+          class="button button--yellow">
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

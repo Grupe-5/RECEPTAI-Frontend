@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from '../../../Models/Comment.model';
 import { Vote, VoteType } from '../../../Models/Vote.model';
 import { CommentsService } from '../../../Services/comments.service';
@@ -9,9 +9,9 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrl: './comment.component.scss'
+  styleUrl: './comment.component.scss',
 })
-export class CommentComponent {
+export class CommentComponent implements OnInit {
   @Input() comment: Comment;
   public voteType = VoteType;
   public userId: number = 0;
@@ -20,19 +20,19 @@ export class CommentComponent {
   show: boolean;
 
   constructor(
-    private commentsService: CommentsService, 
-    private authService: AuthService, 
+    private commentsService: CommentsService,
+    private authService: AuthService,
     private toastr: ToastrService
-  ){}
+  ) {}
 
-  ngOnInit(){
-    if(this.authService.isAuthenticated()){
-      this.authService.getUserInfo().subscribe((resp: IUser_Info) =>{
+  ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.authService.getUserInfo().subscribe((resp: IUser_Info) => {
         this.userId = resp.id;
-      })
+      });
     }
   }
-  
+
   // TODO: convert this to PIPE and change other places
   getVoteCount(): string {
     const cnt = this.comment?.aggregatedVotes;
@@ -44,9 +44,8 @@ export class CommentComponent {
   }
 
   getHoursOrMinutesFromToday(): string {
-    var date = new Date(this.comment?.commentDate);
-    if (date == undefined)
-      return "Some time ago"
+    const date = new Date(this.comment?.commentDate);
+    if (date == undefined) return 'Some time ago';
 
     const currentDate = new Date();
     const diffMilliseconds = currentDate.getTime() - date.getTime();
@@ -55,11 +54,11 @@ export class CommentComponent {
     const diffDays = Math.floor(diffHours / 24);
 
     if (diffDays > 0) {
-        return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+      return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
     } else if (diffHours > 0) {
-        return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+      return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
     } else {
-        return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+      return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
     }
   }
 
@@ -73,67 +72,83 @@ export class CommentComponent {
 
   createOrUpdateVote(vote: VoteType): void {
     if (this.comment.vote == undefined) {
-      this.commentsService.postCommentVote(this.comment.commentId.toString(), vote).subscribe(o => {
-        this.comment.vote = o.voteType;
-        this.comment.aggregatedVotes += this.voteTypeToNumber(o.voteType);
-      });
+      this.commentsService
+        .postCommentVote(this.comment.commentId.toString(), vote)
+        .subscribe(o => {
+          this.comment.vote = o.voteType;
+          this.comment.aggregatedVotes += this.voteTypeToNumber(o.voteType);
+        });
     } else if (this.comment.vote == vote) {
-      this.commentsService.removeCommentVote(this.comment.commentId.toString()).subscribe(o => {
-        if (o == true && this.comment.vote != undefined) {
-          this.comment.aggregatedVotes -= this.voteTypeToNumber(this.comment.vote);
-          this.comment.vote = undefined;
-        }
-      });
+      this.commentsService
+        .removeCommentVote(this.comment.commentId.toString())
+        .subscribe(o => {
+          if (o == true && this.comment.vote != undefined) {
+            this.comment.aggregatedVotes -= this.voteTypeToNumber(
+              this.comment.vote
+            );
+            this.comment.vote = undefined;
+          }
+        });
     } else {
-      this.commentsService.updateCommentVote(this.comment.commentId.toString(), vote).subscribe(o => {
-        this.comment.vote = o.voteType;
-        this.comment.aggregatedVotes += this.voteTypeToNumber(this.comment.vote) * 2;
-      });
+      this.commentsService
+        .updateCommentVote(this.comment.commentId.toString(), vote)
+        .subscribe(o => {
+          this.comment.vote = o.voteType;
+          this.comment.aggregatedVotes +=
+            this.voteTypeToNumber(this.comment.vote) * 2;
+        });
     }
   }
 
   doUpvote(): void {
-    if(this.authService.isAuthenticated()){
-        this.createOrUpdateVote(VoteType.Upvote);
-    }
-    else{
-      this.toastr.error("You have to sign-in to vote!", "Comment Vote Error");
+    if (this.authService.isAuthenticated()) {
+      this.createOrUpdateVote(VoteType.Upvote);
+    } else {
+      this.toastr.error('You have to sign-in to vote!', 'Comment Vote Error');
     }
   }
 
   doDownvote(): void {
-    if(this.authService.isAuthenticated()){
+    if (this.authService.isAuthenticated()) {
       this.createOrUpdateVote(VoteType.Downvote);
-    }
-    else{
-      this.toastr.error("You have to sign-in to vote!", "Comment Vote Error");
+    } else {
+      this.toastr.error('You have to sign-in to vote!', 'Comment Vote Error');
     }
   }
 
   enterEditMode(): void {
     this.editComText = this.comment.commentText;
     this.isInEditingMode = !this.isInEditingMode;
-    this.show = !this.show;    
+    this.show = !this.show;
   }
 
-  updateComment(){
-    if(this.editComText !== this.comment.commentText){
-      if(!this.editComText){
-        this.toastr.error("Updated comment can not be empty!", "Comment Error");
-      }else{
-        this.commentsService.updateComment(this.editComText, this.comment.commentId, this.comment.version).subscribe(
-          (updComment: Comment)=>{
-            this.isInEditingMode = !this.isInEditingMode;
-            this.comment = updComment;
-          },
-          error =>{
-            this.toastr.error("Unable to update comment, please try again!", "Comment Error");
-            this.isInEditingMode = !this.isInEditingMode;
-            this.show = !this.show;
-          }
-        )
+  updateComment() {
+    if (this.editComText !== this.comment.commentText) {
+      if (!this.editComText) {
+        this.toastr.error('Updated comment can not be empty!', 'Comment Error');
+      } else {
+        this.commentsService
+          .updateComment(
+            this.editComText,
+            this.comment.commentId,
+            this.comment.version
+          )
+          .subscribe(
+            (updComment: Comment) => {
+              this.isInEditingMode = !this.isInEditingMode;
+              this.comment = updComment;
+            },
+            error => {
+              this.toastr.error(
+                'Unable to update comment, please try again!',
+                'Comment Error'
+              );
+              this.isInEditingMode = !this.isInEditingMode;
+              this.show = !this.show;
+            }
+          );
       }
-    }else{
+    } else {
       this.isInEditingMode = !this.isInEditingMode;
       this.show = !this.show;
     }

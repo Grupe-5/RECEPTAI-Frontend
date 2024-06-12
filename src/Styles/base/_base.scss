@@ -2,36 +2,35 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 html {
-    // So that 1 rem = 10px
+  // So that 1 rem = 10px
+  font-size: 62.5%;
+  @include respond(xs) {
+    font-size: 50%;
+  }
+
+  @include respond(sm) {
+    font-size: 55%;
+  }
+
+  @include respond(lg) {
     font-size: 62.5%;
-    @include respond(xs){
-        font-size: 50%; 
-    }
+  }
 
-    @include respond(sm){
-        font-size: 55%; 
-    }
-
-    @include respond(lg){
-        font-size: 62.5%; 
-    }
-
-    @include respond(xxl){
-        font-size: 75%; 
-    }
-
+  @include respond(xxl) {
+    font-size: 75%;
+  }
 }
 
-body { 
-    background-color: var(--color-grey-light-1) !important;
-    box-sizing: border-box;
+body {
+  background-color: var(--color-grey-light-1) !important;
+  box-sizing: border-box;
 }

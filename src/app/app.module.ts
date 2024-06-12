@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -23,8 +23,8 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { ToastrModule } from 'ngx-toastr';
 import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create-subfooddit.component';
 import { MobileMenuOverlayComponent } from './navigation/mobile-menu-overlay/mobile-menu-overlay.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -58,12 +58,9 @@ import {MatButtonModule} from '@angular/material/button';
     ToastrModule.forRoot({
       preventDuplicates: true,
       positionClass: 'toast-bottom-right',
-
-    })
+    }),
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
+  providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent, RecipePageComponent],
 })
 export class AppModule {}

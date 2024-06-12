@@ -1,178 +1,175 @@
-@import "../../Styles/abstract/mixins";
+@import '../../Styles/abstract/mixins';
 
-.user-page{
-    margin: auto;
-    margin-top: 7rem; // Used for topBar  
-    padding: 0 2.5rem 4rem;
-    background-color: var(--color-white);
-    max-width: 80rem;
-    font-size: 1.6rem;
-    
-    &__user-info {
-        &-header{
-            padding: 4rem 0 2rem;
-        }
-        &-avatar{
-            &-shape{
-                margin: auto;
-                -webkit-shape-outside: circle(50% at 50% 50%);
-                shape-outside: circle(50% at 50% 50%);
-                -webkit-clip-path: circle(50% at 50% 50%);
-                clip-path: circle(50% at 50% 50%);
-                transform: translateZ(0);
-                position: relative;
-                width: 10rem;
-                height: 10rem;
-            }
-            &-img{
-                transform:  scale(1.4);
-                height: 100%;
-                backface-visibility: hidden;
-                transition: all .5s;
-            }
-            &-caption {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, 20%);
-                color: var(--color-white);
-                text-transform: uppercase;
-                font-size: 1.7rem;
-                text-align: center;
-                opacity: 0;
-                transition: all .5s;
-                backface-visibility: hidden;
-            }
-            &:hover{
-                cursor: pointer;
-                
-            }
-            &:hover &-caption {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-            &:hover &-img {
-                transform: scale(1);
-                filter: blur(3px) brightness(80%);
-            }
+.user-page {
+  margin: auto;
+  margin-top: 7rem; // Used for topBar
+  padding: 0 2.5rem 4rem;
+  background-color: var(--color-white);
+  max-width: 80rem;
+  font-size: 1.6rem;
 
-        }
-        &-avatar2{
-            &-shape{
-                margin: auto;
-                width: 10rem;
-                height: 10rem;
-                -webkit-shape-outside: circle(50% at 50% 50%);
-                shape-outside: circle(50% at 50% 50%);
-                -webkit-clip-path: circle(50% at 50% 50%);
-                clip-path: circle(50% at 50% 50%);
-                position: relative;
-            }
-            &-img{
-                height: 100%;
-                transform:  scale(1.4);
-                backface-visibility: hidden;
-                transition: all .5s;
-            }
-            &-caption {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, 20%);
-                color: var(--color-white);
-                text-transform: uppercase;
-                font-size: 1.7rem;
-                text-align: center;
-                opacity: 0;
-                transition: all .5s;
-                backface-visibility: hidden;
-            }
-        }
-
-        &-info-1{
-            margin-left: .5rem;
-            &__title{
-                font-size: 2rem;
-                font-weight: 500;
-            }
-            &__date{
-                font-weight: bold;
-            }
-            &__karma{
-                font-weight: bold;
-            }
-        }
+  &__user-info {
+    &-header {
+      padding: 4rem 0 2rem;
     }
-
-    &__sign-out-wrap{
+    &-avatar {
+      &-shape {
+        margin: auto;
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        transform: translateZ(0);
+        position: relative;
+        width: 10rem;
+        height: 10rem;
+      }
+      &-img {
+        transform: scale(1.4);
+        height: 100%;
+        backface-visibility: hidden;
+        transition: all 0.5s;
+      }
+      &-caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: var(--color-white);
+        text-transform: uppercase;
+        font-size: 1.7rem;
         text-align: center;
-        text-decoration: underline;
-        color: var(--color-primary-dark);
-        transition: all .25s;
-        padding: 0;
-
-        &:hover{
-            cursor: pointer;
-            color: var(--color-primary);
-        }
-
-        p{
-            padding: 0;
-        }
-
+        opacity: 0;
+        transition: all 0.5s;
+        backface-visibility: hidden;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover &-caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      &:hover &-img {
+        transform: scale(1);
+        filter: blur(3px) brightness(80%);
+      }
+    }
+    &-avatar2 {
+      &-shape {
+        margin: auto;
+        width: 10rem;
+        height: 10rem;
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        position: relative;
+      }
+      &-img {
+        height: 100%;
+        transform: scale(1.4);
+        backface-visibility: hidden;
+        transition: all 0.5s;
+      }
+      &-caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: var(--color-white);
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all 0.5s;
+        backface-visibility: hidden;
+      }
     }
 
-    &__user-activities{
-        padding-top: 5rem;
-        &-header{
-            padding-bottom: 2rem;
-        }
-        &-cards-wrap{
-            padding-bottom: 2rem;
-        
-        &::-webkit-scrollbar {
-            width: 12px;               /* width of the entire scrollbar */
-          }
-          
-          &::-webkit-scrollbar-track {
-            background-color: transparent;
-            border: 1.5px solid var(--color-grey-light-4);
-            border-radius: 8px;
-          }
-          
-          &::-webkit-scrollbar-thumb {
-            background-color: transparent;
-            border: 2px solid var(--color-primary);
-            border-radius: 8px;
-
-
-          }
-        }
-        &-cards{
-            max-width: 20rem;
-        }
-        &-emptyRecipes{
-            color: var(--color-grey);
-        }
+    &-info-1 {
+      margin-left: 0.5rem;
+      &__title {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      &__date {
+        font-weight: bold;
+      }
+      &__karma {
+        font-weight: bold;
+      }
     }
-    &__manage-account{
-        padding-top: 5rem;
-        &-header{
-            padding-bottom: 2.5rem;
-        }
+  }
+
+  &__sign-out-wrap {
+    text-align: center;
+    text-decoration: underline;
+    color: var(--color-primary-dark);
+    transition: all 0.25s;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--color-primary);
     }
+
+    p {
+      padding: 0;
+    }
+  }
+
+  &__user-activities {
+    padding-top: 5rem;
+    &-header {
+      padding-bottom: 2rem;
+    }
+    &-cards-wrap {
+      padding-bottom: 2rem;
+
+      &::-webkit-scrollbar {
+        width: 12px; /* width of the entire scrollbar */
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+        border: 1.5px solid var(--color-grey-light-4);
+        border-radius: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border: 2px solid var(--color-primary);
+        border-radius: 8px;
+      }
+    }
+    &-cards {
+      max-width: 20rem;
+    }
+    &-emptyRecipes {
+      color: var(--color-grey);
+    }
+  }
+  &__manage-account {
+    padding-top: 5rem;
+    &-header {
+      padding-bottom: 2.5rem;
+    }
+  }
 }
 
-.half-a-border-on-top{
-    border-top: 1px solid;
-    border-image-source: linear-gradient(to right, var(--color-primary) 70%, transparent 70%);
-    border-image-slice: 0 0 1 0; 
-    border-image-width: 0 0 2px 0; 
-    border-image-outset: 0 0 8px 0; 
-    border-image-repeat: stretch; 
-
+.half-a-border-on-top {
+  border-top: 1px solid;
+  border-image-source: linear-gradient(
+    to right,
+    var(--color-primary) 70%,
+    transparent 70%
+  );
+  border-image-slice: 0 0 1 0;
+  border-image-width: 0 0 2px 0;
+  border-image-outset: 0 0 8px 0;
+  border-image-repeat: stretch;
 }
-.invsible{
-    display: none;
+.invsible {
+  display: none;
 }
-

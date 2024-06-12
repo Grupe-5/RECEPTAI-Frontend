@@ -1,23 +1,26 @@
 // Overriding default styles
-label{
-    font-size: 2rem !important;
-    padding-bottom: 10px !important;
+label {
+  font-size: 2rem !important;
+  padding-bottom: 10px !important;
 }
 
-.input-text{
-    padding: 1rem !important;
+.input-text {
+  padding: 1rem !important;
 }
 
-textarea{
-    padding: 1.3rem !important;
+textarea {
+  padding: 1.3rem !important;
 }
 
-input, textarea{
-    font-size: 1.6rem !important;
+input,
+textarea {
+  font-size: 1.6rem !important;
 
-    &:focus{
-        border-color: transparentize(#FDBD1F, .9) !important;
-        box-shadow: 0 1px 1px transparentize(#FDBD1F, .8)  inset, 0 0 8px transparentize(#FDBD1F, .7) !important;
-        outline: 0 none !important;
-    }
+  &:focus {
+    border-color: transparentize(#fdbd1f, 0.9) !important;
+    box-shadow:
+      0 1px 1px transparentize(#fdbd1f, 0.8) inset,
+      0 0 8px transparentize(#fdbd1f, 0.7) !important;
+    outline: 0 none !important;
+  }
 }

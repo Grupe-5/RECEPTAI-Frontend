@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 [Our ASP.NET API server](https://github.com/Grupe-5/RECEPTAI-Backend)
 
-Edit `src\environments\environment.ts` - change url to local server. 
+Edit `src\environments\environment.ts` - change url to local server.
 
 ## Development server
 
@@ -17,7 +17,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Deploying the application
+
 Edit `src\environments\environment.prod.ts` - change url to a server that will host the back-end.
 
 Build with `ng build --configuration=production`
-

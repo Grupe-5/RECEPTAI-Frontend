@@ -1,23 +1,27 @@
-
 <div class="top-navbar__search">
-    <div class="top-navbar__search-input-wrap" cdkOverlayOrigin #overlayPosition [ngClass]="{'opened mat-elevation-z2': overlayOpen() }">
-        <button mat-icon-button (click)="search(searchInput.value)">
-            <mat-icon class="top-navbar__search-icon">search</mat-icon>
-        </button>
-        <input 
-            #searchInput type="text"
-            [value]="searchTerm()" 
-            placeholder="Search for subfooddits..." 
-            (click)="overlayOpen.set(true)"
-            (input)="onSearchChange(searchInput.value)"
-            (keydown.ENTER)="search(searchInput.value)"/>
-    </div>
-    <ng-template cdkConnectedOverlay 
-        [cdkConnectedOverlayOrigin]="overlayPosition" 
-        [cdkConnectedOverlayOpen]="overlayOpen()"
-        (overlayOutsideClick)="outsideClick()"
-        class="top-navbar__overlay-wrap">
-
-        <app-search-overlay class="top-navbar__overlay-wrap"></app-search-overlay>
-    </ng-template>
+  <div
+    class="top-navbar__search-input-wrap"
+    cdkOverlayOrigin
+    #overlayPosition
+    [ngClass]="{ 'opened mat-elevation-z2': overlayOpen() }">
+    <button mat-icon-button (click)="search(searchInput.value)">
+      <mat-icon class="top-navbar__search-icon">search</mat-icon>
+    </button>
+    <input
+      #searchInput
+      type="text"
+      [value]="searchTerm()"
+      placeholder="Search for subfooddits..."
+      (click)="overlayOpen.set(true)"
+      (input)="onSearchChange(searchInput.value)"
+      (keydown.ENTER)="search(searchInput.value)" />
+  </div>
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="overlayPosition"
+    [cdkConnectedOverlayOpen]="overlayOpen()"
+    (overlayOutsideClick)="outsideClick()"
+    class="top-navbar__overlay-wrap">
+    <app-search-overlay class="top-navbar__overlay-wrap"></app-search-overlay>
+  </ng-template>
 </div>

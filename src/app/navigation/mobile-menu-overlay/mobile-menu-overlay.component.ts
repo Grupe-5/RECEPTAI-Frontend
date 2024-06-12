@@ -1,15 +1,15 @@
-import { Component, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-menu-overlay',
   templateUrl: './mobile-menu-overlay.component.html',
-  styleUrl: './mobile-menu-overlay.component.scss'
+  styleUrl: './mobile-menu-overlay.component.scss',
 })
 export class MobileMenuOverlayComponent {
   private _isMenuOpen = false;
 
-  @Input() 
+  @Input()
   get isMenuOpen(): boolean {
     return this._isMenuOpen;
   }
@@ -23,17 +23,14 @@ export class MobileMenuOverlayComponent {
 
   @Output() isMenuOpenChange: EventEmitter<boolean> = new EventEmitter();
 
-
   constructor(private router: Router) {}
 
-  isActiveRoute(route: string): boolean{
-
+  isActiveRoute(route: string): boolean {
     return this.router.url == route;
   }
 
-  goToUserPage(){
+  goToUserPage() {
     this.router.navigate(['user', 'me']);
     this.isMenuOpen = false;
   }
-  
 }

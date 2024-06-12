@@ -1,163 +1,158 @@
-@import "../../../Styles/abstract/mixins";
+@import '../../../Styles/abstract/mixins';
 
-.comment{
-    border-bottom: 1px solid var(--color-grey-light-3);
-    font-size: 1.6rem;
+.comment {
+  border-bottom: 1px solid var(--color-grey-light-3);
+  font-size: 1.6rem;
 
-    &__upvotes-box{
-        border-radius: 0 0 .5rem;
-        padding: 0 5px;
-        z-index: 100;
-        
-        position: absolute;
-        text-align: center;
-        a{
-            transition: filter .2s;
+  &__upvotes-box {
+    border-radius: 0 0 0.5rem;
+    padding: 0 5px;
+    z-index: 100;
 
-            &:hover{
-                cursor: pointer;
-                filter: var(--color-primary-for-filter);
-            }
-        }
-        .active-vote {
-            filter: var(--color-primary-for-filter);
-        }
-        img{
-            height: 2rem;
-        }
-        .vote_count{
-            font-weight: bold;
-            margin: 0;
-        }
-        .down-arrow{
-            transform: rotate(180deg);
-        }
+    position: absolute;
+    text-align: center;
+    a {
+      transition: filter 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        filter: var(--color-primary-for-filter);
+      }
     }
-    &__info{
-        > div{
-            padding: 0;
-        }
-        &-wrap{
-            display: flex;
-            justify-content: space-between;
-            @include respond(sm){
-                justify-content: start;
-            }
-
-        }
-        &-username{
-            font-weight: bold;
-            padding-right: 1.5rem;
-            a{
-                text-decoration: none;
-                color: var(--color-primary-dark);
-                transition: all .25s;
-                
-                &:hover{
-                    color: var(--color-primary);
-                }
-            }
-        }
-        &-edit{
-            transform: translateZ(-10px);
-            transition: all .2s;
-            padding-right: 2rem;
-            height: 2rem;
-            
-            @include respond(sm){
-                padding-right: 0;
-                padding-left: 2rem;
-            }
-
-
-            &:hover{
-                cursor: pointer;
-                filter: var(--color-primary-for-filter);
-            }
-
-            img{
-                height: 2.5rem;
-            }
-        }
+    .active-vote {
+      filter: var(--color-primary-for-filter);
     }
-    &__text{
-        hyphens: auto;
-        word-break: break-all;
-
+    img {
+      height: 2rem;
     }
-    &__input{
-        div{
-            padding: 0;
-        }
-        input{
-            padding: .6rem 1rem;
-            margin: 1rem 0;
-            background-color: transparent;
-            border: none;
-            border-bottom: solid 2px var(--color-grey);
-            width: 75%;
-
-            @include respond(sm){
-                width: 90%;
-            }
-
-            &:focus{
-                box-shadow: none !important;
-                border-bottom: solid 2px var(--color-primary) !important;
-            }
-            
-        }
-        button{
-            padding: .6rem 1rem;
-            border-radius: 5rem;
-            transition: 0.3s ease-out;
-            border: var(--color-primary) 2px solid;
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            width: 25%;
-
-            @include respond(sm){
-                width: 10%;
-            }
-            
-            &:hover{
-                color: var(--color-primary);
-                background-color: transparent;
-            }
-        }
+    .vote_count {
+      font-weight: bold;
+      margin: 0;
     }
-    &__reply{
-        padding: 0;
-        &-link{
-            display: inline-block;
-            text-decoration: none;
-            height: 3rem;
-            color: var(--color-grey-light-4);
-
-            img{
-                filter: var(--color-grey-light-4-for-filter);
-            }
-
-            span{
-                text-decoration: underline;
-                vertical-align: middle;
-                padding-left: 5px;
-            }
-
-            &:hover{
-                cursor: not-allowed;
-            }
-        }
+    .down-arrow {
+      transform: rotate(180deg);
     }
-
-    &__reply-box{
-
-        img{
-            height: 3rem;
-        }
+  }
+  &__info {
+    > div {
+      padding: 0;
     }
+    &-wrap {
+      display: flex;
+      justify-content: space-between;
+      @include respond(sm) {
+        justify-content: start;
+      }
+    }
+    &-username {
+      font-weight: bold;
+      padding-right: 1.5rem;
+      a {
+        text-decoration: none;
+        color: var(--color-primary-dark);
+        transition: all 0.25s;
+
+        &:hover {
+          color: var(--color-primary);
+        }
+      }
+    }
+    &-edit {
+      transform: translateZ(-10px);
+      transition: all 0.2s;
+      padding-right: 2rem;
+      height: 2rem;
+
+      @include respond(sm) {
+        padding-right: 0;
+        padding-left: 2rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        filter: var(--color-primary-for-filter);
+      }
+
+      img {
+        height: 2.5rem;
+      }
+    }
+  }
+  &__text {
+    hyphens: auto;
+    word-break: break-all;
+  }
+  &__input {
+    div {
+      padding: 0;
+    }
+    input {
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background-color: transparent;
+      border: none;
+      border-bottom: solid 2px var(--color-grey);
+      width: 75%;
+
+      @include respond(sm) {
+        width: 90%;
+      }
+
+      &:focus {
+        box-shadow: none !important;
+        border-bottom: solid 2px var(--color-primary) !important;
+      }
+    }
+    button {
+      padding: 0.6rem 1rem;
+      border-radius: 5rem;
+      transition: 0.3s ease-out;
+      border: var(--color-primary) 2px solid;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      width: 25%;
+
+      @include respond(sm) {
+        width: 10%;
+      }
+
+      &:hover {
+        color: var(--color-primary);
+        background-color: transparent;
+      }
+    }
+  }
+  &__reply {
+    padding: 0;
+    &-link {
+      display: inline-block;
+      text-decoration: none;
+      height: 3rem;
+      color: var(--color-grey-light-4);
+
+      img {
+        filter: var(--color-grey-light-4-for-filter);
+      }
+
+      span {
+        text-decoration: underline;
+        vertical-align: middle;
+        padding-left: 5px;
+      }
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__reply-box {
+    img {
+      height: 3rem;
+    }
+  }
 }
 
-.active{
-    filter: var(--color-primary-for-filter);
+.active {
+  filter: var(--color-primary-for-filter);
 }

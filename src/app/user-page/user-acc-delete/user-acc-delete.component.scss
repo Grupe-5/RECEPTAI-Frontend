@@ -1,13 +1,14 @@
-mat-dialog-content{
-    font-weight: bold;
-    color: var(--color-black) !important;
+mat-dialog-content {
+  font-weight: bold;
+  color: var(--color-black) !important;
 }
 
-.permanent-red, .btn-delete{
-    font-weight: bold;
-    color: var(--color-error-red) !important;
+.permanent-red,
+.btn-delete {
+  font-weight: bold;
+  color: var(--color-error-red) !important;
 }
 
-mat-dialog-actions{
-   justify-content: space-between;
+mat-dialog-actions {
+  justify-content: space-between;
 }

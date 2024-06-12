@@ -1,9 +1,16 @@
+@import "../../Styles/abstract/mixins";
+
 .subfooddit-wrap{
     background-color: var(--color-white);
     display: flex;
-    justify-content: space-between;
     padding: 5rem 5rem 2rem;
     margin-top: 4rem;
+    flex-direction: column;
+    
+    @include respond(sm){
+        flex-direction: row;
+        justify-content: space-between;
+    }
     
     &__header{
        
@@ -11,7 +18,10 @@
             font-weight: bold;
             font-size: 3rem;
             letter-spacing: .1rem;
-            text-align: left;
+            text-align: center;
+            @include respond(sm){
+                text-align: left;
+            }
         }
         &-title-span{
             padding: 0 1.5rem 1.5rem;
@@ -24,6 +34,13 @@
         align-items: center;
         font-weight: bold;
         color: var(--color-grey);
+        justify-content: center;
+        padding-top: 3rem;
+        
+        @include respond(sm){
+            padding-top: 0;
+        }
+
         &-count{
             padding-left: 2rem;
 
@@ -34,10 +51,6 @@
     }
 }
 
-.not-logged-in{
-    width: 100%;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-}
 
 .btn-wrap{
     display: flex;
@@ -78,7 +91,7 @@
     
     .text-join{
         display: inline-block;
-        padding-top: .5rem;
+        padding-top: .3rem;
     }
     
     .big_plus{

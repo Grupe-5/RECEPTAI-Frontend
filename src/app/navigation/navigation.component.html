@@ -44,9 +44,6 @@
                     <a class="top-navbar__avatar d-none d-lg-block" *ngIf="shouldShowUserIcon()" [matMenuTriggerFor]="menu">
                         <img [src]="profileImgUrl" alt="user-avatar">
                     </a>
-                    <a class="top-navbar__sign-out-link" (click)="logOut()" *ngIf="!shouldShowUserIcon()">
-                        Sign-out
-                    </a>
                     <div class="d-lg-none ms-5 top-navbar__menu-burger-wrap">
                         <div 
                             (click)="toggleMobileMenu()" 

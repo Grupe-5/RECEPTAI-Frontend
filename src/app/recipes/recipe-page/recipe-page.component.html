@@ -1,6 +1,6 @@
-<div class="recipe-page ps-5 pe-5 pb-5">
-    <div class="row p-4 pb-5">
-        <div class="recipe-page__navigation-row row">
+<div class="recipe-page p-3 pt-0 p-md-5 pt-md-0">
+    <div class="row pt-3 pb-5 p-sm-2 p-md-4 pb-md-5">
+        <div class="row">
             <div class="col-12">
                 <img src="../../../assets/imgs/arrow-back.svg" (click)="getBack()" class="recipe-page__arrow-back">
                 <span class="recipe-page__subreddit">
@@ -11,10 +11,10 @@
     </div>
     
     <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
             <div class="row justify-content-between">
-                <div class="col-6 row">
-                    <div class="col-2 recipe-page__upvotes-box">
+                <div class="col-12 col-md-6 row">
+                    <div class="col-2 col-sm-1 col-md-2 recipe-page__upvotes-box">
                         <a (click)="doUpvote()" [ngClass]="{'active-vote': this.recipe?.vote == this.voteType.Upvote}">
                             <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
                         </a>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="col-6">
+                <div class="col-md-6 mt-5 mb-3 mt-md-0 mb-md-0 recipe-page__info-wrap">
                     <div class="recipe-page__info p-4 mb-4">
                         <p class="recipe-page__info-difficulty">
                             <b>Cooking Difficulty:</b> {{ recipe?.cookingDifficulty }}
@@ -56,12 +56,12 @@
             </div>
         
             <div class="row pt-2">
-                <div class="col-6 ps-4">
+                <div class="col-md-6 mt-0 mb-5 mt-md-0 mb-md-0 ps-md-4 recipe-page__img-box-wrap">
                     <div class="recipe-page__img-box">
                         <img [src]="normalImgOrPlaceholder(recipe?.imgId)" alt="Recipe img" class="recipe-page__img">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6 recipe-page__ingredients-wrap">
                     <div class="recipe-page__ingredients">
                         <div>
                             <p>Ingredients</p>
@@ -73,8 +73,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="row">
+        <div class="col-md-4">
+            <div class="row p-2 pt-5 p-md-0">
                 <div class="recipe-page__instructions ps-5 pe-2 pt-4 pb-4">
                     <p>Instructions</p>
                     <ol class="recipe-page__instructions-list ">

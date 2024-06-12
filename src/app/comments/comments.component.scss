@@ -3,6 +3,11 @@
         padding: 0 4rem 1.5rem;
         border-bottom: solid 2px var(--color-primary);
     }
+
+    .heading-secondary{
+        padding-bottom: 3rem;
+    }
+
     &__comments-section{
         background-color: var(--color-white);
         padding: 3rem 1.6rem;
@@ -25,9 +30,11 @@
             }
         }
         &-sortby{
+            font-size: 2rem;
+            vertical-align: bottom;
             text-align: right;
             font-weight: bold;
-            padding: .375rem 2.25rem .375rem .75rem;
+            padding: .375rem 2.5rem .375rem .75rem;
         }
         &-sort{
             text-align: right;

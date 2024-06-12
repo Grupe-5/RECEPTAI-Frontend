@@ -1,5 +1,5 @@
-<div class="row comment p-3 pt-4">
-    <div class="col-1 comment__upvotes">
+<div class="row comment p-sm-3 pt-4">
+    <div class="col-2 col-sm-1 comment__upvotes">
         <div class="comment__upvotes-box">
             <a (click)="doUpvote()" [ngClass]="{'active-vote': this.comment.vote == this.voteType.Upvote}">
                 <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg">
@@ -10,7 +10,7 @@
             </a>
         </div>
     </div>
-    <div class="col-11">
+    <div class="col-10 col-sm-11">
         <div class="row comment__info">
             <div class="comment__info-wrap">
                 <div>
@@ -22,7 +22,7 @@
                     </span>
                 </div>
                 <span (click)="enterEditMode()" [ngClass]="{'active': this.isInEditingMode}"  *ngIf="this.userId == this.comment.userId" class="comment__info-edit">
-                    <img class="up-arrow" src="../../../assets/icons/pencil.svg">
+                    <img class="comment__info-edit-pencil" src="../../../assets/icons/pencil.svg">
                 </span>
             </div>
         </div>

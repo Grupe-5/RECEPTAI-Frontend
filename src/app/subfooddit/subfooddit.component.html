@@ -1,5 +1,5 @@
 
-<div class="subfooddit-wrap subfooddit-wrap-loggedOut">
+<div class="subfooddit-wrap">
     <div class="subfooddit-wrap__header">
         <h2 class="subfooddit-wrap__header-title">
             <span class="subfooddit-wrap__header-title-span">
@@ -10,7 +10,7 @@
 
     <div *ngIf="isPageLoaded" class="subfooddit-wrap__info">
         <!-- TODO: add more info/rules of subfooddit -->
-        <div class="subfooddit-wrap__info-join btn-wrap">
+        <div  class="subfooddit-wrap__info-join btn-wrap">
             <button type="submit" (click)="joinSubFooddit()" class="button button--grey">
                 <span class="text-join" *ngIf="showJoin()">
                     <span class="big_plus">+</span> Join
@@ -20,24 +20,6 @@
                 </span>
             </button>
         </div>
-        <div class="subfooddit-wrap__info-count">
-            <div>
-                <p>{{ getUsersCountText() }}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div *ngIf="!isLoggedIn" class="subfooddit-wrap not-logged-in">
-    <div class="subfooddit-wrap__header">
-        <h2 class="subfooddit-wrap__header-title">
-            <span class="subfooddit-wrap__header-title-span">
-                f/{{ subFooddit.title }}
-            </span>
-        </h2>
-    </div>
-
-    <div class="subfooddit-wrap__info">
         <div class="subfooddit-wrap__info-count">
             <div>
                 <p>{{ getUsersCountText() }}</p>

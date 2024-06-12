@@ -1,9 +1,6 @@
 <app-navigation></app-navigation>
 
-<div class="container" *ngIf="(!isLoggedIn() || isRouteRecipePage()) && !isRouteSubfoodditPage()">
-    <router-outlet></router-outlet> 
-</div>
-<div *ngIf="!isLoggedIn() && isRouteSubfoodditPage()">
+<div class="container" *ngIf="!isLoggedIn() || isRouteRecipePage()">
     <router-outlet></router-outlet> 
 </div>
 

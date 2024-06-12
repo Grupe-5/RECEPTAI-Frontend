@@ -150,5 +150,10 @@ export class UserPageComponent {
       }
     });
   }
+
+  signOut(){
+    this.authService.LogOut();
+    this.router.navigate(['/']);
+  }
   
 }

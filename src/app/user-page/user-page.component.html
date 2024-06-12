@@ -5,8 +5,8 @@
                 User information
             </span>
         </h2>
-        <div class="row">
-            <div *ngIf="!isUsersPage" class="col-2 user-page__user-info-avatar2">
+        <div class="row justify-content-between justify-content-sm-start">
+            <div *ngIf="!isUsersPage" class="col-3 col-sm-2 user-page__user-info-avatar2">
                 <div class="user-page__user-info-avatar2">
                     <figure class="user-page__user-info-avatar2-shape">
                         <img [src]="normalImgOrPlaceholder(userInfo.imageId)" alt="Person on a tour" class="user-page__user-info-avatar2-img">
@@ -17,7 +17,7 @@
             <!-- This is hidden -->
             <input type="file" class="invsible" (change)="changeProfilePicture($event)" #fileUpload>
 
-            <div *ngIf="isUsersPage && isPageLoaded" class="col-2 user-page__user-info-avatar">
+            <div *ngIf="isUsersPage && isPageLoaded" class="col-3 col-sm-2 user-page__user-info-avatar">
                 <div class="user-page__user-info-avatar">
                     <figure class="user-page__user-info-avatar-shape" (click)="fileUpload.click()">
                         <img [src]="normalImgOrPlaceholder(userInfo.imageId)" alt="Person on a tour" class="user-page__user-info-avatar-img">
@@ -25,7 +25,7 @@
                     </figure>
                 </div>
             </div>
-            <div class="col-10">
+            <div class="col-8 ms-4 ms-sm-0 col-sm-10">
                 <div class="user-page__user-info-info-1">
                     <p class="user-page__user-info-info-1__title">{{userInfo.username}}<p>
                     <p class="user-page__user-info-info-1__date-wrap">
@@ -39,9 +39,15 @@
                         <span class="user-page__user-info-info-1__karma">
                             Karma score:
                         </span>
-                            {{ userInfo.karmaScore}}
+                            {{ userInfo.karmaScore }}
                     </p>
                 </div>
+            </div>
+
+            <div *ngIf="isUsersPage" class="col-3 col-sm-2 user-page__sign-out-wrap" >
+                <p class="user-page__sign-out" (click)="signOut()">
+                    Sign-out
+                </p>
             </div>
             
         </div>
@@ -56,7 +62,7 @@
 
         <div class="container">
             <div *ngIf="userRecipes.length > 0" class="user-page__user-activities-cards-wrap row flex-nowrap overflow-auto">
-                <div *ngFor="let recipe of userRecipes" class="col-4">
+                <div *ngFor="let recipe of userRecipes" class="col-6 col-md-4">
                     <app-recipes-card-small [recipe]="recipe" ></app-recipes-card-small>
                 </div>
             </div>

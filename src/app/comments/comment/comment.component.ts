@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './comment.component.scss',
 })
 export class CommentComponent implements OnInit {
-  @Input() comment: Comment;
+  @Input({required: true}) comment: Comment;
   public voteType = VoteType;
   public userId: number = 0;
   public isInEditingMode: boolean = false;

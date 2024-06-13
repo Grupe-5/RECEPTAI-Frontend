@@ -12,7 +12,7 @@ import { environment } from '../../../Environments/environment';
   imports: [CommonModule, RouterLink],
 })
 export class RecipesCardSmallComponent {
-  @Input() recipe?: Recipe;
+  @Input({required: true}) recipe: Recipe;
 
   private server = '';
 

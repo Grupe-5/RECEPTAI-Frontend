@@ -13,7 +13,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
   @Input() ShowTitle: boolean = true;
-  @Input() SubFoodditName: string;
+  @Input({required: true}) SubFoodditName: string;
   isPageLoaded: boolean = false;
 
   constructor(

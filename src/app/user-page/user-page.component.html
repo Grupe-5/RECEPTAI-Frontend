@@ -27,10 +27,10 @@
       <div
         *ngIf="isUsersPage && isPageLoaded"
         class="col-3 col-sm-2 user-page__user-info-avatar">
-        <div class="user-page__user-info-avatar">
+        <div class="user-page__user-info-avatar" 
+          (click)="fileUpload.click()">
           <figure
-            class="user-page__user-info-avatar-shape"
-            (click)="fileUpload.click()">
+            class="user-page__user-info-avatar-shape">
             <img
               [src]="normalImgOrPlaceholder(userInfo.imageId)"
               alt="Person on a tour"
@@ -81,7 +81,7 @@
         </div>
       </div>
       <div
-        *ngIf="userRecipes.length == 0"
+        *ngIf="userRecipes.length === 0"
         class="user-page__user-activities-emptyRecipes">
         <span *ngIf="!isUsersPage">User has</span
         ><span *ngIf="isUsersPage">You have</span> not posted anything yet...

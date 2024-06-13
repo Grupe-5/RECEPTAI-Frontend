@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from '../../../Models/Comment.model';
-import { Vote, VoteType } from '../../../Models/Vote.model';
+import { VoteType } from '../../../Models/Vote.model';
 import { CommentsService } from '../../../Services/comments.service';
 import { AuthService } from '../../../Services/auth.service';
 import { IUser_Info } from '../../../Models/User.model';
@@ -138,7 +138,7 @@ export class CommentComponent implements OnInit {
               this.isInEditingMode = !this.isInEditingMode;
               this.comment = updComment;
             },
-            error => {
+            () => {
               this.toastr.error(
                 'Unable to update comment, please try again!',
                 'Comment Error'

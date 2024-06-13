@@ -28,7 +28,7 @@ import { UserPageComponent } from '../user-page.component';
     MatDialogClose,
   ],
 })
-export class UserAccDeleteComponentModal {
+export class UserAccDeleteComponentModalComponent {
   constructor(public dialogRef: MatDialogRef<UserPageComponent>) {}
 
   onNoClick(): void {

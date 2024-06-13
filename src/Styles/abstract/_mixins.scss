@@ -9,38 +9,38 @@
 // Bootstrap mixin
 @mixin respond($breakpoint) {
   @if $breakpoint == xs {
-    @media (max-width: 35.9375em) {
+    @media (max-width: 35.9375em) { // <576px
       @content;
-    } // <576px
+    } 
   }
 
   @if $breakpoint == sm {
-    @media (min-width: 36em) {
+    @media (min-width: 36em) { // ≥576px
       @content;
-    } // ≥576px
+    } 
   }
 
   @if $breakpoint == md {
-    @media (min-width: 48em) {
+    @media (min-width: 48em) { // ≥768px
       @content;
-    } // ≥768px
+    } 
   }
 
   @if $breakpoint == lg {
-    @media (min-width: 62em) {
+    @media (min-width: 62em) { // ≥992px
       @content;
-    } // ≥992px
+    }
   }
 
   @if $breakpoint == xl {
-    @media (min-width: 75em) {
+    @media (min-width: 75em) { // ≥1200px
       @content;
-    } // ≥1200px
+    }
   }
 
   @if $breakpoint == xxl {
-    @media (min-width: 87.5em) {
+    @media (min-width: 87.5em) { // ≥1400px
       @content;
-    } // ≥1400px
+    }
   }
 }

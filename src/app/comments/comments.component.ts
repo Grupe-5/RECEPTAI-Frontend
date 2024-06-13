@@ -53,8 +53,10 @@ export class CommentsComponent implements OnInit {
     return String(length) + ' ' + (length > 1 ? 'Comments' : 'Comment');
   }
 
-  selectChange(event: any) {
-    switch (event.target.value) {
+  selectChange(event: Event) {
+    const target = event.target as HTMLTextAreaElement;
+
+    switch (target.value) {
       case 'Best': {
         this.comments.sort((a, b) =>
           a.aggregatedVotes > b.aggregatedVotes ? -1 : 1
@@ -86,12 +88,12 @@ export class CommentsComponent implements OnInit {
       this.toastr.error('Please fill the comment text', 'Comment Error');
     } else {
       this.commentsService.postNewComment(commentText, this.recipeId).subscribe(
-        resp => {
+        () => {
           this.fetchComments();
           this.commentForm.reset();
           this.toastr.success('Comment created successfully', 'Comment action');
         },
-        error => {
+        () => {
           this.commentForm.reset();
           this.toastr.error(
             'Unable to post new comment, try again.',

@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="recipe-page p-3 pt-0 p-md-5 pt-md-0">
   <div class="row pt-3 pb-5 p-sm-2 p-md-4 pb-md-5">
     <div class="row">
@@ -5,7 +6,8 @@
         <img
           src="../../../assets/imgs/arrow-back.svg"
           (click)="getBack()"
-          class="recipe-page__arrow-back" />
+          class="recipe-page__arrow-back"
+          alt="Back arrow" />
         <span class="recipe-page__subreddit">
           /f/<a
             class="highlight-darker"
@@ -24,18 +26,19 @@
           <div class="col-2 col-sm-1 col-md-2 recipe-page__upvotes-box">
             <a
               (click)="doUpvote()"
+              (keyup)="doUpvote()"
               [ngClass]="{
-                'active-vote': this.recipe?.vote == this.voteType.Upvote,
+                'active-vote': this.recipe?.vote === this.voteType.Upvote,
               }">
-              <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
+              <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote up arrow" />
             </a>
             <p class="vote_count">{{ getVoteCount() }}</p>
             <a
               (click)="doDownvote()"
               [ngClass]="{
-                'active-vote': this.recipe?.vote == this.voteType.Downvote,
+                'active-vote': this.recipe?.vote === this.voteType.Downvote,
               }">
-              <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" />
+              <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote down arrow" />
             </a>
           </div>
           <div class="col-10">

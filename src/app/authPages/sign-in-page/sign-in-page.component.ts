@@ -36,10 +36,10 @@ export class SignInPageComponent {
       this.toastr.error('Please provide password!', 'Sign-in Error');
     } else {
       this.authService.Login(username, password).subscribe(
-        response => {
+        () => {
           this.router.navigate(['/']);
         },
-        error => {
+        () => {
           this.toastr.error(
             'Invalid username and/or password!',
             'Sign-in Error'

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -56,7 +56,7 @@ export class SignUpPageComponent {
         this.toastr.error(errorMessage, 'Register Error');
       } else {
         this.authService.Signup(username, email, password).subscribe(
-          response => {
+          () => {
             this.router.navigate(['/']);
           },
           errorMsg => {

@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div *ngIf="isPageLoaded" class="recipe-create">
   <div class="row">
     <h2 class="heading-secondary">
@@ -7,9 +8,9 @@
 
   <div class="row p-4 pt-0 mt-4">
     <div class="pb-3">
-      <label>Subfooddit to post to</label>
+      <label for="Dropdown">Subfooddit to post to</label>
     </div>
-    <div class="recipe-create__dropdown pb-2">
+    <div id="Dropdown" class="recipe-create__dropdown pb-2">
       <div *ngIf="userHasJoinedSubf()" class="nav-item dropdown">
         <a
           class="nav-link"
@@ -22,7 +23,8 @@
             /f/<a>{{ this.selectedSubFoodit }}</a>
             <img
               class="recipe-create__subfooddit-arrow"
-              src="../../../assets/imgs/up-arrow.svg" />
+              src="../../../assets/imgs/up-arrow.svg"
+              alt="dropdown arrow" />
           </span>
         </a>
 
@@ -34,6 +36,7 @@
             class="dropdown-item"
             *ngFor="let subF of usersSubFooddits"
             (click)="updateSubFoodit(subF.title)"
+            (keyup)="updateSubFoodit(subF.title)"
             >f/{{ subF.title }}</a
           >
         </div>
@@ -43,13 +46,13 @@
   <div
     *ngIf="!userHasJoinedSubf()"
     class="row p-4 pb-5 mt-5 pt-0 recipe-create__emptySubFooddits">
-    <label>Join a SubFooddit, to be able to create recipes!</label>
+    <p>Join a SubFooddit, to be able to create recipes!</p>
   </div>
   <span *ngIf="userHasJoinedSubf()">
     <div class="row p-4 pb-0 mt-5 pt-0">
-      <label>Basic information</label>
+      <label for="Basic-info">Basic information</label>
     </div>
-    <div class="row p-4 pt-0 pb-0">
+    <div id="Basic-info" class="row p-4 pt-0 pb-0">
       <div class="col-12 col-sm-6">
         <div class="form-group">
           <input

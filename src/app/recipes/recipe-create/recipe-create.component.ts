@@ -39,8 +39,10 @@ export class RecipeCreateComponent implements OnInit {
     );
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = (target.files as FileList)[0];
+
     if (file) {
       this.imageFile = file;
     } else {

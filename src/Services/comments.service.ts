@@ -53,10 +53,10 @@ export class CommentsService {
 
     // Send the POST request
     return this.http
-      .post<any>(this.server, commentData, { headers: reqHeader })
+      .post(this.server, commentData, { headers: reqHeader })
       .pipe(
         map(() => true), // Emit true on successful post
-        catchError(error => of(false)) // Emit false on error
+        catchError(() => of(false)) // Emit false on error
       );
   }
 
@@ -98,7 +98,7 @@ export class CommentsService {
     return this.http
       .delete(`${this.server_vote}${id}`, { headers: reqHeader })
       .pipe(
-        map(msg => {
+        map(() => {
           return true;
         }),
         catchError(error => {

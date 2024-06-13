@@ -21,7 +21,7 @@
       </mat-list-item>
     }
   </mat-action-list>
-  <mat-action-list *ngIf="showHistory() && recentSearcher().length == 0">
+  <mat-action-list *ngIf="showHistory() && recentSearcher().length === 0">
     @for (search of randomSearcher(); track search) {
       <mat-list-item (click)="navigate(search)">
         <h3 matListItemTitle>f/{{ search }}</h3>

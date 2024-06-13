@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, BehaviorSubject, Observable } from 'rxjs';
-import { IUser, IUser_Info } from '../Models/User.model';
+import { map, Observable } from 'rxjs';
+import { IUser_Info } from '../Models/User.model';
 import { environment } from '../Environments/environment';
 import { AuthService } from './auth.service';
 
@@ -19,7 +19,7 @@ export class UsersService {
     private authService: AuthService
   ) {}
 
-  getUserInfo(userId: number): Observable<any> {
+  getUserInfo(userId: number): Observable<IUser_Info> {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
       'Content-Type': 'application/json',

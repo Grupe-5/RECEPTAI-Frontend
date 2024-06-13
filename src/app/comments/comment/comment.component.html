@@ -4,7 +4,7 @@
       <a
         (click)="doUpvote()"
         [ngClass]="{
-          'active-vote': this.comment.vote == this.voteType.Upvote,
+          'active-vote': this.comment.vote === this.voteType.Upvote,
         }">
         <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>
@@ -12,7 +12,7 @@
       <a
         (click)="doDownvote()"
         [ngClass]="{
-          'active-vote': this.comment.vote == this.voteType.Downvote,
+          'active-vote': this.comment.vote === this.voteType.Downvote,
         }">
         <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>
@@ -34,7 +34,7 @@
         <span
           (click)="enterEditMode()"
           [ngClass]="{ active: this.isInEditingMode }"
-          *ngIf="this.userId == this.comment.userId"
+          *ngIf="this.userId === this.comment.userId"
           class="comment__info-edit">
           <img
             class="comment__info-edit-pencil"

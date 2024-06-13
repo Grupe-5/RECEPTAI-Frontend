@@ -1,18 +1,20 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div class="recipe-card">
   <!-- [routerLink]="['/recipe', recipe?.recipeId]" -->
   <div class="recipe-card__upvotes-box">
     <a
       (click)="doUpvote(); $event.stopPropagation()"
-      [ngClass]="{ 'active-vote': this.recipe?.vote == this.voteType.Upvote }">
-      <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
+      (keyup)="doUpvote(); $event.stopPropagation()"
+      [ngClass]="{ 'active-vote': this.recipe?.vote === this.voteType.Upvote }">
+      <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Upvote arrow" />
     </a>
     <p class="vote_count">{{ getVoteCount() }}</p>
     <a
       (click)="doDownvote(); $event.stopPropagation()"
       [ngClass]="{
-        'active-vote': this.recipe?.vote == this.voteType.Downvote,
+        'active-vote': this.recipe?.vote === this.voteType.Downvote,
       }">
-      <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" />
+      <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Downvote arrow"/>
     </a>
   </div>
 
@@ -55,7 +57,7 @@
 
   <div class="recipe-card__info-2 row justify-content-md-start">
     <div class="recipe-card__info-2__comments-box col-4">
-      <img src="../../../assets/imgs/comment.svg" />
+      <img src="../../../assets/imgs/comment.svg" alt="Comment icon"/>
       <span>{{ recipe?.commentCount ?? 0 }}</span>
     </div>
 
@@ -63,8 +65,9 @@
 
     <div
       (click)="copyLinkToClipBoard(recipe?.recipeId)"
+      (keyup)="copyLinkToClipBoard(recipe?.recipeId)"
       class="recipe-card__info-2__share-box col-4">
-      <img src="../../../assets/imgs/share.svg" />
+      <img src="../../../assets/imgs/share.svg"  alt="Copy link icon"/>
     </div>
   </div>
 </div>

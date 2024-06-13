@@ -36,6 +36,7 @@ export class NavigationComponent implements OnInit {
 
     this.router.events
       .pipe(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         filter((evt: any) => evt instanceof NavigationStart),
         pairwise()
       )

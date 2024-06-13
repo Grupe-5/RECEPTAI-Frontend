@@ -3,7 +3,7 @@ import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service';
 import { Subfooddit } from '../../Models/Subfooddit.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -27,7 +27,7 @@ export class RecipesComponent implements OnInit {
     this.isPageLoaded = false;
 
     if (this.SubFoodditName) {
-      this.route.params.subscribe((params: any) => {
+      this.route.params.subscribe((params: Params) => {
         if (params) {
           this.initNewSubF();
         }
@@ -73,8 +73,10 @@ export class RecipesComponent implements OnInit {
     });
   }
 
-  selectChange(event: any) {
-    switch (event.target.value) {
+  selectChange(event: Event) {
+    const target = event.target as HTMLTextAreaElement;
+
+    switch (target.value) {
       case 'Best': {
         this.recipes.sort((a, b) =>
           a.aggregatedVotes > b.aggregatedVotes ? -1 : 1

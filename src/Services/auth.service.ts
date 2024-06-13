@@ -25,7 +25,7 @@ export class AuthService {
     }
   }
 
-  Login(username: string, password: string): Observable<any> {
+  Login(username: string, password: string): Observable<IUser> {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
       'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export class AuthService {
       );
   }
 
-  Signup(username: string, email: string, password: string): Observable<any> {
+  Signup(username: string, email: string, password: string): Observable<IUser> {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
       'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export class AuthService {
       );
   }
 
-  getUserInfo(): Observable<any> {
+  getUserInfo(): Observable<IUser_Info> {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
       'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export class AuthService {
     this.stateItem.next(null);
   }
 
-  public get currentUserValue(): any {
+  public get currentUserValue(): null | IUser {
     return this.stateItem.value;
   }
 
@@ -104,7 +104,7 @@ export class AuthService {
     return !!this.currentUserValue;
   }
 
-  public getToken(): string {
+  public getToken(): string | undefined {
     return this.currentUserValue?.token;
   }
 

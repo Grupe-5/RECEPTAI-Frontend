@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { Subfooddit } from '../../Models/Subfooddit.model';
 import { SubfoodditService } from '../../Services/subfooddit.service';
 import { AuthService } from '../../Services/auth.service';
-import { RecipesService } from '../../Services/recipes.service';
 import { Recipe } from '../../Models/Recipe.model';
 import { ToastrService } from 'ngx-toastr';
 
@@ -30,7 +29,7 @@ export class SubfoodditComponent implements OnInit {
 
   ngOnInit(): void {
     this.isPageLoaded = false;
-    this.route.params.subscribe((params: any) => {
+    this.route.params.subscribe((params: Params) => {
       if (params) {
         this.initNewSubF();
       }
@@ -103,14 +102,14 @@ export class SubfoodditComponent implements OnInit {
       if (this.currUserHasJoined) {
         this.subfoodditService
           .leaveSubFoodit(this.subFooddit.subfoodditId)
-          .subscribe(resp => {
+          .subscribe(() => {
             this.currUserHasJoined = false;
             window.location.reload();
           });
       } else {
         this.subfoodditService
           .joinSubfoodit(this.subFooddit.subfoodditId)
-          .subscribe(resp => {
+          .subscribe(() => {
             this.currUserHasJoined = true;
             window.location.reload();
           });

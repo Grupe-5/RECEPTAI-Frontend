@@ -30,12 +30,13 @@
   </div>
 
   <div
-    *ngIf="recipes.length == 0"
+    *ngIf="recipes.length === 0"
     class="row justify-content-md-center recipes-list-wrap__empty">
     <div class="col-12">
       <img
         src="../../assets/imgs/sadweb.png"
-        class="recipes-list-wrap__empty-img" />
+        class="recipes-list-wrap__empty-img" 
+        alt="Empty list img"/>
       <p class="recipes-list-wrap__empty-title">
         <b> Empty! </b>
       </p>

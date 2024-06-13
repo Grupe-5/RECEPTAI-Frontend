@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subfooddit } from './../Models/Subfooddit.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
-import { IUser } from '../Models/User.model';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { IUser_Info } from '../Models/User.model';
 import { switchMap } from 'rxjs/operators';

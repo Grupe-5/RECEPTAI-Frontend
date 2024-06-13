@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserAccDeleteComponentModal } from './user-acc-delete/user-acc-delete.component';
+import { UserAccDeleteComponentModalComponent } from './user-acc-delete/user-acc-delete.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -25,7 +25,7 @@ import { ToastrService } from 'ngx-toastr';
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    UserAccDeleteComponentModal,
+    UserAccDeleteComponentModalComponent,
     CommonModule,
     RecipesCardSmallComponent,
   ],
@@ -52,9 +52,9 @@ export class UserPageComponent implements OnInit {
     this.isPageLoaded = false;
     this.server = 'https://fooddit.domaskal.com' + '/api/image/';
     this.route.paramMap.subscribe(params => {
-      let userId: string | number | null;
 
-      userId = params.get('id');
+
+      const userId: string | number | null = params.get('id');
       if (userId == null) {
         this.router.navigate(['/']);
       }
@@ -82,6 +82,7 @@ export class UserPageComponent implements OnInit {
               }
             },
             error => {
+              console.log(error);
               this.router.navigate(['/']);
             }
           );
@@ -111,16 +112,19 @@ export class UserPageComponent implements OnInit {
     return dateFormated.toLocaleDateString();
   }
 
-  changeProfilePicture(event: any) {
-    const file = event.target.files[0];
+  changeProfilePicture(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const file = (target.files as FileList)[0];
+
     if (file) {
       this.usersService.updateUserImg(file).subscribe(
-        resp => {
+        () => {
           this.toastr.success('Image changed successfully');
           window.location.reload();
         },
         error => {
           console.log(error);
+          this.toastr.error('Something wen wrong, try again.', 'User profile Error');
         }
       );
     } else {
@@ -141,12 +145,12 @@ export class UserPageComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(UserAccDeleteComponentModal);
+    const dialogRef = this.dialog.open(UserAccDeleteComponentModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
         this.usersService.deleteUserAccount().subscribe(
-          (resp: any) => {
+          () => {
             console.log('deleted successfully');
             this.authService.LogOut();
             this.router.navigate(['/']);

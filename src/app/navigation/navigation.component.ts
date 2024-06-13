@@ -21,6 +21,7 @@ export class NavigationComponent implements OnInit {
   private server = environment.apiUrl + '/api/image/';
   profileImgUrl: string = '';
   isMobileMenuOpen: boolean = false;
+  isPageLoaded: boolean = false;
 
   constructor(
     private router: Router,
@@ -29,9 +30,11 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isPageLoaded = false;
     this.authService.getUserInfo().subscribe((userInfo: IUser_Info) => {
       this.userImgId = userInfo.imageId;
       this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
+      this.isPageLoaded = true;
     });
 
     this.router.events
@@ -67,7 +70,7 @@ export class NavigationComponent implements OnInit {
   }
 
   shouldShowUserIcon(): boolean {
-    return !this.router.url.includes('/user/');
+    return !this.router.url.includes('/user/') && this.isPageLoaded;
   }
 
   shouldShowSignIn(): boolean {

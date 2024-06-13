@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
-import { Observable } from 'rxjs';
-import { IUser } from '../../Models/User.model';
 import { IUser_Info } from '../../Models/User.model';
 import { SerachBarService } from '../../Services/search-bar.service';
 import { environment } from '../../Environments/environment';
@@ -14,14 +12,13 @@ import { filter, pairwise } from 'rxjs/operators';
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent implements OnInit {
-  status$: Observable<IUser | null>;
+  private server = environment.apiUrl + '/api/image/';
   isInRecipeRoute: boolean = false;
   userImgId: number | undefined = undefined;
   userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
-  private server = environment.apiUrl + '/api/image/';
   profileImgUrl: string = '';
   isMobileMenuOpen: boolean = false;
-  isPageLoaded: boolean = false;
+  isPageLoaded: boolean;
 
   constructor(
     private router: Router,

@@ -8,8 +8,8 @@ import { Subfooddit } from '../../../Models/Subfooddit.model';
   styleUrl: './navigation-sidebar.component.scss',
 })
 export class NavigationSidebarComponent implements OnInit {
-  usersSubFooddits: Subfooddit[] = [];
-  isPageLoaded: boolean = true;
+  usersSubFooddits: Subfooddit[];
+  isPageLoaded: boolean;
 
   constructor(
     private router: Router,

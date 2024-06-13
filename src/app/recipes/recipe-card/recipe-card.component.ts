@@ -14,7 +14,7 @@ import { PlatformLocation } from '@angular/common';
   styleUrl: './recipe-card.component.scss',
 })
 export class RecipeCardComponent {
-  @Input() recipe?: Recipe;
+  @Input({required: true}) recipe: Recipe;
   public voteType = VoteType;
   private server = environment.apiUrl + '/api/image/';
 

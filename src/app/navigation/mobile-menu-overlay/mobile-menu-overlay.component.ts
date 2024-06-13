@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './mobile-menu-overlay.component.scss',
 })
 export class MobileMenuOverlayComponent {
-  private _isMenuOpen = false;
+  private _isMenuOpen: boolean;
 
   @Input()
   get isMenuOpen(): boolean {
@@ -17,10 +17,9 @@ export class MobileMenuOverlayComponent {
     this._isMenuOpen = value;
     this.isMenuOpenChange.emit(this._isMenuOpen);
   }
-
+  
   @Input() isLoggedIn = false;
   @Input() profileImgUrl: string;
-
   @Output() isMenuOpenChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private router: Router) {}

@@ -21,16 +21,17 @@ import { Router } from '@angular/router';
   ],
 })
 export class SearchBarComponent {
-  constructor(private router: Router) {}
   @ViewChild('searchInput', { static: false }) searchInput!: ElementRef;
   searchBarService = inject(SerachBarService);
   overlayOpen = this.searchBarService.overlayOpen;
   showHistory = this.searchBarService.showHistory;
   searchTerm = this.searchBarService.searchTerm;
-
+  
   @ViewChild('optionsContainer')
   optionsContainer: CdkConnectedOverlay;
-
+  
+  constructor(private router: Router) {}
+  
   search(searchTerm: string) {
     if (!searchTerm) return;
     const retValue = this.searchBarService.search(searchTerm);

@@ -5,7 +5,7 @@ export interface IUser {
   token: string;
 }
 
-export interface IUser_Info {
+export class IUser_Info {
   id: number;
   username: string;
   joinDate: Date;

@@ -61,6 +61,6 @@ import { MatButtonModule } from '@angular/material/button';
     }),
   ],
   providers: [provideAnimationsAsync()],
-  bootstrap: [AppComponent, RecipePageComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

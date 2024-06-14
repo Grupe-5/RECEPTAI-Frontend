@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SubfoodditComponent implements OnInit {
   recipes: Recipe[] = [];
-  subFooddit: Subfooddit;
+  subFooddit: Subfooddit | undefined;
   currUserHasJoined: boolean = false;
   joinedUserCount: number = 0;
   subFoodditName: string;
@@ -48,24 +48,34 @@ export class SubfoodditComponent implements OnInit {
         this.router.navigate(['/']);
       } else {
         this.subFooddit = subFoodditInfo;
-        this.subfoodditService.getSubfoodditsByUserId().subscribe(
-          (foodits: Subfooddit[]) => {
-            this.isPageLoaded = true;
-            this.currUserHasJoined = foodits.some(
-              sf => sf.subfoodditId == this.subFooddit.subfoodditId
-            );
-          },
-          err => {
-            console.log(err);
-            this.isPageLoaded = true;
-          }
-        );
+        if(this.authService.isAuthenticated()) {
+          this.subfoodditService.getSubfoodditsByUserId().subscribe(
+            (foodits: Subfooddit[]) => {
+              this.isPageLoaded = true;
+              this.currUserHasJoined = foodits.some(
+                sf => sf.subfoodditId == this.subFooddit?.subfoodditId
+              );
+            },
+            err => {
+              console.log(err);
+              
+              this.isPageLoaded = true;
+            }
+          );
+        }
         this.subfoodditService
           .getUserBySubfooddits(this.subFooddit.subfoodditId)
-          .subscribe(resp => {
-            this.joinedUserCount = resp.length;
-            this.isPageLoaded = true;
-          });
+          .subscribe(
+            resp => {
+              this.joinedUserCount = resp.length;
+              this.isPageLoaded = true;
+              },
+            (err)=>{
+                if(err.status === 404){
+                  this.joinedUserCount = 0;
+                  this.isPageLoaded = true;
+                }
+            });
       }
     });
   }
@@ -99,7 +109,7 @@ export class SubfoodditComponent implements OnInit {
         'Subfooddit Error'
       );
     } else {
-      if (this.currUserHasJoined) {
+      if (this.currUserHasJoined && this.subFooddit) {
         this.subfoodditService
           .leaveSubFoodit(this.subFooddit.subfoodditId)
           .subscribe(() => {
@@ -107,12 +117,14 @@ export class SubfoodditComponent implements OnInit {
             window.location.reload();
           });
       } else {
-        this.subfoodditService
-          .joinSubfoodit(this.subFooddit.subfoodditId)
-          .subscribe(() => {
-            this.currUserHasJoined = true;
-            window.location.reload();
-          });
+        if(this.subFooddit){
+          this.subfoodditService
+            .joinSubfoodit(this.subFooddit.subfoodditId)
+            .subscribe(() => {
+              this.currUserHasJoined = true;
+              window.location.reload();
+            });
+        }
       }
     }
   }

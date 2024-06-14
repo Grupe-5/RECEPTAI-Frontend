@@ -31,7 +31,7 @@ import { ToastrService } from 'ngx-toastr';
   ],
 })
 export class UserPageComponent implements OnInit {
-  userInfo: IUser_Info;
+  userInfo: IUser_Info | undefined;
   isUsersPage: boolean = false;
   userRecipes: Recipe[] = [];
   userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
@@ -77,7 +77,7 @@ export class UserPageComponent implements OnInit {
               this.getUsersRecipes(user.id);
               if (this.authService.isAuthenticated() == true) {
                 this.authService.getUserInfo().subscribe((user: IUser_Info) => {
-                  this.isUsersPage = this.userInfo.id == user.id;
+                  this.isUsersPage = this.userInfo?.id == user.id;
                 });
               }
             },
@@ -106,10 +106,14 @@ export class UserPageComponent implements OnInit {
     );
   }
 
-  formatDate(date: Date): string {
-    const dateFormated = new Date(date);
-
-    return dateFormated.toLocaleDateString();
+  formatDate(date: Date | undefined): string {
+    if(date){
+      const dateFormated = new Date(date);
+  
+      return dateFormated.toLocaleDateString();
+    }
+    
+    return '';
   }
 
   changeProfilePicture(event: Event) {
@@ -132,7 +136,7 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  normalImgOrPlaceholder(imgId: number): string {
+  normalImgOrPlaceholder(imgId: number | undefined): string {
     if (imgId != undefined) {
       return this.server + imgId;
     } else {
@@ -151,7 +155,6 @@ export class UserPageComponent implements OnInit {
       if (result == true) {
         this.usersService.deleteUserAccount().subscribe(
           () => {
-            console.log('deleted successfully');
             this.authService.LogOut();
             this.router.navigate(['/']);
           },

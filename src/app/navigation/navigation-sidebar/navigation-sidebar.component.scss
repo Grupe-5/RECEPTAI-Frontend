@@ -49,6 +49,15 @@
       }
     }
   }
+
+  &__spiner-wrap{
+    margin-top: 2rem;
+    height: 10rem;
+    &-2{
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 .nav-link {

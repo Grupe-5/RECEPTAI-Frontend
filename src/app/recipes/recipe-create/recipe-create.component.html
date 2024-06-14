@@ -1,87 +1,96 @@
-<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
-<div *ngIf="isPageLoaded" class="recipe-create">
-  <div class="row">
-    <h2 class="heading-secondary">
-      <span class="recipe-create__heading"> New Recipe </span>
-    </h2>
-  </div>
-
-  <div class="row p-4 pt-0 mt-4">
-    <div class="pb-3">
-      <label for="Dropdown">Subfooddit to post to</label>
+@if(isPageLoaded){
+  <div class="recipe-create">
+    <div class="row">
+      <h2 class="heading-secondary">
+        <span class="recipe-create__heading"> New Recipe </span>
+      </h2>
     </div>
-    <div id="Dropdown" class="recipe-create__dropdown pb-2">
-      <div *ngIf="userHasJoinedSubf()" class="nav-item dropdown">
-        <a
-          class="nav-link"
-          id="navbarScrollingDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          ngbDropdownToggle>
-          <span class="recipe-create__subfooddit">
-            /f/<a>{{ this.selectedSubFoodit }}</a>
-            <img
-              class="recipe-create__subfooddit-arrow"
-              src="../../../assets/imgs/up-arrow.svg"
-              alt="dropdown arrow" />
-          </span>
-        </a>
-
-        <div
-          class="recipe-create__subfooddit-list dropdown-menu"
-          ngbDropdownMenu
-          aria-labelledby="navbarScrollingDropdown">
-          <a
-            class="dropdown-item"
-            *ngFor="let subF of usersSubFooddits"
-            (click)="updateSubFoodit(subF.title)"
-            (keyup)="updateSubFoodit(subF.title)"
-            >f/{{ subF.title }}</a
-          >
+  
+    @if(userHasJoinedSubf()){
+      <div class="row p-4 pt-0 mt-4">
+        <div class="pb-3">
+          <label for="Dropdown">Subfooddit to post to</label>
+        </div>
+        <div id="Dropdown" class="recipe-create__dropdown pb-2">
+          <div class="nav-item dropdown">
+            <a
+              class="nav-link"
+              id="navbarScrollingDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              ngbDropdownToggle>
+              <span class="recipe-create__subfooddit">
+                /f/<a>{{ this.selectedSubFoodit }}</a>
+                <img
+                  class="recipe-create__subfooddit-arrow"
+                  src="../../../assets/imgs/up-arrow.svg"
+                  alt="dropdown arrow" />
+              </span>
+            </a>
+    
+            <div
+              class="recipe-create__subfooddit-list dropdown-menu"
+              ngbDropdownMenu
+              aria-labelledby="navbarScrollingDropdown">
+              @for(subF of usersSubFooddits; track subF){
+                <a
+                  class="dropdown-item"
+                  (click)="updateSubFoodit(subF.title)"
+                  (keyup)="updateSubFoodit(subF.title)"
+                  >f/{{ subF.title }}</a
+                >
+              }
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div
-    *ngIf="!userHasJoinedSubf()"
-    class="row p-4 pb-5 mt-5 pt-0 recipe-create__emptySubFooddits">
-    <p>Join a SubFooddit, to be able to create recipes!</p>
-  </div>
-  <span *ngIf="userHasJoinedSubf()">
-    <div class="row p-4 pb-0 mt-5 pt-0">
-      <label for="Basic-info">Basic information</label>
-    </div>
-    <div id="Basic-info" class="row p-4 pt-0 pb-0">
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <input
-            type="text"
-            [(ngModel)]="newRecipe.title"
-            class="form-control input-text"
-            id="formGroupExampleInput"
-            placeholder="Title" />
-        </div>
+      <div class="row p-4 pb-0 mt-5 pt-0">
+        <label for="Basic-info">Basic information</label>
       </div>
-      <div class="col-12 col-sm-6 mt-5 mt-sm-0">
-        <div class="form-group">
-          <input
-            type="text"
-            [(ngModel)]="newRecipe.cookingTime"
-            class="form-control input-text"
-            id="formGroupExampleInput"
-            placeholder="Cooking time" />
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 mt-5">
-        <div class="form-group">
+      <div id="Basic-info" class="row p-4 pt-0 pb-0">
+        <div class="col-12 col-sm-6">
           <div class="form-group">
-            <label class="form-label" for="typeNumber"
-              >Amount of Servings</label
-            >
+            <input
+              type="text"
+              [(ngModel)]="newRecipe.title"
+              class="form-control input-text"
+              id="formGroupExampleInput"
+              placeholder="Title" />
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 mt-5 mt-sm-0">
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="newRecipe.cookingTime"
+              class="form-control input-text"
+              id="formGroupExampleInput"
+              placeholder="Cooking time" />
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 mt-5">
+          <div class="form-group">
+            <div class="form-group">
+              <label class="form-label" for="typeNumber"
+                >Amount of Servings</label
+              >
+              <input
+                type="number"
+                [(ngModel)]="newRecipe.servings"
+                min="1"
+                max="10"
+                id="typeNumber"
+                class="form-control input-text" />
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 pt-0 mt-5">
+          <div class="form-group">
+            <label class="form-label" for="typeNumber">Cooking difficulty</label>
             <input
               type="number"
-              [(ngModel)]="newRecipe.servings"
+              [(ngModel)]="newRecipe.cookingDifficulty"
               min="1"
               max="10"
               id="typeNumber"
@@ -89,61 +98,53 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 pt-0 mt-5">
-        <div class="form-group">
-          <label class="form-label" for="typeNumber">Cooking difficulty</label>
+      <div class="row p-4 pt-5">
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Ingredients</label>
+            <textarea
+              [(ngModel)]="newRecipe.ingredients"
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"></textarea>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 mt-5 mt-sm-0">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Cooking Instructions</label>
+            <textarea
+              [(ngModel)]="newRecipe.instructions"
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row p-4">
+        <div>
+          <label for="formFileLg" class="form-label">Upload Recipe Picture</label>
           <input
-            type="number"
-            [(ngModel)]="newRecipe.cookingDifficulty"
-            min="1"
-            max="10"
-            id="typeNumber"
-            class="form-control input-text" />
+            class="form-control form-control-lg"
+            id="formFileLg"
+            type="file"
+            (change)="onFileChange($event)" />
         </div>
       </div>
-    </div>
-    <div class="row p-4 pt-5">
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Ingredients</label>
-          <textarea
-            [(ngModel)]="newRecipe.ingredients"
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"></textarea>
+  
+      <div class="row p-4 mt-4">
+        <div class="btn-wrap col-12">
+          <button
+            type="submit"
+            (click)="formSubmited()"
+            class="button button--yellow">
+            Post
+          </button>
         </div>
       </div>
-      <div class="col-12 col-sm-6 mt-5 mt-sm-0">
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Cooking Instructions</label>
-          <textarea
-            [(ngModel)]="newRecipe.instructions"
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"></textarea>
-        </div>
+    } @else {
+      <div class="row p-4 pb-5 mt-5 pt-0 recipe-create__emptySubFooddits">
+        <p>Join a SubFooddit, to be able to create recipes!</p>
       </div>
-    </div>
-    <div class="row p-4">
-      <div>
-        <label for="formFileLg" class="form-label">Upload Recipe Picture</label>
-        <input
-          class="form-control form-control-lg"
-          id="formFileLg"
-          type="file"
-          (change)="onFileChange($event)" />
-      </div>
-    </div>
-
-    <div class="row p-4 mt-4">
-      <div class="btn-wrap col-12">
-        <button
-          type="submit"
-          (click)="formSubmited()"
-          class="button button--yellow">
-          Post
-        </button>
-      </div>
-    </div>
-  </span>
-</div>
+    }
+  </div>
+}

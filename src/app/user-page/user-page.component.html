@@ -3,68 +3,76 @@
     <h2 class="user-page__user-info-header">
       <span class="half-a-border-on-top"> User information </span>
     </h2>
-    <div class="row justify-content-between justify-content-sm-start">
-      <div
-        *ngIf="!isUsersPage"
-        class="col-3 col-sm-2 user-page__user-info-avatar2">
-        <div class="user-page__user-info-avatar2">
-          <figure class="user-page__user-info-avatar2-shape">
-            <img
-              [src]="normalImgOrPlaceholder(userInfo?.imageId)"
-              alt="Person on a tour"
-              class="user-page__user-info-avatar2-img" />
-          </figure>
+
+    @if(isUserInfoLoaded){
+      <div class="row justify-content-between justify-content-sm-start">
+        @if(isUsersPage){
+          <!-- This is always hidden -->
+          <input
+            type="file"
+            class="invsible"
+            (change)="changeProfilePicture($event)"
+            #fileUpload />
+  
+          <div class="col-3 col-sm-2 user-page__user-info-avatar">
+            <div class="user-page__user-info-avatar" 
+              (click)="fileUpload.click()">
+              <figure
+                class="user-page__user-info-avatar-shape">
+                <img
+                  [src]="normalImgOrPlaceholder(userInfo?.imageId)"
+                  alt="Person on a tour"
+                  class="user-page__user-info-avatar-img" />
+                <figcaption class="user-page__user-info-avatar-caption">
+                  Upload New
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        } @else {
+          <div
+            class="col-3 col-sm-2 user-page__user-info-avatar2">
+            <div class="user-page__user-info-avatar2">
+              <figure class="user-page__user-info-avatar2-shape">
+                <img
+                  [src]="normalImgOrPlaceholder(userInfo?.imageId)"
+                  alt="Person on a tour"
+                  class="user-page__user-info-avatar2-img" />
+              </figure>
+            </div>
+          </div>
+        }
+        <div class="col-8 ms-4 ms-sm-0 col-sm-10">
+          <div class="user-page__user-info-info-1">
+            <p class="user-page__user-info-info-1__title">
+              {{ userInfo?.username }}
+            </p>
+            <p></p>
+            <p class="user-page__user-info-info-1__date-wrap">
+              <span class="user-page__user-info-info-1__date"> Joined on: </span>
+              {{ formatDate(userInfo?.joinDate) }}
+            </p>
+  
+            <p class="user-page__user-info-info-1__karma-wrap">
+              <span class="user-page__user-info-info-1__karma">
+                Karma score:
+              </span>
+              {{ userInfo?.karmaScore }}
+            </p>
+          </div>
         </div>
+        
+        @if(isUsersPage){
+          <div class="col-3 col-sm-2 user-page__sign-out-wrap">
+            <p class="user-page__sign-out" (click)="signOut()">Sign-out</p>
+          </div>
+        }
       </div>
-
-      <!-- This is hidden -->
-      <input
-        type="file"
-        class="invsible"
-        (change)="changeProfilePicture($event)"
-        #fileUpload />
-
-      <div
-        *ngIf="isUsersPage && isPageLoaded"
-        class="col-3 col-sm-2 user-page__user-info-avatar">
-        <div class="user-page__user-info-avatar" 
-          (click)="fileUpload.click()">
-          <figure
-            class="user-page__user-info-avatar-shape">
-            <img
-              [src]="normalImgOrPlaceholder(userInfo?.imageId)"
-              alt="Person on a tour"
-              class="user-page__user-info-avatar-img" />
-            <figcaption class="user-page__user-info-avatar-caption">
-              Upload New
-            </figcaption>
-          </figure>
-        </div>
+    } @else {    
+      <div class="user-page__spiner-wrap">
+        <span class="spiner spiner-regular"></span>
       </div>
-      <div class="col-8 ms-4 ms-sm-0 col-sm-10">
-        <div class="user-page__user-info-info-1">
-          <p class="user-page__user-info-info-1__title">
-            {{ userInfo?.username }}
-          </p>
-          <p></p>
-          <p class="user-page__user-info-info-1__date-wrap">
-            <span class="user-page__user-info-info-1__date"> Joined on: </span>
-            {{ formatDate(userInfo?.joinDate) }}
-          </p>
-
-          <p class="user-page__user-info-info-1__karma-wrap">
-            <span class="user-page__user-info-info-1__karma">
-              Karma score:
-            </span>
-            {{ userInfo?.karmaScore }}
-          </p>
-        </div>
-      </div>
-
-      <div *ngIf="isUsersPage" class="col-3 col-sm-2 user-page__sign-out-wrap">
-        <p class="user-page__sign-out" (click)="signOut()">Sign-out</p>
-      </div>
-    </div>
+    }
   </div>
 
   <div class="row user-page__user-activities">
@@ -73,34 +81,50 @@
     </h2>
 
     <div class="container">
-      <div
-        *ngIf="userRecipes.length > 0"
-        class="user-page__user-activities-cards-wrap row flex-nowrap overflow-auto">
-        <div *ngFor="let recipe of userRecipes" class="col-6 col-md-4">
-          <app-recipes-card-small [recipe]="recipe"></app-recipes-card-small>
+      @if(isRecipesLoaded){
+        @if(userRecipes.length > 0){
+          <div
+            class="user-page__user-activities-cards-wrap row flex-nowrap overflow-auto">
+            
+            @for(recipe of userRecipes; track recipe){
+              <div class="col-6 col-md-4">
+                <app-recipes-card-small [recipe]="recipe"></app-recipes-card-small>
+              </div>
+            }
+          </div>
+        } @else {
+          <div
+            class="user-page__user-activities-emptyRecipes">
+            @if(isUsersPage){
+              You have
+            } @else {
+              User has
+            }
+            not posted anything yet...
+          </div>
+        }
+      } @else {
+        <div class="user-page__spiner-wrap">
+          <span class="spiner spiner-small"></span>
         </div>
-      </div>
-      <div
-        *ngIf="userRecipes.length === 0"
-        class="user-page__user-activities-emptyRecipes">
-        <span *ngIf="!isUsersPage">User has</span
-        ><span *ngIf="isUsersPage">You have</span> not posted anything yet...
-      </div>
+      }
     </div>
   </div>
 
-  <div *ngIf="isUsersPage" class="row user-page__manage-account">
-    <h2 class="user-page__manage-account-header">
-      <span class="half-a-border-on-top"> Manage account </span>
-    </h2>
-
-    <div class="btn-wrap">
-      <button
-        (click)="deleteUserAccount()"
-        type="submit"
-        class="button button--red">
-        Delete
-      </button>
+  @if(isUsersPage){
+    <div class="row user-page__manage-account">
+      <h2 class="user-page__manage-account-header">
+        <span class="half-a-border-on-top"> Manage account </span>
+      </h2>
+  
+      <div class="btn-wrap">
+        <button
+          (click)="deleteUserAccount()"
+          type="submit"
+          class="button button--red">
+          Delete
+        </button>
+      </div>
     </div>
-  </div>
+  }
 </div>

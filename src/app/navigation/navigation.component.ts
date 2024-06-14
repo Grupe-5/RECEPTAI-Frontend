@@ -69,7 +69,7 @@ export class NavigationComponent implements OnInit {
   }
 
   shouldShowUserIcon(): boolean {
-    return !this.router.url.includes('/user/') && this.isPageLoaded;
+    return !this.router.url.includes('/user/me') && this.isPageLoaded;
   }
 
   shouldShowSignIn(): boolean {

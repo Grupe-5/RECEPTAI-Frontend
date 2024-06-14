@@ -46,6 +46,7 @@ $recipe-system-frontend-theme: mat.define-light-theme(
 @import './Styles/base/base';
 @import './Styles/base/typography';
 @import './Styles/components/buttons';
+@import './Styles/components/load-spiner';
 @import './Styles/components/labels-inputs';
 
 html,

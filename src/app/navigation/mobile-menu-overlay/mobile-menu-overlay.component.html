@@ -1,11 +1,14 @@
 <div class="menu-overlay" *ngIf="isMenuOpen">
   <ul class="menu-overlay__list">
     <!-- TODO: add reworked search bar for mobile -->
-    <li *ngIf="isLoggedIn">
-      <a class="menu-overlay__avatar" (click)="goToUserPage()">
-        <img [src]="profileImgUrl" alt="user-avatar" />
-      </a>
-    </li>
+    <!-- TODO: add reworked "my subfooddits" list on mobile -->
+    @if(isLoggedIn){
+      <li>
+        <a class="menu-overlay__avatar" (click)="goToUserPage()">
+          <img [src]="profileImgUrl" alt="user-avatar" />
+        </a>
+      </li>
+    }
 
     <li class="menu-overlay__item">
       <a
@@ -16,26 +19,7 @@
       </a>
     </li>
 
-    <ng-container *ngIf="!isLoggedIn">
-      <li class="menu-overlay__item">
-        <a
-          href="/sign-in"
-          [ngClass]="{ 'active-link': isActiveRoute('/sign-in') }"
-          class="menu-overlay__link">
-          Sign-in
-        </a>
-      </li>
-      <li class="menu-overlay__item">
-        <a
-          href="/register"
-          [ngClass]="{ 'active-link': isActiveRoute('/register') }"
-          class="menu-overlay__link">
-          Register
-        </a>
-      </li>
-    </ng-container>
-
-    <ng-container *ngIf="isLoggedIn">
+    @if(isLoggedIn){
       <li class="menu-overlay__item">
         <a
           href="/create"
@@ -52,7 +36,23 @@
           New Subfooddit
         </a>
       </li>
-    </ng-container>
-    <!-- TODO: add reworked "my subfooddits" list on mobile -->
+    } @else {
+      <li class="menu-overlay__item">
+        <a
+          href="/sign-in"
+          [ngClass]="{ 'active-link': isActiveRoute('/sign-in') }"
+          class="menu-overlay__link">
+          Sign-in
+        </a>
+      </li>
+      <li class="menu-overlay__item">
+        <a
+          href="/register"
+          [ngClass]="{ 'active-link': isActiveRoute('/register') }"
+          class="menu-overlay__link">
+          Register
+        </a>
+      </li>
+    }
   </ul>
 </div>

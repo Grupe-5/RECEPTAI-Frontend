@@ -1,5 +1,6 @@
 @import '../../Styles/abstract/mixins';
 
+
 .recipes-list-wrap {
   margin-top: 4rem;
 
@@ -9,6 +10,12 @@
 
   .heading-secondary {
     margin-top: 5rem;
+  }
+
+  &__spiner-wrap{
+    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
   }
 
   &__heading {

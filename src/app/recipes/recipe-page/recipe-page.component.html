@@ -94,12 +94,11 @@
             <div>
               <p>Ingredients</p>
               <ul class="recipe-page__ingredients-list">
-                <li
-                  *ngFor="
-                    let ingredient of this.recipe?.ingredients?.split('\n')
-                  ">
-                  {{ ingredient }}
-                </li>
+                @for(ingredient of this.recipe?.ingredients?.split('\n'); track ingredient){
+                  <li>
+                    {{ ingredient }}
+                  </li>
+                }
               </ul>
             </div>
           </div>
@@ -111,9 +110,11 @@
         <div class="recipe-page__instructions ps-5 pe-2 pt-4 pb-4">
           <p>Instructions</p>
           <ol class="recipe-page__instructions-list">
-            <li *ngFor="let instructions of instructionsTrimmed">
+            @for(instructions of instructionsTrimmed; track instructions){
+              <li>
               {{ instructions }}
-            </li>
+              </li>
+            }
           </ol>
         </div>
       </div>

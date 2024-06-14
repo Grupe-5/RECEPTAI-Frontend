@@ -1,18 +1,22 @@
 <app-navigation></app-navigation>
 
-<div class="container" *ngIf="!isLoggedIn() || isRouteRecipePage()">
-  <router-outlet></router-outlet>
-</div>
+@if(!isLoggedIn() || isRouteRecipePage()){
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 
-<div *ngIf="isLoggedIn() && !isRouteRecipePage()">
-  <div class="cust-container">
-    <div class="row">
-      <div class="d-none d-lg-block col-lg-2">
-        <app-navigation-sidebar></app-navigation-sidebar>
-      </div>
-      <div class="col-12 col-lg-10">
-        <router-outlet></router-outlet>
+}@else{
+  <div>
+    <div class="cust-container">
+      <div class="row">
+        <div class="d-none d-lg-block col-lg-2">
+          <app-navigation-sidebar></app-navigation-sidebar>
+        </div>
+        <div class="col-12 col-lg-10">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}
+

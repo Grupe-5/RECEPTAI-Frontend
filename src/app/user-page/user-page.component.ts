@@ -36,7 +36,8 @@ export class UserPageComponent implements OnInit {
   userRecipes: Recipe[] = [];
   userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
   private server: string;
-  isPageLoaded = false;
+  isUserInfoLoaded = false;
+  isRecipesLoaded = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +50,8 @@ export class UserPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isPageLoaded = false;
+    this.isUserInfoLoaded = false;
+    this.isRecipesLoaded = false;
     this.server = 'https://fooddit.domaskal.com' + '/api/image/';
     this.route.paramMap.subscribe(params => {
 
@@ -64,6 +66,7 @@ export class UserPageComponent implements OnInit {
           this.authService.getUserInfo().subscribe((user: IUser_Info) => {
             this.isUsersPage = true;
             this.userInfo = user;
+            this.isUserInfoLoaded = true;
             this.getUsersRecipes(user.id);
           });
         } else {
@@ -74,6 +77,7 @@ export class UserPageComponent implements OnInit {
           this.usersService.getUserInfo(Number(userId)).subscribe(
             (user: IUser_Info) => {
               this.userInfo = user;
+              this.isUserInfoLoaded = true;
               this.getUsersRecipes(user.id);
               if (this.authService.isAuthenticated() == true) {
                 this.authService.getUserInfo().subscribe((user: IUser_Info) => {
@@ -97,11 +101,11 @@ export class UserPageComponent implements OnInit {
     this.recipesService.getRecipeByUserId(userId).subscribe(
       (recipes: Recipe[]) => {
         this.userRecipes = recipes;
-        this.isPageLoaded = true;
+        this.isRecipesLoaded = true;
       },
       err => {
         console.log(err);
-        this.isPageLoaded = true;
+        this.isRecipesLoaded = true;
       }
     );
   }

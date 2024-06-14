@@ -17,6 +17,7 @@ export class RecipeCreateComponent implements OnInit {
   selectedSubFoodit: string = '';
   usersSubFooddits: Subfooddit[] = [];
   isPageLoaded: boolean = false;
+  
   constructor(
     private router: Router,
     private subfoodditService: SubfoodditService,

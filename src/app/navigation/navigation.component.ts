@@ -28,11 +28,13 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.isPageLoaded = false;
-    this.authService.getUserInfo().subscribe((userInfo: IUser_Info) => {
-      this.userImgId = userInfo.imageId;
-      this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
-      this.isPageLoaded = true;
-    });
+    if(this.authService.isAuthenticated()){
+      this.authService.getUserInfo().subscribe((userInfo: IUser_Info) => {
+        this.userImgId = userInfo.imageId;
+        this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
+        this.isPageLoaded = true;
+      });
+    }
 
     this.router.events
       .pipe(

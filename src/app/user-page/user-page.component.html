@@ -10,7 +10,7 @@
         <div class="user-page__user-info-avatar2">
           <figure class="user-page__user-info-avatar2-shape">
             <img
-              [src]="normalImgOrPlaceholder(userInfo.imageId)"
+              [src]="normalImgOrPlaceholder(userInfo?.imageId)"
               alt="Person on a tour"
               class="user-page__user-info-avatar2-img" />
           </figure>
@@ -32,7 +32,7 @@
           <figure
             class="user-page__user-info-avatar-shape">
             <img
-              [src]="normalImgOrPlaceholder(userInfo.imageId)"
+              [src]="normalImgOrPlaceholder(userInfo?.imageId)"
               alt="Person on a tour"
               class="user-page__user-info-avatar-img" />
             <figcaption class="user-page__user-info-avatar-caption">
@@ -44,19 +44,19 @@
       <div class="col-8 ms-4 ms-sm-0 col-sm-10">
         <div class="user-page__user-info-info-1">
           <p class="user-page__user-info-info-1__title">
-            {{ userInfo.username }}
+            {{ userInfo?.username }}
           </p>
           <p></p>
           <p class="user-page__user-info-info-1__date-wrap">
             <span class="user-page__user-info-info-1__date"> Joined on: </span>
-            {{ formatDate(userInfo.joinDate) }}
+            {{ formatDate(userInfo?.joinDate) }}
           </p>
 
           <p class="user-page__user-info-info-1__karma-wrap">
             <span class="user-page__user-info-info-1__karma">
               Karma score:
             </span>
-            {{ userInfo.karmaScore }}
+            {{ userInfo?.karmaScore }}
           </p>
         </div>
       </div>

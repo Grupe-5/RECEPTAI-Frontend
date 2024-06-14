@@ -21,7 +21,6 @@ export class NavigationSidebarComponent implements OnInit {
 
     this.subfoodditService.getSubfoodditsByUserId().subscribe(
       (resp: Subfooddit[]) => {
-        console.log(resp);
         this.usersSubFooddits = resp;
         this.isPageLoaded = true;
       },
@@ -46,6 +45,6 @@ export class NavigationSidebarComponent implements OnInit {
   }
 
   checkIfEmpty(): boolean {
-    return this.usersSubFooddits.length == 0;
+    return this.usersSubFooddits?.length == 0;
   }
 }

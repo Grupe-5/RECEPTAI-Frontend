@@ -36,7 +36,6 @@ export class SubfoodditService {
   getUserBySubfooddits(subFoodditId: number): Observable<Subfooddit[]> {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
-      Authorization: `Bearer ${this.authService.getToken()}`,
     });
 
     return this.http.get<Subfooddit[]>(

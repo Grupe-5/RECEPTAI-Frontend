@@ -31,33 +31,36 @@
             {{ getHoursOrMinutesFromToday() }}
           </span>
         </div>
-        <span
-          (click)="enterEditMode()"
-          [ngClass]="{ active: this.isInEditingMode }"
-          *ngIf="this.userId === this.comment.userId"
-          class="comment__info-edit">
-          <img
-            class="comment__info-edit-pencil"
-            src="../../../assets/icons/pencil.svg" />
-        </span>
+        @if(this.userId === this.comment.userId){
+          <span
+            (click)="enterEditMode()"
+            [ngClass]="{ active: this.isInEditingMode }"
+            class="comment__info-edit">
+            <img
+              class="comment__info-edit-pencil"
+              src="../../../assets/icons/pencil.svg" />
+          </span>
+        }
       </div>
     </div>
 
-    <div *ngIf="!isInEditingMode" class="row comment__text mt-2">
-      {{ this.comment.commentText }}
-    </div>
-
-    <div *ngIf="isInEditingMode" class="row comment__input mt-2">
-      <div class="col-12">
-        <input
-          [cdkTrapFocusAutoCapture]="show"
-          [cdkTrapFocus]="show"
-          id="commentText"
-          type="text"
-          [(ngModel)]="this.editComText" />
-        <button (click)="updateComment()">Save</button>
+    @if(!isInEditingMode){
+      <div class="row comment__text mt-2">
+        {{ this.comment.commentText }}
       </div>
-    </div>
+    } @else {
+      <div class="row comment__input mt-2">
+        <div class="col-12">
+          <input
+            [cdkTrapFocusAutoCapture]="show"
+            [cdkTrapFocus]="show"
+            id="commentText"
+            type="text"
+            [(ngModel)]="this.editComText" />
+          <button (click)="updateComment()">Save</button>
+        </div>
+      </div>
+    }
 
     <div class="row comment__reply-box pb-3">
       <div class="comment__reply mt-3">

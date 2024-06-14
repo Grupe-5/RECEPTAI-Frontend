@@ -32,15 +32,26 @@
         <span> New Subfooddit </span>
       </a>
     </div>
-    <div *ngIf="isPageLoaded" class="p-1 sticky__fooddits">
-      <p class="sticky__fooddits-title">My fooddits:</p>
-      <a
-        class="dropdown-item"
-        *ngFor="let subF of usersSubFooddits"
-        [href]="'f/' + subF.title"
-        >f/{{ subF.title }}</a
-      >
-      <p *ngIf="checkIfEmpty()" href="find">You haven't joined any.</p>
-    </div>
+    @if(isPageLoaded){
+      <div class="p-1 sticky__fooddits">
+        <p class="sticky__fooddits-title">My fooddits:</p>
+        @for(subF of usersSubFooddits; track subF){
+          <a
+            class="dropdown-item"
+            [href]="'f/' + subF.title"
+            >f/{{ subF.title }}</a
+          >
+        }
+        @empty {
+          <p href="find">You haven't joined any.</p>
+        }
+      </div>
+    } @else{
+      <div class="p-1 sticky__spiner-wrap">
+        <div class="sticky__spiner-wrap-2">
+          <span class="spiner spiner-small"></span>
+        </div>
+      </div>
+    }
   </div>
 </div>

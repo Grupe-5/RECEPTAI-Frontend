@@ -44,7 +44,4 @@ export class NavigationSidebarComponent implements OnInit {
     return this.router.url == '/subf/create';
   }
 
-  checkIfEmpty(): boolean {
-    return this.usersSubFooddits?.length == 0;
-  }
 }

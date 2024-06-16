@@ -10,6 +10,7 @@ import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.compo
 import { UserPageComponent } from './user-page/user-page.component';
 import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create-subfooddit.component';
 import { AuthGuard } from '../AuthGuards/auth.guard';
+import { reverseAuthGuard } from '../AuthGuards/reverse-auth.guard';
 
 const routes: Routes = [
   { path: 'recipe/:id', component: RecipePageComponent },
@@ -24,11 +25,12 @@ const routes: Routes = [
     component: RecipeCreateComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'register', component: SignUpPageComponent },
-  { path: 'sign-in', component: SignInPageComponent },
+  { path: 'register', component: SignUpPageComponent, canActivate: [reverseAuthGuard] },
+  { path: 'sign-in', component: SignInPageComponent, canActivate: [reverseAuthGuard]},
   { path: 'user/:id', component: UserPageComponent },
   // TODO: Handle invalid routes
   { path: '', component: RecipesComponent },
+  { path: '**', component: RecipesComponent },
 ];
 
 @NgModule({

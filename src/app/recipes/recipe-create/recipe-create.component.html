@@ -21,7 +21,7 @@
               aria-expanded="false"
               ngbDropdownToggle>
               <span class="recipe-create__subfooddit">
-                /f/<a>{{ this.selectedSubFoodit }}</a>
+                /f/<span class="recipe-create__subfooddit-selected">{{ this.selectedSubFoodit }}</span>
                 <img
                   class="recipe-create__subfooddit-arrow"
                   src="../../../assets/imgs/up-arrow.svg"
@@ -37,7 +37,6 @@
                 <a
                   class="dropdown-item"
                   (click)="updateSubFoodit(subF.title)"
-                  (keyup)="updateSubFoodit(subF.title)"
                   >f/{{ subF.title }}</a
                 >
               }

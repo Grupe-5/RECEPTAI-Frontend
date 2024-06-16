@@ -4,7 +4,6 @@
   <div class="recipe-card__upvotes-box">
     <a
       (click)="doUpvote(); $event.stopPropagation()"
-      (keyup)="doUpvote(); $event.stopPropagation()"
       [ngClass]="{ 'active-vote': this.recipe.vote === this.voteType.Upvote }">
       <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Upvote arrow" />
     </a>
@@ -27,13 +26,13 @@
       class="recipe-card__img" />
   </div>
 
-  <div class="row recipe-card__info-1">
+  <div class="recipe-card__info-1">
     <a
-      class="col-6 recipe-card__info-1__subfooddit"
+      class="recipe-card__info-1__subfooddit"
       [routerLink]="['/f/', recipe.subfoodditName]">
       f/<span class="highlight-darker">{{ recipe.subfoodditName }}</span>
     </a>
-    <p class="col-6 recipe-card__info-1__date">
+    <p class="recipe-card__info-1__date">
       {{ getHoursOrMinutesFromToday(recipe.datePosted) }}
     </p>
   </div>
@@ -65,7 +64,6 @@
 
     <div
       (click)="copyLinkToClipBoard(recipe.recipeId)"
-      (keyup)="copyLinkToClipBoard(recipe.recipeId)"
       class="recipe-card__info-2__share-box col-4">
       <img src="../../../assets/imgs/share.svg"  alt="Copy link icon"/>
     </div>

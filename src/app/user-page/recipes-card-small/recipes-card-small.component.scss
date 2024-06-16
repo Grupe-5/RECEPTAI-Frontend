@@ -22,9 +22,20 @@
   }
   &__info-1 {
     padding: 1rem 1rem 0;
-    &__date {
-      text-align: right;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    flex-wrap: wrap;
+
+    &__subredit{
+      display: inline;
     }
+      
+    &__date{
+      display: inline;
+
+    }
+
   }
   &__title-box {
     padding: 0 1rem;
@@ -33,6 +44,7 @@
     overflow-x: hidden;
     white-space: nowrap;
   }
+  
   &:hover {
     cursor: pointer;
   }

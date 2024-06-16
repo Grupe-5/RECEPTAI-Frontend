@@ -6,13 +6,13 @@
       class="recipe-card__img" />
   </div>
 
-  <div class="row recipe-card__info-1">
-    <p class="col-6 recipe-card__info-1__subredit">
+  <div class="recipe-card__info-1">
+    <span class="recipe-card__info-1__subredit">
       r/<span class="highlight-darker">{{ recipe.subfoodditName }}</span>
-    </p>
-    <p class="col-6 recipe-card__info-1__date p-0">
+    </span>
+    <span class="recipe-card__info-1__date ">
       {{ getHoursOrMinutesFromToday(recipe.datePosted) }}
-    </p>
+    </span>
   </div>
 
   <div class="recipe-card__title-box">

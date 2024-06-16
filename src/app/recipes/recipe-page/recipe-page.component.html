@@ -26,7 +26,6 @@
           <div class="col-2 col-sm-1 col-md-2 recipe-page__upvotes-box">
             <a
               (click)="doUpvote()"
-              (keyup)="doUpvote()"
               [ngClass]="{
                 'active-vote': this.recipe?.vote === this.voteType.Upvote,
               }">

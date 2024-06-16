@@ -2,6 +2,8 @@
 
 
 .recipes-list-wrap {
+  max-width: var(--max-page-width-unlogged);
+  margin: auto;
   margin-top: 4rem;
 
   .col-sm-4 {

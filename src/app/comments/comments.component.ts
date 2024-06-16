@@ -85,13 +85,13 @@ export class CommentsComponent implements OnInit {
 
     const { commentText } = this.commentForm.value;
     if (!commentText) {
-      this.toastr.error('Please fill the comment text', 'Comment Error');
+      this.toastr.error('Fill the comment text', 'Comment Error');
     } else {
       this.commentsService.postNewComment(commentText, this.recipeId).subscribe(
         () => {
           this.fetchComments();
           this.commentForm.reset();
-          this.toastr.success('Comment created successfully', 'Comment action');
+          this.toastr.success('Comment created', 'Comment action');
         },
         () => {
           this.commentForm.reset();

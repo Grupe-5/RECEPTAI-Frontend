@@ -1,6 +1,8 @@
 @import '../../../Styles/abstract/mixins';
 
 .recipe-page {
+  max-width: var( --max-page-width-unlogged);
+  margin: auto;
   margin-top: 6rem; // Used for topBar
 
   &__arrow-back {

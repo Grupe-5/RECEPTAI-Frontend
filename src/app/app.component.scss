@@ -1,10 +1,12 @@
 .container {
   font-size: 1.6rem;
-  max-width: 150rem;
+  max-width: var(--max-page-width);
+  padding: 0;
+  overflow: hidden;
 }
 
 .cust-container {
-  max-width: 150rem;
+  max-width: var(--max-page-width);
   margin: auto;
   overflow: hidden;
 }

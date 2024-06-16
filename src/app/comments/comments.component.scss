@@ -1,4 +1,6 @@
 .comments-wrap {
+  max-width: var( --max-page-width-unlogged);
+  margin: auto;
   &__heading {
     padding: 0 4rem 1.5rem;
     border-bottom: solid 2px var(--color-primary);

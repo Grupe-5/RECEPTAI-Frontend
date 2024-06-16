@@ -3,7 +3,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { IUser_Info } from '../../Models/User.model';
 import { SerachBarService } from '../../Services/search-bar.service';
-import { environment } from '../../Environments/environment';
+import { environment } from '../../environments/environment';
 import { filter, pairwise } from 'rxjs/operators';
 
 @Component({

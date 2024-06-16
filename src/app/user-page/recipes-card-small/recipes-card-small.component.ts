@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../../Environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-recipes-card-small',

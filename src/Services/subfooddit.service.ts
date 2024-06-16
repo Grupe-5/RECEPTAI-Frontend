@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { IUser_Info } from '../Models/User.model';
 import { switchMap } from 'rxjs/operators';
-import { environment } from '../Environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',

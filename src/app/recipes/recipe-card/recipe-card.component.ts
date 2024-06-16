@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { RecipesService } from '../../../Services/recipes.service';
-import { environment } from '../../../Environments/environment';
+import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Services/auth.service';
 import { Router } from '@angular/router';

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AuthService } from '../Services/auth.service';
 import { Vote, VoteType } from '../Models/Vote.model';
-import { environment } from '../Environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',

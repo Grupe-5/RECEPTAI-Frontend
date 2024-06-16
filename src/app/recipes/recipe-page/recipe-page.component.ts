@@ -4,7 +4,7 @@ import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
 import { VoteType } from '../../../Models/Vote.model';
-import { environment } from '../../../Environments/environment';
+import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Services/auth.service';
 

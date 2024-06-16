@@ -70,7 +70,7 @@
 
   .button {
     width: 100%;
-    font-size: 2rem;
+    font-size: 2rem !important;
     border-radius: 1rem;
     @include respond(sm) {
       font-size: initial;

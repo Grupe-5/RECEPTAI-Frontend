@@ -80,10 +80,9 @@
 
   .button {
     width: 100%;
-    font-size: 2rem;
     border-radius: 1rem;
+
     @include respond(sm) {
-      font-size: initial;
       width: 20rem;
     }
   }

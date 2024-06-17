@@ -125,7 +125,7 @@ export class CommentComponent implements OnInit {
   updateComment() {
     if (this.editComText !== this.comment.commentText) {
       if (!this.editComText) {
-        this.toastr.error('Updated comment can not be empty!', 'Comment Error');
+        this.toastr.error('Comment can not be empty!', 'Comment Error');
       } else {
         this.commentsService
           .updateComment(

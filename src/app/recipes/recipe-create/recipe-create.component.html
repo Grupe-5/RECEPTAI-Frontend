@@ -9,13 +9,12 @@
     @if(userHasJoinedSubf()){
       <div class="row p-4 pt-0 mt-4">
         <div class="pb-3">
-          <label for="Dropdown">Subfooddit to post to</label>
+          <label>Subfooddit to post to</label>
         </div>
-        <div id="Dropdown" class="recipe-create__dropdown pb-2">
+        <div class="recipe-create__dropdown pb-2">
           <div class="nav-item dropdown">
             <a
               class="nav-link"
-              id="navbarScrollingDropdown"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -47,14 +46,15 @@
       <div class="row p-4 pb-0 mt-5 pt-0">
         <label for="Basic-info">Basic information</label>
       </div>
-      <div id="Basic-info" class="row p-4 pt-0 pb-0">
+      <div class="row p-4 pt-0 pb-0">
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <input
               type="text"
               [(ngModel)]="newRecipe.title"
               class="form-control input-text"
-              id="formGroupExampleInput"
+              id="formGroupExampleInput1"
+              id="Basic-info"
               placeholder="Title" />
           </div>
         </div>
@@ -64,14 +64,14 @@
               type="text"
               [(ngModel)]="newRecipe.cookingTime"
               class="form-control input-text"
-              id="formGroupExampleInput"
+              id="formGroupExampleInput2"
               placeholder="Cooking time" />
           </div>
         </div>
         <div class="col-12 col-sm-6 mt-5">
           <div class="form-group">
             <div class="form-group">
-              <label class="form-label" for="typeNumber"
+              <label class="form-label" for="typeNumber1"
                 >Amount of Servings</label
               >
               <input
@@ -79,20 +79,20 @@
                 [(ngModel)]="newRecipe.servings"
                 min="1"
                 max="10"
-                id="typeNumber"
+                id="typeNumber1"
                 class="form-control input-text" />
             </div>
           </div>
         </div>
         <div class="col-12 col-sm-6 pt-0 mt-5">
           <div class="form-group">
-            <label class="form-label" for="typeNumber">Cooking difficulty</label>
+            <label class="form-label" for="typeNumber2">Cooking difficulty</label>
             <input
               type="number"
               [(ngModel)]="newRecipe.cookingDifficulty"
               min="1"
               max="10"
-              id="typeNumber"
+              id="typeNumber2"
               class="form-control input-text" />
           </div>
         </div>
@@ -110,11 +110,11 @@
         </div>
         <div class="col-12 col-sm-6 mt-5 mt-sm-0">
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">Cooking Instructions</label>
+            <label for="exampleFormControlTextarea2">Cooking Instructions</label>
             <textarea
               [(ngModel)]="newRecipe.instructions"
               class="form-control"
-              id="exampleFormControlTextarea1"
+              id="exampleFormControlTextarea2"
               rows="3"></textarea>
           </div>
         </div>

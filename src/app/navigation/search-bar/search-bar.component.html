@@ -14,7 +14,8 @@
       placeholder="Search for subfooddits..."
       (click)="overlayOpen.set(true)"
       (input)="onSearchChange(searchInput.value)"
-      (keydown.ENTER)="search(searchInput.value)" />
+      (keydown.ENTER)="search(searchInput.value)"
+      name="Search bar" />
   </div>
   <ng-template
     cdkConnectedOverlay

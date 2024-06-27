@@ -1,8 +1,8 @@
-<app-navigation></app-navigation>
+<app-navigation/>
 
 @if(!isLoggedIn() || isRouteRecipePage()){
   <div class="container">
-    <router-outlet></router-outlet>
+    <router-outlet/>
   </div>
 
 }@else{
@@ -10,10 +10,10 @@
     <div class="cust-container">
       <div class="row">
         <div class="d-none d-lg-block col-lg-2">
-          <app-navigation-sidebar></app-navigation-sidebar>
+          <app-navigation-sidebar/>
         </div>
         <div class="col-12 col-lg-10">
-          <router-outlet></router-outlet>
+          <router-outlet/>
         </div>
       </div>
     </div>

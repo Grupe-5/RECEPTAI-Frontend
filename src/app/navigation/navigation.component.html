@@ -9,7 +9,7 @@
         </div>
   
         <div class="col-lg-5 d-none d-lg-block top-navbar__search">
-          <app-search-bar class="top-navbar__searchbar-wrap"></app-search-bar>
+          <app-search-bar class="top-navbar__searchbar-wrap"/>
         </div>
   
         <div class="col-3 justify-self-end" cdkOverlayOrigin #overlayPosition2>
@@ -39,7 +39,7 @@
   
         <div
           class="col-lg-5 d-none d-lg-block top-navbar__search justify-content-center">
-          <app-search-bar class="top-navbar__searchbar-wrap"></app-search-bar>
+          <app-search-bar class="top-navbar__searchbar-wrap"/>
         </div>
   
         <div class="col-3 d-lg-none top-navbar__menu-burger-wrap">
@@ -81,5 +81,4 @@
   [isMenuOpen]="isMobileMenuOpen"
   (isMenuOpenChange)="onMenuOpenChange($event)"
   [isLoggedIn]="isLoggedIn()"
-  [profileImgUrl]="profileImgUrl">
-</app-mobile-menu-overlay>
+  [profileImgUrl]="profileImgUrl"/>

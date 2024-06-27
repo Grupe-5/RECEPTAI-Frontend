@@ -3,17 +3,13 @@
     <div class="comment__upvotes-box">
       <a
         (click)="doUpvote()"
-        [ngClass]="{
-          'active-vote': this.comment.vote === this.voteType.Upvote,
-        }">
+        [class.active-vote]="this.comment.vote === this.voteType.Upvote">
         <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>
       <p class="vote_count">{{ getVoteCount() }}</p>
       <a
         (click)="doDownvote()"
-        [ngClass]="{
-          'active-vote': this.comment.vote === this.voteType.Downvote,
-        }">
+        [class.active-vote]="this.comment.vote === this.voteType.Downvote">
         <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>
     </div>
@@ -34,7 +30,7 @@
         @if(this.userId === this.comment.userId){
           <span
             (click)="enterEditMode()"
-            [ngClass]="{ active: this.isInEditingMode }"
+            [class.active]="this.isInEditingMode"
             class="comment__info-edit">
             <img
               class="comment__info-edit-pencil"

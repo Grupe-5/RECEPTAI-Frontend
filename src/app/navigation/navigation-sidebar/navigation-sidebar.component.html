@@ -3,7 +3,7 @@
     <div class="sticky__links">
       <a
         type="submit"
-        [ngClass]="{ 'active-link': isActiveHome() }"
+        [class.active-link]="isActiveHome()"
         class="button nav-link"
         href="/">
         <img src="../../assets/icons/house.svg" alt="Post-Recipe" />
@@ -11,7 +11,7 @@
       </a>
       <a
         type="submit"
-        [ngClass]="{ 'active-link': isActiveCreate() }"
+        [class.active-link]="isActiveCreate()"
         class="button nav-link"
         href="/create">
         <img
@@ -22,7 +22,7 @@
       </a>
       <a
         type="submit"
-        [ngClass]="{ 'active-link': isActiveCreateSubf() }"
+        [class.active-link]="isActiveCreateSubf()"
         class="button nav-link"
         href="/subf/create">
         <img

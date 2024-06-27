@@ -24,7 +24,7 @@
               <div
                 (click)="toggleMobileMenu()"
                 class="top-navbar__menu-burger"
-                [ngClass]="{ 'burger-open': this.isMobileMenuOpen }"></div>
+                [class.burger-open]="this.isMobileMenuOpen"></div>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div
             (click)="toggleMobileMenu()"
             class="top-navbar__menu-burger"
-            [ngClass]="{ 'burger-open': this.isMobileMenuOpen }"></div>
+            [class.burger-open]="this.isMobileMenuOpen"></div>
         </div>
   
         <div class="col-lg-3 d-none d-lg-block">

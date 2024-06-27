@@ -4,15 +4,13 @@
   <div class="recipe-card__upvotes-box">
     <a
       (click)="doUpvote(); $event.stopPropagation()"
-      [ngClass]="{ 'active-vote': this.recipe.vote === this.voteType.Upvote }">
+      [class.active-vote]="this.recipe.vote === this.voteType.Upvote">
       <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Upvote arrow" />
     </a>
     <p class="vote_count">{{ getVoteCount() }}</p>
     <a
       (click)="doDownvote(); $event.stopPropagation()"
-      [ngClass]="{
-        'active-vote': this.recipe.vote === this.voteType.Downvote,
-      }">
+      [class.active-vote]="this.recipe.vote === this.voteType.Downvote">
       <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Downvote arrow"/>
     </a>
   </div>

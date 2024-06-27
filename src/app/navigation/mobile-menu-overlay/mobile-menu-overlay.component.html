@@ -13,7 +13,7 @@
     <li class="menu-overlay__item">
       <a
         href="/"
-        [ngClass]="{ 'active-link': isActiveRoute('/') }"
+        [class.active-link]="isActiveRoute('/')"
         class="menu-overlay__link">
         Home
       </a>
@@ -23,7 +23,7 @@
       <li class="menu-overlay__item">
         <a
           href="/create"
-          [ngClass]="{ 'active-link': isActiveRoute('/create') }"
+          [class.active-link]="isActiveRoute('/create')"
           class="menu-overlay__link">
           New Recipe
         </a>
@@ -31,7 +31,7 @@
       <li class="menu-overlay__item">
         <a
           href="/subf/create"
-          [ngClass]="{ 'active-link': isActiveRoute('/subf/create') }"
+          [class.active-link]="isActiveRoute('/subf/create')"
           class="menu-overlay__link">
           New Subfooddit
         </a>
@@ -40,7 +40,7 @@
       <li class="menu-overlay__item">
         <a
           href="/sign-in"
-          [ngClass]="{ 'active-link': isActiveRoute('/sign-in') }"
+          [class.active-link]="isActiveRoute('/sign-in')"
           class="menu-overlay__link">
           Sign-in
         </a>
@@ -48,7 +48,7 @@
       <li class="menu-overlay__item">
         <a
           href="/register"
-          [ngClass]="{ 'active-link': isActiveRoute('/register') }"
+          [class.active-link]="isActiveRoute('/register')"
           class="menu-overlay__link">
           Register
         </a>

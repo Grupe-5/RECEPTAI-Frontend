@@ -1,15 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-recipes-card-small',
-  standalone: true,
   templateUrl: './recipes-card-small.component.html',
   styleUrl: './recipes-card-small.component.scss',
-  imports: [CommonModule, RouterLink],
 })
 export class RecipesCardSmallComponent {
   @Input({required: true}) recipe: Recipe;

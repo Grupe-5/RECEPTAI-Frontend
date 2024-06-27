@@ -43,6 +43,8 @@ import { MatButtonModule } from '@angular/material/button';
     CreateSubfoodditComponent,
     MobileMenuOverlayComponent,
   ],
+  // TODO: Split app to separate modules (like in user-page) and
+  //  - split theese imports between them.
   imports: [
     SearchBarComponent,
     BrowserModule,

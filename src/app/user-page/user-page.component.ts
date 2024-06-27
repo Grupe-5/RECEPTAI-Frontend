@@ -5,13 +5,7 @@ import { AuthService } from '../../Services/auth.service';
 import { RecipesService } from '../../Services/recipes.service';
 import { Recipe } from '../../Models/Recipe.model';
 import { IUser_Info } from '../../Models/User.model';
-import { CommonModule } from '@angular/common';
-import { RecipesCardSmallComponent } from './recipes-card-small/recipes-card-small.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserAccDeleteComponentModalComponent } from './user-acc-delete/user-acc-delete.component';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,16 +13,6 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    UserAccDeleteComponentModalComponent,
-    CommonModule,
-    RecipesCardSmallComponent,
-  ],
 })
 export class UserPageComponent implements OnInit {
   userInfo: IUser_Info | undefined;
@@ -52,6 +36,7 @@ export class UserPageComponent implements OnInit {
   ngOnInit(): void {
     this.isUserInfoLoaded = false;
     this.isRecipesLoaded = false;
+    // TODO: fix hardcoded server route
     this.server = 'https://fooddit.domaskal.com' + '/api/image/';
     this.route.paramMap.subscribe(params => {
 

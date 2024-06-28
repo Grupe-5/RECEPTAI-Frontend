@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, inject, ViewChild, viewChild, ElementRef } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { OverlayModule, CdkConnectedOverlay } from '@angular/cdk/overlay';
@@ -21,15 +21,13 @@ import { Router } from '@angular/router';
   ],
 })
 export class SearchBarComponent {
-  @ViewChild('searchInput', { static: false }) searchInput!: ElementRef;
+  searchInput = viewChild.required<ElementRef>('searchInput')
   searchBarService = inject(SerachBarService);
   overlayOpen = this.searchBarService.overlayOpen;
   showHistory = this.searchBarService.showHistory;
   searchTerm = this.searchBarService.searchTerm;
   
-  @ViewChild('optionsContainer')
-  optionsContainer: CdkConnectedOverlay;
-  
+  @ViewChild('optionsContainer') optionsContainer: CdkConnectedOverlay;
   constructor(private router: Router) {}
   
   search(searchTerm: string) {
@@ -37,9 +35,9 @@ export class SearchBarComponent {
     const retValue = this.searchBarService.search(searchTerm);
     if (retValue != undefined) {
       this.router.navigate(['/f/', retValue]);
-      this.searchInput.nativeElement.value = retValue;
+      this.searchInput().nativeElement.value = retValue;
     } else {
-      this.searchInput.nativeElement.value = '';
+      this.searchInput().nativeElement.value = '';
     }
   }
 
@@ -53,7 +51,7 @@ export class SearchBarComponent {
   }
 
   outsideClick() {
-    this.searchInput.nativeElement.value = '';
+    this.searchInput().nativeElement.value = '';
     this.overlayOpen.set(false);
   }
 }

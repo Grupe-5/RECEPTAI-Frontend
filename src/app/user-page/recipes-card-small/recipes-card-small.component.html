@@ -1,23 +1,23 @@
-<div class="recipe-card" [routerLink]="['/recipe', recipe.recipeId]">
+<div class="recipe-card" [routerLink]="['/recipe', recipe().recipeId]">
   <div class="recipe-card__img-box">
     <img
-      [src]="normalImgOrPlaceholder(recipe.imgId)"
+      [src]="normalImgOrPlaceholder(recipe().imgId)"
       alt="Recipe img"
       class="recipe-card__img" />
   </div>
 
   <div class="recipe-card__info-1">
     <span class="recipe-card__info-1__subredit">
-      r/<span class="highlight-darker">{{ recipe.subfoodditName }}</span>
+      r/<span class="highlight-darker">{{ recipe().subfoodditName }}</span>
     </span>
     <span class="recipe-card__info-1__date ">
-      {{ getHoursOrMinutesFromToday(recipe.datePosted) }}
+      {{ getHoursOrMinutesFromToday(recipe().datePosted) }}
     </span>
   </div>
 
   <div class="recipe-card__title-box">
     <div class="recipe-card__title">
-      {{ recipe.title }}
+      {{ recipe().title }}
     </div>
   </div>
 </div>

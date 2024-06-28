@@ -6,7 +6,6 @@ import { Subfooddit } from '../Models/Subfooddit.model';
   providedIn: 'root',
 })
 // TODO: LIMIT AMOUNT OF THINGS THAT CAN BE DISPLAYED
-// TODO: Show no history if nothing to show
 export class SerachBarService {
   overlayOpen = signal(false);
   showHistory = signal(true);
@@ -18,6 +17,13 @@ export class SerachBarService {
   allSubFooddits: string[];
   searchTerm = signal('');
   sfTitles: string[];
+
+  saveLocalStorage = effect(() => {
+    window.localStorage.setItem(
+      'recentSearches',
+      JSON.stringify(this.recentSearcher())
+    );
+  });
 
   constructor(private subfoodditService: SubfoodditService) {}
 
@@ -71,10 +77,4 @@ export class SerachBarService {
     this.recentSearcher.set(this.recentSearcher().filter(s => s != searchTerm));
   }
 
-  saveLocalStorage = effect(() => {
-    window.localStorage.setItem(
-      'recentSearches',
-      JSON.stringify(this.recentSearcher())
-    );
-  });
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { environment } from '../../../environments/environment';
 
@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   styleUrl: './recipes-card-small.component.scss',
 })
 export class RecipesCardSmallComponent {
-  @Input({required: true}) recipe: Recipe;
+  recipe = input.required<Recipe>();
 
   private server = '';
 

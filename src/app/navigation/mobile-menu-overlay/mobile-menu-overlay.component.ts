@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, model } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,20 +7,10 @@ import { Router } from '@angular/router';
   styleUrl: './mobile-menu-overlay.component.scss',
 })
 export class MobileMenuOverlayComponent {
-  private _isMenuOpen: boolean;
+   isMenuOpen = model.required<boolean>();
 
-  @Input()
-  get isMenuOpen(): boolean {
-    return this._isMenuOpen;
-  }
-  set isMenuOpen(value: boolean) {
-    this._isMenuOpen = value;
-    this.isMenuOpenChange.emit(this._isMenuOpen);
-  }
-  
   @Input() isLoggedIn = false;
   @Input() profileImgUrl: string;
-  @Output() isMenuOpenChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private router: Router) {}
 
@@ -30,6 +20,6 @@ export class MobileMenuOverlayComponent {
 
   goToUserPage() {
     this.router.navigate(['user', 'me']);
-    this.isMenuOpen = false;
+    this.isMenuOpen.set(false);
   }
 }

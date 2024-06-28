@@ -69,7 +69,7 @@ export class SubfoodditComponent implements OnInit {
             resp => {
               this.joinedUserCount = resp.length;
               this.isPageLoaded = true;
-              },
+            },
             (err)=>{
                 if(err.status === 404){
                   this.joinedUserCount = 0;

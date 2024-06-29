@@ -6,7 +6,7 @@
         [class.active-vote]="this.comment.vote === this.voteType.Upvote">
         <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>
-      <p class="vote_count">{{ getVoteCount() }}</p>
+      <p class="vote_count">{{ this.comment.aggregatedVotes | userVote }}</p>
       <a
         (click)="doDownvote()"
         [class.active-vote]="this.comment.vote === this.voteType.Downvote">
@@ -24,7 +24,7 @@
             }}</a>
           </span>
           <span class="comment__info-date">
-            {{ getHoursOrMinutesFromToday() }}
+            {{ this.comment.commentDate | timestamp}}
           </span>
         </div>
         @if(this.userId === this.comment.userId){

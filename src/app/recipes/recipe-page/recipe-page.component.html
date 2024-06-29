@@ -29,7 +29,7 @@
               [class.active-vote]="this.recipe?.vote === this.voteType.Upvote">
               <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote up arrow" />
             </a>
-            <p class="vote_count">{{ getVoteCount() }}</p>
+            <p class="vote_count">{{ this.recipe?.aggregatedVotes | userVote }}</p>
             <a
               (click)="doDownvote()"
               [class.active-vote]="this.recipe?.vote === this.voteType.Downvote">
@@ -52,7 +52,7 @@
                 >
 
                 <span class="recipe-page__info-1__date">
-                  {{ getHoursOrMinutesFromToday(recipe?.datePosted) }}
+                  {{ recipe?.datePosted | timestamp }}
                 </span>
               </p>
             </div>

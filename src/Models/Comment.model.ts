@@ -5,7 +5,7 @@ export class Comment {
   userId: number;
   userName: string;
   commentText: string;
-  commentDate: string;
+  commentDate: Date;
   aggregatedVotes: number;
   recipeId: number;
   version: string;

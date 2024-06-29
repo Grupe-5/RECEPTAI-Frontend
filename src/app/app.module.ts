@@ -25,6 +25,7 @@ import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create
 import { MobileMenuOverlayComponent } from './navigation/mobile-menu-overlay/mobile-menu-overlay.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from './shared/shared.module'
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { MatButtonModule } from '@angular/material/button';
       preventDuplicates: true,
       positionClass: 'toast-bottom-right',
     }),
+    SharedModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

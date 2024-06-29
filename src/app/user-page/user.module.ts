@@ -14,12 +14,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [
     RecipesCardSmallComponent,
     UserPageComponent,
-    UserAccDeleteComponentModalComponent
+    UserAccDeleteComponentModalComponent,
   ],
     
   imports: [
@@ -33,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    SharedModule
   ]
 })
 export class UserModule { }

@@ -11,7 +11,7 @@
       r/<span class="highlight-darker">{{ recipe().subfoodditName }}</span>
     </span>
     <span class="recipe-card__info-1__date ">
-      {{ getHoursOrMinutesFromToday(recipe().datePosted) }}
+      {{ recipe().datePosted | timestamp}}
     </span>
   </div>
 

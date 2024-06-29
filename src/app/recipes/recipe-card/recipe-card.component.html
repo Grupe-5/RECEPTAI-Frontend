@@ -7,7 +7,7 @@
       [class.active-vote]="this.recipe.vote === this.voteType.Upvote">
       <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Upvote arrow" />
     </a>
-    <p class="vote_count">{{ getVoteCount() }}</p>
+    <p class="vote_count">{{ this.recipe.aggregatedVotes | userVote }}</p>
     <a
       (click)="doDownvote(); $event.stopPropagation()"
       [class.active-vote]="this.recipe.vote === this.voteType.Downvote">
@@ -31,7 +31,7 @@
       f/<span class="highlight-darker">{{ recipe.subfoodditName }}</span>
     </a>
     <p class="recipe-card__info-1__date">
-      {{ getHoursOrMinutesFromToday(recipe.datePosted) }}
+      {{ recipe.datePosted | timestamp }}
     </p>
   </div>
 

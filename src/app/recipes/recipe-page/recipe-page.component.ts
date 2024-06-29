@@ -57,44 +57,11 @@ export class RecipePageComponent implements OnInit {
     this._location.back();
   }
 
-  getVoteCount(): string {
-    const cnt = this.recipe?.aggregatedVotes;
-    if (cnt) {
-      if (cnt >= 1000) {
-        return (cnt / 1000.0).toFixed(1);
-      } else {
-        return cnt.toString();
-      }
-    } else {
-      return '0';
-    }
-  }
-
   normalImgOrPlaceholder(imgId: string | undefined): string {
     if (imgId != undefined) {
       return this.server + imgId;
     } else {
       return '../../../assets/imgs/recipe-img-dummy.jpg';
-    }
-  }
-
-  getHoursOrMinutesFromToday(date: Date | undefined): string {
-    if (date == undefined) {
-      return 'Some time ago';
-    }
-
-    const currentDate = new Date();
-    const diffMilliseconds = currentDate.getTime() - new Date(date).getTime();
-    const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
-    const diffHours = Math.floor(diffMinutes / 60);
-    const diffDays = Math.floor(diffHours / 24);
-
-    if (diffDays > 0) {
-      return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-    } else if (diffHours > 0) {
-      return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-    } else {
-      return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
     }
   }
 

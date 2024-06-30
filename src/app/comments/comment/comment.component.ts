@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from '../../../Models/Comment.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { CommentsService } from '../../../Services/comments.service';
-import { AuthService } from '../../../Services/auth.service';
 import { IUser_Info } from '../../../Models/User.model';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -41,7 +41,7 @@ export class CommentComponent implements OnInit {
     }
   }
 
-  createOrUpdateVote(vote: VoteType): void {
+  private createOrUpdateVote(vote: VoteType): void {
     if (this.comment.vote == undefined) {
       this.commentsService
         .postCommentVote(this.comment.commentId.toString(), vote)
@@ -71,20 +71,12 @@ export class CommentComponent implements OnInit {
     }
   }
 
-  doUpvote(): void {
-    if (this.authService.isAuthenticated()) {
-      this.createOrUpdateVote(VoteType.Upvote);
-    } else {
-      this.toastr.error('You have to sign-in to vote!', 'Comment Vote Error');
-    }
+  public doUpvote(): void {
+    this.createOrUpdateVote(VoteType.Upvote);
   }
 
-  doDownvote(): void {
-    if (this.authService.isAuthenticated()) {
-      this.createOrUpdateVote(VoteType.Downvote);
-    } else {
-      this.toastr.error('You have to sign-in to vote!', 'Comment Vote Error');
-    }
+  public doDownvote(): void {
+    this.createOrUpdateVote(VoteType.Downvote);
   }
 
   enterEditMode(): void {

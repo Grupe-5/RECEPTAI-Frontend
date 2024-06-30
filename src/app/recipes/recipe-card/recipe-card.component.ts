@@ -4,9 +4,6 @@ import { VoteType } from '../../../Models/Vote.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../Services/auth.service';
-import { Router } from '@angular/router';
-import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-card',
@@ -20,10 +17,7 @@ export class RecipeCardComponent {
 
   constructor(
     private recipeService: RecipesService,
-    private authService: AuthService,
     private toastr: ToastrService,
-    private router: Router,
-    private platformLocation: PlatformLocation
   ) {}
 
   normalImgOrPlaceholder(imgId: string | undefined): string {
@@ -42,7 +36,7 @@ export class RecipeCardComponent {
     }
   }
 
-  createOrUpdateVote(vote: VoteType): void {
+  private createOrUpdateVote(vote: VoteType): void {
     if (this.recipe === undefined) {
       return;
     }
@@ -77,19 +71,11 @@ export class RecipeCardComponent {
   }
 
   doUpvote(): void {
-    if (this.authService.isAuthenticated()) {
       this.createOrUpdateVote(VoteType.Upvote);
-    } else {
-      this.toastr.error('You have to sign-in to vote!', 'Recipe Vote Error');
-    }
   }
 
   doDownvote(): void {
-    if (this.authService.isAuthenticated()) {
       this.createOrUpdateVote(VoteType.Downvote);
-    } else {
-      this.toastr.error('You have to sign-in to vote!', 'Recipe Vote Error');
-    }
   }
 
   copyLinkToClipBoard(recipeId: string | undefined) {

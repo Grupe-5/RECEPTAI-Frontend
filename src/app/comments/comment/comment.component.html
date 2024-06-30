@@ -3,12 +3,14 @@
     <div class="comment__upvotes-box">
       <a
         (click)="doUpvote()"
+        appAuthenticated
         [class.active-vote]="this.comment.vote === this.voteType.Upvote">
         <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>
       <p class="vote_count">{{ this.comment.aggregatedVotes | userVote }}</p>
       <a
         (click)="doDownvote()"
+        appAuthenticated
         [class.active-vote]="this.comment.vote === this.voteType.Downvote">
         <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" />
       </a>

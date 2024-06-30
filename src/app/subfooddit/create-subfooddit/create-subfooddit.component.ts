@@ -18,7 +18,7 @@ export class CreateSubfoodditComponent {
     private toastr: ToastrService
   ) {}
 
-  formSubmited() {
+  public formSubmited() {
     let errorMessage: string | null = null;
 
     switch (true) {

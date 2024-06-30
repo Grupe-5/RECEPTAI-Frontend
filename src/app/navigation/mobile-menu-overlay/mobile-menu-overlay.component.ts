@@ -14,11 +14,11 @@ export class MobileMenuOverlayComponent {
 
   constructor(private router: Router) {}
 
-  isActiveRoute(route: string): boolean {
+  public isActiveRoute(route: string): boolean {
     return this.router.url == route;
   }
 
-  goToUserPage() {
+  public goToUserPage() {
     this.isMenuOpen.set(false);
   }
 }

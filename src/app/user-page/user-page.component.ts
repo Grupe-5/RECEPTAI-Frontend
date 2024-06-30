@@ -77,7 +77,7 @@ export class UserPageComponent implements OnInit {
     });
   }
 
-  getUsersRecipes(userId: number) {
+  private getUsersRecipes(userId: number) {
     this.recipesService.getRecipeByUserId(userId).subscribe(
       (recipes: Recipe[]) => {
         this.userRecipes = recipes;
@@ -90,17 +90,7 @@ export class UserPageComponent implements OnInit {
     );
   }
 
-  formatDate(date: Date | undefined): string {
-    if(date){
-      const dateFormated = new Date(date);
-  
-      return dateFormated.toLocaleDateString();
-    }
-    
-    return '';
-  }
-
-  changeProfilePicture(event: Event) {
+  public changeProfilePicture(event: Event) {
     const target = event.target as HTMLInputElement;
     const file = (target.files as FileList)[0];
 
@@ -120,11 +110,7 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  deleteUserAccount() {
-    this.openDialog();
-  }
-
-  openDialog(): void {
+  public deleteUserAccountDialog(): void {
     const dialogRef = this.dialog.open(UserAccDeleteComponentModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
@@ -134,7 +120,6 @@ export class UserPageComponent implements OnInit {
             this.authService.LogOut();
             this.router.navigate(['/']);
           },
-          // TODO: handle error
           err => {
             console.log(err);
           }
@@ -143,7 +128,7 @@ export class UserPageComponent implements OnInit {
     });
   }
 
-  signOut() {
+  public signOut() {
     this.authService.LogOut();
     this.router.navigate(['/']);
   }

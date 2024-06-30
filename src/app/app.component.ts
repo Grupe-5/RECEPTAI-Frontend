@@ -8,21 +8,20 @@ import { AuthService } from '../Services/auth.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  isInRecipeRoute: boolean = false;
   constructor(
     private router: Router,
     private authService: AuthService
   ) {}
 
-  isRouteRecipePage(): boolean {
+  public isRouteRecipePage(): boolean {
     return this.router.url.startsWith('/recipe/');
   }
 
-  isRouteSubfoodditPage(): boolean {
+  public isRouteSubfoodditPage(): boolean {
     return this.router.url.startsWith('/f/');
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
 }

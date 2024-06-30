@@ -31,16 +31,15 @@ export class NavigationSidebarComponent implements OnInit {
     );
   }
 
-  // TODO: combine actionRoute function
-  isActiveHome(): boolean {
+  public isActiveHome(): boolean {
     return this.router.url == '/';
   }
 
-  isActiveCreate(): boolean {
+  public isActiveCreate(): boolean {
     return this.router.url == '/create';
   }
 
-  isActiveCreateSubf(): boolean {
+  public isActiveCreateSubf(): boolean {
     return this.router.url == '/subf/create';
   }
 

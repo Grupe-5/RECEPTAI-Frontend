@@ -12,11 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CommentsComponent implements OnInit {
   @Input({required: true}) recipeId: number = 0;
-
   commentForm: FormGroup;
-
   sortValue?: string;
-
   comments: Comment[] = [];
 
   constructor(
@@ -34,7 +31,7 @@ export class CommentsComponent implements OnInit {
     this.fetchComments();
   }
 
-  fetchComments(): void {
+  private fetchComments(): void {
     this.commentsService.getCommentsByRecipeId(this.recipeId).subscribe(
       (comments: Comment[]) => {
         this.comments = comments; // Assign the actual comments array
@@ -48,12 +45,12 @@ export class CommentsComponent implements OnInit {
     );
   }
 
-  getCommentsCountText(): string {
+  public getCommentsCountText(): string {
     const length: number = this.comments.length;
     return String(length) + ' ' + (length > 1 ? 'Comments' : 'Comment');
   }
 
-  selectChange(event: Event) {
+  public selectChange(event: Event) {
     const target = event.target as HTMLTextAreaElement;
 
     switch (target.value) {
@@ -71,7 +68,7 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  onComment() {
+  public onComment() {
     if (!this.authService.isAuthenticated()) {
       this.toastr.error(
         'You have to sign-in to write comments!',

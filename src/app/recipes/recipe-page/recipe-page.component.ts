@@ -12,9 +12,10 @@ import { VoteType } from '../../../Models/Vote.model';
 })
 export class RecipePageComponent implements OnInit {
   public voteType = VoteType;
-  recipe: Recipe | undefined;
+  recipe: Recipe;
   recipeId: number = 0;
   instructionsTrimmed: string[] | undefined;
+  isPageLoaded: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,17 +38,19 @@ export class RecipePageComponent implements OnInit {
             this.instructionsTrimmed = this.instructionsTrimmed.filter(
               ing => !/^\s*$/.test(ing)
             );
+            this.isPageLoaded = true;
           }
         },
         error => {
           // Handle error
           console.error('Error fetching recipe:', error);
+          this.isPageLoaded = true;
         }
       );
     });
   }
 
-  getBack() {
+  public getBack() {
     this._location.back();
   }
 

@@ -15,7 +15,6 @@ export class UseImgOrPlaceholderDirective implements OnInit{
   
   ngOnInit() {
     const el = this.elRef.nativeElement;
-
     if (this.imgId() != undefined) {
       el.src = this.server + this.imgId(); 
     } 

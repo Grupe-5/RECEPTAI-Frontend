@@ -18,7 +18,7 @@ export class RecipeCardComponent {
     private toastr: ToastrService,
   ) {}
 
-  voteTypeToNumber(vote: VoteType): number {
+  private voteTypeToNumber(vote: VoteType): number {
     if (vote == VoteType.Upvote) {
       return 1;
     } else {
@@ -68,7 +68,7 @@ export class RecipeCardComponent {
       this.createOrUpdateVote(VoteType.Downvote);
   }
 
-  copyLinkToClipBoard(recipeId: string | undefined) {
+  public copyLinkToClipBoard(recipeId: string | undefined) {
     if (recipeId) {
       const valToCopy = `${location.origin}/recipe/${recipeId}`;
 

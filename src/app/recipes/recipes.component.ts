@@ -3,7 +3,7 @@ import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service';
 import { Subfooddit } from '../../Models/Subfooddit.model';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -20,7 +20,6 @@ export class RecipesComponent implements OnInit {
     private recipeService: RecipesService,
     private route: ActivatedRoute,
     private subfoodditService: SubfoodditService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +48,7 @@ export class RecipesComponent implements OnInit {
     }
   }
 
-  initNewSubF() {
+  private initNewSubF() {
     this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
       const subFooditId = resp.find(
         (sf: Subfooddit) =>
@@ -73,7 +72,7 @@ export class RecipesComponent implements OnInit {
     });
   }
 
-  selectChange(event: Event) {
+  public selectChange(event: Event) {
     const target = event.target as HTMLTextAreaElement;
 
     switch (target.value) {
@@ -81,18 +80,12 @@ export class RecipesComponent implements OnInit {
         this.recipes.sort((a, b) =>
           a.aggregatedVotes > b.aggregatedVotes ? -1 : 1
         );
-
         break;
       }
       case 'Newest': {
         this.recipes.sort((a, b) => (a.datePosted > b.datePosted ? -1 : 1));
-
         break;
       }
     }
-  }
-
-  navigateToCreate() {
-    this.router.navigate(['/create']);
   }
 }

@@ -1,124 +1,126 @@
-<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
-<div class="recipe-page p-3 pt-0 p-md-5 pt-md-0">
-  <div class="row pt-3 pb-5 p-sm-2 p-md-4 pb-md-5">
-    <div class="row">
-      <div class="col-12">
-        <img
-          src="../../../assets/imgs/arrow-back.svg"
-          (click)="getBack()"
-          class="recipe-page__arrow-back"
-          alt="Back arrow" />
-        <span class="recipe-page__subreddit">
-          /f/<a
-            class="highlight-darker"
-            [href]="'/f/' + recipe?.subfoodditName"
-            >{{ recipe?.subfoodditName }}</a
-          >
-        </span>
+@if(isPageLoaded){
+
+  <div class="recipe-page p-3 pt-0 p-md-5 pt-md-0">
+    <div class="row pt-3 pb-5 p-sm-2 p-md-4 pb-md-5">
+      <div class="row">
+        <div class="col-12">
+          <img
+            src="../../../assets/imgs/arrow-back.svg"
+            (click)="getBack()"
+            class="recipe-page__arrow-back"
+            alt="Back arrow" />
+          <span class="recipe-page__subreddit">
+            /f/<a
+              class="highlight-darker"
+              [href]="'/f/' + recipe.subfoodditName"
+              >{{ recipe.subfoodditName }}</a
+            >
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row justify-content-between">
-        <div class="col-12 col-md-6 row">
-          <div class="col-2 col-sm-1 col-md-2 recipe-page__upvotes-box">
-            <a
-              (click)="doUpvote()"
-              appAuthenticated
-              [class.active-vote]="this.recipe?.vote === this.voteType.Upvote">
-              <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote up arrow" />
-            </a>
-            <p class="vote_count">{{ this.recipe?.aggregatedVotes | userVote }}</p>
-            <a
-              (click)="doDownvote()"
-              appAuthenticated
-              [class.active-vote]="this.recipe?.vote === this.voteType.Downvote">
-              <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote down arrow" />
-            </a>
-          </div>
-          <div class="col-10">
-            <div class="recipe-page__title-box">
-              <p class="recipe-page__title">{{ recipe?.title }}</p>
-              <p></p>
+  
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row justify-content-between">
+          <div class="col-12 col-md-6 row">
+            <div class="col-2 col-sm-1 col-md-2 recipe-page__upvotes-box">
+              <a
+                (click)="doUpvote()"
+                appAuthenticated
+                [class.active-vote]="this.recipe.vote === this.voteType.Upvote">
+                <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote up arrow" />
+              </a>
+              <p class="vote_count">{{ this.recipe.aggregatedVotes | userVote }}</p>
+              <a
+                (click)="doDownvote()"
+                appAuthenticated
+                [class.active-vote]="this.recipe.vote === this.voteType.Downvote">
+                <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote down arrow" />
+              </a>
             </div>
-
-            <div class="row recipe-page__info-box">
-              <p class="recipe-card__info-1__subredit">
-                By
-                <a
-                  [href]="'/user/' + recipe?.userId"
-                  class="highlight-darker"
-                  >{{ recipe?.userName }}</a
-                >
-
-                <span class="recipe-page__info-1__date">
-                  {{ recipe?.datePosted | timestamp }}
-                </span>
+            <div class="col-10">
+              <div class="recipe-page__title-box">
+                <p class="recipe-page__title">{{ recipe.title }}</p>
+                <p></p>
+              </div>
+  
+              <div class="row recipe-page__info-box">
+                <p class="recipe-card__info-1__subredit">
+                  By
+                  <a
+                    [href]="'/user/' + recipe.userId"
+                    class="highlight-darker"
+                    >{{ recipe.userName }}</a
+                  >
+  
+                  <span class="recipe-page__info-1__date">
+                    {{ recipe.datePosted | timestamp }}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-6 mt-5 mb-3 mt-md-0 mb-md-0 recipe-page__info-wrap">
+            <div class="recipe-page__info p-4 mb-4">
+              <p class="recipe-page__info-difficulty">
+                <b>Cooking Difficulty:</b> {{ recipe.cookingDifficulty }}
+              </p>
+              <p class="recipe-page__info-time">
+                <b>Total time:</b> {{ recipe.cookingTime }}
+              </p>
+              <p class="recipe-page__info-servings">
+                <b>Servings:</b> {{ recipe.servings }}
               </p>
             </div>
           </div>
         </div>
-
-        <div class="col-md-6 mt-5 mb-3 mt-md-0 mb-md-0 recipe-page__info-wrap">
-          <div class="recipe-page__info p-4 mb-4">
-            <p class="recipe-page__info-difficulty">
-              <b>Cooking Difficulty:</b> {{ recipe?.cookingDifficulty }}
-            </p>
-            <p class="recipe-page__info-time">
-              <b>Total time:</b> {{ recipe?.cookingTime }}
-            </p>
-            <p class="recipe-page__info-servings">
-              <b>Servings:</b> {{ recipe?.servings }}
-            </p>
+  
+        <div class="row pt-2">
+          <div
+            class="col-md-6 mt-0 mb-5 mt-md-0 mb-md-0 ps-md-4 recipe-page__img-box-wrap">
+            <div class="recipe-page__img-box">
+              <img
+                appUseUserImgOrPlaceholder 
+                [imgId]="recipe.imgId" 
+                imgType="recipe"
+                alt="Recipe img"
+                class="recipe-page__img" />
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row pt-2">
-        <div
-          class="col-md-6 mt-0 mb-5 mt-md-0 mb-md-0 ps-md-4 recipe-page__img-box-wrap">
-          <div class="recipe-page__img-box">
-            <img
-              appUseUserImgOrPlaceholder 
-              [imgId]="recipe?.imgId" 
-              imgType="recipe"
-              alt="Recipe img"
-              class="recipe-page__img" />
-          </div>
-        </div>
-        <div class="col-md-6 recipe-page__ingredients-wrap">
-          <div class="recipe-page__ingredients">
-            <div>
-              <p>Ingredients</p>
-              <ul class="recipe-page__ingredients-list">
-                @for(ingredient of this.recipe?.ingredients?.split('\n'); track ingredient){
-                  <li>
-                    {{ ingredient }}
-                  </li>
-                }
-              </ul>
+          <div class="col-md-6 recipe-page__ingredients-wrap">
+            <div class="recipe-page__ingredients">
+              <div>
+                <p>Ingredients</p>
+                <ul class="recipe-page__ingredients-list">
+                  @for(ingredient of this.recipe.ingredients.split('\n'); track ingredient){
+                    <li>
+                      {{ ingredient }}
+                    </li>
+                  }
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="row p-2 pt-5 p-md-0">
-        <div class="recipe-page__instructions ps-5 pe-2 pt-4 pb-4">
-          <p>Instructions</p>
-          <ol class="recipe-page__instructions-list">
-            @for(instructions of instructionsTrimmed; track instructions){
-              <li>
-              {{ instructions }}
-              </li>
-            }
-          </ol>
+      <div class="col-md-4">
+        <div class="row p-2 pt-5 p-md-0">
+          <div class="recipe-page__instructions ps-5 pe-2 pt-4 pb-4">
+            <p>Instructions</p>
+            <ol class="recipe-page__instructions-list">
+              @for(instructions of instructionsTrimmed; track instructions){
+                <li>
+                {{ instructions }}
+                </li>
+              }
+            </ol>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+}
 
 <app-comments [recipeId]="recipeId"/>

@@ -40,7 +40,7 @@ export class RecipeCreateComponent implements OnInit {
     );
   }
 
-  onFileChange(event: Event) {
+  public onFileChange(event: Event) {
     const target = event.target as HTMLInputElement;
     const file = (target.files as FileList)[0];
 
@@ -51,11 +51,12 @@ export class RecipeCreateComponent implements OnInit {
       this.imageFile = undefined;
     }
   }
-  userHasJoinedSubf(): boolean {
+
+  public userHasJoinedSubf(): boolean {
     return this.usersSubFooddits.length > 0;
   }
 
-  formSubmited() {
+  public formSubmited() {
     const subFId = this.usersSubFooddits.find(
       (sf: Subfooddit) => sf.title === this.selectedSubFoodit
     )?.subfoodditId;
@@ -104,7 +105,7 @@ export class RecipeCreateComponent implements OnInit {
     }
   }
 
-  updateSubFoodit(subFoodTitle: string) {
+  public updateSubFoodit(subFoodTitle: string) {
     this.selectedSubFoodit = subFoodTitle;
   }
 }

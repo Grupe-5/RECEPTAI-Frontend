@@ -86,10 +86,6 @@ export class NavigationComponent implements OnInit {
     this.ngOnInit();
   }
 
-  goToUserPage() {
-    this.router.navigate(['user', 'me']);
-  }
-
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }

@@ -24,10 +24,6 @@ export class SignInPageComponent {
     });
   }
 
-  goToRegister() {
-    this.router.navigate(['/register']);
-  }
-
   onSignIn() {
     const { username, password } = this.loginForm.value;
     if (!username) {

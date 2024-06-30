@@ -31,12 +31,12 @@ export class SubfoodditComponent implements OnInit {
     this.isPageLoaded = false;
     this.route.params.subscribe((params: Params) => {
       if (params) {
-        this.initNewSubF();
+        this.initSubFpoddit();
       }
     });
   }
 
-  initNewSubF() {
+  initSubFpoddit() {
     this.subFoodditName = this.parseSubFooditName(this.router.url);
     this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
       const subFoodditInfo = resp.find(
@@ -50,15 +50,14 @@ export class SubfoodditComponent implements OnInit {
         this.subFooddit = subFoodditInfo;
         if(this.authService.isAuthenticated()) {
           this.subfoodditService.getSubfoodditsByUserId().subscribe(
-            (foodits: Subfooddit[]) => {
-              this.isPageLoaded = true;
-              this.currUserHasJoined = foodits.some(
+            (subfoodits: Subfooddit[]) => {
+              this.currUserHasJoined = subfoodits.some(
                 sf => sf.subfoodditId == this.subFooddit?.subfoodditId
               );
+              this.isPageLoaded = true;
             },
             err => {
               console.log(err);
-              
               this.isPageLoaded = true;
             }
           );
@@ -98,41 +97,23 @@ export class SubfoodditComponent implements OnInit {
     );
   }
 
-  isLoggedIn(): boolean {
-    return this.authService.isAuthenticated();
-  }
-
   joinSubFooddit() {
-    if (!this.isLoggedIn()) {
-      this.toastr.error(
-        'You have to sign-in to join subfooddits!',
-        'Subfooddit Error'
-      );
+    if (this.currUserHasJoined && this.subFooddit) {
+      this.subfoodditService
+        .leaveSubFoodit(this.subFooddit.subfoodditId)
+        .subscribe(() => {
+          this.currUserHasJoined = false;
+          window.location.reload();
+        });
     } else {
-      if (this.currUserHasJoined && this.subFooddit) {
+      if(this.subFooddit){
         this.subfoodditService
-          .leaveSubFoodit(this.subFooddit.subfoodditId)
+          .joinSubfoodit(this.subFooddit.subfoodditId)
           .subscribe(() => {
-            this.currUserHasJoined = false;
+            this.currUserHasJoined = true;
             window.location.reload();
           });
-      } else {
-        if(this.subFooddit){
-          this.subfoodditService
-            .joinSubfoodit(this.subFooddit.subfoodditId)
-            .subscribe(() => {
-              this.currUserHasJoined = true;
-              window.location.reload();
-            });
-        }
       }
     }
-  }
-
-  showJoin(): boolean {
-    if (!this.isLoggedIn()) {
-      return true;
-    }
-    return !this.currUserHasJoined;
   }
 }

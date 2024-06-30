@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './mobile-menu-overlay.component.scss',
 })
 export class MobileMenuOverlayComponent {
-   isMenuOpen = model.required<boolean>();
+  isMenuOpen = model.required<boolean>();
 
   @Input() isLoggedIn = false;
   @Input() profileImgUrl: string;
@@ -19,7 +19,6 @@ export class MobileMenuOverlayComponent {
   }
 
   goToUserPage() {
-    this.router.navigate(['user', 'me']);
     this.isMenuOpen.set(false);
   }
 }

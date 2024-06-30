@@ -26,12 +26,14 @@
           <div class="col-2 col-sm-1 col-md-2 recipe-page__upvotes-box">
             <a
               (click)="doUpvote()"
+              appAuthenticated
               [class.active-vote]="this.recipe?.vote === this.voteType.Upvote">
               <img class="up-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote up arrow" />
             </a>
             <p class="vote_count">{{ this.recipe?.aggregatedVotes | userVote }}</p>
             <a
               (click)="doDownvote()"
+              appAuthenticated
               [class.active-vote]="this.recipe?.vote === this.voteType.Downvote">
               <img class="down-arrow" src="../../../assets/imgs/up-arrow.svg" alt="Vote down arrow" />
             </a>

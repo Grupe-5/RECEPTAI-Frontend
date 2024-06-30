@@ -5,7 +5,7 @@ export class Recipe {
   public userName: string;
   public userId: string;
   public title: string;
-  public imgId: string;
+  public imgId: number;
   public subfoodditId: number;
   public subfoodditName: string;
   public ingredients: string;

@@ -4,7 +4,6 @@ import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
 import { VoteType } from '../../../Models/Vote.model';
-import { environment } from '../../../environments/environment';
    
 @Component({
   selector: 'app-recipe-page',
@@ -12,7 +11,6 @@ import { environment } from '../../../environments/environment';
   styleUrl: './recipe-page.component.scss',
 })
 export class RecipePageComponent implements OnInit {
-  private server = environment.apiUrl + '/api/image/';
   public voteType = VoteType;
   recipe: Recipe | undefined;
   recipeId: number = 0;
@@ -51,14 +49,6 @@ export class RecipePageComponent implements OnInit {
 
   getBack() {
     this._location.back();
-  }
-
-  normalImgOrPlaceholder(imgId: string | undefined): string {
-    if (imgId != undefined) {
-      return this.server + imgId;
-    } else {
-      return '../../../assets/imgs/recipe-img-dummy.jpg';
-    }
   }
 
   voteTypeToNumber(vote: VoteType): number {

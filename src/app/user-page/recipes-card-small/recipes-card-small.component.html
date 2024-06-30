@@ -1,7 +1,9 @@
 <div class="recipe-card" [routerLink]="['/recipe', recipe().recipeId]">
   <div class="recipe-card__img-box">
     <img
-      [src]="normalImgOrPlaceholder(recipe().imgId)"
+      appUseUserImgOrPlaceholder 
+      [imgId]="recipe().imgId" 
+      imgType="recipe"
       alt="Recipe img"
       class="recipe-card__img" />
   </div>

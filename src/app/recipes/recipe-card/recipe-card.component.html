@@ -21,7 +21,9 @@
     class="recipe-card__img-box"
     [routerLink]="['/recipe', recipe.recipeId]">
     <img
-      [src]="normalImgOrPlaceholder(recipe.imgId)"
+      appUseUserImgOrPlaceholder 
+      [imgId]="recipe.imgId" 
+      imgType="recipe"
       alt="Recipe img"
       class="recipe-card__img" />
   </div>

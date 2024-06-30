@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { TimestampPipe } from './pipes/timestamp.pipe';
 import { UserVotePipe } from './pipes/user-vote.pipe';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
+import { UseImgOrPlaceholderDirective } from './directives/use-img-or-placeholder.directive';
 
 
 @NgModule({
   declarations: [
     TimestampPipe,
     UserVotePipe,
-    AuthenticatedDirective
+    AuthenticatedDirective,
+    UseImgOrPlaceholderDirective
   ],
   imports: [
     CommonModule
@@ -17,7 +19,8 @@ import { AuthenticatedDirective } from './directives/authenticated.directive';
   exports: [
     TimestampPipe,
     UserVotePipe,
-    AuthenticatedDirective
+    AuthenticatedDirective,
+    UseImgOrPlaceholderDirective
   ]
 })
 export class SharedModule { }

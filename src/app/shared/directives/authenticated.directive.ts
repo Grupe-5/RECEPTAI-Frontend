@@ -9,10 +9,8 @@ import { AuthService } from '../../../Services/auth.service';
 export class AuthenticatedDirective implements OnInit, OnDestroy {
   private toastr = inject(ToastrService);
   private authService = inject(AuthService);
-
+  private elRef = inject(ElementRef);
   subscriptionToElementClick = new Subscription();
-  
-  constructor(private elRef: ElementRef) {}
   
   ngOnInit() {
     const el = this.elRef.nativeElement;

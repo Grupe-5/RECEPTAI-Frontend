@@ -20,7 +20,9 @@
               <figure
                 class="user-page__user-info-avatar-shape">
                 <img
-                  [src]="normalImgOrPlaceholder(userInfo?.imageId)"
+                  appUseUserImgOrPlaceholder 
+                  [imgId]="userInfo?.imageId" 
+                  imgType="user"
                   alt="Person on a tour"
                   class="user-page__user-info-avatar-img" />
                 <figcaption class="user-page__user-info-avatar-caption">
@@ -35,7 +37,9 @@
             <div class="user-page__user-info-avatar2">
               <figure class="user-page__user-info-avatar2-shape">
                 <img
-                  [src]="normalImgOrPlaceholder(userInfo?.imageId)"
+                  appUseUserImgOrPlaceholder 
+                  [imgId]="userInfo?.imageId" 
+                  imgType="user"
                   alt="Person on a tour"
                   class="user-page__user-info-avatar2-img" />
               </figure>

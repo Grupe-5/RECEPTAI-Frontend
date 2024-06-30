@@ -5,7 +5,7 @@
     @if(isLoggedIn){
       <li>
         <a class="menu-overlay__avatar" routerLink="user/me" (click)="goToUserPage()">
-          <img [src]="profileImgUrl" alt="user-avatar" />
+          <img appUseUserImgOrPlaceholder [imgId]="profileImgUrl" imgType="user" alt="user-avatar" />
         </a>
       </li>
     }

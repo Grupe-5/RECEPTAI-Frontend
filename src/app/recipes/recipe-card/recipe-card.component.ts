@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { RecipesService } from '../../../Services/recipes.service';
-import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -13,20 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class RecipeCardComponent {
   @Input({required: true}) recipe: Recipe;
   public voteType = VoteType;
-  private server = environment.apiUrl + '/api/image/';
 
   constructor(
     private recipeService: RecipesService,
     private toastr: ToastrService,
   ) {}
-
-  normalImgOrPlaceholder(imgId: string | undefined): string {
-    if (imgId != undefined) {
-      return this.server + imgId;
-    } else {
-      return '../../../assets/imgs/recipe-img-dummy.jpg';
-    }
-  }
 
   voteTypeToNumber(vote: VoteType): number {
     if (vote == VoteType.Upvote) {

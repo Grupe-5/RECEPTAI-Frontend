@@ -18,8 +18,6 @@ export class UserPageComponent implements OnInit {
   userInfo: IUser_Info | undefined;
   isUsersPage: boolean = false;
   userRecipes: Recipe[] = [];
-  userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
-  private server: string;
   isUserInfoLoaded = false;
   isRecipesLoaded = false;
 
@@ -36,11 +34,8 @@ export class UserPageComponent implements OnInit {
   ngOnInit(): void {
     this.isUserInfoLoaded = false;
     this.isRecipesLoaded = false;
-    // TODO: fix hardcoded server route
-    this.server = 'https://fooddit.domaskal.com' + '/api/image/';
+
     this.route.paramMap.subscribe(params => {
-
-
       const userId: string | number | null = params.get('id');
       if (userId == null) {
         this.router.navigate(['/']);
@@ -122,14 +117,6 @@ export class UserPageComponent implements OnInit {
       );
     } else {
       this.toastr.error('Invalid file, try again.', 'User profile Error');
-    }
-  }
-
-  normalImgOrPlaceholder(imgId: number | undefined): string {
-    if (imgId != undefined) {
-      return this.server + imgId;
-    } else {
-      return this.userAvatarPlaceHolder;
     }
   }
 

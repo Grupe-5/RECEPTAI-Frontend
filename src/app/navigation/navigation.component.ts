@@ -3,7 +3,6 @@ import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { IUser_Info } from '../../Models/User.model';
 import { SerachBarService } from '../../Services/search-bar.service';
-import { environment } from '../../environments/environment';
 import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
@@ -12,11 +11,9 @@ import { filter, pairwise } from 'rxjs/operators';
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent implements OnInit {
-  private server = environment.apiUrl + '/api/image/';
   isInRecipeRoute: boolean = false;
   userImgId: number | undefined = undefined;
-  userAvatarPlaceHolder = '../../assets/imgs/user-avatar.png';
-  profileImgUrl: string = '';
+  profileImgUrl: number | undefined = undefined;
   isMobileMenuOpen: boolean = false;
   isPageLoaded: boolean;
 
@@ -30,8 +27,7 @@ export class NavigationComponent implements OnInit {
     this.isPageLoaded = false;
     if(this.authService.isAuthenticated()){
       this.authService.getUserInfo().subscribe((userInfo: IUser_Info) => {
-        this.userImgId = userInfo.imageId;
-        this.profileImgUrl = this.normalImgOrPlaceholder(this.userImgId);
+        this.profileImgUrl = userInfo.imageId ? userInfo.imageId : undefined;
         this.isPageLoaded = true;
       });
     }
@@ -54,14 +50,6 @@ export class NavigationComponent implements OnInit {
       });
 
     this.serachBarService.initSubFoodditNames();
-  }
-
-  normalImgOrPlaceholder(imgId: number): string {
-    if (imgId != undefined) {
-      return this.server + imgId;
-    } else {
-      return this.userAvatarPlaceHolder;
-    }
   }
 
   shouldShowRegBtn(): boolean {

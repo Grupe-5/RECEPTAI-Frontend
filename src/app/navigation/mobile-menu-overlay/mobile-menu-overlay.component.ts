@@ -10,7 +10,7 @@ export class MobileMenuOverlayComponent {
   isMenuOpen = model.required<boolean>();
 
   @Input() isLoggedIn = false;
-  @Input() profileImgUrl: string;
+  @Input() profileImgUrl: number | undefined;
 
   constructor(private router: Router) {}
 

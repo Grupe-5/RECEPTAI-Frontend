@@ -66,12 +66,9 @@ export class CommentsComponent implements OnInit {
       }
       case 'Newest': {
         this.comments.sort((a, b) => (a.commentDate > b.commentDate ? -1 : 1));
-
         break;
       }
     }
-    //In my case $event come with a id value
-    // this.model.myListOptions = this.listOptions[$event];
   }
 
   onComment() {

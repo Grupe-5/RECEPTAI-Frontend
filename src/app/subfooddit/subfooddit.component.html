@@ -12,10 +12,11 @@
       <div class="subfooddit-wrap__info-join btn-wrap">
         <button
           type="submit"
+          appAuthenticated
           (click)="joinSubFooddit()"
           class="button button--grey">
 
-          @if(showJoin()){
+          @if(!this.currUserHasJoined){
             <span class="text-join">
               <span class="big_plus">+</span> Join
             </span>

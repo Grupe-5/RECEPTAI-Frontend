@@ -5,9 +5,7 @@ import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
 import { VoteType } from '../../../Models/Vote.model';
 import { environment } from '../../../environments/environment';
-import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../Services/auth.service';
-
+   
 @Component({
   selector: 'app-recipe-page',
   templateUrl: './recipe-page.component.html',
@@ -25,8 +23,6 @@ export class RecipePageComponent implements OnInit {
     private router: Router,
     private recipeService: RecipesService,
     private _location: Location,
-    private authService: AuthService,
-    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -108,18 +104,10 @@ export class RecipePageComponent implements OnInit {
   }
 
   doUpvote(): void {
-    if (this.authService.isAuthenticated()) {
-      this.createOrUpdateVote(VoteType.Upvote);
-    } else {
-      this.toastr.error('You have to sign-in to vote!', 'Recipe Vote Error');
-    }
+    this.createOrUpdateVote(VoteType.Upvote);
   }
 
   doDownvote(): void {
-    if (this.authService.isAuthenticated()) {
-      this.createOrUpdateVote(VoteType.Downvote);
-    } else {
-      this.toastr.error('You have to sign-in to vote!', 'Recipe Vote Error');
-    }
+    this.createOrUpdateVote(VoteType.Downvote);
   }
 }

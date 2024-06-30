@@ -73,7 +73,7 @@
 </nav>
 
 <mat-menu #menu="matMenu">
-  <button (click)="goToUserPage()" mat-menu-item>Profile</button>
+  <button routerLink="/user/me" mat-menu-item>Profile</button>
   <button (click)="logOut()" mat-menu-item>Sign-out</button>
 </mat-menu>
 

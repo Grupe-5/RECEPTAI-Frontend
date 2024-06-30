@@ -16,7 +16,6 @@ export class AuthService {
 
   private stateItem: BehaviorSubject<IUser | null> =
     new BehaviorSubject<IUser | null>(null);
-  stateItem$: Observable<IUser | null> = this.stateItem.asObservable();
 
   constructor(private http: HttpClient) {
     const currUser = localStorage.getItem(this.localStorageUser);

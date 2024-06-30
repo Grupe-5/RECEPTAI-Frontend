@@ -23,11 +23,11 @@ export class SearchOverlayComponent {
   showHistory = this.searchBarServie.showHistory;
   searchTerm = this.searchBarServie.searchTerm;
 
-  deleteRecentSearch(searchTerm: string) {
+  public deleteRecentSearch(searchTerm: string) {
     this.searchBarServie.deleteFromRecentSearch(searchTerm);
   }
 
-  navigate(searchTerm: string) {
+  public navigate(searchTerm: string) {
     this.searchBarServie.search(searchTerm);
     this.router.navigate(['/f/', searchTerm]);
     this.searchTerm.set(searchTerm);

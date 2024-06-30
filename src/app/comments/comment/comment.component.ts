@@ -17,7 +17,7 @@ export class CommentComponent implements OnInit {
   public userId: number = 0;
   public isInEditingMode: boolean = false;
   public editComText: string;
-  show: boolean;
+  public trapTabFocus: boolean;
 
   constructor(
     private commentsService: CommentsService,
@@ -79,13 +79,13 @@ export class CommentComponent implements OnInit {
     this.createOrUpdateVote(VoteType.Downvote);
   }
 
-  enterEditMode(): void {
+  public enterEditMode(): void {
     this.editComText = this.comment.commentText;
     this.isInEditingMode = !this.isInEditingMode;
-    this.show = !this.show;
+    this.trapTabFocus = !this.trapTabFocus;
   }
 
-  updateComment() {
+  public updateComment() {
     if (this.editComText !== this.comment.commentText) {
       if (!this.editComText) {
         this.toastr.error('Comment can not be empty!', 'Comment Error');
@@ -107,13 +107,13 @@ export class CommentComponent implements OnInit {
                 'Comment Error'
               );
               this.isInEditingMode = !this.isInEditingMode;
-              this.show = !this.show;
+              this.trapTabFocus = !this.trapTabFocus;
             }
           );
       }
     } else {
       this.isInEditingMode = !this.isInEditingMode;
-      this.show = !this.show;
+      this.trapTabFocus = !this.trapTabFocus;
     }
   }
 }

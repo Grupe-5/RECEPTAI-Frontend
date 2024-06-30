@@ -30,7 +30,7 @@ export class SearchBarComponent {
   @ViewChild('optionsContainer') optionsContainer: CdkConnectedOverlay;
   constructor(private router: Router) {}
   
-  search(searchTerm: string) {
+  public search(searchTerm: string) {
     if (!searchTerm) return;
     const retValue = this.searchBarService.search(searchTerm);
     if (retValue != undefined) {
@@ -41,7 +41,7 @@ export class SearchBarComponent {
     }
   }
 
-  onSearchChange(searchTerm: string) {
+  public onSearchChange(searchTerm: string) {
     if (!searchTerm) {
       this.showHistory.set(true);
       return;
@@ -50,7 +50,7 @@ export class SearchBarComponent {
     this.searchBarService.searchSubFooddits(searchTerm);
   }
 
-  outsideClick() {
+  public outsideClick() {
     this.searchInput().nativeElement.value = '';
     this.overlayOpen.set(false);
   }

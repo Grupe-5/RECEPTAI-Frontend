@@ -4,7 +4,6 @@ import { Subfooddit } from '../../Models/Subfooddit.model';
 import { SubfoodditService } from '../../Services/subfooddit.service';
 import { AuthService } from '../../Services/auth.service';
 import { Recipe } from '../../Models/Recipe.model';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-subfooddit',
@@ -15,16 +14,23 @@ export class SubfoodditComponent implements OnInit {
   recipes: Recipe[] = [];
   subFooddit: Subfooddit | undefined;
   currUserHasJoined: boolean = false;
-  joinedUserCount: number = 0;
   subFoodditName: string;
   isPageLoaded: boolean = false;
+
+  private _joinedUserCount: number = 0;
+  get joinedUserCount(): string {
+    return (
+      String(this._joinedUserCount) +
+      ' ' +
+      (this._joinedUserCount > 1 ? 'Members' : 'Member')
+    );
+  }
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private subfoodditService: SubfoodditService,
     private authService: AuthService,
-    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +42,7 @@ export class SubfoodditComponent implements OnInit {
     });
   }
 
-  initSubFpoddit() {
+  private initSubFpoddit() {
     this.subFoodditName = this.parseSubFooditName(this.router.url);
     this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
       const subFoodditInfo = resp.find(
@@ -66,12 +72,12 @@ export class SubfoodditComponent implements OnInit {
           .getUserBySubfooddits(this.subFooddit.subfoodditId)
           .subscribe(
             resp => {
-              this.joinedUserCount = resp.length;
+              this._joinedUserCount = resp.length;
               this.isPageLoaded = true;
             },
             (err)=>{
                 if(err.status === 404){
-                  this.joinedUserCount = 0;
+                  this._joinedUserCount = 0;
                   this.isPageLoaded = true;
                 }
             });
@@ -79,7 +85,7 @@ export class SubfoodditComponent implements OnInit {
     });
   }
 
-  parseSubFooditName(url: string): string {
+  private parseSubFooditName(url: string): string {
     const regex = '/f/([^/]+)/?$';
     const match = url.match(regex);
     if (match && match[1]) {
@@ -89,20 +95,13 @@ export class SubfoodditComponent implements OnInit {
     }
   }
 
-  getUsersCountText(): string {
-    return (
-      String(this.joinedUserCount) +
-      ' ' +
-      (this.joinedUserCount > 1 ? 'Members' : 'Member')
-    );
-  }
-
-  joinSubFooddit() {
+  public joinSubFooddit() {
     if (this.currUserHasJoined && this.subFooddit) {
       this.subfoodditService
         .leaveSubFoodit(this.subFooddit.subfoodditId)
         .subscribe(() => {
           this.currUserHasJoined = false;
+          // TODO: Make this without needing to reload (Upde navigation subf list)
           window.location.reload();
         });
     } else {

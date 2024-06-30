@@ -10,10 +10,11 @@
           <!-- This is always hidden -->
           <input
             type="file"
-            class="invsible"
+            class="invisible"
             (change)="changeProfilePicture($event)"
             #fileUpload />
-  
+          <!------->
+
           <div class="col-3 col-sm-2 user-page__user-info-avatar">
             <div class="user-page__user-info-avatar" 
               (click)="fileUpload.click()">
@@ -54,7 +55,7 @@
             <p></p>
             <p class="user-page__user-info-info-1__date-wrap">
               <span class="user-page__user-info-info-1__date"> Joined on: </span>
-              {{ formatDate(userInfo?.joinDate) }}
+              {{ userInfo?.joinDate | date:'shortDate'}}
             </p>
   
             <p class="user-page__user-info-info-1__karma-wrap">
@@ -123,7 +124,7 @@
   
       <div class="btn-wrap">
         <button
-          (click)="deleteUserAccount()"
+          (click)="deleteUserAccountDialog()"
           type="submit"
           class="button button--red">
           Delete

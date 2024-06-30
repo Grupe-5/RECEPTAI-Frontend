@@ -99,7 +99,7 @@ export class AuthService {
     return this.stateItem.value;
   }
 
-  isAuthenticated(): boolean {
+  public isAuthenticated(): boolean {
     return !!this.currentUserValue;
   }
 

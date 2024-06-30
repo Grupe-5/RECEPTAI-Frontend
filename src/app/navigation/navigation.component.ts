@@ -18,7 +18,7 @@ export class NavigationComponent implements OnInit {
   isPageLoaded: boolean;
 
   constructor(
-    private router: Router,
+    public router: Router,
     private authService: AuthService,
     private serachBarService: SerachBarService
   ) {}
@@ -52,33 +52,33 @@ export class NavigationComponent implements OnInit {
     this.serachBarService.initSubFoodditNames();
   }
 
-  shouldShowRegBtn(): boolean {
+  public shouldShowRegBtn(): boolean {
     return this.router.url !== '/register';
   }
 
-  shouldShowUserIcon(): boolean {
+  public shouldShowUserIcon(): boolean {
     return !this.router.url.includes('/user/me') && this.isPageLoaded;
   }
 
-  shouldShowSignIn(): boolean {
+  public shouldShowSignIn(): boolean {
     return this.router.url !== '/sign-in';
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
 
-  logOut() {
+  public logOut() {
     this.authService.LogOut();
     this.router.navigate(['/']);
     this.ngOnInit();
   }
 
-  toggleMobileMenu() {
+  public toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  onMenuOpenChange(isOpen: boolean) {
+  public onMenuOpenChange(isOpen: boolean) {
     this.isMobileMenuOpen = isOpen;
   }
 }

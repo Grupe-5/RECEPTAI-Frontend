@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, effect, signal } from '@angular/core';
 import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service';
@@ -15,12 +15,18 @@ export class RecipesComponent implements OnInit {
   @Input() ShowTitle: boolean = true;
   @Input({required: true}) SubFoodditName: string;
   isPageLoaded: boolean = false;
+  selectedValue = signal<string>('');
+
 
   constructor(
     private recipeService: RecipesService,
     private route: ActivatedRoute,
     private subfoodditService: SubfoodditService,
-  ) {}
+  ) {
+    effect(() => {
+      this.selectChange(this.selectedValue());
+    });
+  }
 
   ngOnInit(): void {
     this.isPageLoaded = false;
@@ -35,9 +41,7 @@ export class RecipesComponent implements OnInit {
       this.recipeService.getRecipes().subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
-          this.recipes.sort((a, b) =>
-            a.aggregatedVotes > b.aggregatedVotes ? -1 : 1
-          );
+          this.selectedValue.set('Best');
           this.isPageLoaded = true;
         },
         error => {
@@ -72,10 +76,8 @@ export class RecipesComponent implements OnInit {
     });
   }
 
-  public selectChange(event: Event) {
-    const target = event.target as HTMLTextAreaElement;
-
-    switch (target.value) {
+  private selectChange(filterValue: string) {
+    switch (filterValue) {
       case 'Best': {
         this.recipes.sort((a, b) =>
           a.aggregatedVotes > b.aggregatedVotes ? -1 : 1

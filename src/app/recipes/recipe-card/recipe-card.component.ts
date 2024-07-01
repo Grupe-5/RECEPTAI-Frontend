@@ -35,27 +35,27 @@ export class RecipeCardComponent {
       this.recipeService
         .postRecipeVote(this.recipe.recipeId.toString(), vote)
         .subscribe(o => {
-          this.recipe!.vote = o.voteType;
-          this.recipe!.aggregatedVotes += this.voteTypeToNumber(o.voteType);
+          this.recipe.vote = o.voteType;
+          this.recipe.aggregatedVotes += this.voteTypeToNumber(o.voteType);
         });
     } else if (this.recipe.vote == vote) {
       this.recipeService
         .removeRecipeVote(this.recipe.recipeId.toString())
         .subscribe(o => {
-          if (o == true && this.recipe!.vote != undefined) {
-            this.recipe!.aggregatedVotes -= this.voteTypeToNumber(
-              this.recipe!.vote
+          if (o == true && this.recipe.vote != undefined) {
+            this.recipe.aggregatedVotes -= this.voteTypeToNumber(
+              this.recipe.vote
             );
-            this.recipe!.vote = undefined;
+            this.recipe.vote = undefined;
           }
         });
     } else {
       this.recipeService
         .updateRecipeVote(this.recipe.recipeId.toString(), vote)
         .subscribe(o => {
-          this.recipe!.vote = o.voteType;
-          this.recipe!.aggregatedVotes +=
-            this.voteTypeToNumber(this.recipe!.vote) * 2;
+          this.recipe.vote = o.voteType;
+          this.recipe.aggregatedVotes +=
+            this.voteTypeToNumber(this.recipe.vote) * 2;
         });
     }
   }

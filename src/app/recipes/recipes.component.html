@@ -18,10 +18,9 @@
               <p>Sort by:</p>
               <div class="form-group recipes-list-wrap__topSort-sort">
                 <select
-                  (change)="selectChange($event)"
+                  [(ngModel)]="selectedValue"
                   class="form-select custom-select-lg mb-3 highlight"
                   name="Sort recipes list">
-                  <!-- TODO: make this in ngFor and proper selectChange -->
                   <option class="not-highlight" selected value="Best">Best</option>
                   <option class="not-highlight" value="Newest">Newest</option>
                 </select>

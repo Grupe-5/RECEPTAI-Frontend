@@ -35,7 +35,7 @@
     @if(isPageLoaded){
       <div class="p-1 sticky__fooddits">
         <p class="sticky__fooddits-title">My fooddits:</p>
-        @for(subF of usersSubFooddits; track subF){
+        @for(subF of usersSubFooddits(); track subF){
           <a
             class="dropdown-item"
             [href]="'f/' + subF.title"

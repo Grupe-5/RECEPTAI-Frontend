@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Subfooddit } from './../Models/Subfooddit.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { IUser_Info } from '../Models/User.model';
-import { switchMap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class SubfoodditService {
   private bySubFoodditIdUrl = 'by_subfooddit/';
   private addUserUrl = 'add_user?subfoodditId=';
   private deleteUserUrl = 'remove_user?subfoodditId=';
+  public userSubFooddits = signal<Subfooddit[]>([]);
 
   constructor(
     private http: HttpClient,
@@ -56,6 +57,14 @@ export class SubfoodditService {
         return this.http.get<Subfooddit[]>(
           `${this.server}${this.byUserUrl}${id}`,
           { headers: reqHeader }
+        ).pipe(
+          catchError(() => {
+            this.userSubFooddits.set([]);
+            return [];
+          }),
+          tap((subfooddits: Subfooddit[])=>{
+            this.userSubFooddits.set(subfooddits);
+          })
         );
       })
     );
@@ -87,7 +96,9 @@ export class SubfoodditService {
     return this.http.delete(
       `${this.server}${this.deleteUserUrl}${subFoodditId}`,
       { headers: reqHeader }
-    );
+    ).pipe(tap(()=>{
+      this.getSubfoodditsByUserId().subscribe();
+    }));
   }
 
   // TODO handle errors
@@ -101,6 +112,8 @@ export class SubfoodditService {
       `${this.server}${this.addUserUrl}${subFoodditId}`,
       '',
       { headers: reqHeader }
-    );
+    ).pipe(tap(()=>{
+      this.getSubfoodditsByUserId().subscribe();
+    }));
   }
 }

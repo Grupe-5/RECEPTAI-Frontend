@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubfoodditService } from '../../../Services/subfooddit.service';
 import { Subfooddit } from '../../../Models/Subfooddit.model';
@@ -8,7 +8,7 @@ import { Subfooddit } from '../../../Models/Subfooddit.model';
   styleUrl: './navigation-sidebar.component.scss',
 })
 export class NavigationSidebarComponent implements OnInit {
-  usersSubFooddits: Subfooddit[];
+  usersSubFooddits: WritableSignal<Subfooddit[]> = this.subfoodditService.userSubFooddits;
   isPageLoaded: boolean;
 
   constructor(
@@ -20,9 +20,7 @@ export class NavigationSidebarComponent implements OnInit {
     this.isPageLoaded = false;
 
     this.subfoodditService.getSubfoodditsByUserId().subscribe({
-      next: (resp: Subfooddit[]) => {
-        this.usersSubFooddits = resp;
-      },
+      
       error: err => {
         console.log(err);
       },

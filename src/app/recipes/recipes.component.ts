@@ -24,7 +24,7 @@ export class RecipesComponent implements OnInit {
     private subfoodditService: SubfoodditService,
   ) {
     effect(() => {
-      this.selectChange(this.selectedValue());
+      this.sortRecipes(this.selectedValue());
     });
   }
 
@@ -40,12 +40,14 @@ export class RecipesComponent implements OnInit {
     } else {
       this.recipeService.getRecipes().subscribe({
         next: (recipes: Recipe[]) => {
-          this.recipes = recipes;
           this.selectedValue.set('Best');
-          this.isPageLoaded = true;
+          this.recipes = recipes;
+          this.sortRecipes();
         },
         error: (error) => {
           console.error('Error fetching recipes: ', error);
+        },
+        complete: () => {
           this.isPageLoaded = true;
         }
       });
@@ -63,7 +65,7 @@ export class RecipesComponent implements OnInit {
         .subscribe({
           next: (recipes: Recipe[]) => {
             this.recipes = recipes;
-            this.selectChange(this.selectedValue());
+            this.sortRecipes();
           },
           error: (error) => {
             console.error('Error fetching recipes: ', error);
@@ -75,8 +77,8 @@ export class RecipesComponent implements OnInit {
     });
   }
 
-  private selectChange(filterValue: string) {
-    switch (filterValue) {
+  public sortRecipes(filterValue?: string) {
+    switch (filterValue ? filterValue : this.selectedValue()) {
       case 'Best': {
         this.recipes.sort((a, b) =>
           a.aggregatedVotes > b.aggregatedVotes ? -1 : 1

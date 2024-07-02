@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { Comment } from '../../../Models/Comment.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { CommentsService } from '../../../Services/comments.service';
@@ -18,6 +18,7 @@ export class CommentComponent implements OnInit {
   public isInEditingMode: boolean = false;
   public editComText: string;
   public trapTabFocus: boolean;
+  public voteChanged = output();
 
   constructor(
     private commentsService: CommentsService,
@@ -48,6 +49,7 @@ export class CommentComponent implements OnInit {
         .subscribe(o => {
           this.comment.vote = o.voteType;
           this.comment.aggregatedVotes += this.voteTypeToNumber(o.voteType);
+          this.voteChanged.emit();
         });
     } else if (this.comment.vote == vote) {
       this.commentsService
@@ -58,6 +60,7 @@ export class CommentComponent implements OnInit {
               this.comment.vote
             );
             this.comment.vote = undefined;
+            this.voteChanged.emit();
           }
         });
     } else {
@@ -67,6 +70,7 @@ export class CommentComponent implements OnInit {
           this.comment.vote = o.voteType;
           this.comment.aggregatedVotes +=
             this.voteTypeToNumber(this.comment.vote) * 2;
+            this.voteChanged.emit();
         });
     }
   }

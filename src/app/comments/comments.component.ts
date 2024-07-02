@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, computed, signal } from '@angular/core';
 import { Comment } from '../../Models/Comment.model';
 import { CommentsService } from '../../Services/comments.service';
 import { AuthService } from '../../Services/auth.service';
@@ -13,8 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 export class CommentsComponent implements OnInit {
   @Input({required: true}) recipeId: number = 0;
   commentForm: FormGroup;
-  sortValue?: string;
-  comments: Comment[] = [];
+  currSortType: 'Best' | 'Newest' = 'Best';
+  private comments = signal<Comment[]>([]);
+  commentsSorted = computed<Comment[]>(() => {
+    this.sortComments();
+    return this.comments();
+  });
 
   constructor(
     private commentsService: CommentsService,
@@ -32,16 +36,15 @@ export class CommentsComponent implements OnInit {
   }
 
   private fetchComments(): void {
-    this.commentsService.getCommentsByRecipeId(this.recipeId).subscribe(
-      (comments: Comment[]) => {
-        this.comments = comments; // Assign the actual comments array
+    this.commentsService.getCommentsByRecipeId(this.recipeId).subscribe({
+      next: (comments: Comment[]) => {
+        this.comments.set(comments);
       },
-      error => {
+      error: (error) => {
         console.error('Error fetching comments: ', error);
-      }
-    );
-    this.comments.sort((a, b) =>
-      a.aggregatedVotes > b.aggregatedVotes ? -1 : 1
+        this.comments.set([]);
+      },
+    }
     );
   }
 
@@ -52,17 +55,22 @@ export class CommentsComponent implements OnInit {
 
   public selectChange(event: Event) {
     const target = event.target as HTMLTextAreaElement;
+    this.sortComments(target.value);
+  }
 
-    switch (target.value) {
+  public sortComments(sortType?: string){
+    switch (sortType ? sortType : this.currSortType) {
       case 'Best': {
-        this.comments.sort((a, b) =>
+        this.currSortType = 'Best';
+        this.comments().sort((a, b) =>
           a.aggregatedVotes > b.aggregatedVotes ? -1 : 1
         );
 
         break;
       }
       case 'Newest': {
-        this.comments.sort((a, b) => (a.commentDate > b.commentDate ? -1 : 1));
+        this.currSortType = 'Newest';
+        this.comments().sort((a, b) => (a.commentDate > b.commentDate ? -1 : 1));
         break;
       }
     }
@@ -81,19 +89,20 @@ export class CommentsComponent implements OnInit {
     if (!commentText) {
       this.toastr.error('Fill the comment text', 'Comment Error');
     } else {
-      this.commentsService.postNewComment(commentText, this.recipeId).subscribe(
-        () => {
+      this.commentsService.postNewComment(commentText, this.recipeId).subscribe({
+        next: () => {
           this.fetchComments();
           this.commentForm.reset();
           this.toastr.success('Comment created', 'Comment action');
         },
-        () => {
+        error: () => {
           this.commentForm.reset();
           this.toastr.error(
             'Unable to post new comment, try again.',
             'Comment Error'
           );
-        }
+        },
+      }
       );
     }
   }

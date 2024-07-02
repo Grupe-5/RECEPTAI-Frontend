@@ -31,18 +31,18 @@ export class SignInPageComponent {
     } else if (!password) {
       this.toastr.error('Please provide password!', 'Sign-in Error');
     } else {
-      this.authService.Login(username, password).subscribe(
-        () => {
+      this.authService.Login(username, password).subscribe({
+        next: () => {
           this.router.navigate(['/']);
         },
-        () => {
+        error: () => {
           this.toastr.error(
             'Invalid username and/or password!',
             'Sign-in Error'
           );
           this.loginForm.patchValue({ password: '' });
         }
-      );
+      });
     }
   }
 }

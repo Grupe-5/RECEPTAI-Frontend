@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { Recipe } from '../../../Models/Recipe.model';
 import { VoteType } from '../../../Models/Vote.model';
 import { RecipesService } from '../../../Services/recipes.service';
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RecipeCardComponent {
   @Input({required: true}) recipe: Recipe;
+  voteChanged = output();
   public voteType = VoteType;
 
   constructor(
@@ -37,6 +38,7 @@ export class RecipeCardComponent {
         .subscribe(o => {
           this.recipe.vote = o.voteType;
           this.recipe.aggregatedVotes += this.voteTypeToNumber(o.voteType);
+          this.voteChanged.emit();
         });
     } else if (this.recipe.vote == vote) {
       this.recipeService
@@ -47,6 +49,7 @@ export class RecipeCardComponent {
               this.recipe.vote
             );
             this.recipe.vote = undefined;
+            this.voteChanged.emit();
           }
         });
     } else {
@@ -56,6 +59,7 @@ export class RecipeCardComponent {
           this.recipe.vote = o.voteType;
           this.recipe.aggregatedVotes +=
             this.voteTypeToNumber(this.recipe.vote) * 2;
+          this.voteChanged.emit();
         });
     }
   }

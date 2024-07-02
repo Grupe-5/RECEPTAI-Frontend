@@ -54,8 +54,8 @@ export class UserPageComponent implements OnInit {
         }
       } else {
         if (Number(userId)) {
-          this.usersService.getUserInfo(Number(userId)).subscribe(
-            (user: IUser_Info) => {
+          this.usersService.getUserInfo(Number(userId)).subscribe({
+            next: (user: IUser_Info) => {
               this.userInfo = user;
               this.isUserInfoLoaded = true;
               this.getUsersRecipes(user.id);
@@ -65,11 +65,11 @@ export class UserPageComponent implements OnInit {
                 });
               }
             },
-            error => {
+            error: error => {
               console.log(error);
               this.router.navigate(['/']);
             }
-          );
+          });
         } else {
           this.router.navigate(['/']);
         }
@@ -78,16 +78,16 @@ export class UserPageComponent implements OnInit {
   }
 
   private getUsersRecipes(userId: number) {
-    this.recipesService.getRecipeByUserId(userId).subscribe(
-      (recipes: Recipe[]) => {
+    this.recipesService.getRecipeByUserId(userId).subscribe({
+      next: (recipes: Recipe[]) => {
         this.userRecipes = recipes;
         this.isRecipesLoaded = true;
       },
-      err => {
+      error: (err) => {
         console.log(err);
         this.isRecipesLoaded = true;
       }
-    );
+    });
   }
 
   public changeProfilePicture(event: Event) {
@@ -95,16 +95,16 @@ export class UserPageComponent implements OnInit {
     const file = (target.files as FileList)[0];
 
     if (file) {
-      this.usersService.updateUserImg(file).subscribe(
-        () => {
+      this.usersService.updateUserImg(file).subscribe({
+        next: () => {
           this.toastr.success('Image changed successfully');
           window.location.reload();
         },
-        error => {
+        error: (error) => {
           console.log(error);
           this.toastr.error('Something wen wrong, try again.', 'User profile Error');
         }
-      );
+      });
     } else {
       this.toastr.error('Invalid file, try again.', 'User profile Error');
     }
@@ -115,15 +115,16 @@ export class UserPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
-        this.usersService.deleteUserAccount().subscribe(
-          () => {
+        this.usersService.deleteUserAccount().subscribe({
+          next: () => {
             this.authService.LogOut();
             this.router.navigate(['/']);
           },
-          err => {
+          error: err => {
             console.log(err);
           }
-        );
+
+        });
       }
     });
   }

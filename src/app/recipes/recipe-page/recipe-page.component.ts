@@ -27,8 +27,8 @@ export class RecipePageComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.recipeId = Number(params.get('id'));
-      this.recipeService.getRecipeById(this.recipeId.toString()).subscribe(
-        (data: Recipe) => {
+      this.recipeService.getRecipeById(this.recipeId.toString()).subscribe({
+        next: (data: Recipe) => {
           // Handle successful response
           this.recipe = data;
           if (this.recipe === undefined) {
@@ -38,15 +38,16 @@ export class RecipePageComponent implements OnInit {
             this.instructionsTrimmed = this.instructionsTrimmed.filter(
               ing => !/^\s*$/.test(ing)
             );
-            this.isPageLoaded = true;
           }
         },
-        error => {
+        error: (error) => {
           // Handle error
           console.error('Error fetching recipe:', error);
+        },
+        complete: () =>{
           this.isPageLoaded = true;
         }
-      );
+      });
     });
   }
 

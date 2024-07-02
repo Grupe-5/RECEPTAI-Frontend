@@ -19,16 +19,17 @@ export class NavigationSidebarComponent implements OnInit {
   ngOnInit() {
     this.isPageLoaded = false;
 
-    this.subfoodditService.getSubfoodditsByUserId().subscribe(
-      (resp: Subfooddit[]) => {
+    this.subfoodditService.getSubfoodditsByUserId().subscribe({
+      next: (resp: Subfooddit[]) => {
         this.usersSubFooddits = resp;
-        this.isPageLoaded = true;
       },
-      err => {
-        this.isPageLoaded = true;
+      error: err => {
         console.log(err);
+      },
+      complete: () => {
+        this.isPageLoaded = true;
       }
-    );
+    });
   }
 
   public isActiveHome(): boolean {

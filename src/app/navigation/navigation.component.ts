@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { IUser_Info } from '../../Models/User.model';
@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit {
   profileImgUrl: number | undefined = undefined;
   isMobileMenuOpen: boolean = false;
   isPageLoaded: boolean;
+  destroyRef = inject(DestroyRef);
 
   constructor(
     public router: Router,
@@ -32,7 +33,7 @@ export class NavigationComponent implements OnInit {
       });
     }
 
-    this.router.events
+    const routerSubscription = this.router.events
       .pipe(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         filter((evt: any) => evt instanceof NavigationStart),
@@ -48,6 +49,8 @@ export class NavigationComponent implements OnInit {
           });
         }
       });
+      
+    this.destroyRef.onDestroy(() =>{routerSubscription.unsubscribe();})
 
     this.serachBarService.initSubFoodditNames();
   }

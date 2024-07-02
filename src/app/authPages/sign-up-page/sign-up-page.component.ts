@@ -55,11 +55,11 @@ export class SignUpPageComponent {
       if (errorMessage) {
         this.toastr.error(errorMessage, 'Register Error');
       } else {
-        this.authService.Signup(username, email, password).subscribe(
-          () => {
+        this.authService.Signup(username, email, password).subscribe({
+          next: () => {
             this.router.navigate(['/']);
           },
-          errorMsg => {
+          error: (errorMsg) => {
             const errorArr = errorMsg.error.errors;
             if (errorArr !== undefined) {
               this.toastr.error(
@@ -72,7 +72,7 @@ export class SignUpPageComponent {
             }
             this.signupForm.patchValue({ password: '', confirmPassword: '' });
           }
-        );
+        });
       }
     }
   }

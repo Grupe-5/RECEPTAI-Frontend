@@ -27,17 +27,18 @@ export class RecipeCreateComponent implements OnInit {
 
   ngOnInit() {
     this.isPageLoaded = false;
-    this.subfoodditService.getSubfoodditsByUserId().subscribe(
-      (resp: Subfooddit[]) => {
+    this.subfoodditService.getSubfoodditsByUserId().subscribe({
+      next: (resp: Subfooddit[]) => {
         this.usersSubFooddits = resp;
         this.selectedSubFoodit = resp[0].title;
-        this.isPageLoaded = true;
       },
-      err => {
+      error: err => {
         console.log(err);
+      },
+      complete: ()=>{
         this.isPageLoaded = true;
       }
-    );
+    });
   }
 
   public onFileChange(event: Event) {
@@ -90,17 +91,18 @@ export class RecipeCreateComponent implements OnInit {
     } else {
       this.recipesService
         .postNewRecipe(this.newRecipe, this.imageFile)
-        .subscribe(
-          (newRecipe: Recipe) => {
+        .subscribe({
+          next: (newRecipe: Recipe) => {
             this.router.navigate([`/recipe/${newRecipe.recipeId}`]);
             this.toastr.success(
               'Recipe created successfully!',
               'Recipe creation'
             );
           },
-          error => {
+          error: error => {
             this.toastr.error(error.error, 'Recipe creation Error');
           }
+        }
         );
     }
   }

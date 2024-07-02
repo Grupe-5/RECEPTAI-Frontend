@@ -36,18 +36,18 @@ export class CreateSubfoodditComponent {
     if (errorMessage) {
       this.toastr.error(errorMessage, 'Subfooddit creation Error');
     } else {
-      this.subfoodditService.postNewSubFoodit(this.newSubfooddit).subscribe(
-        (newSubf: Subfooddit) => {
+      this.subfoodditService.postNewSubFoodit(this.newSubfooddit).subscribe({
+        next: (newSubf: Subfooddit) => {
           this.router.navigate([`/f/${newSubf.title}`]);
           this.toastr.success(
             'Subfooddit created successfully!',
             'Subfooddit creation'
           );
         },
-        error => {
+        error: (error) => {
           this.toastr.error(error.error, 'Subfooddit creation Error');
         }
-      );
+      });
     }
   }
 }

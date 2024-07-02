@@ -37,12 +37,12 @@ export class SubfoodditComponent implements OnInit {
     this.isPageLoaded = false;
     this.route.params.subscribe((params: Params) => {
       if (params) {
-        this.initSubFpoddit();
+        this.initSubFooddit();
       }
     });
   }
 
-  private initSubFpoddit() {
+  private initSubFooddit() {
     this.subFoodditName = this.parseSubFooditName(this.router.url);
     this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
       const subFoodditInfo = resp.find(
@@ -55,32 +55,35 @@ export class SubfoodditComponent implements OnInit {
       } else {
         this.subFooddit = subFoodditInfo;
         if(this.authService.isAuthenticated()) {
-          this.subfoodditService.getSubfoodditsByUserId().subscribe(
-            (subfoodits: Subfooddit[]) => {
+          this.subfoodditService.getSubfoodditsByUserId().subscribe({
+            next: (subfoodits: Subfooddit[]) => {
               this.currUserHasJoined = subfoodits.some(
                 sf => sf.subfoodditId == this.subFooddit?.subfoodditId
               );
-              this.isPageLoaded = true;
             },
-            err => {
+            error: (err) => {
               console.log(err);
+            },
+            complete: () => {
               this.isPageLoaded = true;
             }
-          );
+          });
         }
         this.subfoodditService
           .getUserBySubfooddits(this.subFooddit.subfoodditId)
-          .subscribe(
-            resp => {
+          .subscribe({
+            next: resp => {
               this._joinedUserCount = resp.length;
-              this.isPageLoaded = true;
             },
-            (err)=>{
-                if(err.status === 404){
-                  this._joinedUserCount = 0;
-                  this.isPageLoaded = true;
-                }
-            });
+            error: (err) => {
+              if(err.status === 404){
+                this._joinedUserCount = 0;
+              }
+            },
+            complete: () => {
+              this.isPageLoaded = true;
+            }
+          });
       }
     });
   }

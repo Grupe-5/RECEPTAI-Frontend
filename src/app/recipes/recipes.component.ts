@@ -15,7 +15,7 @@ export class RecipesComponent implements OnInit {
   @Input() ShowTitle: boolean = true;
   @Input({required: true}) SubFoodditName: string;
   isPageLoaded: boolean = false;
-  selectedValue = signal<string>('');
+  selectedValue = signal<'Best' | 'Newest'>('Best');
 
 
   constructor(
@@ -38,17 +38,17 @@ export class RecipesComponent implements OnInit {
         }
       });
     } else {
-      this.recipeService.getRecipes().subscribe(
-        (recipes: Recipe[]) => {
+      this.recipeService.getRecipes().subscribe({
+        next: (recipes: Recipe[]) => {
           this.recipes = recipes;
           this.selectedValue.set('Best');
           this.isPageLoaded = true;
         },
-        error => {
+        error: (error) => {
           console.error('Error fetching recipes: ', error);
           this.isPageLoaded = true;
         }
-      );
+      });
     }
   }
 
@@ -60,19 +60,18 @@ export class RecipesComponent implements OnInit {
       )?.subfoodditId;
       this.recipeService
         .getRecipesBySubfoodditId(subFooditId ? subFooditId : 0)
-        .subscribe(
-          (recipes: Recipe[]) => {
+        .subscribe({
+          next: (recipes: Recipe[]) => {
             this.recipes = recipes;
-            this.isPageLoaded = true;
-            this.recipes.sort((a, b) =>
-              a.aggregatedVotes > b.aggregatedVotes ? -1 : 1
-            );
+            this.selectChange(this.selectedValue());
           },
-          error => {
+          error: (error) => {
             console.error('Error fetching recipes: ', error);
+          },
+          complete: () => {
             this.isPageLoaded = true;
           }
-        );
+        });
     });
   }
 

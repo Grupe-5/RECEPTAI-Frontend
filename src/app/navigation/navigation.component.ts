@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { IUser_Info } from '../../Models/User.model';
@@ -16,36 +16,39 @@ export class NavigationComponent implements OnInit {
   isMobileMenuOpen: boolean = false;
   isPageLoaded: boolean;
   destroyRef = inject(DestroyRef);
-  private currUser = this.authService.currentUserValue;
+  private currUser = this.authService.stateItem;
   
   constructor(
     public router: Router,
     private authService: AuthService,
     private serachBarService: SerachBarService
   ) {
-    effect(()=>{
-      this.currUser;
-      this.fetchNewUserData();
-    });
   }
   
   ngOnInit() {
+    this.currUser.subscribe(()=>{
+      this.fetchNewUserData()
+    })
     this.serachBarService.initSubFoodditNames();
   }
 
   fetchNewUserData(){
     this.isPageLoaded = false;
-    return this.authService.getUserInfo().subscribe({
-      next: (userInfo: IUser_Info) => {
-        this.profileImgUrl = userInfo.imageId ? userInfo.imageId : undefined;
-      },
-      error: (err) =>{
-        console.log(err)
-      },
-      complete: () =>{
-        this.isPageLoaded = true;
-      }
-    });
+    if(this.authService.isAuthenticated()){
+      this.authService.getUserInfo().subscribe({
+        next: (userInfo: IUser_Info) => {
+          this.profileImgUrl = userInfo.imageId ? userInfo.imageId : undefined;
+        },
+        error: (err) =>{
+          console.log(err)
+        },
+        complete: () =>{
+          this.isPageLoaded = true;
+        }
+      });
+    }else{
+      this.isPageLoaded = true;
+    }
   }
 
   public shouldShowRegBtn(): boolean {

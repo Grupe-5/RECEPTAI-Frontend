@@ -1,9 +1,8 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { IUser_Info } from '../../Models/User.model';
 import { SerachBarService } from '../../Services/search-bar.service';
-import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navigation',
@@ -17,42 +16,36 @@ export class NavigationComponent implements OnInit {
   isMobileMenuOpen: boolean = false;
   isPageLoaded: boolean;
   destroyRef = inject(DestroyRef);
-
+  private currUser = this.authService.currentUserValue;
+  
   constructor(
     public router: Router,
     private authService: AuthService,
     private serachBarService: SerachBarService
-  ) {}
-
+  ) {
+    effect(()=>{
+      this.currUser;
+      this.fetchNewUserData();
+    });
+  }
+  
   ngOnInit() {
-    this.isPageLoaded = false;
-    if(this.authService.isAuthenticated()){
-      this.authService.getUserInfo().subscribe((userInfo: IUser_Info) => {
-        this.profileImgUrl = userInfo.imageId ? userInfo.imageId : undefined;
-        this.isPageLoaded = true;
-      });
-    }
-
-    const routerSubscription = this.router.events
-      .pipe(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        filter((evt: any) => evt instanceof NavigationStart),
-        pairwise()
-      )
-      .subscribe((events: NavigationStart[]) => {
-        if (
-          (events[0].url == '/sign-in' || events[0].url == '/register') &&
-          events[1].url == '/'
-        ) {
-          this.router.navigate(['/']).then(() => {
-            window.location.reload();
-          });
-        }
-      });
-      
-    this.destroyRef.onDestroy(() =>{routerSubscription.unsubscribe();})
-
     this.serachBarService.initSubFoodditNames();
+  }
+
+  fetchNewUserData(){
+    this.isPageLoaded = false;
+    return this.authService.getUserInfo().subscribe({
+      next: (userInfo: IUser_Info) => {
+        this.profileImgUrl = userInfo.imageId ? userInfo.imageId : undefined;
+      },
+      error: (err) =>{
+        console.log(err)
+      },
+      complete: () =>{
+        this.isPageLoaded = true;
+      }
+    });
   }
 
   public shouldShowRegBtn(): boolean {

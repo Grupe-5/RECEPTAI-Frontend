@@ -14,7 +14,7 @@ export class AuthService {
   private route_userInfo = 'info/me';
   private localStorageUser = 'loggedInUser';
 
-  private stateItem: BehaviorSubject<IUser | null> =
+  public stateItem: BehaviorSubject<IUser | null> =
     new BehaviorSubject<IUser | null>(null);
 
   constructor(private http: HttpClient) {

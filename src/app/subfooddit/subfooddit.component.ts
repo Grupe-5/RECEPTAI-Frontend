@@ -104,17 +104,16 @@ export class SubfoodditComponent implements OnInit {
         .leaveSubFoodit(this.subFooddit.subfoodditId)
         .subscribe(() => {
           this.currUserHasJoined = false;
-          // TODO: Make this without needing to reload (Upde navigation subf list)
-          window.location.reload();
+          this._joinedUserCount -= 1;
         });
-    } else {
+      } else {
       if(this.subFooddit){
         this.subfoodditService
           .joinSubfoodit(this.subFooddit.subfoodditId)
           .subscribe(() => {
             this.currUserHasJoined = true;
-            window.location.reload();
-          });
+            this._joinedUserCount += 1;
+        });
       }
     }
   }

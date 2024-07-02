@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, inject, input } from '@angular/core';
+import { Directive, ElementRef, OnInit, inject, input, effect } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Directive({
@@ -12,8 +12,18 @@ export class UseImgOrPlaceholderDirective implements OnInit{
   private userAvatarPlaceHolder = '../../../assets/imgs/user-avatar.png';
   private recipePlaceHolder = '../../../assets/imgs/recipe-img-dummy.jpg';
   private elRef = inject(ElementRef);
-  
+
+  constructor(){
+    effect(()=>{
+      this.addSrcOfImg();
+    });
+  }
+
   ngOnInit() {
+    this.addSrcOfImg();
+  }
+
+  private addSrcOfImg(){
     const el = this.elRef.nativeElement;
     if (this.imgId() != undefined) {
       el.src = this.server + this.imgId(); 

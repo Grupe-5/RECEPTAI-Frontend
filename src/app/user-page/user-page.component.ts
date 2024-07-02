@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../Services/users.service';
 import { AuthService } from '../../Services/auth.service';
@@ -96,9 +96,9 @@ export class UserPageComponent implements OnInit {
 
     if (file) {
       this.usersService.updateUserImg(file).subscribe({
-        next: () => {
+        next: (imgId) => {
+          this.userInfo!.imageId = imgId as number; 
           this.toastr.success('Image changed successfully');
-          window.location.reload();
         },
         error: (error) => {
           console.log(error);

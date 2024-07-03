@@ -4,7 +4,7 @@
     <!-- TODO: add reworked "my subfooddits" list on mobile -->
     @if(isLoggedIn){
       <li>
-        <a class="menu-overlay__avatar" routerLink="user/me" (click)="goToUserPage()">
+        <a class="menu-overlay__avatar" routerLink="user/me" (click)="closeMenu()">
           <img appUseUserImgOrPlaceholder [imgId]="profileImgUrl" imgType="user" alt="user-avatar" />
         </a>
       </li>
@@ -12,8 +12,10 @@
 
     <li class="menu-overlay__item">
       <a
-        routerLink="/"
-        [class.active-link]="isActiveRoute('/')"
+        [routerLink]="['/']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeMenu()"
         class="menu-overlay__link">
         Home
       </a>
@@ -23,7 +25,8 @@
       <li class="menu-overlay__item">
         <a
           routerLink="/create"
-          [class.active-link]="isActiveRoute('/create')"
+          routerLinkActive="active-link"
+          (click)="closeMenu()"
           class="menu-overlay__link">
           New Recipe
         </a>
@@ -31,7 +34,8 @@
       <li class="menu-overlay__item">
         <a
           routerLink="/subf/create"
-          [class.active-link]="isActiveRoute('/subf/create')"
+          routerLinkActive="active-link"
+          (click)="closeMenu()"
           class="menu-overlay__link">
           New Subfooddit
         </a>
@@ -40,7 +44,8 @@
       <li class="menu-overlay__item">
         <a
           routerLink="/sign-in"
-          [class.active-link]="isActiveRoute('/sign-in')"
+          routerLinkActive="active-link"
+          (click)="closeMenu()"
           class="menu-overlay__link">
           Sign-in
         </a>
@@ -48,7 +53,8 @@
       <li class="menu-overlay__item">
         <a
           routerLink="/register"
-          [class.active-link]="isActiveRoute('/register')"
+          routerLinkActive="active-link"
+          (click)="closeMenu()"
           class="menu-overlay__link">
           Register
         </a>

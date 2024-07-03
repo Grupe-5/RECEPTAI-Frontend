@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './comments.component.scss',
 })
 export class CommentsComponent implements OnInit {
-  @Input({required: true}) recipeId: number = 0;
+  @Input({required: true}) recipeId: string = '';
   commentForm: FormGroup;
   currSortType: 'Best' | 'Newest' = 'Best';
   private comments = signal<Comment[]>([]);

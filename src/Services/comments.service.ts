@@ -19,7 +19,7 @@ export class CommentsService {
     private authService: AuthService
   ) {}
 
-  getCommentsByRecipeId(recipeId: number): Observable<Comment[]> {
+  getCommentsByRecipeId(recipeId: string): Observable<Comment[]> {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
       Authorization: `Bearer ${this.authService.getToken()}`,
@@ -40,7 +40,7 @@ export class CommentsService {
     });
   }
 
-  postNewComment(commentText: string, recipeId: number) {
+  postNewComment(commentText: string, recipeId: string) {
     const reqHeader = new HttpHeaders({
       accept: '*/*',
       Authorization: `Bearer ${this.authService.getToken()}`,

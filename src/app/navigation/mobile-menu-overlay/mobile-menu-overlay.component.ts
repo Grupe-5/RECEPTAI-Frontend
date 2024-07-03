@@ -14,11 +14,7 @@ export class MobileMenuOverlayComponent {
 
   constructor(private router: Router) {}
 
-  public isActiveRoute(route: string): boolean {
-    return this.router.url == route;
-  }
-
-  public goToUserPage() {
+  public closeMenu() {
     this.isMenuOpen.set(false);
   }
 }

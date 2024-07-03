@@ -42,10 +42,14 @@
       font-weight: 500;
     }
     a {
+      overflow: hidden;
       padding: 0.7rem 0 0.7rem 1rem;
       &:hover {
         transition: all 250ms;
         background-color: var(--color-primary);
+      }
+      &:not(a:nth-child(2)){
+        margin-top: .2rem;
       }
     }
   }
@@ -88,4 +92,8 @@
   img {
     filter: var(--color-primary-for-filter);
   }
+}
+
+.active-link-bg{
+  background-color: var(--color-primary);
 }

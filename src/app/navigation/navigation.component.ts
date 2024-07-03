@@ -51,19 +51,19 @@ export class NavigationComponent implements OnInit {
     }
   }
 
-  public shouldShowRegBtn(): boolean {
+  public get shouldShowRegBtn(): boolean {
     return this.router.url !== '/register';
   }
 
-  public shouldShowUserIcon(): boolean {
+  public get shouldShowUserIcon(): boolean {
     return !this.router.url.includes('/user/me') && this.isPageLoaded;
   }
 
-  public shouldShowSignIn(): boolean {
+  public get shouldShowSignIn(): boolean {
     return this.router.url !== '/sign-in';
   }
 
-  public isLoggedIn(): boolean {
+  public get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
 

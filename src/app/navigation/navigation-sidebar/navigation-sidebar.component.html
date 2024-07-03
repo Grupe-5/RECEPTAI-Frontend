@@ -2,18 +2,19 @@
   <div class="sticky__community">
     <div class="sticky__links">
       <a
+        [routerLink]="['/']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
         type="submit"
-        [class.active-link]="isActiveHome()"
-        class="button nav-link"
-        routerLink="/">
+        class="button nav-link">
         <img src="../../assets/icons/house.svg" alt="Post-Recipe" />
         <span> Home Page </span>
       </a>
       <a
         type="submit"
-        [class.active-link]="isActiveCreate()"
-        class="button nav-link"
-        routerLink="/create">
+        routerLink="/create"
+        routerLinkActive="active-link"
+        class="button nav-link">
         <img
           class="img-write"
           src="../../assets/icons/pencil-square.svg"
@@ -21,10 +22,10 @@
         <span> New Recipe </span>
       </a>
       <a
+        routerLink="/subf/create"
+        routerLinkActive="active-link"
         type="submit"
-        [class.active-link]="isActiveCreateSubf()"
-        class="button nav-link"
-        routerLink="/subf/create">
+        class="button nav-link">
         <img
           class="img-write"
           src="../../assets/icons/journal-plus.svg"
@@ -39,6 +40,7 @@
           <a
             class="dropdown-item"
             [routerLink]="['f', subF.title]"
+            routerLinkActive="active-link-bg"
             >f/{{ subF.title }}</a
           >
         }

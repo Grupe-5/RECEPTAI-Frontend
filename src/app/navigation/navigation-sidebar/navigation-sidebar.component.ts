@@ -1,5 +1,4 @@
 import { Component, OnInit, WritableSignal } from '@angular/core';
-import { Router } from '@angular/router';
 import { SubfoodditService } from '../../../Services/subfooddit.service';
 import { Subfooddit } from '../../../Models/Subfooddit.model';
 @Component({
@@ -12,7 +11,6 @@ export class NavigationSidebarComponent implements OnInit {
   isPageLoaded: boolean;
 
   constructor(
-    private router: Router,
     private subfoodditService: SubfoodditService
   ) {}
 
@@ -29,17 +27,4 @@ export class NavigationSidebarComponent implements OnInit {
       }
     });
   }
-
-  public isActiveHome(): boolean {
-    return this.router.url == '/';
-  }
-
-  public isActiveCreate(): boolean {
-    return this.router.url == '/create';
-  }
-
-  public isActiveCreateSubf(): boolean {
-    return this.router.url == '/subf/create';
-  }
-
 }

@@ -1,6 +1,6 @@
 <nav class="top-navbar pt-3 pb-3 ps-4 pe-4">
   <div class="top-navbar-within">
-    @if(isLoggedIn()){
+    @if(isLoggedIn){
       <div class="row justify-content-between">
         <div class="col-4">
           <a class="top-navbar__logo" routerLink="/">
@@ -16,7 +16,7 @@
           <div class="btn-wrap">
             <a
               class="top-navbar__avatar d-none d-lg-block"
-              *ngIf="shouldShowUserIcon()"
+              *ngIf="shouldShowUserIcon"
               [matMenuTriggerFor]="menu">
               <img appUseUserImgOrPlaceholder [imgId]="profileImgUrl" imgType="user" alt="user-avatar" />
             </a>
@@ -52,14 +52,14 @@
         <div class="col-lg-3 d-none d-lg-block">
           <div class="btn-wrap pr-7">
             <button
-              *ngIf="shouldShowRegBtn()"
+              *ngIf="shouldShowRegBtn"
               [routerLink]="'register'"
               type="submit"
               class="button button--yellow">
               Register
             </button>
             <button
-              *ngIf="shouldShowSignIn()"
+              *ngIf="shouldShowSignIn"
               [routerLink]="'sign-in'"
               type="submit"
               class="button button--transp">
@@ -80,5 +80,5 @@
 <app-mobile-menu-overlay
   [isMenuOpen]="isMobileMenuOpen"
   (isMenuOpenChange)="onMenuOpenChange($event)"
-  [isLoggedIn]="isLoggedIn()"
+  [isLoggedIn]="isLoggedIn"
   [profileImgUrl]="profileImgUrl"/>

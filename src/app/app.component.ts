@@ -17,10 +17,6 @@ export class AppComponent {
     return this.router.url.startsWith('/recipe/');
   }
 
-  public isRouteSubfoodditPage(): boolean {
-    return this.router.url.startsWith('/f/');
-  }
-
   public isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }

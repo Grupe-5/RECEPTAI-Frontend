@@ -4,31 +4,34 @@
       <span class="sign-up-card__heading"> Sign In </span>
     </h2>
     <form
-      [formGroup]="loginForm"
-      (ngSubmit)="onSignIn()"
+      #SignInform="ngForm"
+      (ngSubmit)="onSignIn(SignInform)"
       class="sign-up-card__input-fields">
       <div class="form-group">
         <input
           id="username"
-          formControlName="username"
+          name="username"
           type="text"
           autocomplete="username" 
           class="form-control input-text"
-          placeholder="Username" />
+          placeholder="Username"
+          required
+          ngModel />
       </div>
       <div class="form-group">
         <input
           type="password"
           id="password"
-          formControlName="password"
+          name="password"
           autocomplete="current-password"
           class="form-control input-text"
-          placeholder="Password" />
+          placeholder="Password"
+          required
+          ngModel />
       </div>
       <div class="btn-wrap sign-up-card__input-fields-btn">
         <button
           type="submit"
-          [disabled]="loginForm.invalid"
           class="button button--yellow button--auth">
           Sign In
         </button>

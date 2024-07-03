@@ -25,6 +25,13 @@
       padding: 0 5rem;
     }
 
+    &:is(.ng-submitted){
+      .form-control:is(.ng-invalid){
+        border: solid 1px var(--color-error-red);
+      }
+
+    }
+
     > div {
       width: 100%;
     }

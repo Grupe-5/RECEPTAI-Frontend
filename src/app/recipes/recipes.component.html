@@ -1,7 +1,7 @@
 <div class="recipes-list-wrap">
   @if(isPageLoaded){
     
-    @if(ShowTitle){
+    @if(!notShowTitle()){
       <h2 class="heading-secondary mt-6">
         <span class="recipes-list-wrap__heading"> Find something delicious! </span>
         <div class="recipes-list-wrap__heading-mb-border d-md-none"></div>

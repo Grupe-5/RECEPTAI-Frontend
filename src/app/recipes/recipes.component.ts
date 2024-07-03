@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, effect, signal } from '@angular/core';
+import { Component, Input, OnInit, effect, input, signal } from '@angular/core';
 import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service';
@@ -12,7 +12,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
-  @Input() ShowTitle: boolean = true;
+  notShowTitle = input<boolean>();
   @Input({required: true}) SubFoodditName: string;
   isPageLoaded: boolean = false;
   selectedValue = signal<'Best' | 'Newest'>('Best');

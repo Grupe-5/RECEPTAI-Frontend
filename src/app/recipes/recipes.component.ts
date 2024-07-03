@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, effect, input, signal } from '@angular/core';
+import { Component, OnInit, effect, input, signal } from '@angular/core';
 import { Recipe } from '../../Models/Recipe.model';
 import { RecipesService } from '../../Services/recipes.service';
 import { SubfoodditService } from '../../Services/subfooddit.service';
 import { Subfooddit } from '../../Models/Subfooddit.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -13,30 +13,31 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
   notShowTitle = input<boolean>();
-  @Input({required: true}) SubFoodditName: string;
   isPageLoaded: boolean = false;
   selectedValue = signal<'Best' | 'Newest'>('Best');
+  subFoodditName = input<string>('');
 
 
   constructor(
     private recipeService: RecipesService,
-    private route: ActivatedRoute,
+    private router: Router,
     private subfoodditService: SubfoodditService,
   ) {
     effect(() => {
       this.sortRecipes(this.selectedValue());
     });
+    effect(()=>{
+      if (this.subFoodditName()){
+        this.initNewSubF();
+      }
+    })
   }
 
   ngOnInit(): void {
     this.isPageLoaded = false;
 
-    if (this.SubFoodditName) {
-      this.route.params.subscribe((params: Params) => {
-        if (params) {
+    if (this.subFoodditName()) {
           this.initNewSubF();
-        }
-      });
     } else {
       this.recipeService.getRecipes().subscribe({
         next: (recipes: Recipe[]) => {
@@ -58,7 +59,7 @@ export class RecipesComponent implements OnInit {
     this.subfoodditService.getSubfooddits().subscribe((resp: Subfooddit[]) => {
       const subFooditId = resp.find(
         (sf: Subfooddit) =>
-          sf.title.toLowerCase() === this.SubFoodditName.toLowerCase()
+          sf.title.toLowerCase() === this.subFoodditName().toLowerCase()
       )?.subfoodditId;
       this.recipeService
         .getRecipesBySubfoodditId(subFooditId ? subFooditId : 0)
@@ -68,7 +69,12 @@ export class RecipesComponent implements OnInit {
             this.sortRecipes();
           },
           error: (error) => {
-            console.error('Error fetching recipes: ', error);
+            if(error.status === 404){
+              this.recipes = [];
+            }else{
+              console.error('Error fetching recipes: ', error);
+              this.router.navigate(['/']);
+            }
           },
           complete: () => {
             this.isPageLoaded = true;

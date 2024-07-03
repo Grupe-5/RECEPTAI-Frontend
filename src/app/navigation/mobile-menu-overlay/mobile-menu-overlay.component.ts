@@ -1,5 +1,4 @@
 import { Component, Input, model } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-menu-overlay',
@@ -12,7 +11,7 @@ export class MobileMenuOverlayComponent {
   @Input() isLoggedIn = false;
   @Input() profileImgUrl: number | undefined;
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   public closeMenu() {
     this.isMenuOpen.set(false);

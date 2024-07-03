@@ -3,7 +3,7 @@ import { Recipe } from '../../../Models/Recipe.model';
 import { SubfoodditService } from '../../../Services/subfooddit.service';
 import { RecipesService } from '../../../Services/recipes.service';
 import { Subfooddit } from '../../../Models/Subfooddit.model';
-import { Router } from '@angular/router';
+import { CanDeactivateFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

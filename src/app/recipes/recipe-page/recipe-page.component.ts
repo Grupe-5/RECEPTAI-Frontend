@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Recipe } from '../../../Models/Recipe.model';
 import { RecipesService } from '../../../Services/recipes.service';
 import { Location } from '@angular/common';
@@ -10,46 +10,41 @@ import { VoteType } from '../../../Models/Vote.model';
   templateUrl: './recipe-page.component.html',
   styleUrl: './recipe-page.component.scss',
 })
-export class RecipePageComponent implements OnInit {
+export class RecipePageComponent {
   public voteType = VoteType;
-  recipe: Recipe;
-  recipeId: number = 0;
-  instructionsTrimmed: string[] | undefined;
-  isPageLoaded: boolean = false;
+  public recipe: Recipe;
+  public instructionsTrimmed: string[] | undefined;
+  public isPageLoaded: boolean = false;
+
+  @Input() // Injected via url
+  set id(recipeId: string){
+    this.recipeService.getRecipeById(recipeId).subscribe({
+      next: (data: Recipe) => {
+        this.recipe = data;
+        if (this.recipe === undefined) {
+          this.router.navigate(['/']);
+        } else {
+          this.instructionsTrimmed = this.recipe.instructions.split('\n');
+          this.instructionsTrimmed = this.instructionsTrimmed.filter(
+            ing => !/^\s*$/.test(ing)
+          );
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching recipe:', error);
+        this.router.navigate(['/']); // TODO: show that it is invalid recipe Id
+      },
+      complete: () =>{
+        this.isPageLoaded = true;
+      }
+    });
+  }
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private recipeService: RecipesService,
     private _location: Location,
   ) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.recipeId = Number(params.get('id'));
-      this.recipeService.getRecipeById(this.recipeId.toString()).subscribe({
-        next: (data: Recipe) => {
-          // Handle successful response
-          this.recipe = data;
-          if (this.recipe === undefined) {
-            this.router.navigate(['/']);
-          } else {
-            this.instructionsTrimmed = this.recipe.instructions.split('\n');
-            this.instructionsTrimmed = this.instructionsTrimmed.filter(
-              ing => !/^\s*$/.test(ing)
-            );
-          }
-        },
-        error: (error) => {
-          // Handle error
-          console.error('Error fetching recipe:', error);
-        },
-        complete: () =>{
-          this.isPageLoaded = true;
-        }
-      });
-    });
-  }
 
   public getBack() {
     this._location.back();

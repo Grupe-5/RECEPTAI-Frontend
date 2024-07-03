@@ -10,6 +10,7 @@ import { SignInPageComponent } from './authPages/sign-in-page/sign-in-page.compo
 import { CreateSubfoodditComponent } from './subfooddit/create-subfooddit/create-subfooddit.component';
 import { AuthGuard } from '../AuthGuards/auth.guard';
 import { reverseAuthGuard } from '../AuthGuards/reverse-auth.guard';
+import { canLeaveCreatePage } from './recipes/recipe-create/recipe-create-deactivateGuard';
 
 const routes: Routes = [
   { path: 'recipe/:id', component: RecipePageComponent },
@@ -23,13 +24,14 @@ const routes: Routes = [
     path: 'create',
     component: RecipeCreateComponent,
     canActivate: [AuthGuard],
+    canDeactivate: [canLeaveCreatePage]
   },
   { path: 'register', component: SignUpPageComponent, canActivate: [reverseAuthGuard] },
   { path: 'sign-in', component: SignInPageComponent, canActivate: [reverseAuthGuard]},
   { path: 'user/:id', loadChildren: () => import('./user-page/user.module').then(m=> m.UserModule) },
-  // TODO: Handle invalid routes
   { path: '', component: RecipesComponent },
-  { path: '**', component: RecipesComponent },
+  // TODO: Handle invalid routes
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

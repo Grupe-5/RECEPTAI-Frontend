@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,17 +10,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './sign-in-page.component.scss',
 })
 export class SignInPageComponent {
-  loginForm: FormGroup;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private toastr: ToastrService
-  ) {
-  }
+  ) {}
 
   onSignIn(signInform: NgForm) {
     const { username, password } = signInform.form.controls;
+
     if(!signInform.form.invalid){
       this.authService.Login(username.value, password.value).subscribe({
         next: () => {

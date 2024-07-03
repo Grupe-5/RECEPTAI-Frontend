@@ -5,7 +5,7 @@
         type="submit"
         [class.active-link]="isActiveHome()"
         class="button nav-link"
-        href="/">
+        routerLink="/">
         <img src="../../assets/icons/house.svg" alt="Post-Recipe" />
         <span> Home Page </span>
       </a>
@@ -13,7 +13,7 @@
         type="submit"
         [class.active-link]="isActiveCreate()"
         class="button nav-link"
-        href="/create">
+        routerLink="/create">
         <img
           class="img-write"
           src="../../assets/icons/pencil-square.svg"
@@ -24,7 +24,7 @@
         type="submit"
         [class.active-link]="isActiveCreateSubf()"
         class="button nav-link"
-        href="/subf/create">
+        routerLink="/subf/create">
         <img
           class="img-write"
           src="../../assets/icons/journal-plus.svg"
@@ -38,12 +38,12 @@
         @for(subF of usersSubFooddits(); track subF){
           <a
             class="dropdown-item"
-            [href]="'f/' + subF.title"
+            [routerLink]="['f', subF.title]"
             >f/{{ subF.title }}</a
           >
         }
         @empty {
-          <p href="find">You haven't joined any.</p>
+          <p>You haven't joined any.</p>
         }
       </div>
     } @else{

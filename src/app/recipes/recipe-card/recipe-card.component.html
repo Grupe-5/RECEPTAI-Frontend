@@ -50,7 +50,7 @@
   <div class="recipe-card__name-box">
     <p class="recipe-card__name">
       By
-      <a [href]="'/user/' + recipe.userId" class="highlight-darker">{{
+      <a [routerLink]="['user', recipe.userId]" class="highlight-darker">{{
         recipe.userName
       }}</a>
     </p>

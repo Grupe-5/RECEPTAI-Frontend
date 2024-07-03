@@ -12,7 +12,7 @@
 
     <li class="menu-overlay__item">
       <a
-        href="/"
+        routerLink="/"
         [class.active-link]="isActiveRoute('/')"
         class="menu-overlay__link">
         Home
@@ -22,7 +22,7 @@
     @if(isLoggedIn){
       <li class="menu-overlay__item">
         <a
-          href="/create"
+          routerLink="/create"
           [class.active-link]="isActiveRoute('/create')"
           class="menu-overlay__link">
           New Recipe
@@ -30,7 +30,7 @@
       </li>
       <li class="menu-overlay__item">
         <a
-          href="/subf/create"
+          routerLink="/subf/create"
           [class.active-link]="isActiveRoute('/subf/create')"
           class="menu-overlay__link">
           New Subfooddit
@@ -39,7 +39,7 @@
     } @else {
       <li class="menu-overlay__item">
         <a
-          href="/sign-in"
+          routerLink="/sign-in"
           [class.active-link]="isActiveRoute('/sign-in')"
           class="menu-overlay__link">
           Sign-in
@@ -47,7 +47,7 @@
       </li>
       <li class="menu-overlay__item">
         <a
-          href="/register"
+          routerLink="/register"
           [class.active-link]="isActiveRoute('/register')"
           class="menu-overlay__link">
           Register

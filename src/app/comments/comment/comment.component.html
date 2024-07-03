@@ -21,7 +21,7 @@
       <div class="comment__info-wrap">
         <div>
           <span class="comment__info-username">
-            <a [href]="'user/' + this.comment.userId">{{
+            <a [routerLink]="['user', this.comment.userId]">{{
               this.comment.userName
             }}</a>
           </span>

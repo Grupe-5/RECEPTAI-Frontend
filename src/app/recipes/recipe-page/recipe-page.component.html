@@ -12,7 +12,7 @@
           <span class="recipe-page__subreddit">
             /f/<a
               class="highlight-darker"
-              [href]="'/f/' + recipe.subfoodditName"
+              [routerLink]="['f', recipe.subfoodditName]"
               >{{ recipe.subfoodditName }}</a
             >
           </span>
@@ -49,7 +49,7 @@
                 <p class="recipe-card__info-1__subredit">
                   By
                   <a
-                    [href]="'/user/' + recipe.userId"
+                    [routerLink]="['user', recipe.userId]"
                     class="highlight-darker"
                     >{{ recipe.userName }}</a
                   >

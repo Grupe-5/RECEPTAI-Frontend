@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,24 +14,15 @@ export class SignInPageComponent {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService
   ) {
-    this.loginForm = this.fb.group({
-      username: [''],
-      password: [''],
-    });
   }
 
-  onSignIn() {
-    const { username, password } = this.loginForm.value;
-    if (!username) {
-      this.toastr.error('Please provide username!', 'Sign-in Error');
-    } else if (!password) {
-      this.toastr.error('Please provide password!', 'Sign-in Error');
-    } else {
-      this.authService.Login(username, password).subscribe({
+  onSignIn(signInform: NgForm) {
+    const { username, password } = signInform.form.controls;
+    if(!signInform.form.invalid){
+      this.authService.Login(username.value, password.value).subscribe({
         next: () => {
           this.router.navigate(['/']);
         },
@@ -40,9 +31,15 @@ export class SignInPageComponent {
             'Invalid username and/or password!',
             'Sign-in Error'
           );
-          this.loginForm.patchValue({ password: '' });
-        }
+          signInform.resetForm();
+        },
       });
+    }else{
+      if (!username.value) {
+        this.toastr.error('Please provide username!', 'Sign-in Error');
+      } else if (!password.value) {
+        this.toastr.error('Please provide password!', 'Sign-in Error');
+      } 
     }
   }
 }

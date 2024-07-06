@@ -1,7 +1,7 @@
 <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
-<div class="recipe-card">
+<div class="recipe-card" [routerLink]="['/recipe', recipe.recipeId]">
   <!-- [routerLink]="['/recipe', recipe?.recipeId]" -->
-  <div class="recipe-card__upvotes-box">
+  <div (click)="$event.stopPropagation(); " class="recipe-card__upvotes-box">
     <a
       (click)="doUpvote()"
       appAuthenticated
@@ -18,9 +18,9 @@
   </div>
 
   <div
-    class="recipe-card__img-box"
-    [routerLink]="['/recipe', recipe.recipeId]">
+    class="recipe-card__img-box">
     <img
+    [routerLink]="['/recipe', recipe.recipeId]"
       appUseUserImgOrPlaceholder 
       [imgId]="recipe.imgId" 
       imgType="recipe"
@@ -30,6 +30,7 @@
 
   <div class="recipe-card__info-1">
     <a
+      (click)="$event.stopPropagation()"
       class="recipe-card__info-1__subfooddit"
       [routerLink]="['/f/', recipe.subfoodditName]">
       f/<span class="highlight-darker">{{ recipe.subfoodditName }}</span>
@@ -40,8 +41,7 @@
   </div>
 
   <div
-    class="recipe-card__title-box overflow-hidden"
-    [routerLink]="['/recipe', recipe.recipeId]">
+    class="recipe-card__title-box overflow-hidden">
     <div class="recipe-card__title">
       {{ recipe.title }}
     </div>
@@ -50,7 +50,10 @@
   <div class="recipe-card__name-box">
     <p class="recipe-card__name">
       By
-      <a [routerLink]="['user', recipe.userId]" class="highlight-darker">{{
+      <a 
+        (click)="$event.stopPropagation()"
+        [routerLink]="['user', recipe.userId]"
+        class="highlight-darker">{{
         recipe.userName
       }}</a>
     </p>
@@ -65,7 +68,7 @@
     <div class="recipe-card__info-2__upvotes-box row col-4"></div>
 
     <div
-      (click)="copyLinkToClipBoard(recipe.recipeId)"
+      (click)="$event.stopPropagation(); copyLinkToClipBoard(recipe.recipeId)"
       class="recipe-card__info-2__share-box col-4">
       <img src="../../../assets/imgs/share.svg"  alt="Copy link icon"/>
     </div>

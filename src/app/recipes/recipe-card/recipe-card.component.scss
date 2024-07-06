@@ -9,6 +9,7 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   margin-bottom: 2rem;
   min-width: 15rem;
+  transition: all 0.2s;
 
   @include respond(xs) {
     margin: 0 auto 2rem;
@@ -17,6 +18,17 @@
 
   @include respond(md) {
     max-width: initial;
+  }
+
+  &:hover{
+    cursor: pointer;
+    background-color: var(--color-grey-light-2);
+  }
+
+  &:hover &__img{
+    filter: var(--color-grey-light-2-for-filter);
+    filter: opacity(0.7);
+
   }
 
   &__img-box {
@@ -47,6 +59,13 @@
       display: inline;
       text-decoration: none;
       color: var(--color-black);
+      font-weight: bold;
+      color: var(--color-primary-dark);
+      transition: all 0.2s;
+
+      &:hover{
+        color: var(--color-primary);
+      }
     }
     &__date {
       display: inline;
@@ -68,6 +87,16 @@
   }
   &__name-box {
     padding: 0 1.5rem;
+  }
+  &__name a{
+    font-weight: bold;
+      color: var(--color-primary-dark);
+      transition: all 0.2s;
+      text-decoration: none;
+
+      &:hover{
+        color: var(--color-primary);
+      }
   }
   &__info-2 {
     padding: 0;
@@ -92,14 +121,15 @@
       display: flex;
       align-items: end;
       justify-content: end;
-      transition: filter 0.25s;
-
+      
       img {
         height: 3rem;
-      }
-      &:hover {
-        cursor: pointer;
-        filter: var(--color-primary-for-filter);
+        transition: all 0.2s;
+        
+        &:hover {
+          cursor: pointer;
+          filter: var(--color-primary-for-filter);
+        }
       }
     }
   }
@@ -138,9 +168,4 @@
 
 .highlight {
   color: var(--color-primary);
-}
-.highlight-darker {
-  text-decoration: none;
-  font-weight: bold;
-  color: var(--color-primary-dark);
 }

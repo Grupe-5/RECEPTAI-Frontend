@@ -1,12 +1,12 @@
 <div class="subfooddit-wrap">
-  <div class="subfooddit-wrap__header">
-    <h2 class="subfooddit-wrap__header-title">
-      <span class="subfooddit-wrap__header-title-span">
-        f/{{ subFooddit.title }}
-      </span>
-    </h2>
-  </div>
   @if(isPageLoaded){
+    <div class="subfooddit-wrap__header">
+      <h2 class="subfooddit-wrap__header-title">
+        <span class="subfooddit-wrap__header-title-span">
+          f/{{ subFooddit.title }}
+        </span>
+      </h2>
+    </div>
     <div class="subfooddit-wrap__info">
       <!-- TODO: add more info/rules of subfooddit -->
       <div class="subfooddit-wrap__info-join btn-wrap">
@@ -34,6 +34,8 @@
   }
 </div>
 
+@if(isPageLoaded){
 <app-recipes
   [notShowTitle]="true"
   [subFoodditName]="subFooddit.title"/>
+}

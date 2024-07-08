@@ -43,13 +43,35 @@
     }
     a {
       overflow: hidden;
-      padding: 0.7rem 0 0.7rem 1rem;
-      &:hover {
-        transition: all 250ms;
-        background-color: var(--color-primary);
+      padding: 0.7rem 0 .7rem 1rem;
+      position: relative;
+      box-sizing: border-box;
+      
+      &:hover{
+        transition: color .1s .2s;
+        color: var(--color-white);
+
+        &::before{
+          transform: scaleY(1);
+          width: 100%;
+        }
       }
       &:not(a:nth-child(2)){
         margin-top: .2rem;
+      }
+      
+      &::before{
+        content: "";
+        z-index: -1;;
+        transform: scaleY(0);
+        top: 0;
+        left: 0;
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 3px;
+        background-color: var(--color-primary);
+        transition: transform .2s, width .4s cubic-bezier(1,0,0,1) .2s;
       }
     }
   }
@@ -95,5 +117,6 @@
 }
 
 .active-link-bg{
+  color: var(--color-white);
   background-color: var(--color-primary);
 }
